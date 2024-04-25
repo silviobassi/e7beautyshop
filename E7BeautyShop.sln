@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E7BeautyShop.Domain", "E7BeautyShop.Domain\E7BeautyShop.Domain.csproj", "{D239C216-263D-4518-8323-0FF540CDEC2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E7BeautyShop.Domain.Tests", "E7BeautyShop.Domain.Tests\E7BeautyShop.Domain.Tests.csproj", "{70DA1F4D-6A07-4354-A270-8DBD9F63438D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D239C216-263D-4518-8323-0FF540CDEC2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D239C216-263D-4518-8323-0FF540CDEC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D239C216-263D-4518-8323-0FF540CDEC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D239C216-263D-4518-8323-0FF540CDEC2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70DA1F4D-6A07-4354-A270-8DBD9F63438D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70DA1F4D-6A07-4354-A270-8DBD9F63438D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70DA1F4D-6A07-4354-A270-8DBD9F63438D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70DA1F4D-6A07-4354-A270-8DBD9F63438D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
