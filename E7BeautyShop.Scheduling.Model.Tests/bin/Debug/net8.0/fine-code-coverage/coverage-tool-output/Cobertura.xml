@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage line-rate="0.914893617021277" branch-rate="0.5" lines-covered="43" lines-valid="47" branches-covered="3" branches-valid="6" complexity="17" version="0" timestamp="1714764874">
+  <sources>
+    <source>C:\Users\silvio\</source>
+  </sources>
+  <packages>
+    <package name="E7BeautyShop.Domain" line-rate="0.842105263157895" branch-rate="0.5" complexity="10">
+      <classes>
+        <class name="E7BeautyShop.Domain.Entities.BaseEntity" filename="C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Domain\Entities\BaseEntity.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="5" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="5" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="E7BeautyShop.Domain.Entities.Category" filename="C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Domain\Entities\Category.cs" line-rate="0.833333333333333" branch-rate="0.5" complexity="9">
+          <methods>
+            <method name="get_Name" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="5" hits="5" branch="false" />
+              </lines>
+            </method>
+            <method name="Update" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="8" hits="1" branch="false" />
+                <line number="9" hits="1" branch="false" />
+                <line number="10" hits="1" branch="false" />
+                <line number="11" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="HasName" signature="(...)" line-rate="0.75" branch-rate="0.5" complexity="2">
+              <lines>
+                <line number="15" hits="2" branch="false" />
+                <line number="16" hits="2" branch="true" condition-coverage="50% (1/2)" />
+                <line number="17" hits="2" branch="false" />
+                <line number="18" hits="0" branch="false" />
+              </lines>
+            </method>
+            <method name="HasLessThan100Chars" signature="(...)" line-rate="0.75" branch-rate="0.5" complexity="2">
+              <lines>
+                <line number="22" hits="1" branch="false" />
+                <line number="23" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="24" hits="1" branch="false" />
+                <line number="25" hits="0" branch="false" />
+              </lines>
+            </method>
+            <method name="HasId" signature="(...)" line-rate="0.75" branch-rate="0.5" complexity="2">
+              <lines>
+                <line number="28" hits="1" branch="false" />
+                <line number="29" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="30" hits="1" branch="false" />
+                <line number="31" hits="0" branch="false" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="3" hits="2" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="3" hits="2" branch="false" />
+            <line number="5" hits="5" branch="false" />
+            <line number="8" hits="1" branch="false" />
+            <line number="9" hits="1" branch="false" />
+            <line number="10" hits="1" branch="false" />
+            <line number="11" hits="1" branch="false" />
+            <line number="15" hits="2" branch="false" />
+            <line number="16" hits="2" branch="true" condition-coverage="50% (1/2)" />
+            <line number="17" hits="2" branch="false" />
+            <line number="18" hits="0" branch="false" />
+            <line number="22" hits="1" branch="false" />
+            <line number="23" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="24" hits="1" branch="false" />
+            <line number="25" hits="0" branch="false" />
+            <line number="28" hits="1" branch="false" />
+            <line number="29" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="30" hits="1" branch="false" />
+            <line number="31" hits="0" branch="false" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="E7BeautyShop.Domain.Tests" line-rate="0.964285714285714" branch-rate="1" complexity="7">
+      <classes>
+        <class name="AutoGeneratedProgram" filename="C:\Users\silvio\.nuget\packages\microsoft.net.test.sdk\17.8.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="Main" signature="(...)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="4" hits="0" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="4" hits="0" branch="false" />
+          </lines>
+        </class>
+        <class name="E7BeautyShop.Domain.Tests.Entities.CategoryTests" filename="C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Domain.Tests\Entities\CategoryTests.cs" line-rate="1" branch-rate="1" complexity="6">
+          <methods>
+            <method name="Create_Category_Object" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="9" hits="1" branch="false" />
+                <line number="11" hits="1" branch="false" />
+                <line number="12" hits="1" branch="false" />
+                <line number="13" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="Update_Category_Object" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="17" hits="1" branch="false" />
+                <line number="19" hits="1" branch="false" />
+                <line number="21" hits="1" branch="false" />
+                <line number="22" hits="1" branch="false" />
+                <line number="23" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="HasName_NullName_ThrowsArgumentException" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="27" hits="1" branch="false" />
+                <line number="28" hits="1" branch="false" />
+                <line number="29" hits="2" branch="false" />
+                <line number="30" hits="1" branch="false" />
+                <line number="31" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="HasName_EmptyName_ThrowsArgumentException" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="35" hits="1" branch="false" />
+                <line number="37" hits="2" branch="false" />
+                <line number="38" hits="1" branch="false" />
+                <line number="39" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="HasLessThan100Chars_NameWithMoreThan100Chars_ThrowsArgumentException" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="43" hits="1" branch="false" />
+                <line number="48" hits="2" branch="false" />
+                <line number="49" hits="1" branch="false" />
+                <line number="50" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="HasId_NullId_ThrowsArgumentException" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="54" hits="1" branch="false" />
+                <line number="55" hits="1" branch="false" />
+                <line number="56" hits="2" branch="false" />
+                <line number="57" hits="1" branch="false" />
+                <line number="58" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="9" hits="1" branch="false" />
+            <line number="11" hits="1" branch="false" />
+            <line number="12" hits="1" branch="false" />
+            <line number="13" hits="1" branch="false" />
+            <line number="17" hits="1" branch="false" />
+            <line number="19" hits="1" branch="false" />
+            <line number="21" hits="1" branch="false" />
+            <line number="22" hits="1" branch="false" />
+            <line number="23" hits="1" branch="false" />
+            <line number="27" hits="1" branch="false" />
+            <line number="28" hits="1" branch="false" />
+            <line number="29" hits="2" branch="false" />
+            <line number="30" hits="1" branch="false" />
+            <line number="31" hits="1" branch="false" />
+            <line number="35" hits="1" branch="false" />
+            <line number="37" hits="2" branch="false" />
+            <line number="38" hits="1" branch="false" />
+            <line number="39" hits="1" branch="false" />
+            <line number="43" hits="1" branch="false" />
+            <line number="48" hits="2" branch="false" />
+            <line number="49" hits="1" branch="false" />
+            <line number="50" hits="1" branch="false" />
+            <line number="54" hits="1" branch="false" />
+            <line number="55" hits="1" branch="false" />
+            <line number="56" hits="2" branch="false" />
+            <line number="57" hits="1" branch="false" />
+            <line number="58" hits="1" branch="false" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>

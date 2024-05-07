@@ -1,0 +1,12 @@
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\bin\Debug\net8.0\E7BeautyShop.Scheduling.Model.deps.json
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\bin\Debug\net8.0\E7BeautyShop.Scheduling.Model.dll
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\bin\Debug\net8.0\E7BeautyShop.Scheduling.Model.pdb
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\obj\Debug\net8.0\E7BeautyShop.Scheduling.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\obj\Debug\net8.0\E7BeautyShop.Scheduling.Model.AssemblyInfoInputs.cache
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\obj\Debug\net8.0\E7BeautyShop.Scheduling.Model.AssemblyInfo.cs
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\obj\Debug\net8.0\E7BeautyShop.Scheduling.Model.csproj.CoreCompileInputs.cache
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\obj\Debug\net8.0\E7BeautyShop.Scheduling.Model.sourcelink.json
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\obj\Debug\net8.0\E7BeautyShop.Scheduling.Model.dll
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\obj\Debug\net8.0\refint\E7BeautyShop.Scheduling.Model.dll
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\obj\Debug\net8.0\E7BeautyShop.Scheduling.Model.pdb
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\E7BeautyShop.Scheduling.Model\obj\Debug\net8.0\ref\E7BeautyShop.Scheduling.Model.dll
