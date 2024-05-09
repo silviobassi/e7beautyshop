@@ -16,16 +16,16 @@ public class ServiceDescriptionTest
     [Fact]
     public void Should_ThrowException_When_NameIsNull()
     {
-        var serviceDescription = new ServiceDescription(null, 40.50M);
-        var exception = Assert.Throws<BusinessException>(() =>  serviceDescription.Validate());
+        var exception = Assert.Throws<BusinessException>(
+            () =>  new ServiceDescription(null, 40.50M));
         Assert.Equal("Name cannot be null", exception.Message);
     }
 
     [Fact]
     public void Should_ThrowException_When_PriceIsZero()
     {
-        var serviceDescription = new ServiceDescription("Corte Cabelo + Barba", 0);
-        var exception = Assert.Throws<BusinessException>(() => serviceDescription.Validate());
+        var exception = Assert.Throws<BusinessException>(
+            () => new ServiceDescription("Corte Cabelo + Barba", 0));
         Assert.Equal("Price must be greater than 0", exception.Message);
     }
     
@@ -33,7 +33,7 @@ public class ServiceDescriptionTest
     public void Should_NotThrowException_When_NameNotIsNull()
     {
         var serviceDescription = new ServiceDescription("Corte Barba", 40.50M);
-        var exception = Record.Exception(() => serviceDescription.Validate());
+        var exception = Record.Exception(() => serviceDescription);
         Assert.Null(exception);
     }
 
@@ -41,7 +41,7 @@ public class ServiceDescriptionTest
     public void Should_NotThrowException_When_PriceGreaterThanZero()
     {
         var serviceDescription = new ServiceDescription("Corte Cabelo + Barba", 30.0M);
-        var exception = Record.Exception(() => serviceDescription.Validate());
+        var exception = Record.Exception(() => serviceDescription);
         Assert.Null(exception);
     }
 }

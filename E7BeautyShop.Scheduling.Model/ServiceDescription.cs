@@ -7,13 +7,14 @@ public class ServiceDescription
 
     public ServiceDescription(string? name, decimal price)
     {
+        Validate(name, price);
         Name = name;
         Price = price;
     }
 
-    public void Validate()
+    private static void Validate(string? name, decimal price)
     {
-        ModelBusinessException.When(string.IsNullOrEmpty(Name), "Name cannot be null");
-        ModelBusinessException.When(Price <= 0, "Price must be greater than 0");
+        ModelBusinessException.When(string.IsNullOrEmpty(name), "Name cannot be null");
+        ModelBusinessException.When(price <= 0, "Price must be greater than 0");
     }
 }
