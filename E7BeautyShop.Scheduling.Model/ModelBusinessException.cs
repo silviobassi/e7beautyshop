@@ -1,10 +1,11 @@
 ﻿namespace E7BeautyShop.Domain;
 
-public abstract class DomainBusinessException : Exception
+public abstract class ModelBusinessException
 {
+    
     public static void When(bool condition, string message)
     {
         if (condition)
-            throw new ArgumentException(message);
+            throw new BusinessException(message);
     }
 }

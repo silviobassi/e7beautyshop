@@ -17,7 +17,7 @@ public class ServiceDescriptionTest
     public void Should_ThrowException_When_NameIsNull()
     {
         var serviceDescription = new ServiceDescription(null, 40.50M);
-        var exception = Assert.Throws<ArgumentException>(() =>  serviceDescription.Validate());
+        var exception = Assert.Throws<BusinessException>(() =>  serviceDescription.Validate());
         Assert.Equal("Name cannot be null", exception.Message);
     }
 
@@ -25,7 +25,7 @@ public class ServiceDescriptionTest
     public void Should_ThrowException_When_PriceIsZero()
     {
         var serviceDescription = new ServiceDescription("Corte Cabelo + Barba", 0);
-        var exception = Assert.Throws<ArgumentException>(() => serviceDescription.Validate());
+        var exception = Assert.Throws<BusinessException>(() => serviceDescription.Validate());
         Assert.Equal("Price must be greater than 0", exception.Message);
     }
     

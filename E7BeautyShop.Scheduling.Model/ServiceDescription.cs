@@ -13,7 +13,7 @@ public class ServiceDescription
 
     public void Validate()
     {
-        DomainBusinessException.When(string.IsNullOrEmpty(Name), "Name cannot be null");
-        DomainBusinessException.When(Price <= 0, "Price must be greater than 0");
+        ModelBusinessException.When(string.IsNullOrEmpty(Name), "Name cannot be null");
+        ModelBusinessException.When(Price <= 0, "Price must be greater than 0");
     }
 }
