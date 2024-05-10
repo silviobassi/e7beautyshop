@@ -21,6 +21,13 @@
     &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Domain.Tests.AppointmentTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9eadc513_002D6026_002D4297_002Db6fd_002D190a2ed0a1fd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9eadc513_002D6026_002D4297_002Db6fd_002D190a2ed0a1fd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ffe3d50e_002Dc87e_002D4886_002Db37d_002D08df3660e92d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Should_Generate_OfficeHours" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Domain.Tests.OfficeDayTest.Should_Create_OfficeDay&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Domain.Tests.OfficeDayTest.Should_Generate_OfficeHours_Weekday&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Domain.Tests.OfficeDayTest.Should_Generate_Weekend&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
