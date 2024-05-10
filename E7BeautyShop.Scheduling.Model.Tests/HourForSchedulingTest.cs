@@ -3,10 +3,26 @@
 public class HourForSchedulingTest
 {
    [Fact]
-   public void Should_Create_HoursForScheduling()
+   public void Should_Create_HoursForWeekday()
    {
-      HourForScheduling hourScheduling = new (new TimeSpan(8, 0, 0));
+      var hourScheduling = new HourForScheduling().CreateHourWeekday(new TimeSpan(8, 0, 0));
       Assert.NotNull(hourScheduling);
-      Assert.Equal(new TimeSpan(8, 0, 0), hourScheduling.Hour);
+      Assert.Equal(new TimeSpan(8, 0, 0), hourScheduling.HourWeekday);
+   }
+   
+   [Fact]
+   public void Should_Create_HoursForWeekend()
+   {
+      var hourScheduling = new HourForScheduling().CreateHourWeekend(new TimeSpan(8, 0, 0));
+      Assert.NotNull(hourScheduling);
+      Assert.Equal(new TimeSpan(8, 0, 0), hourScheduling.HourWeekend);
+   }
+   
+   [Fact]
+   public void Should_Create_HoursForHoliday()
+   {
+      var hourScheduling = new HourForScheduling().CreateHourHoliday(new TimeSpan(8, 0, 0));
+      Assert.NotNull(hourScheduling);
+      Assert.Equal(new TimeSpan(8, 0, 0), hourScheduling.HourHoliday);
    }
 }

@@ -3,31 +3,25 @@
 public class Schedule
 {
     public DateOnly StartAt { get; private set; }
-    public OfficeHoursOnWeekday OfficeHoursOnWeekday { get; private set; }
-    public OfficeHoursOnHoliday OfficeHoursOnHoliday { get; private set; }
-    public OfficeHoursOnWeekend OfficeHoursOnWeekend { get; private set; }
+    public OfficeHours OfficeHours { get; private set; }
 
     public ISet<HourForScheduling> HoursForScheduling { get; private set; } = new HashSet<HourForScheduling>();
 
     public int ScheduleDurationInMonths { get; private set; }
     public int Interval { get; private set; }
-    public IEnumerable<string>? DiasDeDescanso { get; private set; }
+    public IEnumerable<string>? DaysRest { get; private set; }
 
 
-    public Schedule(DateOnly startAt, OfficeHoursOnWeekday officeHoursOnWeekday,
-        OfficeHoursOnHoliday officeHoursOnHoliday,
-        OfficeHoursOnWeekend officeHoursOnWeekend,
+    public Schedule(DateOnly startAt, OfficeHours officeHours,
         int scheduleDurationInMonths,
         int interval,
-        List<string> diasDeDescanso)
+        List<string> daysRest)
     {
         StartAt = startAt;
-        OfficeHoursOnWeekday = officeHoursOnWeekday;
-        OfficeHoursOnHoliday = officeHoursOnHoliday;
-        OfficeHoursOnWeekend = officeHoursOnWeekend;
+        OfficeHours = officeHours;
         ScheduleDurationInMonths = scheduleDurationInMonths;
         Interval = interval;
-        DiasDeDescanso = diasDeDescanso;
+        DaysRest = daysRest;
     }
 
     public bool AddHoursForScheduling(HourForScheduling hourForScheduling)
@@ -37,14 +31,16 @@ public class Schedule
 
     public void Generate()
     {
+        // Gerar horários para dias úteis
+        
         var intervalTimeSpan = TimeSpan.FromMinutes(Interval);
 
-        for (var currentTime = OfficeHoursOnWeekday.StartAt;
+        for (var currentTime = OfficeHours.StartAt;
              currentTime
-             <= OfficeHoursOnWeekday.EndAt;
+             <= OfficeHours.EndAt;
              currentTime += intervalTimeSpan)
         {
-            HoursForScheduling.Add(new HourForScheduling(currentTime));
+            HoursForScheduling.Add(new HourForScheduling().CreateHourWeekday(currentTime));
         }
     }
 }

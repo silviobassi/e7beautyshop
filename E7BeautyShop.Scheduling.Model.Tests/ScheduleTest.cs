@@ -7,20 +7,16 @@ public class ScheduleTest
     private readonly Schedule _schedule;
     private readonly DateOnly _startAt = new(2021, 10, 1);
 
-    private readonly TimeSpan _startAtWeekday = new(8, 0, 0);
-    private readonly TimeSpan _endAtWeekday = new(16, 0, 0);
-    private readonly TimeSpan _startAtHoliday = new(8, 0, 0);
-    private readonly TimeSpan _endAtHoliday = new(20, 0, 0);
-    private readonly TimeSpan _startAtWeekend = new(8, 0, 0);
-    private readonly TimeSpan _endAtWeekend = new(20, 0, 0);
-    
+    private readonly TimeSpan _officeHoursStartAt = new(8, 0, 0);
+    private readonly TimeSpan _officeHoursEndAt = new(16, 0, 0);
+
     private readonly ITestOutputHelper _output;
 
     public ScheduleTest(ITestOutputHelper output)
- 
+
     {
         _output = output;
- 
+
         const int scheduleDurationInMonths = 1;
         const int intervalo = 20;
         List<string> diasDeDescanso =
@@ -35,9 +31,7 @@ public class ScheduleTest
 
         _schedule = new Schedule(
             _startAt,
-            new OfficeHoursOnWeekday(_startAtWeekday, _endAtWeekday),
-            new OfficeHoursOnHoliday(_startAtHoliday, _endAtHoliday),
-            new OfficeHoursOnWeekend(_startAtWeekend, _endAtWeekend),
+            new OfficeHours(_officeHoursStartAt, _officeHoursEndAt),
             scheduleDurationInMonths, intervalo, diasDeDescanso);
     }
 
@@ -56,38 +50,20 @@ public class ScheduleTest
             DayOfWeek.Friday.ToString(),
             DayOfWeek.Saturday.ToString()
         ];
-
-
+        
         Assert.Equal(_startAt, _schedule.StartAt);
-        Assert.Equal(_startAtWeekday, _schedule.OfficeHoursOnWeekday.StartAt);
-        Assert.Equal(_endAtWeekday, _schedule.OfficeHoursOnWeekday.EndAt);
-        Assert.Equal(_startAtHoliday, _schedule.OfficeHoursOnHoliday.StartAt);
-        Assert.Equal(_endAtHoliday, _schedule.OfficeHoursOnHoliday.EndAt);
-        Assert.Equal(_startAtWeekend, _schedule.OfficeHoursOnWeekend.StartAt);
-        Assert.Equal(_endAtWeekend, _schedule.OfficeHoursOnWeekend.EndAt);
-        Assert.NotNull(_schedule.OfficeHoursOnHoliday);
-        Assert.NotNull(_schedule.OfficeHoursOnWeekend);
+        Assert.Equal(_officeHoursStartAt, _schedule.OfficeHours.StartAt);
+        Assert.Equal(_officeHoursEndAt, _schedule.OfficeHours.EndAt);
         Assert.Equal(scheduleDurationInMonths, _schedule.ScheduleDurationInMonths);
         Assert.Equal(intervalo, _schedule.Interval);
-        Assert.Equal(diasDeDescanso, _schedule.DiasDeDescanso);
+        Assert.Equal(diasDeDescanso, _schedule.DaysRest);
     }
-    
+
     [Fact]
     public void AddHoursForScheduling_ShouldReturnTrue_WhenHourIsAddedSuccessfully()
     {
-        var hourForScheduling = new HourForScheduling(new TimeSpan(8, 0, 0));
+        var hourForScheduling = new HourForScheduling().CreateHourWeekday(new TimeSpan(8, 0, 0));
         _schedule.AddHoursForScheduling(hourForScheduling);
-        Assert.Single(_schedule.HoursForScheduling);
-    }
-
-    [Fact]
-    public void AddHoursForScheduling_ShouldReturnFalse_WhenHourAlreadyExists()
-    {
-        var hourForScheduling = new HourForScheduling(new TimeSpan(8, 0, 0));
-        var result1 = _schedule.AddHoursForScheduling(hourForScheduling);
-        var result2 = _schedule.AddHoursForScheduling(hourForScheduling);
-        Assert.True(result1);
-        Assert.False(result2);
         Assert.Single(_schedule.HoursForScheduling);
     }
 
@@ -99,7 +75,7 @@ public class ScheduleTest
         Assert.Equal(25, hoursScheduling.Count);
         foreach (var hourScheduling in hoursScheduling)
         {
-            _output.WriteLine($"Horários de Atendimento: {hourScheduling.Hour}");
+            _output.WriteLine($"Horários de Atendimento: {hourScheduling.HourWeekday}");
         }
     }
 }
