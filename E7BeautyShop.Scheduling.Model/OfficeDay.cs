@@ -4,30 +4,27 @@ public class OfficeDay
 {
     public DateTime Date { get; private set; }
     public int Interval { get; private set; }
-
-    private readonly TimeSpan _startWeekDay;
-    private readonly TimeSpan _endWeekDay;
-
-    private readonly TimeSpan _startWeekend;
-    private readonly TimeSpan _endWeekend;
-
+    public DayOfWeek DayRest { get; private set; }
+    public bool IsAttending { get; private set; } = true;
     public List<OfficeHour> OfficeHours { get; private set; } = [];
 
-    public OfficeDay(DateTime date, int interval, TimeSpan startWeekDay, TimeSpan endWeekDay, TimeSpan startWeekend, TimeSpan endWeekend)
+    private readonly Weekday _weekday;
+    private readonly Weekend _weekend;
+
+    public OfficeDay(DateTime date, int interval, TimeSpan startWeekDay, TimeSpan endWeekDay, TimeSpan startWeekend, TimeSpan endWeekend, DayOfWeek dayRest)
     {
         Date = date;
         Interval = interval;
-        _startWeekDay = startWeekDay;
-        _endWeekDay = endWeekDay;
-        _startWeekend = startWeekend;
-        _endWeekend = endWeekend;
+        DayRest = dayRest;
+        _weekday = new Weekday(startWeekDay, endWeekDay);
+        _weekend = new Weekend(startWeekend, endWeekend);
     }
 
     public void GenerateWeekday()
     {
         var intervalTimeSpan = TimeSpan.FromMinutes(Interval);
-        if (IsNotWeekday()) return;
-        for (var currentTime = _startWeekDay; currentTime <= _endWeekDay; currentTime += intervalTimeSpan)
+        if (IsNotWeekday() || IsDayRest()) return;
+        for (var currentTime = _weekday.StartAt; currentTime <= _weekday.EndAt; currentTime += intervalTimeSpan)
         {
             OfficeHours.Add(new OfficeHour(currentTime));
         }
@@ -36,11 +33,21 @@ public class OfficeDay
     public void GenerateWeekend()
     {
         var intervalTimeSpan = TimeSpan.FromMinutes(Interval);
-        if (IsNotWeekend()) return;
-        for (var currentTime = _startWeekend; currentTime <= _endWeekend; currentTime += intervalTimeSpan)
+        if (IsNotWeekend() || IsDayRest()) return;
+        for (var currentTime = _weekend.StartAt; currentTime <= _weekend.EndAt; currentTime += intervalTimeSpan)
         {
             OfficeHours.Add(new OfficeHour(currentTime));
         }
+    }
+
+    public void Cancel()
+    {
+        IsAttending = false;
+    }
+    
+    public void Attend()
+    {
+        IsAttending = true;
     }
 
     private bool IsNotWeekday()
@@ -51,5 +58,10 @@ public class OfficeDay
     private bool IsNotWeekend()
     {
         return Date.DayOfWeek is not DayOfWeek.Saturday && Date.DayOfWeek is not DayOfWeek.Sunday;
+    }
+    
+    private bool IsDayRest()
+    {
+        return Date.DayOfWeek == DayRest;
     }
 }
