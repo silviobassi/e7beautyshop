@@ -43,7 +43,7 @@ public class OfficeDayTest()
     public void Should_Generate__weekend()
     {
         var date = new DateTime(2024, 5, 11);
-        OfficeDay officeDay = new(Interval, _weekday, _weekend, DayRest);
+        IOfficeDay officeDay = new OfficeDay(Interval, _weekday, _weekend, DayRest);
         officeDay.InformDate(date);
         officeDay.Generate();
         Assert.Equal(9, officeDay.OfficeHours.Count);
@@ -76,17 +76,17 @@ public class OfficeDayTest()
         Assert.True(officeDay.IsAttending);
     }
 
-    private OfficeDay OfficeWeekday()
+    private IOfficeDay OfficeWeekday()
     {
-        OfficeDay officeDay = new(Interval, _weekday, _weekend, DayRest);
+        IOfficeDay officeDay = new OfficeDay(Interval, _weekday, _weekend, DayRest);
         officeDay.InformDate(new DateTime(2024, 5, 2));
         return officeDay;
     }
 
-    private OfficeDay OfficeNotWeekday()
+    private IOfficeDay OfficeNotWeekday()
     {
         const DayOfWeek dayRest = DayOfWeek.Monday;
-        OfficeDay officeDay = new(Interval, _weekday, _weekend, dayRest);
+        IOfficeDay officeDay = new OfficeDay(Interval, _weekday, _weekend, dayRest);
         officeDay.InformDate(new DateTime(2024, 5, 6));
         return officeDay;
     }

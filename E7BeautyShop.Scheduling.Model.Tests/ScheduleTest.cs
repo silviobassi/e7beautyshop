@@ -33,9 +33,9 @@ public class ScheduleTest(ITestOutputHelper output)
         
         foreach (var ofDay in schedule.OfficeDays)
         {
-            output.WriteLine($"Date: {ofDay.Date}");
+            output.WriteLine($"Date: {ofDay?.Date}");
             
-            foreach (var officeHour in ofDay.OfficeHours)
+            foreach (var officeHour in ofDay!.OfficeHours)
             {
                 output.WriteLine($"Hour: {officeHour.Hour}");
             }

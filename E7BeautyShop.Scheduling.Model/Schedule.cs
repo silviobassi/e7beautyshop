@@ -3,7 +3,7 @@
 public class Schedule
 {
     public Guid Id { get; private set; }
-    public List<OfficeDay?> OfficeDays { get; private set; } = [];
+    public List<IOfficeDay?> OfficeDays { get; private set; } = [];
     private DateTime? StartAt { get; set; }
     private DateTime? EndAt { get; set; }
     
@@ -17,14 +17,14 @@ public class Schedule
         EndAt = endAt;
     }
 
-    public void Generate(OfficeDay? officeDay)
+    public void Generate(IOfficeDay? officeDay)
     {
         ModelBusinessException.When(officeDay == null, "OfficeDay is required");
         officeDay?.InformDate(StartAt);
         AddAllDays(officeDay!);
     }
 
-    private void AddAllDays(OfficeDay? officeDay)
+    private void AddAllDays(IOfficeDay? officeDay)
     {
         ModelBusinessException.When(officeDay == null, "OfficeDay is required");
         var daysBetweenDates = (EndAt - StartAt)?.Days;

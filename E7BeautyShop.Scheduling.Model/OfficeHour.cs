@@ -1,23 +1,22 @@
 ﻿namespace E7BeautyShop.Domain;
 
-public class OfficeHour
+public class OfficeHour : IOfficeHour
 {
-    public TimeSpan? Hour { get; private set; }
+    public TimeSpan? Hour { get; set; }
     public bool IsAvailable { get; private set; } = true;
-
     public OfficeHour(TimeSpan? hour)
     {
         Validate(hour);
         Hour = hour;
     }
+    
 
-
-    public void ToMakeAvailable()
+    public  void ToMakeAvailable()
     {
         IsAvailable = true;
     }
 
-    public void ToMakeUnavailable()
+    public  void ToMakeUnavailable()
     {
         IsAvailable = false;
     }

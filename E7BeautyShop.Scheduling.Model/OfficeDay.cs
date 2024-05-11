@@ -1,15 +1,17 @@
 ﻿namespace E7BeautyShop.Domain;
 
-public class OfficeDay : Entity
+public class OfficeDay : Entity, IOfficeDay
 {
-    public DateTime? Date { get; private set; }
-    public bool IsAttending { get; private set; } = true;
+    public DateTime? Date { get; set; }
+    public bool IsAttending { get; set; } = true;
     public DayOfWeek? DayRest { get; set; }
-    public List<OfficeHour> OfficeHours { get; private set; } = [];
+    public List<IOfficeHour> OfficeHours { get; set; } = [];
 
     private Weekday? Weekday { get; set; }
     private Weekend? Weekend { get; set; }
     private int Interval { get; set; }
+
+    private readonly IOfficeHourFactory _officeHourFactory = new OfficeHourFactory();
 
     public OfficeDay(int interval, Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
     {
@@ -19,7 +21,7 @@ public class OfficeDay : Entity
         Weekend = weekend;
         DayRest = dayRest;
     }
-    
+
     public void Update(Guid id, int interval, Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
     {
         ModelBusinessException.When(id == Guid.Empty, "Id is required");
@@ -57,24 +59,16 @@ public class OfficeDay : Entity
         ModelBusinessException.When(dayRest == null, "Day rest is required");
     }
 
-    private bool IsNotWeekday()
-    {
-        return Date?.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday;
-    }
+    private bool IsNotWeekday => Date?.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday;
 
-    private bool IsNotWeekend()
-    {
-        return Date?.DayOfWeek is not DayOfWeek.Saturday && Date?.DayOfWeek is not DayOfWeek.Sunday;
-    }
+    private bool IsNotWeekend => Date?.DayOfWeek is not DayOfWeek.Saturday && Date?.DayOfWeek is not DayOfWeek.Sunday;
 
-    private bool IsDayRest()
-    {
-        return Date?.DayOfWeek == DayRest;
-    }
+    private bool IsDayRest => Date?.DayOfWeek == DayRest;
+
 
     private void GenerateWeekday()
     {
-        if (IsNotWeekday() || IsDayRest()) return;
+        if (IsNotWeekday || IsDayRest) return;
         AddAllWeekday();
     }
 
@@ -83,12 +77,14 @@ public class OfficeDay : Entity
         for (var currentTime = Weekday?.StartAt;
              currentTime <= Weekday?.EndAt;
              currentTime += TimeSpan.FromMinutes(Interval))
-            OfficeHours.Add(new OfficeHour(currentTime));
+        {
+            OfficeHours.Add(_officeHourFactory.Create(currentTime));
+        }
     }
 
     private void GenerateWeekend()
     {
-        if (IsNotWeekend() || IsDayRest()) return;
+        if (IsNotWeekend || IsDayRest) return;
         AddAllWeekend();
     }
 
@@ -97,7 +93,9 @@ public class OfficeDay : Entity
         for (var currentTime = Weekend?.StartAt;
              currentTime <= Weekend?.EndAt;
              currentTime += TimeSpan.FromMinutes(Interval))
-            OfficeHours.Add(new OfficeHour(currentTime));
+        {
+            OfficeHours.Add(_officeHourFactory.Create(currentTime));
+        }
     }
 
     public void InformDate(DateTime? date)
@@ -106,7 +104,7 @@ public class OfficeDay : Entity
         Date = date;
     }
 
-    internal void IncrementDate(int daysNumber)
+    public void IncrementDate(int daysNumber)
     {
         ModelBusinessException.When(daysNumber < 0, "Days number must be greater than 0");
         Date = Date?.AddDays(daysNumber);
