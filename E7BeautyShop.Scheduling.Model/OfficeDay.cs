@@ -4,11 +4,11 @@ public class OfficeDay : Entity
 {
     public DateTime? Date { get; private set; }
     public bool IsAttending { get; private set; } = true;
+    public DayOfWeek? DayRest { get; set; }
     public List<OfficeHour> OfficeHours { get; private set; } = [];
 
     private Weekday? Weekday { get; set; }
     private Weekend? Weekend { get; set; }
-    private DayOfWeek? DayRest { get; set; }
     private int Interval { get; set; }
 
     public OfficeDay(int interval, Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
