@@ -11,8 +11,6 @@ public class ScheduleTest(ITestOutputHelper output)
         var endAt = new DateTime(2024, 07, 31);
         Schedule schedule = new(startAt, endAt);
         Assert.NotNull(schedule);
-        Assert.Equal(startAt, schedule.StartAt);
-        Assert.Equal(endAt, schedule.EndAt);
     }
 
     [Fact]
@@ -29,8 +27,6 @@ public class ScheduleTest(ITestOutputHelper output)
 
         Schedule schedule = new(startAt, endAt);
         Assert.NotNull(schedule);
-        Assert.Equal(startAt, schedule.StartAt);
-        Assert.Equal(endAt, schedule.EndAt);
         schedule.Generate(officeDay);
         
         Assert.Equal(92, schedule.OfficeDays.Count);

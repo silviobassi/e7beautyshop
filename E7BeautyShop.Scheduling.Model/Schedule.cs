@@ -3,30 +3,35 @@
 public class Schedule
 {
     public Guid Id { get; private set; }
-    public DateTime StartAt { get; private set; }
-    public DateTime EndAt { get; private set; }
-
-    public List<OfficeDay> OfficeDays { get; private set; } = [];
-
-    public Schedule(DateTime startAt, DateTime endAt)
+    public List<OfficeDay?> OfficeDays { get; private set; } = [];
+    private DateTime? StartAt { get; set; }
+    private DateTime? EndAt { get; set; }
+    
+    public Schedule(DateTime? startAt, DateTime? endAt)
     {
+        ModelBusinessException.When(startAt == null, "StartAt is required");
+        ModelBusinessException.When(startAt < DateTime.MinValue, "StartAt value not valid");
+        ModelBusinessException.When(endAt == null, "EndAt is required");
+        ModelBusinessException.When(startAt >= endAt, "StartAt must be less than EndAt");
         StartAt = startAt;
         EndAt = endAt;
     }
 
-    public void Generate(OfficeDay officeDay)
+    public void Generate(OfficeDay? officeDay)
     {
-        officeDay.InformDate(StartAt);
-        AddAllDays(officeDay);
+        ModelBusinessException.When(officeDay == null, "OfficeDay is required");
+        officeDay?.InformDate(StartAt);
+        AddAllDays(officeDay!);
     }
 
-    private void AddAllDays(OfficeDay officeDay)
+    private void AddAllDays(OfficeDay? officeDay)
     {
-        var daysBetweenDates = EndAt.Subtract(StartAt).Days;
+        ModelBusinessException.When(officeDay == null, "OfficeDay is required");
+        var daysBetweenDates = (EndAt - StartAt)?.Days;
         for (var i = 0; i <= daysBetweenDates; i++)
         {
-            officeDay.IncrementDate(i);
-            officeDay.Generate();
+            officeDay?.IncrementDate(i);
+            officeDay?.Generate();
             OfficeDays.Add(officeDay);
         }
     }
