@@ -1,25 +1,11 @@
-﻿using E7BeautyShop.Domain;
+﻿namespace E7BeautyShop.Domain;
 
-public class OfficeDay
+public class OfficeDay(DateTime date, int interval, Weekday weekday, Weekend weekend, DayOfWeek dayRest)
 {
-    public DateTime Date { get; private set; }
-    public int Interval { get; private set; }
+    public DateTime Date { get; private set; } = date;
+    public int Interval { get; private set; } = interval;
     public bool IsAttending { get; private set; } = true;
     public List<OfficeHour> OfficeHours { get; private set; } = [];
-
-    private readonly DayOfWeek _dayOfWeek;
-    private readonly Weekday _weekday;
-    private readonly Weekend _weekend;
-
-    public OfficeDay(DateTime date, int interval, TimeSpan startWeekDay, TimeSpan endWeekDay, TimeSpan startWeekend,
-        TimeSpan endWeekend, DayOfWeek dayOfWeek)
-    {
-        Date = date;
-        Interval = interval;
-        _dayOfWeek = dayOfWeek;
-        _weekday = new Weekday(startWeekDay, endWeekDay);
-        _weekend = new Weekend(startWeekend, endWeekend);
-    }
 
     public void GenerateWeekday()
     {
@@ -56,24 +42,18 @@ public class OfficeDay
 
     private bool IsDayRest()
     {
-        return Date.DayOfWeek == _dayOfWeek;
+        return Date.DayOfWeek == dayRest;
     }
 
     private void AddAllHoursToWeekdays()
     {
-        var intervalTimeSpan = TimeSpan.FromMinutes(Interval);
-        for (var currentTime = _weekday.StartAt; currentTime <= _weekday.EndAt; currentTime += intervalTimeSpan)
-        {
+        for (var currentTime = weekday.StartAt; currentTime <= weekday.EndAt; currentTime += TimeSpan.FromMinutes(Interval))
             OfficeHours.Add(new OfficeHour(currentTime));
-        }
     }
     
     private void AddAllHoursToWeekend()
     {
-        var intervalTimeSpan = TimeSpan.FromMinutes(Interval);
-        for (var currentTime = _weekend.StartAt; currentTime <= _weekend.EndAt; currentTime += intervalTimeSpan)
-        {
+        for (var currentTime = weekend.StartAt; currentTime <= weekend.EndAt; currentTime += TimeSpan.FromMinutes(Interval))
             OfficeHours.Add(new OfficeHour(currentTime));
-        }
     }
 }
