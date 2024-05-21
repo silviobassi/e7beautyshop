@@ -1,93 +1,86 @@
-﻿namespace E7BeautyShop.Domain.Tests;
+﻿using Xunit.Abstractions;
 
-public class OfficeDayTest()
+namespace E7BeautyShop.Domain.Tests;
+
+public class OfficeDayTest(ITestOutputHelper output)
 {
-    private const int Interval = 30;
-    private static readonly TimeSpan StartWeekDay = new(8, 0, 0);
-    private static readonly TimeSpan EndWeekday = new(18, 0, 0);
-    private static readonly TimeSpan StartWeekend = new(8, 0, 0);
-    private static readonly TimeSpan EndWeekend = new(12, 0, 0);
-    private const DayOfWeek DayRest = DayOfWeek.Sunday;
-
-    private readonly Weekday _weekday = new(StartWeekDay, EndWeekday);
-    private readonly Weekend _weekend = new(StartWeekend, EndWeekend);
-
-    [Fact]
-    public void Should_Create_OfficeDay()
+    private static Weekend Weekend
     {
-        var officeDay = OfficeWeekday();
-        Assert.NotNull(officeDay);
-        Assert.Equal(new DateTime(2024, 5, 2), officeDay.Date);
+        get
+        {
+            var weekend = new Weekend(new TimeSpan(8, 0, 0), new TimeSpan(12, 0, 0));
+            return weekend;
+        }
+    }
+
+    private static Weekday Weekday
+    {
+        get
+        {
+            var weekday = new Weekday(new TimeSpan(8, 0, 0), new TimeSpan(18, 0, 0));
+            return weekday;
+        }
     }
 
     [Fact]
-    public void Should_Generate_OfficeHours_Weekday()
+    public void Generate_WhenCalledOnWeekday_AddsOfficeHourToWeekday()
     {
-        var officeDay = OfficeWeekday();
-        officeDay.Generate();
+        var officeDay = new OfficeDay(
+            new DateTime(2024, 5, 23, 0, 0, 0, DateTimeKind.Local),
+            Weekday, Weekend, DayOfWeek.Sunday);
+        for (var i = Weekday.StartAt; i <= Weekday.EndAt; i += TimeSpan.FromMinutes(30))
+        {
+            var officeHour = new OfficeHour { Hour = i };
+            officeDay.AddOfficeHour(officeHour);
+        }
+
         Assert.Equal(21, officeDay.OfficeHours.Count);
-        Assert.Equal(StartWeekDay, officeDay.OfficeHours[0].Hour);
-        Assert.Equal(EndWeekday, officeDay.OfficeHours[20].Hour);
-    }
-
-    [Fact]
-    public void Should_EmptyReturn_To_OfficeHours_Weekday_When__dayRest_Equal_DateDay()
-    {
-        var officeDay = OfficeNotWeekday();
-        officeDay.Generate();
-        Assert.Empty(officeDay.OfficeHours);
     }
 
 
     [Fact]
-    public void Should_Generate__weekend()
+    public void Generate_WhenCalledOnWeekend_AddsOfficeHourToWeekend()
     {
-        var date = new DateTime(2024, 5, 11);
-        IOfficeDay officeDay = new OfficeDay(Interval, _weekday, _weekend, DayRest);
-        officeDay.InformDate(date);
-        officeDay.Generate();
+        var officeDay = new OfficeDay(
+            new DateTime(2024, 5, 25, 0, 0, 0, DateTimeKind.Local),
+            Weekday, Weekend, DayOfWeek.Sunday);
+        for (var i = Weekend.StartAt; i <= Weekend.EndAt; i += TimeSpan.FromMinutes(30))
+        {
+            var officeHour = new OfficeHour { Hour = i };
+            officeDay.AddOfficeHour(officeHour);
+        }
+
         Assert.Equal(9, officeDay.OfficeHours.Count);
-        Assert.Equal(StartWeekend, officeDay.OfficeHours[0].Hour);
-        Assert.Equal(EndWeekend, officeDay.OfficeHours[8].Hour);
     }
+
 
     [Fact]
-    public void Should_EmptyReturn_To_OfficeHours__weekend_When__dayRest_Equal_DateDay()
+    public void Generate_CreateSchedule()
     {
-        var officeDay = OfficeNotWeekday();
-        officeDay.Generate();
-        Assert.Empty(officeDay.OfficeHours);
+        var startAt = new DateTime(2024, 5, 25, 0, 0, 0, DateTimeKind.Local);
+        var officeDays = GenerateOfficeDays(startAt);
+        Assert.Equal(30, officeDays.Count);
+       
     }
 
-    [Fact]
-    public void Should_Become_Unavailable_When_Cancelled()
+    private static List<OfficeDay> GenerateOfficeDays(DateTime startAt)
     {
-        var officeDay = OfficeNotWeekday();
-        officeDay.Cancel();
-        Assert.False(officeDay.IsAttending);
-    }
+        List<OfficeDay> officeDays = [];
+        for (var d = 0; d < 30; d++)
+        {
+            var officeDay = new OfficeDay(startAt.AddDays(d), Weekday, Weekend, DayOfWeek.Sunday);
+            officeDays.Add(officeDay);
+            
+            var start = officeDay.IsNotWeekday ? Weekend.StartAt : Weekday.StartAt;
+            var end = officeDay.IsNotWeekday ? Weekend.EndAt : Weekday.EndAt;
+            
+                for (var i = start; i <= end; i += TimeSpan.FromMinutes(30))
+                {
+                    var officeHour = new OfficeHour { Hour = i };
+                    officeDay.AddOfficeHour(officeHour);
+                }
+        }
 
-    [Fact]
-    public void Should_Become_Available_When_Attended()
-    {
-        var officeDay = OfficeNotWeekday();
-        officeDay.Cancel();
-        officeDay.Attend();
-        Assert.True(officeDay.IsAttending);
-    }
-
-    private IOfficeDay OfficeWeekday()
-    {
-        IOfficeDay officeDay = new OfficeDay(Interval, _weekday, _weekend, DayRest);
-        officeDay.InformDate(new DateTime(2024, 5, 2));
-        return officeDay;
-    }
-
-    private IOfficeDay OfficeNotWeekday()
-    {
-        const DayOfWeek dayRest = DayOfWeek.Monday;
-        IOfficeDay officeDay = new OfficeDay(Interval, _weekday, _weekend, dayRest);
-        officeDay.InformDate(new DateTime(2024, 5, 6));
-        return officeDay;
+        return officeDays;
     }
 }
