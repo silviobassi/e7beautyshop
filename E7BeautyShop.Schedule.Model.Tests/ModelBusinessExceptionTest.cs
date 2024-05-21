@@ -1,4 +1,4 @@
-﻿namespace E7BeautyShop.Domain.Tests;
+﻿namespace E7BeautyShop.Schedule.Tests;
 
 public class ModelBusinessExceptionTest
 {

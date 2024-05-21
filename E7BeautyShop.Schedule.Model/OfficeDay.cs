@@ -1,17 +1,15 @@
-﻿using E7BeautyShop.Schedule;
-
-namespace E7BeautyShop.Domain;
+﻿namespace E7BeautyShop.Schedule;
 
 public class OfficeDay : Entity
 {
-    public DateTime? StartAt { get; set; }
+    public DateTime? StartAt { get; private set; }
     public bool IsAttending { get; set; } = true;
     public List<OfficeHour> OfficeHours { get; } = [];
-    
+
     private DayOfWeek? DayRest { get; set; }
     private Weekday? Weekday { get; set; }
     private Weekend? Weekend { get; set; }
-    
+
     public OfficeDay(DateTime startAt, Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
     {
         Validate(weekday, weekend, dayRest);
@@ -24,7 +22,7 @@ public class OfficeDay : Entity
     public void Update(Guid id, Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
     {
         ModelBusinessException.When(id == Guid.Empty, "Id is required");
-        Validate( weekday, weekend, dayRest);
+        Validate(weekday, weekend, dayRest);
         Id = id;
         Weekday = weekday;
         Weekend = weekend;
@@ -58,7 +56,8 @@ public class OfficeDay : Entity
 
     public bool IsNotWeekday => StartAt?.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday;
 
-    private bool IsNotWeekend => StartAt?.DayOfWeek is not DayOfWeek.Saturday && StartAt?.DayOfWeek is not DayOfWeek.Sunday;
+    private bool IsNotWeekend =>
+        StartAt?.DayOfWeek is not DayOfWeek.Saturday && StartAt?.DayOfWeek is not DayOfWeek.Sunday;
 
     private bool IsDayRest => StartAt?.DayOfWeek == DayRest;
 

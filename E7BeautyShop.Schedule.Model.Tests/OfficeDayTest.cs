@@ -1,9 +1,6 @@
-﻿using E7BeautyShop.Schedule;
-using Xunit.Abstractions;
+﻿namespace E7BeautyShop.Schedule.Tests;
 
-namespace E7BeautyShop.Domain.Tests;
-
-public class OfficeDayTest(ITestOutputHelper output)
+public class OfficeDayTest
 {
     private static Weekend Weekend
     {
@@ -61,7 +58,6 @@ public class OfficeDayTest(ITestOutputHelper output)
         var startAt = new DateTime(2024, 5, 25, 0, 0, 0, DateTimeKind.Local);
         var officeDays = GenerateOfficeDays(startAt);
         Assert.Equal(30, officeDays.Count);
-       
     }
 
     private static List<OfficeDay> GenerateOfficeDays(DateTime startAt)
@@ -71,15 +67,15 @@ public class OfficeDayTest(ITestOutputHelper output)
         {
             var officeDay = new OfficeDay(startAt.AddDays(d), Weekday, Weekend, DayOfWeek.Sunday);
             officeDays.Add(officeDay);
-            
+
             var start = officeDay.IsNotWeekday ? Weekend.StartAt : Weekday.StartAt;
             var end = officeDay.IsNotWeekday ? Weekend.EndAt : Weekday.EndAt;
-            
-                for (var i = start; i <= end; i += TimeSpan.FromMinutes(30))
-                {
-                    var officeHour = new OfficeHour { Hour = i };
-                    officeDay.AddOfficeHour(officeHour);
-                }
+
+            for (var i = start; i <= end; i += TimeSpan.FromMinutes(30))
+            {
+                var officeHour = new OfficeHour { Hour = i };
+                officeDay.AddOfficeHour(officeHour);
+            }
         }
 
         return officeDays;

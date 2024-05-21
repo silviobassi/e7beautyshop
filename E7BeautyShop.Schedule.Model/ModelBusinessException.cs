@@ -1,8 +1,7 @@
-﻿namespace E7BeautyShop.Domain;
+﻿namespace E7BeautyShop.Schedule;
 
-public abstract class ModelBusinessException
+public static class ModelBusinessException
 {
-    
     public static void When(bool condition, string message)
     {
         if (condition)

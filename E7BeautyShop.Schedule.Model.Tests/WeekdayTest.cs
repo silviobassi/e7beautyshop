@@ -1,6 +1,4 @@
-﻿using E7BeautyShop.Schedule;
-
-namespace E7BeautyShop.Domain.Tests;
+﻿namespace E7BeautyShop.Schedule.Tests;
 
 public class WeekdayTest
 {

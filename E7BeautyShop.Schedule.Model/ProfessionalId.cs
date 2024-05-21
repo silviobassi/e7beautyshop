@@ -1,4 +1,4 @@
-﻿namespace E7BeautyShop.Domain;
+﻿namespace E7BeautyShop.Schedule;
 
 public class ProfessionalId
 {
