@@ -1,12 +1,12 @@
 ﻿namespace E7BeautyShop.Schedule.Tests;
 
-public class ModelBusinessExceptionTest
+public class BusinessExceptionTest
 {
     [Fact]
     public void Should_ThrowException_When_ConditionIsTrue()
     {
         var exception = Assert.Throws<BusinessException>(
-            () => ModelBusinessException.When(true, "Test"));
+            () => BusinessException.When(true, "Test"));
         Assert.Equal("Test", exception.Message);
     }
 }

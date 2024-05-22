@@ -14,7 +14,7 @@ public sealed class ServiceCatalog(ServiceDescription serviceDescription) : Enti
 
     private static void Validate(Guid id, ServiceDescription? serviceDescription)
     {
-        ModelBusinessException.When(id == Guid.Empty, "Id cannot be empty");
-        ModelBusinessException.When(serviceDescription == null, "Service Description cannot be null");
+        BusinessException.When(id == Guid.Empty, "Id cannot be empty");
+        BusinessException.When(serviceDescription == null, "Service Description cannot be null");
     }
 }

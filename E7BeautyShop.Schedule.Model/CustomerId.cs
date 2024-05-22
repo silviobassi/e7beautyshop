@@ -12,6 +12,6 @@ public class CustomerId
 
     private static void Validate(Guid id)
     {
-        ModelBusinessException.When(id == Guid.Empty, "Id cannot be empty");
+        BusinessException.When(id == Guid.Empty, "Id cannot be empty");
     }
 }

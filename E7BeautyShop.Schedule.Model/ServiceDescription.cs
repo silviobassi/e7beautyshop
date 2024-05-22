@@ -14,7 +14,7 @@ public class ServiceDescription
 
     private static void Validate(string? name, decimal price)
     {
-        ModelBusinessException.When(string.IsNullOrEmpty(name), "Name cannot be null");
-        ModelBusinessException.When(price <= 0, "Price must be greater than 0");
+        BusinessException.When(string.IsNullOrEmpty(name), "Name cannot be null");
+        BusinessException.When(price <= 0, "Price must be greater than 0");
     }
 }

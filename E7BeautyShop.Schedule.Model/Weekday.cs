@@ -14,9 +14,9 @@ public class Weekday
 
     private static void Validate(TimeSpan? startAt, TimeSpan? endAt)
     {
-        ModelBusinessException.When(startAt == null, "StartAt is required");
-        ModelBusinessException.When(startAt <= TimeSpan.FromHours(0), "Hour must be greater than 0");
-        ModelBusinessException.When(endAt == null, "EndAt is required");
-        ModelBusinessException.When(startAt >= endAt, "StartAt must be less than EndAt");
+        BusinessException.When(startAt == null, "StartAt is required");
+        BusinessException.When(startAt <= TimeSpan.FromHours(0), "Hour must be greater than 0");
+        BusinessException.When(endAt == null, "EndAt is required");
+        BusinessException.When(startAt >= endAt, "StartAt must be less than EndAt");
     }
 }

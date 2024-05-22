@@ -3,27 +3,29 @@
 public class OfficeDay : Entity
 {
     public DateTime? StartAt { get; private set; }
-    public bool IsAttending { get; set; } = true;
+    public bool IsAttending { get; set; }
     public List<OfficeHour> OfficeHours { get; } = [];
-
-    private DayOfWeek? DayRest { get; set; }
+    public DayOfWeek? DayRest { get; set; }
     private Weekday? Weekday { get; set; }
     private Weekend? Weekend { get; set; }
 
     public OfficeDay(DateTime startAt, Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
     {
         Validate(weekday, weekend, dayRest);
+        IsAttending = true;
         StartAt = startAt;
         Weekday = weekday;
         Weekend = weekend;
         DayRest = dayRest;
     }
 
-    public void Update(Guid id, Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
+
+    public void Update(Guid id, DateTime startAt, Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
     {
-        ModelBusinessException.When(id == Guid.Empty, "Id is required");
+        BusinessException.When(id == Guid.Empty, "Id is required");
         Validate(weekday, weekend, dayRest);
         Id = id;
+        StartAt = startAt;
         Weekday = weekday;
         Weekend = weekend;
         DayRest = dayRest;
@@ -37,21 +39,21 @@ public class OfficeDay : Entity
 
     public void Cancel()
     {
-        ModelBusinessException.When(!IsAttending, "Day is already canceled");
+        BusinessException.When(!IsAttending, "Day is already canceled");
         IsAttending = false;
     }
 
     public void Attend()
     {
-        ModelBusinessException.When(IsAttending, "Day is already attending");
+        BusinessException.When(IsAttending, "Day is already attending");
         IsAttending = true;
     }
 
     private static void Validate(Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
     {
-        ModelBusinessException.When(weekday == null, "Weekday is required");
-        ModelBusinessException.When(weekend == null, "Weekend is required");
-        ModelBusinessException.When(dayRest == null, "Day rest is required");
+        BusinessException.When(weekday == null, "Weekday is required");
+        BusinessException.When(weekend == null, "Weekend is required");
+        BusinessException.When(dayRest == null, "Day rest is required");
     }
 
     public bool IsNotWeekday => StartAt?.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday;
