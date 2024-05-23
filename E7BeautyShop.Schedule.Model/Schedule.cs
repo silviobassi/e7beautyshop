@@ -7,7 +7,7 @@ public sealed class Schedule
 
     public Weekday Weekday { get; private set; }
     public Weekend Weekend { get; private set; }
-    public List<DayOfWeek> DayRest { get; private set; }
+    public List<DayRest> DayRest { get; private set; }
     public List<OfficeDay> OfficeDays { get; private set; }
     public Guid ProfessionalId { get; private set; }
     public Guid CustomerId { get; private set; }
@@ -18,7 +18,7 @@ public sealed class Schedule
         DateTime endAt,
         Weekday weekday,
         Weekend weekend,
-        List<DayOfWeek> dayRest,
+        List<DayRest> dayRest,
         List<OfficeDay> officeDays,
         Guid professionalId,
         Guid customerId)

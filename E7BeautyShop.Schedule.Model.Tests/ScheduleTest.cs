@@ -24,7 +24,7 @@ public class ScheduleTest(ITestOutputHelper output)
         Assert.Equal(startWeekend, weekend.StartAt);
         Assert.Equal(endWeekend, weekend.EndAt);
 
-        var dayRest = new List<DayOfWeek> { DayOfWeek.Sunday };
+        var dayRest = new List<DayRest> { new DayRest(DayOfWeek.Sunday)};
         var officeDays = new List<OfficeDay>();
         var professionalId = Guid.NewGuid();
         var customerId = Guid.NewGuid();
@@ -46,7 +46,7 @@ public class ScheduleTest(ITestOutputHelper output)
         foreach (var day in officeDays)
         {
             var isWeekday = day.DateTime.DayOfWeek != DayOfWeek.Saturday &&
-                            day.DateTime.DayOfWeek != schedule.DayRest[0];
+                            day.DateTime.DayOfWeek != schedule.DayRest[0].DayOnWeek;
             var start = isWeekday ? schedule.Weekday.StartAt : schedule.Weekend.StartAt;
             var end = isWeekday ? schedule.Weekday.EndAt : schedule.Weekend.EndAt;
 
