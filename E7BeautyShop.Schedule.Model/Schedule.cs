@@ -13,6 +13,8 @@ public sealed class Schedule
 
     public Schedule(DateTime startAt, DateTime endAt, Weekday weekday, Weekend weekend)
     {
+        BusinessException.When(startAt == DateTime.MinValue, "StartAt cannot be empty");
+        BusinessException.When(endAt == DateTime.MinValue, "EndAt cannot be empty");
         StartAt = startAt;
         EndAt = endAt;
         Weekday = weekday;
