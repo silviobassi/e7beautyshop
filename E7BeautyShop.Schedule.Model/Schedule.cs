@@ -5,33 +5,45 @@ public sealed class Schedule
     public DateTime StartAt { get; private set; }
     public DateTime EndAt { get; private set; }
 
-    public Weekday Weekday { get; private set; }
-    public Weekend Weekend { get; private set; }
-    public List<DayRest> DayRest { get; private set; }
-    public List<OfficeDay> OfficeDays { get; private set; }
-    public Guid ProfessionalId { get; private set; }
-    public Guid CustomerId { get; private set; }
+    public List<DayRest> DaysRest { get; private set; } = [];
+    public List<OfficeDay> OfficeDays { get; private set; } = [];
+    private Weekday Weekday { get; set; }
+    private Weekend Weekend { get; set; }
 
 
-    public Schedule(
-        DateTime startAt,
-        DateTime endAt,
-        Weekday weekday,
-        Weekend weekend,
-        List<DayRest> dayRest,
-        List<OfficeDay> officeDays,
-        Guid professionalId,
-        Guid customerId)
+    public Schedule(DateTime startAt, DateTime endAt, Weekday weekday, Weekend weekend)
     {
         StartAt = startAt;
         EndAt = endAt;
         Weekday = weekday;
         Weekend = weekend;
-        DayRest = dayRest;
-        OfficeDays = officeDays;
-        ProfessionalId = professionalId;
-        CustomerId = customerId;
     }
 
-    public void AddOfficeDay(OfficeDay day) => OfficeDays.Add(day);
+    public void AddDayRest(DayRest dayRest)
+    {
+        DaysRest.Add(dayRest);
+    }
+
+    public void AddOfficeDay(OfficeDay day)
+    {
+        if (IsDayRest(day)) return;
+        OfficeDays.Add(day);
+    }
+
+    public (TimeSpan, TimeSpan) GetOfficeHours(OfficeDay officeDay) =>
+        IsWeekday(officeDay) ? (Weekday.StartAt, Weekday.EndAt) : (Weekend.StartAt, Weekend.EndAt);
+
+    public static bool IsWeekday(OfficeDay officeDay) => !IsWeekend(officeDay);
+
+    private bool IsDayRest(OfficeDay officeDay)
+    {
+        var existsDayRest = DaysRest.Exists(dr => dr.DayOnWeek == officeDay.DateTime.DayOfWeek);
+        return existsDayRest && DaysRest.Count > 0;
+    }
+
+    private static bool IsWeekend(OfficeDay? officeDay)
+    {
+        if (officeDay?.DateTime.DayOfWeek == DayOfWeek.Saturday) return true;
+        return officeDay?.DateTime.DayOfWeek == DayOfWeek.Sunday;
+    }
 }

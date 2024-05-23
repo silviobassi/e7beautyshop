@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("E7BeautyShop.Schedule.Model.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+75d6510aaa93cfa20b2b7887ca9e26728eb72313")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8629b8cf6a8c69a93eab6fe50687b248c3edec1")]
 [assembly: System.Reflection.AssemblyProductAttribute("E7BeautyShop.Schedule.Model.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("E7BeautyShop.Schedule.Model.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
