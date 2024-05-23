@@ -6,12 +6,7 @@ public sealed class ProfessionalId
 
     public ProfessionalId(Guid id)
     {
-        Validate(id);
-        Id = id;
-    }
-
-    private static void Validate(Guid id)
-    {
         BusinessException.When(id == Guid.Empty, "Id cannot be empty");
+        Id = id;
     }
 }

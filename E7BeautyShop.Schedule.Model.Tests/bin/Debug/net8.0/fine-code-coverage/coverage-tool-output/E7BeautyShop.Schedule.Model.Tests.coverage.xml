@@ -1,21 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.9215000000000001" branch-rate="0.6476999999999999" version="1.9" timestamp="1716336294" lines-covered="317" lines-valid="344" branches-covered="57" branches-valid="88">
+<coverage line-rate="0.986" branch-rate="0.909" version="1.9" timestamp="1716465220" lines-covered="283" lines-valid="287" branches-covered="20" branches-valid="22">
   <sources>
     <source>C:\Users\silvio\</source>
   </sources>
   <packages>
-    <package name="E7BeautyShop.Schedule.Model" line-rate="0.8384999999999999" branch-rate="0.6093" complexity="105">
+    <package name="E7BeautyShop.Schedule.Model" line-rate="0.9793000000000001" branch-rate="0.9" complexity="64">
       <classes>
-        <class name="E7BeautyShop.Schedule.BusinessException" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\BusinessException.cs" line-rate="1" branch-rate="1" complexity="1">
+        <class name="E7BeautyShop.Schedule.BusinessException" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\BusinessException.cs" line-rate="1" branch-rate="1" complexity="3">
           <methods>
+            <method name="When" signature="(System.Boolean,System.String)" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="6" hits="122" branch="False" />
+                <line number="7" hits="122" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="4" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="8" hits="3" branch="False" />
+                <line number="9" hits="119" branch="False" />
+              </lines>
+            </method>
             <method name=".ctor" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="9" hits="5" branch="False" />
+                <line number="3" hits="3" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="9" hits="5" branch="False" />
+            <line number="6" hits="122" branch="False" />
+            <line number="7" hits="122" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="4" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="8" hits="3" branch="False" />
+            <line number="9" hits="119" branch="False" />
+            <line number="3" hits="3" branch="False" />
+          </lines>
+        </class>
+        <class name="E7BeautyShop.Schedule.CheckDaysOfWeek" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\CheckDaysOfWeek.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="Validate" signature="(System.TimeSpan,System.TimeSpan)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="6" hits="4" branch="False" />
+                <line number="7" hits="4" branch="False" />
+                <line number="8" hits="4" branch="False" />
+                <line number="9" hits="4" branch="False" />
+                <line number="10" hits="4" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="6" hits="4" branch="False" />
+            <line number="7" hits="4" branch="False" />
+            <line number="8" hits="4" branch="False" />
+            <line number="9" hits="4" branch="False" />
+            <line number="10" hits="4" branch="False" />
           </lines>
         </class>
         <class name="E7BeautyShop.Schedule.CustomerId" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\CustomerId.cs" line-rate="1" branch-rate="1" complexity="3">
@@ -54,6 +94,112 @@
             <line number="11" hits="1" branch="False" />
           </lines>
         </class>
+        <class name="E7BeautyShop.Schedule.DayRest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\DayRest.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="get_DayOnWeek" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="6" hits="17" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.DayOfWeek)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="7" hits="4" branch="False" />
+                <line number="8" hits="4" branch="False" />
+                <line number="9" hits="4" branch="False" />
+                <line number="10" hits="4" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="6" hits="17" branch="False" />
+            <line number="7" hits="4" branch="False" />
+            <line number="8" hits="4" branch="False" />
+            <line number="9" hits="4" branch="False" />
+            <line number="10" hits="4" branch="False" />
+          </lines>
+        </class>
+        <class name="E7BeautyShop.Schedule.DaysAndTimesIntoTheSchedule" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\DaysAndTimesIntoTheSchedule.cs" line-rate="1" branch-rate="1" complexity="7">
+          <methods>
+            <method name="Build" signature="(E7BeautyShop.Schedule.Schedule,System.Int32)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="6" hits="1" branch="False" />
+                <line number="7" hits="1" branch="False" />
+                <line number="8" hits="1" branch="False" />
+                <line number="9" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="AddOfficeDaysToSchedule" signature="(E7BeautyShop.Schedule.Schedule)" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="12" hits="1" branch="False" />
+                <line number="13" hits="12" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="54" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="14" hits="5" branch="False" />
+                <line number="15" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="AddOfficeHoursToDays" signature="(E7BeautyShop.Schedule.Schedule,System.Int32)" line-rate="1" branch-rate="1" complexity="4">
+              <lines>
+                <line number="18" hits="1" branch="False" />
+                <line number="19" hits="11" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="174" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="20" hits="2" branch="False" />
+                <line number="21" hits="2" branch="False" />
+                <line number="22" hits="2" branch="False" />
+                <line number="23" hits="32" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="165" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="24" hits="30" branch="False" />
+                <line number="25" hits="30" branch="False" />
+                <line number="26" hits="30" branch="False" />
+                <line number="27" hits="30" branch="False" />
+                <line number="28" hits="2" branch="False" />
+                <line number="29" hits="1" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="6" hits="1" branch="False" />
+            <line number="7" hits="1" branch="False" />
+            <line number="8" hits="1" branch="False" />
+            <line number="9" hits="1" branch="False" />
+            <line number="12" hits="1" branch="False" />
+            <line number="13" hits="12" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="54" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="14" hits="5" branch="False" />
+            <line number="15" hits="1" branch="False" />
+            <line number="18" hits="1" branch="False" />
+            <line number="19" hits="11" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="174" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="20" hits="2" branch="False" />
+            <line number="21" hits="2" branch="False" />
+            <line number="22" hits="2" branch="False" />
+            <line number="23" hits="32" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="165" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="24" hits="30" branch="False" />
+            <line number="25" hits="30" branch="False" />
+            <line number="26" hits="30" branch="False" />
+            <line number="27" hits="30" branch="False" />
+            <line number="28" hits="2" branch="False" />
+            <line number="29" hits="1" branch="False" />
+          </lines>
+        </class>
         <class name="E7BeautyShop.Schedule.Entity" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\Entity.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
             <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
@@ -66,386 +212,99 @@
             <line number="5" hits="2" branch="False" />
           </lines>
         </class>
-        <class name="E7BeautyShop.Schedule.ModelBusinesException" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\ModelBusinesException.cs" line-rate="1" branch-rate="1" complexity="2">
+        <class name="E7BeautyShop.Schedule.OfficeDay" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\OfficeDay.cs" line-rate="1" branch-rate="1" complexity="7">
           <methods>
-            <method name="When" signature="(System.Boolean,System.String)" line-rate="1" branch-rate="1" complexity="2">
+            <method name="get_DateTime" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="6" hits="783" branch="False" />
-                <line number="7" hits="783" branch="True" condition-coverage="100% (2/2)">
-                  <conditions>
-                    <condition number="4" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-                <line number="8" hits="5" branch="False" />
-                <line number="9" hits="778" branch="False" />
+                <line number="5" hits="28" branch="False" />
               </lines>
             </method>
-          </methods>
-          <lines>
-            <line number="6" hits="783" branch="False" />
-            <line number="7" hits="783" branch="True" condition-coverage="100% (2/2)">
-              <conditions>
-                <condition number="4" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="8" hits="5" branch="False" />
-            <line number="9" hits="778" branch="False" />
-          </lines>
-        </class>
-        <class name="E7BeautyShop.Schedule.OfficeDay" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\OfficeDay.cs" line-rate="0.8" branch-rate="0.6875" complexity="60">
-          <methods>
-            <method name="get_StartAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="get_TimesOfDay" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="5" hits="2200" branch="False" />
+                <line number="6" hits="92" branch="False" />
               </lines>
             </method>
-            <method name="get_IsAttending" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="get_IsAttend" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="6" hits="40" branch="False" />
-              </lines>
-            </method>
-            <method name="get_OfficeHours" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="7" hits="531" branch="False" />
-              </lines>
-            </method>
-            <method name="get_DayRest" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="9" hits="574" branch="False" />
-              </lines>
-            </method>
-            <method name="get_Weekday" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="10" hits="475" branch="False" />
-              </lines>
-            </method>
-            <method name="get_Weekend" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="11" hits="88" branch="False" />
-              </lines>
-            </method>
-            <method name="Update" signature="(System.Guid,E7BeautyShop.Schedule.Weekday,E7BeautyShop.Schedule.Weekend,System.Nullable`1&lt;System.DayOfWeek&gt;)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="23" hits="0" branch="False" />
-                <line number="24" hits="0" branch="False" />
-                <line number="25" hits="0" branch="False" />
-                <line number="26" hits="0" branch="False" />
-                <line number="27" hits="0" branch="False" />
-                <line number="28" hits="0" branch="False" />
-                <line number="29" hits="0" branch="False" />
-                <line number="30" hits="0" branch="False" />
+                <line number="7" hits="16" branch="False" />
               </lines>
             </method>
             <method name="AddOfficeHour" signature="(E7BeautyShop.Schedule.OfficeHour)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="33" hits="540" branch="False" />
-                <line number="34" hits="540" branch="False" />
-                <line number="35" hits="540" branch="False" />
-                <line number="36" hits="540" branch="False" />
+                <line number="17" hits="78" branch="False" />
+                <line number="18" hits="78" branch="False" />
+                <line number="19" hits="78" branch="False" />
               </lines>
             </method>
-            <method name="Cancel" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="Attend" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="39" hits="3" branch="False" />
-                <line number="40" hits="3" branch="False" />
-                <line number="41" hits="2" branch="False" />
-                <line number="42" hits="2" branch="False" />
+                <line number="21" hits="2" branch="False" />
               </lines>
             </method>
-            <method name="Attend" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="NotAttend" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="45" hits="0" branch="False" />
-                <line number="46" hits="0" branch="False" />
-                <line number="47" hits="0" branch="False" />
-                <line number="48" hits="0" branch="False" />
+                <line number="23" hits="2" branch="False" />
               </lines>
             </method>
-            <method name="Validate" signature="(E7BeautyShop.Schedule.Weekday,E7BeautyShop.Schedule.Weekend,System.Nullable`1&lt;System.DayOfWeek&gt;)" line-rate="1" branch-rate="1" complexity="1">
+            <method name=".ctor" signature="(System.DateTime)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="51" hits="34" branch="False" />
-                <line number="52" hits="34" branch="False" />
-                <line number="53" hits="34" branch="False" />
-                <line number="54" hits="34" branch="False" />
-                <line number="55" hits="34" branch="False" />
-              </lines>
-            </method>
-            <method name="get_IsNotWeekday" signature="()" line-rate="1" branch-rate="0.875" complexity="8">
-              <lines>
-                <line number="57" hits="600" branch="True" condition-coverage="87.5% (7/8)">
-                  <conditions>
-                    <condition number="15" type="jump" coverage="50%" />
-                    <condition number="57" type="jump" coverage="100%" />
-                    <condition number="68" type="jump" coverage="100%" />
-                    <condition number="74" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-              </lines>
-            </method>
-            <method name="get_IsNotWeekend" signature="()" line-rate="1" branch-rate="0.7" complexity="10">
-              <lines>
-                <line number="60" hits="540" branch="True" condition-coverage="70% (7/10)">
-                  <conditions>
-                    <condition number="15" type="jump" coverage="50%" />
-                    <condition number="55" type="jump" coverage="100%" />
-                    <condition number="65" type="jump" coverage="100%" />
-                    <condition number="82" type="jump" coverage="50%" />
-                    <condition number="122" type="jump" coverage="50%" />
-                  </conditions>
-                </line>
-              </lines>
-            </method>
-            <method name="get_IsDayRest" signature="()" line-rate="1" branch-rate="0.5" complexity="2">
-              <lines>
-                <line number="62" hits="540" branch="True" condition-coverage="50% (1/2)">
-                  <conditions>
-                    <condition number="15" type="jump" coverage="50%" />
-                  </conditions>
-                </line>
-              </lines>
-            </method>
-            <method name="AddWeekdayOfficeHours" signature="(E7BeautyShop.Schedule.OfficeHour)" line-rate="1" branch-rate="1" complexity="4">
-              <lines>
-                <line number="66" hits="540" branch="False" />
-                <line number="67" hits="639" branch="True" condition-coverage="100% (4/4)">
-                  <conditions>
-                    <condition number="7" type="jump" coverage="100%" />
-                    <condition number="20" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-                <line number="68" hits="441" branch="False" />
-                <line number="69" hits="540" branch="False" />
-              </lines>
-            </method>
-            <method name="AddOfficeHourOnWeekday" signature="(E7BeautyShop.Schedule.OfficeHour)" line-rate="1" branch-rate="0.5" complexity="10">
-              <lines>
-                <line number="72" hits="441" branch="False" />
-                <line number="73" hits="441" branch="True" condition-coverage="25% (1/4)">
-                  <conditions>
-                    <condition number="17" type="jump" coverage="50%" />
-                    <condition number="27" type="jump" coverage="0%" />
-                  </conditions>
-                </line>
-                <line number="74" hits="441" branch="True" condition-coverage="66.66% (4/6)">
-                  <conditions>
-                    <condition number="70" type="jump" coverage="50%" />
-                    <condition number="105" type="jump" coverage="50%" />
-                    <condition number="133" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-                <line number="75" hits="441" branch="False" />
-                <line number="76" hits="441" branch="False" />
-              </lines>
-            </method>
-            <method name="AddWeekendOfficeHours" signature="(E7BeautyShop.Schedule.OfficeHour)" line-rate="1" branch-rate="1" complexity="4">
-              <lines>
-                <line number="79" hits="540" branch="False" />
-                <line number="80" hits="1026" branch="True" condition-coverage="100% (4/4)">
-                  <conditions>
-                    <condition number="7" type="jump" coverage="100%" />
-                    <condition number="20" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-                <line number="81" hits="54" branch="False" />
-                <line number="82" hits="540" branch="False" />
-              </lines>
-            </method>
-            <method name="AddOfficeHourOnWeekend" signature="(E7BeautyShop.Schedule.OfficeHour)" line-rate="1" branch-rate="0.5" complexity="10">
-              <lines>
-                <line number="85" hits="54" branch="False" />
-                <line number="86" hits="54" branch="True" condition-coverage="25% (1/4)">
-                  <conditions>
-                    <condition number="17" type="jump" coverage="50%" />
-                    <condition number="27" type="jump" coverage="0%" />
-                  </conditions>
-                </line>
-                <line number="87" hits="54" branch="True" condition-coverage="66.66% (4/6)">
-                  <conditions>
-                    <condition number="70" type="jump" coverage="50%" />
-                    <condition number="105" type="jump" coverage="50%" />
-                    <condition number="133" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-                <line number="88" hits="54" branch="False" />
-                <line number="89" hits="54" branch="False" />
-              </lines>
-            </method>
-            <method name=".ctor" signature="(System.DateTime,E7BeautyShop.Schedule.Weekday,E7BeautyShop.Schedule.Weekend,System.Nullable`1&lt;System.DayOfWeek&gt;)" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="13" hits="34" branch="False" />
-                <line number="14" hits="34" branch="False" />
-                <line number="15" hits="34" branch="False" />
-                <line number="16" hits="34" branch="False" />
-                <line number="17" hits="34" branch="False" />
-                <line number="18" hits="34" branch="False" />
-                <line number="19" hits="34" branch="False" />
-                <line number="20" hits="34" branch="False" />
+                <line number="9" hits="9" branch="False" />
+                <line number="10" hits="9" branch="False" />
+                <line number="11" hits="9" branch="False" />
+                <line number="12" hits="9" branch="False" />
+                <line number="13" hits="9" branch="False" />
+                <line number="14" hits="9" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="5" hits="2200" branch="False" />
-            <line number="6" hits="40" branch="False" />
-            <line number="7" hits="531" branch="False" />
-            <line number="9" hits="574" branch="False" />
-            <line number="10" hits="475" branch="False" />
-            <line number="11" hits="88" branch="False" />
-            <line number="23" hits="0" branch="False" />
-            <line number="24" hits="0" branch="False" />
-            <line number="25" hits="0" branch="False" />
-            <line number="26" hits="0" branch="False" />
-            <line number="27" hits="0" branch="False" />
-            <line number="28" hits="0" branch="False" />
-            <line number="29" hits="0" branch="False" />
-            <line number="30" hits="0" branch="False" />
-            <line number="33" hits="540" branch="False" />
-            <line number="34" hits="540" branch="False" />
-            <line number="35" hits="540" branch="False" />
-            <line number="36" hits="540" branch="False" />
-            <line number="39" hits="3" branch="False" />
-            <line number="40" hits="3" branch="False" />
-            <line number="41" hits="2" branch="False" />
-            <line number="42" hits="2" branch="False" />
-            <line number="45" hits="0" branch="False" />
-            <line number="46" hits="0" branch="False" />
-            <line number="47" hits="0" branch="False" />
-            <line number="48" hits="0" branch="False" />
-            <line number="51" hits="34" branch="False" />
-            <line number="52" hits="34" branch="False" />
-            <line number="53" hits="34" branch="False" />
-            <line number="54" hits="34" branch="False" />
-            <line number="55" hits="34" branch="False" />
-            <line number="57" hits="600" branch="True" condition-coverage="87.5% (7/8)">
-              <conditions>
-                <condition number="15" type="jump" coverage="50%" />
-                <condition number="57" type="jump" coverage="100%" />
-                <condition number="68" type="jump" coverage="100%" />
-                <condition number="74" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="60" hits="540" branch="True" condition-coverage="70% (7/10)">
-              <conditions>
-                <condition number="15" type="jump" coverage="50%" />
-                <condition number="55" type="jump" coverage="100%" />
-                <condition number="65" type="jump" coverage="100%" />
-                <condition number="82" type="jump" coverage="50%" />
-                <condition number="122" type="jump" coverage="50%" />
-              </conditions>
-            </line>
-            <line number="62" hits="540" branch="True" condition-coverage="50% (1/2)">
-              <conditions>
-                <condition number="15" type="jump" coverage="50%" />
-              </conditions>
-            </line>
-            <line number="66" hits="540" branch="False" />
-            <line number="67" hits="639" branch="True" condition-coverage="100% (4/4)">
-              <conditions>
-                <condition number="7" type="jump" coverage="100%" />
-                <condition number="20" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="68" hits="441" branch="False" />
-            <line number="69" hits="540" branch="False" />
-            <line number="72" hits="441" branch="False" />
-            <line number="73" hits="441" branch="True" condition-coverage="25% (1/4)">
-              <conditions>
-                <condition number="17" type="jump" coverage="50%" />
-                <condition number="27" type="jump" coverage="0%" />
-              </conditions>
-            </line>
-            <line number="74" hits="441" branch="True" condition-coverage="66.66% (4/6)">
-              <conditions>
-                <condition number="70" type="jump" coverage="50%" />
-                <condition number="105" type="jump" coverage="50%" />
-                <condition number="133" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="75" hits="441" branch="False" />
-            <line number="76" hits="441" branch="False" />
-            <line number="79" hits="540" branch="False" />
-            <line number="80" hits="1026" branch="True" condition-coverage="100% (4/4)">
-              <conditions>
-                <condition number="7" type="jump" coverage="100%" />
-                <condition number="20" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="81" hits="54" branch="False" />
-            <line number="82" hits="540" branch="False" />
-            <line number="85" hits="54" branch="False" />
-            <line number="86" hits="54" branch="True" condition-coverage="25% (1/4)">
-              <conditions>
-                <condition number="17" type="jump" coverage="50%" />
-                <condition number="27" type="jump" coverage="0%" />
-              </conditions>
-            </line>
-            <line number="87" hits="54" branch="True" condition-coverage="66.66% (4/6)">
-              <conditions>
-                <condition number="70" type="jump" coverage="50%" />
-                <condition number="105" type="jump" coverage="50%" />
-                <condition number="133" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="88" hits="54" branch="False" />
-            <line number="89" hits="54" branch="False" />
-            <line number="13" hits="34" branch="False" />
-            <line number="14" hits="34" branch="False" />
-            <line number="15" hits="34" branch="False" />
-            <line number="16" hits="34" branch="False" />
-            <line number="17" hits="34" branch="False" />
-            <line number="18" hits="34" branch="False" />
-            <line number="19" hits="34" branch="False" />
-            <line number="20" hits="34" branch="False" />
+            <line number="5" hits="28" branch="False" />
+            <line number="6" hits="92" branch="False" />
+            <line number="7" hits="16" branch="False" />
+            <line number="17" hits="78" branch="False" />
+            <line number="18" hits="78" branch="False" />
+            <line number="19" hits="78" branch="False" />
+            <line number="21" hits="2" branch="False" />
+            <line number="23" hits="2" branch="False" />
+            <line number="9" hits="9" branch="False" />
+            <line number="10" hits="9" branch="False" />
+            <line number="11" hits="9" branch="False" />
+            <line number="12" hits="9" branch="False" />
+            <line number="13" hits="9" branch="False" />
+            <line number="14" hits="9" branch="False" />
           </lines>
         </class>
-        <class name="E7BeautyShop.Schedule.OfficeHour" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\OfficeHour.cs" line-rate="1" branch-rate="1" complexity="4">
+        <class name="E7BeautyShop.Schedule.OfficeHour" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\OfficeHour.cs" line-rate="1" branch-rate="1" complexity="2">
           <methods>
-            <method name="get_Hour" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="get_TimeOfDay" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="5" hits="1534" branch="False" />
+                <line number="6" hits="80" branch="False" />
               </lines>
             </method>
-            <method name="get_IsAvailable" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name=".ctor" signature="(System.TimeSpan)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="6" hits="555" branch="False" />
-              </lines>
-            </method>
-            <method name="ToMakeAvailable" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="9" hits="2" branch="False" />
-                <line number="10" hits="2" branch="False" />
-                <line number="11" hits="2" branch="False" />
-              </lines>
-            </method>
-            <method name="ToMakeUnavailable" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="14" hits="3" branch="False" />
-                <line number="15" hits="3" branch="False" />
-                <line number="16" hits="3" branch="False" />
+                <line number="7" hits="79" branch="False" />
+                <line number="8" hits="79" branch="False" />
+                <line number="9" hits="79" branch="False" />
+                <line number="10" hits="79" branch="False" />
+                <line number="11" hits="79" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="5" hits="1534" branch="False" />
-            <line number="6" hits="555" branch="False" />
-            <line number="9" hits="2" branch="False" />
-            <line number="10" hits="2" branch="False" />
-            <line number="11" hits="2" branch="False" />
-            <line number="14" hits="3" branch="False" />
-            <line number="15" hits="3" branch="False" />
-            <line number="16" hits="3" branch="False" />
+            <line number="6" hits="80" branch="False" />
+            <line number="7" hits="79" branch="False" />
+            <line number="8" hits="79" branch="False" />
+            <line number="9" hits="79" branch="False" />
+            <line number="10" hits="79" branch="False" />
+            <line number="11" hits="79" branch="False" />
           </lines>
         </class>
-        <class name="E7BeautyShop.Schedule.ProfessionalId" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\ProfessionalId.cs" line-rate="1" branch-rate="1" complexity="3">
+        <class name="E7BeautyShop.Schedule.ProfessionalId" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\ProfessionalId.cs" line-rate="1" branch-rate="1" complexity="2">
           <methods>
             <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
                 <line number="5" hits="2" branch="False" />
-              </lines>
-            </method>
-            <method name="Validate" signature="(System.Guid)" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="14" hits="1" branch="False" />
-                <line number="15" hits="1" branch="False" />
-                <line number="16" hits="1" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="(System.Guid)" line-rate="1" branch-rate="1" complexity="1">
@@ -460,14 +319,185 @@
           </methods>
           <lines>
             <line number="5" hits="2" branch="False" />
-            <line number="14" hits="1" branch="False" />
-            <line number="15" hits="1" branch="False" />
-            <line number="16" hits="1" branch="False" />
             <line number="7" hits="1" branch="False" />
             <line number="8" hits="1" branch="False" />
             <line number="9" hits="1" branch="False" />
             <line number="10" hits="1" branch="False" />
             <line number="11" hits="1" branch="False" />
+          </lines>
+        </class>
+        <class name="E7BeautyShop.Schedule.Schedule" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\Schedule.cs" line-rate="0.9142" branch-rate="0.8332999999999999" complexity="22">
+          <methods>
+            <method name="get_StartAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="5" hits="3" branch="False" />
+              </lines>
+            </method>
+            <method name="get_EndAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="6" hits="8" branch="False" />
+              </lines>
+            </method>
+            <method name="get_DaysRest" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="8" hits="11" branch="False" />
+              </lines>
+            </method>
+            <method name="get_OfficeDays" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="9" hits="7" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Weekday" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="10" hits="3" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Weekend" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="11" hits="3" branch="False" />
+              </lines>
+            </method>
+            <method name="AddDayRest" signature="(E7BeautyShop.Schedule.DayRest)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="25" hits="0" branch="False" />
+                <line number="26" hits="0" branch="False" />
+                <line number="27" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="AddDaysRest" signature="(System.Collections.Generic.List`1&lt;E7BeautyShop.Schedule.DayRest&gt;)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="30" hits="1" branch="False" />
+                <line number="31" hits="1" branch="False" />
+                <line number="32" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="AddOfficeDay" signature="(E7BeautyShop.Schedule.OfficeDay)" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="35" hits="5" branch="False" />
+                <line number="36" hits="8" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="10" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="37" hits="2" branch="False" />
+                <line number="38" hits="5" branch="False" />
+              </lines>
+            </method>
+            <method name="GetOfficeHours" signature="(E7BeautyShop.Schedule.OfficeDay)" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="41" hits="2" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="6" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+              </lines>
+            </method>
+            <method name="IsWeekday" signature="(E7BeautyShop.Schedule.OfficeDay)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="43" hits="4" branch="False" />
+              </lines>
+            </method>
+            <method name="IsDayRest" signature="(E7BeautyShop.Schedule.OfficeDay)" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="46" hits="5" branch="False" />
+                <line number="47" hits="17" branch="False" />
+                <line number="48" hits="5" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="39" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="49" hits="5" branch="False" />
+              </lines>
+            </method>
+            <method name="IsWeekend" signature="(E7BeautyShop.Schedule.OfficeDay)" line-rate="1" branch-rate="0.6666" complexity="6">
+              <lines>
+                <line number="52" hits="4" branch="False" />
+                <line number="53" hits="6" branch="True" condition-coverage="75% (3/4)">
+                  <conditions>
+                    <condition number="2" type="jump" coverage="50%" />
+                    <condition number="26" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="54" hits="2" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="33" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="55" hits="4" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.DateTime,System.DateTime,E7BeautyShop.Schedule.Weekday,E7BeautyShop.Schedule.Weekend)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="1" branch="False" />
+                <line number="15" hits="1" branch="False" />
+                <line number="16" hits="1" branch="False" />
+                <line number="17" hits="1" branch="False" />
+                <line number="18" hits="1" branch="False" />
+                <line number="19" hits="1" branch="False" />
+                <line number="20" hits="1" branch="False" />
+                <line number="21" hits="1" branch="False" />
+                <line number="22" hits="1" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="5" hits="3" branch="False" />
+            <line number="6" hits="8" branch="False" />
+            <line number="8" hits="11" branch="False" />
+            <line number="9" hits="7" branch="False" />
+            <line number="10" hits="3" branch="False" />
+            <line number="11" hits="3" branch="False" />
+            <line number="25" hits="0" branch="False" />
+            <line number="26" hits="0" branch="False" />
+            <line number="27" hits="0" branch="False" />
+            <line number="30" hits="1" branch="False" />
+            <line number="31" hits="1" branch="False" />
+            <line number="32" hits="1" branch="False" />
+            <line number="35" hits="5" branch="False" />
+            <line number="36" hits="8" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="10" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="37" hits="2" branch="False" />
+            <line number="38" hits="5" branch="False" />
+            <line number="41" hits="2" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="6" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="43" hits="4" branch="False" />
+            <line number="46" hits="5" branch="False" />
+            <line number="47" hits="17" branch="False" />
+            <line number="48" hits="5" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="39" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="49" hits="5" branch="False" />
+            <line number="52" hits="4" branch="False" />
+            <line number="53" hits="6" branch="True" condition-coverage="75% (3/4)">
+              <conditions>
+                <condition number="2" type="jump" coverage="50%" />
+                <condition number="26" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="54" hits="2" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="33" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="55" hits="4" branch="False" />
+            <line number="14" hits="1" branch="False" />
+            <line number="15" hits="1" branch="False" />
+            <line number="16" hits="1" branch="False" />
+            <line number="17" hits="1" branch="False" />
+            <line number="18" hits="1" branch="False" />
+            <line number="19" hits="1" branch="False" />
+            <line number="20" hits="1" branch="False" />
+            <line number="21" hits="1" branch="False" />
+            <line number="22" hits="1" branch="False" />
           </lines>
         </class>
         <class name="E7BeautyShop.Schedule.ServiceCatalog" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\ServiceCatalog.cs" line-rate="1" branch-rate="1" complexity="4">
@@ -560,221 +590,77 @@
             <line number="13" hits="6" branch="False" />
           </lines>
         </class>
-        <class name="E7BeautyShop.Schedule.Validate" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\Validate.cs" line-rate="0.22219999999999998" branch-rate="0" complexity="9">
+        <class name="E7BeautyShop.Schedule.Weekday" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\Weekday.cs" line-rate="1" branch-rate="1" complexity="3">
           <methods>
-            <method name="DateAndHour" signature="(System.DateTime)" line-rate="1" branch-rate="1" complexity="1">
+            <method name="get_StartAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="6" hits="2" branch="False" />
-                <line number="7" hits="2" branch="False" />
+                <line number="6" hits="4" branch="False" />
+              </lines>
+            </method>
+            <method name="get_EndAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="7" hits="4" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.TimeSpan,System.TimeSpan)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
                 <line number="8" hits="2" branch="False" />
-                <line number="9" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="CustomerId" signature="(E7BeautyShop.Schedule.CustomerId)" line-rate="0" branch-rate="0" complexity="2">
-              <lines>
-                <line number="12" hits="0" branch="False" />
-                <line number="13" hits="0" branch="False" />
-                <line number="14" hits="0" branch="True" condition-coverage="0% (0/2)">
-                  <conditions>
-                    <condition number="17" type="jump" coverage="0%" />
-                  </conditions>
-                </line>
-                <line number="15" hits="0" branch="False" />
-              </lines>
-            </method>
-            <method name="ProfessionalId" signature="(E7BeautyShop.Schedule.ProfessionalId)" line-rate="0" branch-rate="0" complexity="4">
-              <lines>
-                <line number="18" hits="0" branch="False" />
-                <line number="19" hits="0" branch="False" />
-                <line number="20" hits="0" branch="True" condition-coverage="0% (0/4)">
-                  <conditions>
-                    <condition number="17" type="jump" coverage="0%" />
-                    <condition number="55" type="jump" coverage="0%" />
-                  </conditions>
-                </line>
-                <line number="21" hits="0" branch="False" />
-              </lines>
-            </method>
-            <method name="ServiceCatalog" signature="(E7BeautyShop.Schedule.ServiceCatalog)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="24" hits="0" branch="False" />
-                <line number="25" hits="0" branch="False" />
-                <line number="26" hits="0" branch="False" />
-              </lines>
-            </method>
-            <method name="IsAvailable" signature="(System.Boolean)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="29" hits="0" branch="False" />
-                <line number="30" hits="0" branch="False" />
-                <line number="31" hits="0" branch="False" />
+                <line number="9" hits="2" branch="False" />
+                <line number="10" hits="2" branch="False" />
+                <line number="11" hits="2" branch="False" />
+                <line number="12" hits="2" branch="False" />
+                <line number="13" hits="2" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="6" hits="2" branch="False" />
-            <line number="7" hits="2" branch="False" />
+            <line number="6" hits="4" branch="False" />
+            <line number="7" hits="4" branch="False" />
             <line number="8" hits="2" branch="False" />
-            <line number="9" hits="1" branch="False" />
-            <line number="12" hits="0" branch="False" />
-            <line number="13" hits="0" branch="False" />
-            <line number="14" hits="0" branch="True" condition-coverage="0% (0/2)">
-              <conditions>
-                <condition number="17" type="jump" coverage="0%" />
-              </conditions>
-            </line>
-            <line number="15" hits="0" branch="False" />
-            <line number="18" hits="0" branch="False" />
-            <line number="19" hits="0" branch="False" />
-            <line number="20" hits="0" branch="True" condition-coverage="0% (0/4)">
-              <conditions>
-                <condition number="17" type="jump" coverage="0%" />
-                <condition number="55" type="jump" coverage="0%" />
-              </conditions>
-            </line>
-            <line number="21" hits="0" branch="False" />
-            <line number="24" hits="0" branch="False" />
-            <line number="25" hits="0" branch="False" />
-            <line number="26" hits="0" branch="False" />
-            <line number="29" hits="0" branch="False" />
-            <line number="30" hits="0" branch="False" />
-            <line number="31" hits="0" branch="False" />
+            <line number="9" hits="2" branch="False" />
+            <line number="10" hits="2" branch="False" />
+            <line number="11" hits="2" branch="False" />
+            <line number="12" hits="2" branch="False" />
+            <line number="13" hits="2" branch="False" />
           </lines>
         </class>
-        <class name="E7BeautyShop.Schedule.Weekday" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\Weekday.cs" line-rate="1" branch-rate="0.5" complexity="7">
+        <class name="E7BeautyShop.Schedule.Weekend" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\Weekend.cs" line-rate="1" branch-rate="1" complexity="3">
           <methods>
             <method name="get_StartAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="5" hits="120" branch="False" />
+                <line number="5" hits="4" branch="False" />
               </lines>
             </method>
             <method name="get_EndAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="6" hits="582" branch="False" />
+                <line number="6" hits="4" branch="False" />
               </lines>
             </method>
-            <method name="Validate" signature="(System.Nullable`1&lt;System.TimeSpan&gt;,System.Nullable`1&lt;System.TimeSpan&gt;)" line-rate="1" branch-rate="0.5" complexity="4">
+            <method name=".ctor" signature="(System.TimeSpan,System.TimeSpan)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="98" branch="False" />
-                <line number="17" hits="98" branch="False" />
-                <line number="18" hits="98" branch="True" condition-coverage="50% (1/2)">
-                  <conditions>
-                    <condition number="46" type="jump" coverage="50%" />
-                  </conditions>
-                </line>
-                <line number="19" hits="98" branch="False" />
-                <line number="20" hits="98" branch="True" condition-coverage="50% (1/2)">
-                  <conditions>
-                    <condition number="115" type="jump" coverage="50%" />
-                  </conditions>
-                </line>
-                <line number="21" hits="98" branch="False" />
-              </lines>
-            </method>
-            <method name=".ctor" signature="(System.Nullable`1&lt;System.TimeSpan&gt;,System.Nullable`1&lt;System.TimeSpan&gt;)" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="8" hits="98" branch="False" />
-                <line number="9" hits="98" branch="False" />
-                <line number="10" hits="98" branch="False" />
-                <line number="11" hits="98" branch="False" />
-                <line number="12" hits="98" branch="False" />
-                <line number="13" hits="98" branch="False" />
+                <line number="8" hits="2" branch="False" />
+                <line number="9" hits="2" branch="False" />
+                <line number="10" hits="2" branch="False" />
+                <line number="11" hits="2" branch="False" />
+                <line number="12" hits="2" branch="False" />
+                <line number="13" hits="2" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="5" hits="120" branch="False" />
-            <line number="6" hits="582" branch="False" />
-            <line number="16" hits="98" branch="False" />
-            <line number="17" hits="98" branch="False" />
-            <line number="18" hits="98" branch="True" condition-coverage="50% (1/2)">
-              <conditions>
-                <condition number="46" type="jump" coverage="50%" />
-              </conditions>
-            </line>
-            <line number="19" hits="98" branch="False" />
-            <line number="20" hits="98" branch="True" condition-coverage="50% (1/2)">
-              <conditions>
-                <condition number="115" type="jump" coverage="50%" />
-              </conditions>
-            </line>
-            <line number="21" hits="98" branch="False" />
-            <line number="8" hits="98" branch="False" />
-            <line number="9" hits="98" branch="False" />
-            <line number="10" hits="98" branch="False" />
-            <line number="11" hits="98" branch="False" />
-            <line number="12" hits="98" branch="False" />
-            <line number="13" hits="98" branch="False" />
-          </lines>
-        </class>
-        <class name="E7BeautyShop.Schedule.Weekend" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model\Weekend.cs" line-rate="1" branch-rate="0.5" complexity="7">
-          <methods>
-            <method name="get_StartAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="5" hits="78" branch="False" />
-              </lines>
-            </method>
-            <method name="get_EndAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="6" hits="141" branch="False" />
-              </lines>
-            </method>
-            <method name="Validate" signature="(System.Nullable`1&lt;System.TimeSpan&gt;,System.Nullable`1&lt;System.TimeSpan&gt;)" line-rate="1" branch-rate="0.5" complexity="4">
-              <lines>
-                <line number="16" hits="66" branch="False" />
-                <line number="17" hits="66" branch="False" />
-                <line number="18" hits="66" branch="True" condition-coverage="50% (1/2)">
-                  <conditions>
-                    <condition number="46" type="jump" coverage="50%" />
-                  </conditions>
-                </line>
-                <line number="19" hits="66" branch="False" />
-                <line number="20" hits="66" branch="True" condition-coverage="50% (1/2)">
-                  <conditions>
-                    <condition number="115" type="jump" coverage="50%" />
-                  </conditions>
-                </line>
-                <line number="21" hits="66" branch="False" />
-              </lines>
-            </method>
-            <method name=".ctor" signature="(System.Nullable`1&lt;System.TimeSpan&gt;,System.Nullable`1&lt;System.TimeSpan&gt;)" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="8" hits="66" branch="False" />
-                <line number="9" hits="66" branch="False" />
-                <line number="10" hits="66" branch="False" />
-                <line number="11" hits="66" branch="False" />
-                <line number="12" hits="66" branch="False" />
-                <line number="13" hits="66" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="5" hits="78" branch="False" />
-            <line number="6" hits="141" branch="False" />
-            <line number="16" hits="66" branch="False" />
-            <line number="17" hits="66" branch="False" />
-            <line number="18" hits="66" branch="True" condition-coverage="50% (1/2)">
-              <conditions>
-                <condition number="46" type="jump" coverage="50%" />
-              </conditions>
-            </line>
-            <line number="19" hits="66" branch="False" />
-            <line number="20" hits="66" branch="True" condition-coverage="50% (1/2)">
-              <conditions>
-                <condition number="115" type="jump" coverage="50%" />
-              </conditions>
-            </line>
-            <line number="21" hits="66" branch="False" />
-            <line number="8" hits="66" branch="False" />
-            <line number="9" hits="66" branch="False" />
-            <line number="10" hits="66" branch="False" />
-            <line number="11" hits="66" branch="False" />
-            <line number="12" hits="66" branch="False" />
-            <line number="13" hits="66" branch="False" />
+            <line number="5" hits="4" branch="False" />
+            <line number="6" hits="4" branch="False" />
+            <line number="8" hits="2" branch="False" />
+            <line number="9" hits="2" branch="False" />
+            <line number="10" hits="2" branch="False" />
+            <line number="11" hits="2" branch="False" />
+            <line number="12" hits="2" branch="False" />
+            <line number="13" hits="2" branch="False" />
           </lines>
         </class>
       </classes>
     </package>
-    <package name="E7BeautyShop.Schedule.Model.Tests" line-rate="0.9945" branch-rate="0.75" complexity="52">
+    <package name="E7BeautyShop.Schedule.Model.Tests" line-rate="0.9929000000000001" branch-rate="1" complexity="25">
       <classes>
         <class name="AutoGeneratedProgram" filename=".nuget\packages\microsoft.net.test.sdk\17.8.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
@@ -786,6 +672,26 @@
           </methods>
           <lines>
             <line number="4" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="E7BeautyShop.Schedule.Tests.BusinessExceptionTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\BusinessExceptionTest.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="Should_ThrowException_When_ConditionIsTrue" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="7" hits="1" branch="False" />
+                <line number="8" hits="1" branch="False" />
+                <line number="9" hits="2" branch="False" />
+                <line number="10" hits="1" branch="False" />
+                <line number="11" hits="1" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="7" hits="1" branch="False" />
+            <line number="8" hits="1" branch="False" />
+            <line number="9" hits="2" branch="False" />
+            <line number="10" hits="1" branch="False" />
+            <line number="11" hits="1" branch="False" />
           </lines>
         </class>
         <class name="E7BeautyShop.Schedule.Tests.CustomerIdTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\CustomerIdTest.cs" line-rate="1" branch-rate="1" complexity="1">
@@ -810,309 +716,130 @@
             <line number="12" hits="1" branch="False" />
           </lines>
         </class>
-        <class name="E7BeautyShop.Schedule.Tests.ModelBusinessExceptionTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\ModelBusinessExceptionTest.cs" line-rate="1" branch-rate="1" complexity="1">
+        <class name="E7BeautyShop.Schedule.Tests.DayRestTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\DayRestTest.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
-            <method name="Should_ThrowException_When_ConditionIsTrue" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="Should_CreateDayRest" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
                 <line number="7" hits="1" branch="False" />
-                <line number="8" hits="1" branch="False" />
-                <line number="9" hits="2" branch="False" />
+                <line number="9" hits="1" branch="False" />
                 <line number="10" hits="1" branch="False" />
                 <line number="11" hits="1" branch="False" />
+                <line number="13" hits="1" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
             <line number="7" hits="1" branch="False" />
-            <line number="8" hits="1" branch="False" />
-            <line number="9" hits="2" branch="False" />
+            <line number="9" hits="1" branch="False" />
             <line number="10" hits="1" branch="False" />
             <line number="11" hits="1" branch="False" />
+            <line number="13" hits="1" branch="False" />
           </lines>
         </class>
-        <class name="E7BeautyShop.Schedule.Tests.OfficeDayTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\OfficeDayTest.cs" line-rate="1" branch-rate="0.75" complexity="29">
+        <class name="E7BeautyShop.Schedule.Tests.OfficeDayTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\OfficeDayTest.cs" line-rate="1" branch-rate="1" complexity="6">
           <methods>
-            <method name="get_Weekend" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="Should_CreateOfficeDay" signature="()" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="8" hits="65" branch="False" />
-                <line number="9" hits="65" branch="False" />
-                <line number="10" hits="65" branch="False" />
-                <line number="11" hits="65" branch="False" />
+                <line number="9" hits="1" branch="False" />
+                <line number="10" hits="1" branch="False" />
+                <line number="11" hits="1" branch="False" />
+                <line number="12" hits="1" branch="False" />
+                <line number="13" hits="1" branch="False" />
+                <line number="14" hits="1" branch="False" />
+                <line number="16" hits="98" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="125" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="17" hits="48" branch="False" />
+                <line number="18" hits="48" branch="False" />
+                <line number="19" hits="48" branch="False" />
+                <line number="21" hits="1" branch="False" />
+                <line number="22" hits="1" branch="False" />
+                <line number="23" hits="1" branch="False" />
               </lines>
             </method>
-            <method name="get_Weekday" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="Attend_WhenIsAttendIsTrue_ShouldReturnTrue" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="17" hits="97" branch="False" />
-                <line number="18" hits="97" branch="False" />
-                <line number="19" hits="97" branch="False" />
-                <line number="20" hits="97" branch="False" />
-              </lines>
-            </method>
-            <method name="Generate_WhenCalledOnWeekday_AddsOfficeHourToWeekday" signature="()" line-rate="1" branch-rate="0.6666" complexity="6">
-              <lines>
-                <line number="25" hits="1" branch="False" />
-                <line number="26" hits="1" branch="False" />
                 <line number="27" hits="1" branch="False" />
                 <line number="28" hits="1" branch="False" />
-                <line number="29" hits="44" branch="True" condition-coverage="66.66% (4/6)">
-                  <conditions>
-                    <condition number="193" type="jump" coverage="100%" />
-                    <condition number="102" type="jump" coverage="50%" />
-                    <condition number="165" type="jump" coverage="50%" />
-                  </conditions>
-                </line>
-                <line number="30" hits="21" branch="False" />
-                <line number="31" hits="21" branch="False" />
-                <line number="32" hits="21" branch="False" />
-                <line number="33" hits="21" branch="False" />
+                <line number="29" hits="1" branch="False" />
+                <line number="30" hits="1" branch="False" />
+                <line number="31" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="NotAttend_WhenIsAttendIsTrue_ShouldSetIsAttendToFalse" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
                 <line number="35" hits="1" branch="False" />
                 <line number="36" hits="1" branch="False" />
+                <line number="37" hits="1" branch="False" />
+                <line number="38" hits="1" branch="False" />
+                <line number="39" hits="1" branch="False" />
               </lines>
             </method>
-            <method name="Generate_WhenCalledOnWeekend_AddsOfficeHourToWeekend" signature="()" line-rate="1" branch-rate="0.6666" complexity="6">
+            <method name="NotAttend_WhenIsAttendIsFalse_ShouldSetIsAttendToTrue" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="41" hits="1" branch="False" />
-                <line number="42" hits="1" branch="False" />
                 <line number="43" hits="1" branch="False" />
                 <line number="44" hits="1" branch="False" />
-                <line number="45" hits="20" branch="True" condition-coverage="66.66% (4/6)">
-                  <conditions>
-                    <condition number="193" type="jump" coverage="100%" />
-                    <condition number="102" type="jump" coverage="50%" />
-                    <condition number="165" type="jump" coverage="50%" />
-                  </conditions>
-                </line>
-                <line number="46" hits="9" branch="False" />
-                <line number="47" hits="9" branch="False" />
-                <line number="48" hits="9" branch="False" />
-                <line number="49" hits="9" branch="False" />
-                <line number="51" hits="1" branch="False" />
-                <line number="52" hits="1" branch="False" />
+                <line number="45" hits="1" branch="False" />
+                <line number="46" hits="1" branch="False" />
+                <line number="47" hits="1" branch="False" />
+                <line number="48" hits="1" branch="False" />
               </lines>
             </method>
-            <method name="Generate_CreateSchedule" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name=".ctor" signature="(Xunit.Abstractions.ITestOutputHelper)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="57" hits="1" branch="False" />
-                <line number="58" hits="1" branch="False" />
-                <line number="59" hits="1" branch="False" />
-                <line number="60" hits="1" branch="False" />
-                <line number="61" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="Cancel_WhenIsAttendingIsTrue_ShouldSetIsAttendingToFalse" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="65" hits="1" branch="False" />
-                <line number="66" hits="1" branch="False" />
-                <line number="67" hits="1" branch="False" />
-                <line number="68" hits="1" branch="False" />
-                <line number="69" hits="1" branch="False" />
-                <line number="70" hits="1" branch="False" />
-                <line number="71" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="Cancel_WhenIsAttendingIsFalse_ShouldThrowModelBusinessException" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="75" hits="1" branch="False" />
-                <line number="76" hits="1" branch="False" />
-                <line number="77" hits="1" branch="False" />
-                <line number="78" hits="1" branch="False" />
-                <line number="79" hits="1" branch="False" />
-                <line number="81" hits="2" branch="False" />
-                <line number="82" hits="1" branch="False" />
-                <line number="83" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="GenerateOfficeDays" signature="(System.DateTime)" line-rate="1" branch-rate="0.8332999999999999" complexity="12">
-              <lines>
-                <line number="88" hits="1" branch="False" />
-                <line number="89" hits="1" branch="False" />
-                <line number="90" hits="62" branch="True" condition-coverage="100% (2/2)">
-                  <conditions>
-                    <condition number="281" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-                <line number="91" hits="30" branch="False" />
-                <line number="92" hits="30" branch="False" />
-                <line number="93" hits="30" branch="False" />
-                <line number="95" hits="30" branch="True" condition-coverage="100% (2/2)">
-                  <conditions>
-                    <condition number="60" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-                <line number="96" hits="30" branch="True" condition-coverage="100% (2/2)">
-                  <conditions>
-                    <condition number="91" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-                <line number="98" hits="1080" branch="True" condition-coverage="66.66% (4/6)">
-                  <conditions>
-                    <condition number="262" type="jump" coverage="100%" />
-                    <condition number="176" type="jump" coverage="50%" />
-                    <condition number="234" type="jump" coverage="50%" />
-                  </conditions>
-                </line>
-                <line number="99" hits="510" branch="False" />
-                <line number="100" hits="510" branch="False" />
-                <line number="101" hits="510" branch="False" />
-                <line number="102" hits="510" branch="False" />
-                <line number="103" hits="30" branch="False" />
-                <line number="105" hits="1" branch="False" />
-                <line number="106" hits="1" branch="False" />
+                <line number="5" hits="4" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="8" hits="65" branch="False" />
-            <line number="9" hits="65" branch="False" />
-            <line number="10" hits="65" branch="False" />
-            <line number="11" hits="65" branch="False" />
-            <line number="17" hits="97" branch="False" />
-            <line number="18" hits="97" branch="False" />
-            <line number="19" hits="97" branch="False" />
-            <line number="20" hits="97" branch="False" />
-            <line number="25" hits="1" branch="False" />
-            <line number="26" hits="1" branch="False" />
+            <line number="9" hits="1" branch="False" />
+            <line number="10" hits="1" branch="False" />
+            <line number="11" hits="1" branch="False" />
+            <line number="12" hits="1" branch="False" />
+            <line number="13" hits="1" branch="False" />
+            <line number="14" hits="1" branch="False" />
+            <line number="16" hits="98" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="125" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="17" hits="48" branch="False" />
+            <line number="18" hits="48" branch="False" />
+            <line number="19" hits="48" branch="False" />
+            <line number="21" hits="1" branch="False" />
+            <line number="22" hits="1" branch="False" />
+            <line number="23" hits="1" branch="False" />
             <line number="27" hits="1" branch="False" />
             <line number="28" hits="1" branch="False" />
-            <line number="29" hits="44" branch="True" condition-coverage="66.66% (4/6)">
-              <conditions>
-                <condition number="193" type="jump" coverage="100%" />
-                <condition number="102" type="jump" coverage="50%" />
-                <condition number="165" type="jump" coverage="50%" />
-              </conditions>
-            </line>
-            <line number="30" hits="21" branch="False" />
-            <line number="31" hits="21" branch="False" />
-            <line number="32" hits="21" branch="False" />
-            <line number="33" hits="21" branch="False" />
+            <line number="29" hits="1" branch="False" />
+            <line number="30" hits="1" branch="False" />
+            <line number="31" hits="1" branch="False" />
             <line number="35" hits="1" branch="False" />
             <line number="36" hits="1" branch="False" />
-            <line number="41" hits="1" branch="False" />
-            <line number="42" hits="1" branch="False" />
+            <line number="37" hits="1" branch="False" />
+            <line number="38" hits="1" branch="False" />
+            <line number="39" hits="1" branch="False" />
             <line number="43" hits="1" branch="False" />
             <line number="44" hits="1" branch="False" />
-            <line number="45" hits="20" branch="True" condition-coverage="66.66% (4/6)">
-              <conditions>
-                <condition number="193" type="jump" coverage="100%" />
-                <condition number="102" type="jump" coverage="50%" />
-                <condition number="165" type="jump" coverage="50%" />
-              </conditions>
-            </line>
-            <line number="46" hits="9" branch="False" />
-            <line number="47" hits="9" branch="False" />
-            <line number="48" hits="9" branch="False" />
-            <line number="49" hits="9" branch="False" />
-            <line number="51" hits="1" branch="False" />
-            <line number="52" hits="1" branch="False" />
-            <line number="57" hits="1" branch="False" />
-            <line number="58" hits="1" branch="False" />
-            <line number="59" hits="1" branch="False" />
-            <line number="60" hits="1" branch="False" />
-            <line number="61" hits="1" branch="False" />
-            <line number="65" hits="1" branch="False" />
-            <line number="66" hits="1" branch="False" />
-            <line number="67" hits="1" branch="False" />
-            <line number="68" hits="1" branch="False" />
-            <line number="69" hits="1" branch="False" />
-            <line number="70" hits="1" branch="False" />
-            <line number="71" hits="1" branch="False" />
-            <line number="75" hits="1" branch="False" />
-            <line number="76" hits="1" branch="False" />
-            <line number="77" hits="1" branch="False" />
-            <line number="78" hits="1" branch="False" />
-            <line number="79" hits="1" branch="False" />
-            <line number="81" hits="2" branch="False" />
-            <line number="82" hits="1" branch="False" />
-            <line number="83" hits="1" branch="False" />
-            <line number="88" hits="1" branch="False" />
-            <line number="89" hits="1" branch="False" />
-            <line number="90" hits="62" branch="True" condition-coverage="100% (2/2)">
-              <conditions>
-                <condition number="281" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="91" hits="30" branch="False" />
-            <line number="92" hits="30" branch="False" />
-            <line number="93" hits="30" branch="False" />
-            <line number="95" hits="30" branch="True" condition-coverage="100% (2/2)">
-              <conditions>
-                <condition number="60" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="96" hits="30" branch="True" condition-coverage="100% (2/2)">
-              <conditions>
-                <condition number="91" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="98" hits="1080" branch="True" condition-coverage="66.66% (4/6)">
-              <conditions>
-                <condition number="262" type="jump" coverage="100%" />
-                <condition number="176" type="jump" coverage="50%" />
-                <condition number="234" type="jump" coverage="50%" />
-              </conditions>
-            </line>
-            <line number="99" hits="510" branch="False" />
-            <line number="100" hits="510" branch="False" />
-            <line number="101" hits="510" branch="False" />
-            <line number="102" hits="510" branch="False" />
-            <line number="103" hits="30" branch="False" />
-            <line number="105" hits="1" branch="False" />
-            <line number="106" hits="1" branch="False" />
+            <line number="45" hits="1" branch="False" />
+            <line number="46" hits="1" branch="False" />
+            <line number="47" hits="1" branch="False" />
+            <line number="48" hits="1" branch="False" />
+            <line number="5" hits="4" branch="False" />
           </lines>
         </class>
-        <class name="E7BeautyShop.Schedule.Tests.OfficeHourTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\OfficeHourTest.cs" line-rate="1" branch-rate="1" complexity="6">
+        <class name="E7BeautyShop.Schedule.Tests.OfficeHourTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\OfficeHourTest.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
-            <method name="Should_Initialize_As_Available" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="Should_CreateOfficeHour" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
                 <line number="7" hits="1" branch="False" />
                 <line number="8" hits="1" branch="False" />
                 <line number="9" hits="1" branch="False" />
                 <line number="10" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="Should_Become_Unavailable_When_Made_Unavailable" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="14" hits="1" branch="False" />
-                <line number="15" hits="1" branch="False" />
-                <line number="16" hits="1" branch="False" />
-                <line number="17" hits="1" branch="False" />
-                <line number="18" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="Should_Become_Available_When_Made_Available" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="22" hits="1" branch="False" />
-                <line number="23" hits="1" branch="False" />
-                <line number="24" hits="1" branch="False" />
-                <line number="25" hits="1" branch="False" />
-                <line number="26" hits="1" branch="False" />
-                <line number="27" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="Should_Keep_Hour_When_Made_Unavailable" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="31" hits="1" branch="False" />
-                <line number="32" hits="1" branch="False" />
-                <line number="33" hits="1" branch="False" />
-                <line number="34" hits="1" branch="False" />
-                <line number="35" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="Should_Keep_Hour_When_Made_Available" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="39" hits="1" branch="False" />
-                <line number="40" hits="1" branch="False" />
-                <line number="41" hits="1" branch="False" />
-                <line number="42" hits="1" branch="False" />
-                <line number="43" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="get_OfficeHour" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="48" hits="7" branch="False" />
-                <line number="49" hits="7" branch="False" />
-                <line number="50" hits="7" branch="False" />
-                <line number="51" hits="7" branch="False" />
+                <line number="11" hits="1" branch="False" />
+                <line number="12" hits="1" branch="False" />
               </lines>
             </method>
           </methods>
@@ -1121,31 +848,8 @@
             <line number="8" hits="1" branch="False" />
             <line number="9" hits="1" branch="False" />
             <line number="10" hits="1" branch="False" />
-            <line number="14" hits="1" branch="False" />
-            <line number="15" hits="1" branch="False" />
-            <line number="16" hits="1" branch="False" />
-            <line number="17" hits="1" branch="False" />
-            <line number="18" hits="1" branch="False" />
-            <line number="22" hits="1" branch="False" />
-            <line number="23" hits="1" branch="False" />
-            <line number="24" hits="1" branch="False" />
-            <line number="25" hits="1" branch="False" />
-            <line number="26" hits="1" branch="False" />
-            <line number="27" hits="1" branch="False" />
-            <line number="31" hits="1" branch="False" />
-            <line number="32" hits="1" branch="False" />
-            <line number="33" hits="1" branch="False" />
-            <line number="34" hits="1" branch="False" />
-            <line number="35" hits="1" branch="False" />
-            <line number="39" hits="1" branch="False" />
-            <line number="40" hits="1" branch="False" />
-            <line number="41" hits="1" branch="False" />
-            <line number="42" hits="1" branch="False" />
-            <line number="43" hits="1" branch="False" />
-            <line number="48" hits="7" branch="False" />
-            <line number="49" hits="7" branch="False" />
-            <line number="50" hits="7" branch="False" />
-            <line number="51" hits="7" branch="False" />
+            <line number="11" hits="1" branch="False" />
+            <line number="12" hits="1" branch="False" />
           </lines>
         </class>
         <class name="E7BeautyShop.Schedule.Tests.ProfessionalIdTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\ProfessionalIdTest.cs" line-rate="1" branch-rate="1" complexity="1">
@@ -1162,6 +866,64 @@
             </method>
           </methods>
           <lines>
+            <line number="7" hits="1" branch="False" />
+            <line number="8" hits="1" branch="False" />
+            <line number="9" hits="1" branch="False" />
+            <line number="10" hits="1" branch="False" />
+            <line number="11" hits="1" branch="False" />
+            <line number="12" hits="1" branch="False" />
+          </lines>
+        </class>
+        <class name="E7BeautyShop.Schedule.Tests.ScheduleTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\ScheduleTest.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="Should_Create_DaysAndTimes_IntoTheSchedule" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="1" branch="False" />
+                <line number="17" hits="1" branch="False" />
+                <line number="18" hits="1" branch="False" />
+                <line number="19" hits="1" branch="False" />
+                <line number="21" hits="1" branch="False" />
+                <line number="22" hits="1" branch="False" />
+                <line number="24" hits="1" branch="False" />
+                <line number="25" hits="1" branch="False" />
+                <line number="26" hits="1" branch="False" />
+                <line number="27" hits="1" branch="False" />
+                <line number="29" hits="1" branch="False" />
+                <line number="31" hits="1" branch="False" />
+                <line number="32" hits="1" branch="False" />
+                <line number="33" hits="3" branch="False" />
+                <line number="34" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(Xunit.Abstractions.ITestOutputHelper)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="5" hits="1" branch="False" />
+                <line number="7" hits="1" branch="False" />
+                <line number="8" hits="1" branch="False" />
+                <line number="9" hits="1" branch="False" />
+                <line number="10" hits="1" branch="False" />
+                <line number="11" hits="1" branch="False" />
+                <line number="12" hits="1" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="16" hits="1" branch="False" />
+            <line number="17" hits="1" branch="False" />
+            <line number="18" hits="1" branch="False" />
+            <line number="19" hits="1" branch="False" />
+            <line number="21" hits="1" branch="False" />
+            <line number="22" hits="1" branch="False" />
+            <line number="24" hits="1" branch="False" />
+            <line number="25" hits="1" branch="False" />
+            <line number="26" hits="1" branch="False" />
+            <line number="27" hits="1" branch="False" />
+            <line number="29" hits="1" branch="False" />
+            <line number="31" hits="1" branch="False" />
+            <line number="32" hits="1" branch="False" />
+            <line number="33" hits="3" branch="False" />
+            <line number="34" hits="1" branch="False" />
+            <line number="5" hits="1" branch="False" />
             <line number="7" hits="1" branch="False" />
             <line number="8" hits="1" branch="False" />
             <line number="9" hits="1" branch="False" />
@@ -1314,41 +1076,9 @@
             <line number="46" hits="1" branch="False" />
           </lines>
         </class>
-        <class name="E7BeautyShop.Schedule.Tests.ValidateTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\ValidateTest.cs" line-rate="1" branch-rate="1" complexity="2">
-          <methods>
-            <method name="Should_ThrowExceptions_DateAndHour" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="7" hits="1" branch="False" />
-                <line number="8" hits="1" branch="False" />
-                <line number="9" hits="2" branch="False" />
-                <line number="10" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="Should_NotThrowExceptions_DateAndHour" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="14" hits="1" branch="False" />
-                <line number="15" hits="1" branch="False" />
-                <line number="16" hits="2" branch="False" />
-                <line number="17" hits="1" branch="False" />
-                <line number="18" hits="1" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="7" hits="1" branch="False" />
-            <line number="8" hits="1" branch="False" />
-            <line number="9" hits="2" branch="False" />
-            <line number="10" hits="1" branch="False" />
-            <line number="14" hits="1" branch="False" />
-            <line number="15" hits="1" branch="False" />
-            <line number="16" hits="2" branch="False" />
-            <line number="17" hits="1" branch="False" />
-            <line number="18" hits="1" branch="False" />
-          </lines>
-        </class>
         <class name="E7BeautyShop.Schedule.Tests.WeekdayTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\WeekdayTest.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
-            <method name="Should_Create_Weekday" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="Should_CreateWeekday" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
                 <line number="7" hits="1" branch="False" />
                 <line number="8" hits="1" branch="False" />
@@ -1374,7 +1104,7 @@
         </class>
         <class name="E7BeautyShop.Schedule.Tests.WeekendTest" filename="Projects\Dotnet\E7BeautyShop\E7BeautyShop.Schedule.Model.Tests\WeekendTest.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
-            <method name="Should_Create_Weekend" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="Should_CreateWeekend" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
                 <line number="7" hits="1" branch="False" />
                 <line number="8" hits="1" branch="False" />

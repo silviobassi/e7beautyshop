@@ -9,7 +9,6 @@ public class DayRestTest
         var dayRest = new DayRest(dayOnWeek);
         Assert.NotNull(dayRest);
         Assert.Equal(dayOnWeek, dayRest.DayOnWeek);
-
     }
 }
 

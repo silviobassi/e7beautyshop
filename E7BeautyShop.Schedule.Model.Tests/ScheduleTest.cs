@@ -32,4 +32,16 @@ public class ScheduleTest(ITestOutputHelper output)
         Assert.Equal(2, schedule.OfficeDays.Count);
         Assert.Equal(30, schedule.OfficeDays.SelectMany(day => day.TimesOfDay).Count());
     }
+
+    [Fact]
+    public void AddDayRest_WhenCalled_ShouldAddDayRestToList()
+    {
+        var weekday = new Weekday(_startWeekday, _endWeekday);
+        var weekend = new Weekend(_startWeekend, _endWeekend);
+        var schedule = new Schedule(DateTime.Now, DateTime.Now.AddDays(7), weekday, weekend);
+        var dayRest = new DayRest(DayOfWeek.Monday);
+        schedule.AddDayRest(dayRest);
+        Assert.Contains(dayRest, schedule.DaysRest);
+    }
+
 }

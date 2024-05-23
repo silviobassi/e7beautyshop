@@ -7,7 +7,7 @@ public class OfficeDayTest(ITestOutputHelper output)
     [Fact]
     public void Should_CreateOfficeDay()
     {
-        var dateTime = new DateTime(2021, 1, 1, 11, 0, 0, DateTimeKind.Local);
+        var dateTime = new DateTime(2021, 1, 1, 11, 1, 1, DateTimeKind.Local);
         var officeDay = new OfficeDay(dateTime);
         Assert.NotNull(officeDay);
         Assert.Equal(dateTime, officeDay.DateTime);
@@ -20,5 +20,30 @@ public class OfficeDayTest(ITestOutputHelper output)
 
         Assert.NotEmpty(officeDay.TimesOfDay);
         Assert.Equal(48, officeDay.TimesOfDay.Count);
+    }
+
+    [Fact]
+    public void Attend_WhenIsAttendIsTrue_ShouldReturnTrue()
+    {
+        Appointment officeDay = new OfficeDay(DateTime.Now);
+        officeDay.Attend();
+        Assert.True(officeDay.IsAvailable);
+    }
+
+    [Fact]
+    public void NotAttend_WhenIsAttendIsTrue_ShouldSetIsAttendToFalse()
+    {
+        var officeDay = new OfficeDay(DateTime.Now);
+        officeDay.Cancel();
+        Assert.False(officeDay.IsAvailable);
+    }
+
+    [Fact]
+    public void NotAttend_WhenIsAttendIsFalse_ShouldSetIsAttendToTrue()
+    {
+        var officeDay = new OfficeDay(DateTime.Now);
+        officeDay.Cancel();
+        officeDay.Attend();
+        Assert.True(officeDay.IsAvailable);
     }
 }

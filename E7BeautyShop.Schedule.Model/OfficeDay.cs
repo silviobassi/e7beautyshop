@@ -1,6 +1,6 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public sealed class OfficeDay
+public sealed class OfficeDay: Appointment
 {
     public DateTime DateTime { get; private set; }
     public List<OfficeHour> TimesOfDay { get; } = [];
@@ -9,10 +9,12 @@ public sealed class OfficeDay
     {
         BusinessException.When(dateTime == DateTime.MinValue, "DateTime cannot be empty");
         DateTime = dateTime;
+        IsAvailable = true;
     }
 
     public void AddOfficeHour(OfficeHour timeOfDay)
     {
         TimesOfDay.Add(timeOfDay);
     }
+   
 }
