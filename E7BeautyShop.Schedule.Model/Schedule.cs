@@ -23,6 +23,11 @@ public sealed class Schedule
     {
         DaysRest.Add(dayRest);
     }
+    
+    public void AddDaysRest(List<DayRest> daysRest)
+    {
+        DaysRest.AddRange(daysRest);
+    }
 
     public void AddOfficeDay(OfficeDay day)
     {

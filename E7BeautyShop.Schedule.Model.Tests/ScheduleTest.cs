@@ -12,14 +12,14 @@ public class ScheduleTest(ITestOutputHelper output)
     private readonly TimeSpan _endWeekend = new(12, 0, 0);
     
     [Fact]
-    public void Should_CreateSchedule()
+    public void Should_Create_DaysAndTimes_IntoTheSchedule()
     {
         var weekday = new Weekday(_startWeekday, _endWeekday);
         var weekend = new Weekend(_startWeekend, _endWeekend);
         var dayRest = new List<DayRest> { new (DayOfWeek.Thursday), new(DayOfWeek.Friday), new (DayOfWeek.Sunday) };
         
         var schedule = new Schedule(_startAt, _endAt, weekday, weekend);
-        schedule.DaysRest.AddRange(dayRest);
+        schedule.AddDaysRest(dayRest);
 
         Assert.NotNull(schedule);
         Assert.Equal(_startAt, schedule.StartAt);
