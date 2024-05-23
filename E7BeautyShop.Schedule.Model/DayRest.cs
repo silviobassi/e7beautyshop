@@ -1,6 +1,6 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public class DayRest
+public sealed class DayRest
 {
     
     public DayOfWeek DayOnWeek { get; private set; }

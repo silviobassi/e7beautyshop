@@ -1,6 +1,6 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public class Weekend : CheckDaysOfWeek
+public sealed class Weekend : CheckDaysOfWeek
 {
     public TimeSpan StartAt { get; private set; }
     public TimeSpan EndAt { get; private set; }
