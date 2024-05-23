@@ -3,51 +3,12 @@
 public class OfficeHourTest
 {
     [Fact]
-    public void Should_Initialize_As_Available()
+    void Should_CreateOfficeHour()
     {
-        var officeHour = OfficeHour;
-        Assert.True(officeHour.IsAvailable);
-    }
-
-    [Fact]
-    public void Should_Become_Unavailable_When_Made_Unavailable()
-    {
-        var officeHour = OfficeHour;
-        officeHour.ToMakeUnavailable();
-        Assert.False(officeHour.IsAvailable);
-    }
-
-    [Fact]
-    public void Should_Become_Available_When_Made_Available()
-    {
-        var officeHour = OfficeHour;
-        officeHour.ToMakeUnavailable();
-        officeHour.ToMakeAvailable();
-        Assert.True(officeHour.IsAvailable);
-    }
-
-    [Fact]
-    public void Should_Keep_Hour_When_Made_Unavailable()
-    {
-        var officeHour = OfficeHour;
-        officeHour.ToMakeUnavailable();
-        Assert.Equal(OfficeHour.Hour, officeHour.Hour);
-    }
-
-    [Fact]
-    public void Should_Keep_Hour_When_Made_Available()
-    {
-        var officeHour = OfficeHour;
-        officeHour.ToMakeAvailable();
-        Assert.Equal(OfficeHour.Hour, officeHour.Hour);
-    }
-
-    private static OfficeHour OfficeHour
-    {
-        get
-        {
-            var officeHour = new OfficeHour();
-            return officeHour;
-        }
+        var timeOfDay = new TimeSpan(8,0,0);
+        var officeHour = new OfficeHour(timeOfDay);
+        Assert.NotNull(officeHour);
+        Assert.Equal(timeOfDay, officeHour.TimeOfDay);
     }
 }
+

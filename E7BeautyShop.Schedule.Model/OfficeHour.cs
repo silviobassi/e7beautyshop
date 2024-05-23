@@ -2,17 +2,10 @@
 
 public class OfficeHour
 {
-    public TimeSpan? Hour { get; set; }
-    public bool IsAvailable { get; private set; } = true;
     
-    public void ToMakeAvailable()
+    public TimeSpan TimeOfDay { get; private set; }
+    public OfficeHour(TimeSpan timeOfDay)
     {
-        IsAvailable = true;
+        TimeOfDay = timeOfDay;
     }
-
-    public void ToMakeUnavailable()
-    {
-        IsAvailable = false;
-    }
-    
 }

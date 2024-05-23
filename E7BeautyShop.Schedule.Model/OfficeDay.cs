@@ -1,92 +1,16 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public class OfficeDay : Entity
+public class OfficeDay
 {
-    public DateTime? StartAt { get; private set; }
-    public bool IsAttending { get; set; }
-    public List<OfficeHour> OfficeHours { get; } = [];
-    public DayOfWeek? DayRest { get; set; }
-    private Weekday? Weekday { get; set; }
-    private Weekend? Weekend { get; set; }
+    public DateTime DateTime { get; private set; }
+    public List<OfficeHour> TimesOfDay { get; private set; } = [];
 
-    public OfficeDay(DateTime startAt, Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
+    public OfficeDay(DateTime dateTime)
     {
-        Validate(weekday, weekend, dayRest);
-        IsAttending = true;
-        StartAt = startAt;
-        Weekday = weekday;
-        Weekend = weekend;
-        DayRest = dayRest;
+        DateTime = dateTime;
     }
-
-
-    public void Update(Guid id, DateTime startAt, Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
+    public void AddOfficeHour(OfficeHour timeOfDay)
     {
-        BusinessException.When(id == Guid.Empty, "Id is required");
-        Validate(weekday, weekend, dayRest);
-        Id = id;
-        StartAt = startAt;
-        Weekday = weekday;
-        Weekend = weekend;
-        DayRest = dayRest;
-    }
-
-    public void AddOfficeHour(OfficeHour officeHour)
-    {
-        AddWeekdayOfficeHours(officeHour);
-        AddWeekendOfficeHours(officeHour);
-    }
-
-    public void Cancel()
-    {
-        BusinessException.When(!IsAttending, "Day is already canceled");
-        IsAttending = false;
-    }
-
-    public void Attend()
-    {
-        BusinessException.When(IsAttending, "Day is already attending");
-        IsAttending = true;
-    }
-
-    private static void Validate(Weekday? weekday, Weekend? weekend, DayOfWeek? dayRest)
-    {
-        BusinessException.When(weekday == null, "Weekday is required");
-        BusinessException.When(weekend == null, "Weekend is required");
-        BusinessException.When(dayRest == null, "Day rest is required");
-    }
-
-    public bool IsNotWeekday => StartAt?.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday;
-
-    private bool IsNotWeekend =>
-        StartAt?.DayOfWeek is not DayOfWeek.Saturday && StartAt?.DayOfWeek is not DayOfWeek.Sunday;
-
-    private bool IsDayRest => StartAt?.DayOfWeek == DayRest;
-
-
-    private void AddWeekdayOfficeHours(OfficeHour officeHour)
-    {
-        if (IsNotWeekday || IsDayRest) return;
-        AddOfficeHourOnWeekday(officeHour);
-    }
-
-    private void AddOfficeHourOnWeekday(OfficeHour officeHour)
-    {
-        officeHour.Hour ??= Weekday?.StartAt;
-        if (officeHour.Hour > Weekday?.EndAt) return;
-        OfficeHours.Add(officeHour);
-    }
-
-    private void AddWeekendOfficeHours(OfficeHour officeHour)
-    {
-        if (IsNotWeekend || IsDayRest) return;
-        AddOfficeHourOnWeekend(officeHour);
-    }
-
-    private void AddOfficeHourOnWeekend(OfficeHour officeHour)
-    {
-        officeHour.Hour ??= Weekend?.StartAt;
-        if (officeHour.Hour > Weekend?.EndAt) return;
-        OfficeHours.Add(officeHour);
+        TimesOfDay.Add(timeOfDay);
     }
 }
