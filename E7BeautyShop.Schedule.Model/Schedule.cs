@@ -5,10 +5,8 @@ public sealed class Schedule
     public DateTime StartAt { get; private set; }
     public DateTime EndAt { get; private set; }
 
-    public TimeSpan StartWeekday { get; private set; }
-    public TimeSpan EndWeekday { get; private set; }
-    public TimeSpan StartWeekend { get; private set; }
-    public TimeSpan EndWeekend { get; private set; }
+    public Weekday Weekday { get; private set; }
+    public Weekend Weekend { get; private set; }
     public List<DayOfWeek> DayRest { get; private set; }
     public List<OfficeDay> OfficeDays { get; private set; }
     public Guid ProfessionalId { get; private set; }
@@ -18,10 +16,8 @@ public sealed class Schedule
     public Schedule(
         DateTime startAt,
         DateTime endAt,
-        TimeSpan startWeekday,
-        TimeSpan endWeekday,
-        TimeSpan startWeekend,
-        TimeSpan endWeekend,
+        Weekday weekday,
+        Weekend weekend,
         List<DayOfWeek> dayRest,
         List<OfficeDay> officeDays,
         Guid professionalId,
@@ -29,10 +25,8 @@ public sealed class Schedule
     {
         StartAt = startAt;
         EndAt = endAt;
-        StartWeekday = startWeekday;
-        EndWeekday = endWeekday;
-        StartWeekend = startWeekend;
-        EndWeekend = endWeekend;
+        Weekday = weekday;
+        Weekend = weekend;
         DayRest = dayRest;
         OfficeDays = officeDays;
         ProfessionalId = professionalId;
@@ -40,5 +34,4 @@ public sealed class Schedule
     }
 
     public void AddOfficeDay(OfficeDay day) => OfficeDays.Add(day);
-    
 }
