@@ -1,6 +1,6 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public sealed class Schedule
+public sealed class Schedule: IAggregateRoot
 {
     private readonly Weekday _weekday;
     private readonly Weekend _weekend;
@@ -14,9 +14,9 @@ public sealed class Schedule
         Validate();
     }
 
-    public DateTime StartAt { get; internal set; }
+    public DateTime StartAt { get; private set; }
 
-    public DateTime EndAt { get; internal set; }
+    public DateTime EndAt { get; private set; }
 
     public List<DayRest> DaysRest { get; } = [];
 
