@@ -12,7 +12,7 @@ public class OfficeHourTest
     }
 
     [Fact]
-    void Should_ThrowException_When_TimeOfDayIsInvalid()
+    private void Should_ThrowException_When_TimeOfDayIsInvalid()
     {
         Exception exception = Assert.Throws<BusinessException>(() => 
             new OfficeHour(new TimeSpan(0,0,0)));
@@ -20,7 +20,7 @@ public class OfficeHourTest
     }
 
     [Fact]
-    void Should_Cancel_OfficeHour()
+    private void Should_Cancel_OfficeHour()
     {
         var officeHour = new OfficeHour(new TimeSpan(8,0,0));
         officeHour.Cancel();
@@ -28,7 +28,7 @@ public class OfficeHourTest
     }
 
     [Fact]
-    void Should_BeAvailable_AfterCreation()
+    private void Should_BeAvailable_AfterCreation()
     {
         var officeHour = new OfficeHour(new TimeSpan(8,0,0));
         officeHour.Cancel();

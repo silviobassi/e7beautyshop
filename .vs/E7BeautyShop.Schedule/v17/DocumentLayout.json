@@ -3,36 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model\\customerid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|solutionrelative:e7beautyshop.schedule.model\\customerid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model\\checkdaysofweek.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|solutionrelative:e7beautyshop.schedule.model\\checkdaysofweek.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model\\businessexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|solutionrelative:e7beautyshop.schedule.model\\businessexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|solutionrelative:e7beautyshop.schedule.model\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model\\officehour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|solutionrelative:e7beautyshop.schedule.model\\officehour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{70DA1F4D-6A07-4354-A270-8DBD9F63438D}|E7BeautyShop.Schedule.Model.Tests\\E7BeautyShop.Schedule.Model.Tests.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model.tests\\officedaytest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{70DA1F4D-6A07-4354-A270-8DBD9F63438D}|E7BeautyShop.Schedule.Model.Tests\\E7BeautyShop.Schedule.Model.Tests.csproj|solutionrelative:e7beautyshop.schedule.model.tests\\officedaytest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{70DA1F4D-6A07-4354-A270-8DBD9F63438D}|E7BeautyShop.Schedule.Model.Tests\\E7BeautyShop.Schedule.Model.Tests.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model.tests\\officehourtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{70DA1F4D-6A07-4354-A270-8DBD9F63438D}|E7BeautyShop.Schedule.Model.Tests\\E7BeautyShop.Schedule.Model.Tests.csproj|solutionrelative:e7beautyshop.schedule.model.tests\\officehourtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model\\officeday.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|solutionrelative:e7beautyshop.schedule.model\\officeday.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model\\weekend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|solutionrelative:e7beautyshop.schedule.model\\weekend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model\\professionalid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|solutionrelative:e7beautyshop.schedule.model\\professionalid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model\\schedulingstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|solutionrelative:e7beautyshop.schedule.model\\schedulingstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model\\servicedescription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|solutionrelative:e7beautyshop.schedule.model\\servicedescription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|c:\\users\\silvio\\projects\\dotnet\\e7beautyshop\\e7beautyshop.schedule.model\\schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D239C216-263D-4518-8323-0FF540CDEC2E}|E7BeautyShop.Schedule.Model\\E7BeautyShop.Schedule.Model.csproj|solutionrelative:e7beautyshop.schedule.model\\schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,110 +34,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 299,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CustomerId.cs",
-              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\CustomerId.cs",
-              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model\\CustomerId.cs",
-              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\CustomerId.cs",
-              "RelativeToolTip": "E7BeautyShop.Schedule.Model\\CustomerId.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:56:10.653Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CheckDaysOfWeek.cs",
-              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\CheckDaysOfWeek.cs",
-              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model\\CheckDaysOfWeek.cs",
-              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\CheckDaysOfWeek.cs",
-              "RelativeToolTip": "E7BeautyShop.Schedule.Model\\CheckDaysOfWeek.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:56:07.782Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BusinessException.cs",
-              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\BusinessException.cs",
-              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model\\BusinessException.cs",
-              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\BusinessException.cs",
-              "RelativeToolTip": "E7BeautyShop.Schedule.Model\\BusinessException.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:56:05.674Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "OfficeDayTest.cs",
-              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model.Tests\\OfficeDayTest.cs",
-              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model.Tests\\OfficeDayTest.cs",
-              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model.Tests\\OfficeDayTest.cs",
-              "RelativeToolTip": "E7BeautyShop.Schedule.Model.Tests\\OfficeDayTest.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABwAAAAVAAAA",
+              "Title": "Schedule.cs",
+              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\Schedule.cs",
+              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model\\Schedule.cs",
+              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\Schedule.cs",
+              "RelativeToolTip": "E7BeautyShop.Schedule.Model\\Schedule.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:53:05.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Appointment.cs",
-              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\Appointment.cs",
-              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model\\Appointment.cs",
-              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\Appointment.cs",
-              "RelativeToolTip": "E7BeautyShop.Schedule.Model\\Appointment.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:44:45.295Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "OfficeDay.cs",
-              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\OfficeDay.cs",
-              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model\\OfficeDay.cs",
-              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\OfficeDay.cs",
-              "RelativeToolTip": "E7BeautyShop.Schedule.Model\\OfficeDay.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:31:49.56Z",
+              "WhenOpened": "2024-05-25T08:39:13.035Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "OfficeHour.cs",
-              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\OfficeHour.cs",
-              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model\\OfficeHour.cs",
-              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\OfficeHour.cs",
-              "RelativeToolTip": "E7BeautyShop.Schedule.Model\\OfficeHour.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAABAAAA",
+              "Title": "ServiceDescription.cs",
+              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\ServiceDescription.cs",
+              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model\\ServiceDescription.cs",
+              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\ServiceDescription.cs",
+              "RelativeToolTip": "E7BeautyShop.Schedule.Model\\ServiceDescription.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:14:58.065Z",
+              "WhenOpened": "2024-05-25T08:39:04.027Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
+              "Title": "SchedulingState.cs",
+              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\SchedulingState.cs",
+              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model\\SchedulingState.cs",
+              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\SchedulingState.cs",
+              "RelativeToolTip": "E7BeautyShop.Schedule.Model\\SchedulingState.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-25T08:39:01.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProfessionalId.cs",
+              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\ProfessionalId.cs",
+              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model\\ProfessionalId.cs",
+              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\ProfessionalId.cs",
+              "RelativeToolTip": "E7BeautyShop.Schedule.Model\\ProfessionalId.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-25T08:38:57.94Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Weekend.cs",
+              "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\Weekend.cs",
+              "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model\\Weekend.cs",
+              "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model\\Weekend.cs",
+              "RelativeToolTip": "E7BeautyShop.Schedule.Model\\Weekend.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-25T08:38:33.243Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "OfficeHourTest.cs",
               "DocumentMoniker": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model.Tests\\OfficeHourTest.cs",
               "RelativeDocumentMoniker": "E7BeautyShop.Schedule.Model.Tests\\OfficeHourTest.cs",
               "ToolTip": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\E7BeautyShop.Schedule.Model.Tests\\OfficeHourTest.cs",
               "RelativeToolTip": "E7BeautyShop.Schedule.Model.Tests\\OfficeHourTest.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAgAAAAzAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAA1wA8AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:12:19.574Z",
+              "WhenOpened": "2024-05-25T08:24:50.234Z",
               "EditorCaption": ""
             }
           ]

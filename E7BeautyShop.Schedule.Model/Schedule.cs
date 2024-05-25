@@ -7,23 +7,23 @@ public sealed class Schedule
 
     public Schedule(DateTime startAt, DateTime endAt, Weekday weekday, Weekend weekend)
     {
-        BusinessException.When(startAt == DateTime.MinValue, "StartAt cannot be empty");
-        BusinessException.When(endAt == DateTime.MinValue, "EndAt cannot be empty");
         StartAt = startAt;
         EndAt = endAt;
         _weekday = weekday;
         _weekend = weekend;
+        Validate();
     }
-    public DateTime StartAt { get; private set; }
-    
-    public DateTime EndAt { get; private set; }
+
+    public DateTime StartAt { get; internal set; }
+
+    public DateTime EndAt { get; internal set; }
 
     public List<DayRest> DaysRest { get; } = [];
-    
+
     public List<OfficeDay> OfficeDays { get; } = [];
 
-    public void AddDayRest(DayRest dayRest)=> DaysRest.Add(dayRest);
-    
+    public void AddDayRest(DayRest dayRest) => DaysRest.Add(dayRest);
+
     public void AddDaysRest(List<DayRest> daysRest) => DaysRest.AddRange(daysRest);
 
     public void AddOfficeDay(OfficeDay day)
@@ -35,7 +35,7 @@ public sealed class Schedule
     internal (TimeSpan, TimeSpan) GetOfficeHours(OfficeDay officeDay) =>
         IsWeekday(officeDay) ? (_weekday.StartAt, _weekday.EndAt) : (_weekend.StartAt, _weekend.EndAt);
 
-    public static bool IsWeekday(OfficeDay officeDay) => !IsWeekend(officeDay);
+    internal static bool IsWeekday(OfficeDay officeDay) => !IsWeekend(officeDay);
 
     private bool IsDayRest(OfficeDay officeDay)
     {
@@ -47,5 +47,11 @@ public sealed class Schedule
     {
         if (officeDay?.DateTime.DayOfWeek == DayOfWeek.Saturday) return true;
         return officeDay?.DateTime.DayOfWeek == DayOfWeek.Sunday;
+    }
+
+    private void Validate()
+    {
+        BusinessException.When(StartAt == DateTime.MinValue, "StartAt cannot be empty");
+        BusinessException.When(EndAt == DateTime.MinValue, "EndAt cannot be empty");
     }
 }

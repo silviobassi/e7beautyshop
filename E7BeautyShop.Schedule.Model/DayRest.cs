@@ -3,9 +3,11 @@
 public sealed class DayRest
 {
     
-    public DayOfWeek DayOnWeek { get; private set; }
+    
     public DayRest(DayOfWeek dayOnWeek)
     {
         DayOnWeek = dayOnWeek;
     }
+
+    public DayOfWeek DayOnWeek { get; private set; }
 }

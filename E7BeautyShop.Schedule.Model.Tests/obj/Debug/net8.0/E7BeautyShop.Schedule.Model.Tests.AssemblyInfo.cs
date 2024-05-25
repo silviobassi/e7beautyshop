@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("E7BeautyShop.Schedule.Model.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2cde962354bab3f96b7c7fec12cb763fc460572")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d537069ec426941c30f221372c161a1d8a449913")]
 [assembly: System.Reflection.AssemblyProductAttribute("E7BeautyShop.Schedule.Model.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("E7BeautyShop.Schedule.Model.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
