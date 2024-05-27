@@ -1,9 +1,7 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public sealed class CustomerId
+public sealed class CustomerId: Entity
 {
-    public Guid Id { get; private set; }
-
     public CustomerId(Guid id)
     {
         Id = id;
