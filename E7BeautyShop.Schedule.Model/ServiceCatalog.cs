@@ -2,15 +2,18 @@
 
 public sealed class ServiceCatalog(ServiceDescription serviceDescription) : Entity
 {
-    public ServiceDescription? ServiceDescription { get; private set; } = serviceDescription;
-
-
     public void Update(Guid id, ServiceDescription? serviceDescription)
     {
         Id = id;
         ServiceDescription = serviceDescription!;
         Validate();
     }
+
+    private ServiceDescription? ServiceDescription { get; set; } = serviceDescription;
+
+    public string? DescriptionName => ServiceDescription?.Name;
+
+    public decimal? DescriptionPrice => ServiceDescription?.Price;
 
     private void Validate()
     {

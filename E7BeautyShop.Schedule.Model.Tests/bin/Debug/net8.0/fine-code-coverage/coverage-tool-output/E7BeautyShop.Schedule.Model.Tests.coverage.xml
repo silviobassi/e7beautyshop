@@ -101,7 +101,7 @@
                 <line number="6" hits="17" branch="False" />
               </lines>
             </method>
-            <method name=".ctor" signature="(System.DayOfWeek)" line-rate="1" branch-rate="1" complexity="1">
+            <method name=".ctor" signature="(System.WeekDayOrWeekend)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
                 <line number="7" hits="4" branch="False" />
                 <line number="8" hits="4" branch="False" />
