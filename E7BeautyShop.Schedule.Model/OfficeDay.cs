@@ -8,15 +8,11 @@ public sealed class OfficeDay : Appointment
     public OfficeDay(DateTime dateTime)
     {
         DateTime = dateTime;
-        IsAvailable = true;
         Validate();
     }
 
-    public void AddOfficeHour(OfficeHour timeOfDay)
-    {
-        TimesOfDay.Add(timeOfDay);
-    }
-
+    public void AddOfficeHour(OfficeHour timeOfDay) => TimesOfDay.Add(timeOfDay);
+    
     private void Validate() 
         => BusinessException.When(DateTime == DateTime.MinValue, "DateTime cannot be empty");
 }

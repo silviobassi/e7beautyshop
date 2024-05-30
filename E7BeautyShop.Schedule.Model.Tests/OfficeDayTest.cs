@@ -15,7 +15,9 @@ public class OfficeDayTest(ITestOutputHelper output)
 
         for (var i = dateTime; i < dateTime.AddDays(1); i = i.AddMinutes(30))
         {
-            officeDay.AddOfficeHour(new OfficeHour(i.TimeOfDay));
+            var officeHour = new OfficeHour();
+            officeHour.CreateOfficeHour(i.TimeOfDay);
+            officeDay.AddOfficeHour(officeHour);
         }
 
         Assert.NotEmpty(officeDay.TimesOfDay);

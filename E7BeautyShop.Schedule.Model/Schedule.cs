@@ -5,19 +5,21 @@ public sealed class Schedule: IAggregateRoot
     private readonly Weekday _weekday;
     private readonly Weekend _weekend;
 
-    public Schedule(DateTime startAt, DateTime endAt, Weekday weekday, Weekend weekend)
+    public Schedule(DateTime startAt, DateTime endAt, ProfessionalId professionalId, Weekday weekday, Weekend weekend)
     {
         StartAt = startAt;
         EndAt = endAt;
+        ProfessionalId = professionalId;
         _weekday = weekday;
         _weekend = weekend;
         Validate();
     }
-
+    
     public DateTime StartAt { get; private set; }
 
     public DateTime EndAt { get; private set; }
 
+    public ProfessionalId ProfessionalId { get; private set; }
     public List<DayRest> DaysRest { get; } = [];
 
     public List<OfficeDay> OfficeDays { get; } = [];
@@ -35,7 +37,7 @@ public sealed class Schedule: IAggregateRoot
     internal (TimeSpan, TimeSpan) GetOfficeHours(OfficeDay officeDay) =>
         IsWeekday(officeDay) ? (_weekday.StartAt, _weekday.EndAt) : (_weekend.StartAt, _weekend.EndAt);
 
-    internal static bool IsWeekday(OfficeDay officeDay) => !IsWeekend(officeDay);
+    private static bool IsWeekday(OfficeDay officeDay) => !IsWeekend(officeDay);
 
     private bool IsDayRest(OfficeDay officeDay)
     {
