@@ -1,6 +1,6 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public sealed class Schedule: IAggregateRoot
+public sealed class Schedule : IAggregateRoot
 {
     private readonly Weekday _weekday;
     private readonly Weekend _weekend;
@@ -14,7 +14,7 @@ public sealed class Schedule: IAggregateRoot
         _weekend = weekend;
         Validate();
     }
-    
+
     public DateTime StartAt { get; private set; }
 
     public DateTime EndAt { get; private set; }
@@ -22,33 +22,30 @@ public sealed class Schedule: IAggregateRoot
     public ProfessionalId ProfessionalId { get; private set; }
     public List<DayRest> DaysRest { get; } = [];
 
-    public List<OfficeDay> OfficeDays { get; } = [];
+    public List<OfficeHour> OfficeHour { get; } = [];
 
     public void AddDayRest(DayRest dayRest) => DaysRest.Add(dayRest);
 
     public void AddDaysRest(List<DayRest> daysRest) => DaysRest.AddRange(daysRest);
 
-    public void AddOfficeDay(OfficeDay day)
+    public void AddOfficeHour(OfficeHour officeHour)
     {
-        if (IsDayRest(day)) return;
-        OfficeDays.Add(day);
+        if (IsDayRest(officeHour)) return;
+        OfficeHour.Add(officeHour);
     }
 
-    internal (TimeSpan, TimeSpan) GetOfficeHours(OfficeDay officeDay) =>
-        IsWeekday(officeDay) ? (_weekday.StartAt, _weekday.EndAt) : (_weekend.StartAt, _weekend.EndAt);
+    private static bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
 
-    private static bool IsWeekday(OfficeDay officeDay) => !IsWeekend(officeDay);
-
-    private bool IsDayRest(OfficeDay officeDay)
+    private bool IsDayRest(OfficeHour officeHour)
     {
-        var existsDayRest = DaysRest.Exists(dr => dr.DayOnWeek == officeDay.DateTime.DayOfWeek);
+        var existsDayRest = DaysRest.Exists(dr => dr.DayOnWeek == officeHour.ReserveDateAndHour.DayOfWeek);
         return existsDayRest && DaysRest.Count > 0;
     }
 
-    private static bool IsWeekend(OfficeDay? officeDay)
+    private static bool IsWeekend(OfficeHour? officeHour)
     {
-        if (officeDay?.DateTime.DayOfWeek == DayOfWeek.Saturday) return true;
-        return officeDay?.DateTime.DayOfWeek == DayOfWeek.Sunday;
+        if (officeHour?.ReserveDateAndHour.DayOfWeek == DayOfWeek.Saturday) return true;
+        return officeHour?.ReserveDateAndHour.DayOfWeek == DayOfWeek.Sunday;
     }
 
     private void Validate()

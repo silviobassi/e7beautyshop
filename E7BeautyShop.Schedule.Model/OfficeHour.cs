@@ -1,26 +1,30 @@
 ﻿namespace E7BeautyShop.Schedule;
-
+public delegate void DomainEventDelegate(IDomainEvent domainEvent);
 public sealed class OfficeHour : Appointment
 {
-    public TimeSpan TimeOfDay { get; private set; }
+    public DateTime ReserveDateAndHour { get; private set; }
     public CustomerId? CustomerId { get; private set; }
+    public event DomainEventDelegate? OnDomainEventOccured;
 
-    public void ReserveTimeForTheCustomer(TimeSpan timeOfDay, CustomerId? customerId)
+    public void ReserveTimeForTheCustomer(DateTime dateAndHour, CustomerId? customerId)
     {
-        TimeOfDay = timeOfDay;
+        ReserveDateAndHour = dateAndHour;
         CustomerId = customerId;
         IsAvailable = false;
         Validate();
+        var officeReserveRegisteredEvent =
+            new ReserveRegisteredEvent(Guid.NewGuid(), DateTime.Now, customerId!.Id, dateAndHour, 10);
+        OnDomainEventOccured?.Invoke(officeReserveRegisteredEvent);
     }
 
-    public void  CreateOfficeHour(TimeSpan timeOfDay)
+    public void CreateOfficeHour(DateTime dateAndHour)
     {
-        TimeOfDay = timeOfDay;
+        ReserveDateAndHour = dateAndHour;
         IsAvailable = true;
         Validate();
     }
 
-    public void CustomerCancelled(Guid officeHourId)
+    public void ReserveCancel(Guid officeHourId)
     {
         BusinessException.When(IsAvailable, "OfficeHour is already attended");
         BusinessException.When(CustomerId is null, "OfficeHour has no customer");
@@ -28,9 +32,9 @@ public sealed class OfficeHour : Appointment
         Id = officeHourId;
         Attend();
     }
-
+    
     private void Validate()
     {
-        BusinessException.When(TimeOfDay == TimeSpan.Zero, "TimeOfDay cannot be empty");
+        BusinessException.When(ReserveDateAndHour.Hour.Equals(0), "TimeOfDay cannot be empty");
     }
 }
