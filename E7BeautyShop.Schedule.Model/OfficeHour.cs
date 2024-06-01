@@ -13,7 +13,8 @@ public sealed class OfficeHour : Appointment
 
     public OfficeHour(IReservedRegisteredEventFactory reservedRegisteredEvent)
     {
-        _reservedRegisteredEvent = reservedRegisteredEvent;
+        _reservedRegisteredEvent =
+            reservedRegisteredEvent ?? throw new ArgumentNullException(nameof(reservedRegisteredEvent));
     }
 
     public DateTime DateAndHour { get; private set; }
