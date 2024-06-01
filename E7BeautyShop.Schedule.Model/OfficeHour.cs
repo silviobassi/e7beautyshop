@@ -10,25 +10,26 @@ public sealed class OfficeHour : Appointment
     public CustomerId? CustomerId { get; private set; }
     public Catalog? Catalog { get; private set; }
 
-    public void ReserveTimeForTheCustomer(DateTime reserveDateAndHour, CustomerId? customerId,
-        Catalog catalog)
-    {
-        DateAndHour = reserveDateAndHour;
-        CustomerId = customerId;
-        Catalog = catalog;
-        IsAvailable = false;
-        Validate();
-        var officeReserveRegisteredEvent =
-            _reservedRegisteredEventFactory.Create(CustomerId!.Id, DateAndHour, catalog.DescriptionName!,
-                catalog.DescriptionPrice.GetValueOrDefault());
-        OnDomainEventOccured?.Invoke(officeReserveRegisteredEvent);
-    }
-
     public void CreateOfficeHour(DateTime dateAndHour)
     {
         DateAndHour = dateAndHour;
         IsAvailable = true;
         Validate();
+    }
+
+    private void CreateReserveOfficeHour(DateTime dateAndHour, CustomerId? customerId, Catalog catalog)
+    {
+        DateAndHour = dateAndHour;
+        CustomerId = customerId;
+        IsAvailable = false;
+        Catalog = catalog;
+        Validate();
+    }
+
+    public void ReserveTimeForTheCustomer(DateTime reserveDateAndHour, CustomerId? customerId, Catalog catalog)
+    {
+        CreateReserveOfficeHour(reserveDateAndHour, customerId, catalog);
+        OnDomainEventOccured?.Invoke(ReserveRegisteredEvent);
     }
 
     public void ReserveCancel(Guid officeHourId)
@@ -44,4 +45,8 @@ public sealed class OfficeHour : Appointment
     {
         BusinessException.When(DateAndHour.Hour.Equals(0), "Reserve date and hour cannot be empty");
     }
+
+    private ReserveRegisteredEvent ReserveRegisteredEvent => _reservedRegisteredEventFactory.Create(CustomerId!.Id,
+        DateAndHour, Catalog?.DescriptionName!,
+        Catalog!.DescriptionPrice.GetValueOrDefault());
 }

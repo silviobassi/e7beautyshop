@@ -32,13 +32,13 @@ public sealed class Schedule : IAggregateRoot
         OfficeHours.Add(officeHour);
     }
 
-    public bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
-
     private bool IsDayRest(OfficeHour officeHour)
     {
         var existsDayRest = DaysRest.Exists(dr => dr.DayOnWeek == officeHour.DateAndHour.DayOfWeek);
         return existsDayRest && DaysRest.Count > 0;
     }
+
+    public bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
 
     private static bool IsWeekend(OfficeHour? officeHour)
         => officeHour?.DateAndHour.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
