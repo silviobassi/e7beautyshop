@@ -8,12 +8,16 @@ public interface IReservedRegisteredEventFactory
 
 public class ReserveRegisteredEvent : IDomainEvent, IReservedRegisteredEventFactory
 {
-    public ReserveRegisteredEvent()
-    {
-    }
+    public Guid Id { get; private set; }
 
-    private ReserveRegisteredEvent(Guid customerId, DateTime reserveDateAndHour,
-        string? serviceName, decimal servicePrice)
+    public DateTime OccuredOn { get; private set; }
+    public Guid CustomerId { get; private set; }
+    public DateTime ReserveDateAndHour { get; private set; }
+    public decimal PriceService { get; private set; }
+    public string? ServiceName { get; private set; }
+
+    public ReserveRegisteredEvent Create(Guid customerId, DateTime reserveDateAndHour, string? serviceName,
+        decimal servicePrice)
     {
         Id = Guid.NewGuid();
         OccuredOn = DateTime.Now;
@@ -21,20 +25,6 @@ public class ReserveRegisteredEvent : IDomainEvent, IReservedRegisteredEventFact
         ReserveDateAndHour = reserveDateAndHour;
         ServiceName = serviceName!;
         PriceService = servicePrice;
-    }
-
-    public Guid Id { get; set; }
-
-    public DateTime OccuredOn { get; set; }
-    public Guid CustomerId { get; set; }
-    public DateTime ReserveDateAndHour { get; set; }
-    public TimeSpan TimeAttend { get; set; }
-    public decimal PriceService { get; set; }
-    public string ServiceName { get; set; }
-
-    public ReserveRegisteredEvent Create(Guid customerId, DateTime reserveDateAndHour, string? serviceName,
-        decimal servicePrice)
-    {
-        return new ReserveRegisteredEvent(customerId, reserveDateAndHour, serviceName, servicePrice);
+        return this;
     }
 }

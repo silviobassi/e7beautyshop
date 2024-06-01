@@ -22,31 +22,27 @@ public sealed class Schedule : IAggregateRoot
     public ProfessionalId ProfessionalId { get; private set; }
     public List<DayRest> DaysRest { get; } = [];
 
-    public List<OfficeHour> OfficeHour { get; } = [];
+    public List<OfficeHour> OfficeHours { get; } = [];
 
     public void AddDayRest(DayRest dayRest) => DaysRest.Add(dayRest);
-
-    public void AddDaysRest(List<DayRest> daysRest) => DaysRest.AddRange(daysRest);
 
     public void AddOfficeHour(OfficeHour officeHour)
     {
         if (IsDayRest(officeHour)) return;
-        OfficeHour.Add(officeHour);
+        OfficeHours.Add(officeHour);
     }
 
-    private static bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
+    public bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
 
     private bool IsDayRest(OfficeHour officeHour)
     {
-        var existsDayRest = DaysRest.Exists(dr => dr.DayOnWeek == officeHour.ReserveDateAndHour.DayOfWeek);
+        var existsDayRest = DaysRest.Exists(dr => dr.DayOnWeek == officeHour.DateAndHour.DayOfWeek);
         return existsDayRest && DaysRest.Count > 0;
     }
 
     private static bool IsWeekend(OfficeHour? officeHour)
-    {
-        if (officeHour?.ReserveDateAndHour.DayOfWeek == DayOfWeek.Saturday) return true;
-        return officeHour?.ReserveDateAndHour.DayOfWeek == DayOfWeek.Sunday;
-    }
+        => officeHour?.DateAndHour.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
+
 
     private void Validate()
     {

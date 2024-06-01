@@ -1,6 +1,6 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public sealed class ServiceCatalog(ServiceDescription serviceDescription) : Entity
+public sealed class Catalog(ServiceDescription serviceDescription) : Entity
 {
     public void Update(Guid id, ServiceDescription? serviceDescription)
     {
