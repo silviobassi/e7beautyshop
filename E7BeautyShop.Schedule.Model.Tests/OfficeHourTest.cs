@@ -7,7 +7,7 @@ public class OfficeHourTest
     {
         var dateAndHour = new DateTime(2024, 5, 30, 8, 0, 0, DateTimeKind.Local);
         var id = Guid.NewGuid();
-        var officeHour = new OfficeHour();
+        var officeHour = new OfficeHour(new ReserveRegisteredEvent());
         var serviceDescription = new ServiceDescription("ServiceName", 10);
         var catalog = new Catalog(serviceDescription);
         officeHour.ReserveTimeForTheCustomer(dateAndHour, new CustomerId(id), catalog);
@@ -58,7 +58,7 @@ public class OfficeHourTest
     {
         var officeHourId = Guid.NewGuid();
         var dateAndHour = new DateTime(2024, 5, 30, 8, 0, 0, DateTimeKind.Local);
-        var officeHour = new OfficeHour();
+        var officeHour = new OfficeHour(new ReserveRegisteredEvent());
         var serviceDescription = new ServiceDescription("ServiceName", 10);
         var catalog = new Catalog(serviceDescription);
         officeHour.ReserveTimeForTheCustomer(dateAndHour, new CustomerId(Guid.NewGuid()), catalog);
@@ -118,7 +118,7 @@ public class OfficeHourTest
     {
         var reserveDateAndHour = new DateTime(2024, 5, 30, 14, 0, 0, DateTimeKind.Local);
         var customerId = new CustomerId(Guid.NewGuid());
-        var officeHour = new OfficeHour();
+        var officeHour = new OfficeHour(new ReserveRegisteredEvent());
         const string serviceName = "ServiceName";
         var serviceDescription = new ServiceDescription(serviceName, 10);
         var catalog = new Catalog(serviceDescription);
