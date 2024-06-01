@@ -30,7 +30,9 @@ public sealed class OfficeHour : Appointment
     public void ReserveTimeForTheCustomer(DateTime reserveDateAndHour, CustomerId? customerId, Catalog catalog)
     {
         CreateReserveOfficeHour(reserveDateAndHour, customerId, catalog);
-        if (ReserveRegisteredEvent != null) OnDomainEventOccured?.Invoke(ReserveRegisteredEvent);
+        if (ReserveRegisteredEvent is null)
+            throw new InvalidOperationException("Reserved registered event factory is not initialized.");
+        OnDomainEventOccured?.Invoke(ReserveRegisteredEvent);
     }
 
     private void CreateReserveOfficeHour(DateTime dateAndHour, CustomerId? customerId, Catalog catalog)
@@ -41,7 +43,7 @@ public sealed class OfficeHour : Appointment
         Catalog = catalog;
         Validate();
     }
-    
+
     public void ReserveCancel(Guid officeHourId)
     {
         BusinessException.When(IsAvailable, "OfficeHour is already attended");
