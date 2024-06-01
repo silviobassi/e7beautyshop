@@ -1,22 +1,40 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public class ReserveRegisteredEvent : IDomainEvent
+public interface IReservedRegisteredEventFactory
 {
-    public ReserveRegisteredEvent(Guid newGuid, DateTime occuredOn, Guid customerId, DateTime dateAndHourReserve,
-        decimal priceService)
+    ReserveRegisteredEvent Create(Guid customerId, DateTime reserveDateAndHour,
+        string? serviceName, decimal servicePrice);
+}
+
+public class ReserveRegisteredEvent : IDomainEvent, IReservedRegisteredEventFactory
+{
+    public ReserveRegisteredEvent()
     {
-        Id = newGuid;
-        OccuredOn = occuredOn;
+    }
+
+    private ReserveRegisteredEvent(Guid customerId, DateTime reserveDateAndHour,
+        string? serviceName, decimal servicePrice)
+    {
+        Id = Guid.NewGuid();
+        OccuredOn = DateTime.Now;
         CustomerId = customerId;
-        DateAndHourReserve = dateAndHourReserve;
-        PriceService = priceService;
+        ReserveDateAndHour = reserveDateAndHour;
+        ServiceName = serviceName!;
+        PriceService = servicePrice;
     }
 
     public Guid Id { get; set; }
 
     public DateTime OccuredOn { get; set; }
     public Guid CustomerId { get; set; }
-    public DateTime DateAndHourReserve { get; set; }
+    public DateTime ReserveDateAndHour { get; set; }
     public TimeSpan TimeAttend { get; set; }
     public decimal PriceService { get; set; }
+    public string ServiceName { get; set; }
+
+    public ReserveRegisteredEvent Create(Guid customerId, DateTime reserveDateAndHour, string? serviceName,
+        decimal servicePrice)
+    {
+        return new ReserveRegisteredEvent(customerId, reserveDateAndHour, serviceName, servicePrice);
+    }
 }

@@ -1,19 +1,26 @@
 ﻿namespace E7BeautyShop.Schedule;
+
 public delegate void DomainEventDelegate(IDomainEvent domainEvent);
+
 public sealed class OfficeHour : Appointment
 {
+    public event DomainEventDelegate? OnDomainEventOccured;
+    private readonly IReservedRegisteredEventFactory _reservedRegisteredEventFactory = new ReserveRegisteredEvent();
     public DateTime ReserveDateAndHour { get; private set; }
     public CustomerId? CustomerId { get; private set; }
-    public event DomainEventDelegate? OnDomainEventOccured;
+    public ServiceCatalog? ServiceCatalog { get; private set; }
 
-    public void ReserveTimeForTheCustomer(DateTime dateAndHour, CustomerId? customerId)
+    public void ReserveTimeForTheCustomer(DateTime reserveDateAndHour, CustomerId? customerId,
+        ServiceCatalog serviceCatalog)
     {
-        ReserveDateAndHour = dateAndHour;
+        ReserveDateAndHour = reserveDateAndHour;
         CustomerId = customerId;
+        ServiceCatalog = serviceCatalog;
         IsAvailable = false;
         Validate();
         var officeReserveRegisteredEvent =
-            new ReserveRegisteredEvent(Guid.NewGuid(), DateTime.Now, customerId!.Id, dateAndHour, 10);
+            _reservedRegisteredEventFactory.Create(CustomerId!.Id, ReserveDateAndHour, serviceCatalog.DescriptionName!,
+                serviceCatalog.DescriptionPrice.GetValueOrDefault());
         OnDomainEventOccured?.Invoke(officeReserveRegisteredEvent);
     }
 
@@ -32,7 +39,7 @@ public sealed class OfficeHour : Appointment
         Id = officeHourId;
         Attend();
     }
-    
+
     private void Validate()
     {
         BusinessException.When(ReserveDateAndHour.Hour.Equals(0), "TimeOfDay cannot be empty");
