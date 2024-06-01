@@ -1,8 +1,6 @@
-﻿using Xunit.Abstractions;
+﻿namespace E7BeautyShop.Schedule.Tests;
 
-namespace E7BeautyShop.Schedule.Tests;
-
-public class ScheduleTest(ITestOutputHelper output)
+public class ScheduleTest
 {
     private readonly TimeSpan _startWeekday = new(8, 0, 0);
     private readonly TimeSpan _endWeekday = new(18, 0, 0);
@@ -18,12 +16,11 @@ public class ScheduleTest(ITestOutputHelper output)
         var schedule = new Schedule(DateTime.Now, DateTime.Now.AddDays(7), professionalId, weekday, weekend);
         var dayRest = new DayRest(DayOfWeek.Monday);
 
-
-        var officeHour = new OfficeHour();
-        officeHour.CreateOfficeHour(DateTime.Now);
+        var officeHour1 = new OfficeHour();
+        officeHour1.CreateOfficeHour(DateTime.Now);
         var officeHour2 = new OfficeHour();
         officeHour2.CreateOfficeHour(DateTime.Now.AddDays(1));
-        schedule.AddOfficeHour(officeHour);
+        schedule.AddOfficeHour(officeHour1);
         schedule.AddOfficeHour(officeHour2);
 
         schedule.AddDayRest(dayRest);
@@ -33,8 +30,6 @@ public class ScheduleTest(ITestOutputHelper output)
         Assert.Single(schedule.DaysRest);
         Assert.Equal(DayOfWeek.Monday, schedule.DaysRest[0].DayOnWeek);
         Assert.Equal(professionalId, schedule.ProfessionalId);
-        Assert.NotNull(weekday);
-        Assert.NotNull(weekend);
         Assert.NotEmpty(schedule.OfficeHours);
         Assert.Equal(2, schedule.OfficeHours.Count);
     }
@@ -58,7 +53,6 @@ public class ScheduleTest(ITestOutputHelper output)
         officeHour.CreateOfficeHour(new DateTime(2024, 5, 26, 10, 0, 0, DateTimeKind.Local));
         var schedule = new Schedule(DateTime.Now, DateTime.Now.AddDays(1), new ProfessionalId(Guid.NewGuid()),
             new Weekday(_startWeekday, _endWeekday), new Weekend(_startWeekday, _endWeekday));
-
         var isWeekday = schedule.IsWeekday(officeHour);
 
         Assert.False(isWeekday);
@@ -67,9 +61,9 @@ public class ScheduleTest(ITestOutputHelper output)
     [Fact]
     public void Should_AddOfficeHour_WhenNotDayRest()
     {
-        var schedule = new Schedule(DateTime.Now, DateTime.Now.AddDays(1), new ProfessionalId(Guid.NewGuid()),
-            new Weekday(_startWeekday, _endWeekday),
-            new Weekend(_startWeekend, _endWeekend));
+        var dateTime = new DateTime(2024, 5, 2, 0, 0, 0, DateTimeKind.Local);
+        var schedule = new Schedule(DateTime.Now, dateTime, new ProfessionalId(Guid.NewGuid()),
+            new Weekday(_startWeekday, _endWeekday), new Weekend(_startWeekend, _endWeekend));
         var officeHour = new OfficeHour();
         officeHour.CreateOfficeHour(new DateTime(2024, 5, 31, 10, 0, 0, DateTimeKind.Local));
         schedule.AddDayRest(new DayRest(DayOfWeek.Friday));
