@@ -1,9 +1,9 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public struct ServiceDescription
+public readonly struct ServiceDescription
 {
-    public string? Name { get; private set; }
-    public decimal Price { get; private set; } = 0;
+    public string? Name { get; init; }
+    public decimal Price { get; } = 0;
 
     public ServiceDescription(string? name, decimal price)
     {
@@ -12,9 +12,9 @@ public struct ServiceDescription
         Validate();
     }
 
-    private readonly void Validate()
+    private void Validate()
     {
-        BusinessException.When(string.IsNullOrEmpty(Name), "Name cannot be null");
+        BusinessNullException.When(string.IsNullOrEmpty(Name), nameof(Name));
         BusinessException.When(Price <= 0, "Price must be greater than 0");
     }
 }

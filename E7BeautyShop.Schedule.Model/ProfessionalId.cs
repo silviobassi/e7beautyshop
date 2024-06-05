@@ -8,5 +8,5 @@ public sealed class ProfessionalId : Entity
         Validate();
     }
 
-    private void Validate() => BusinessException.When(Id == Guid.Empty, "Id cannot be empty");
+    private void Validate() => BusinessNullException.When(Id == Guid.Empty, nameof(Id));
 }

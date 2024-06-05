@@ -25,7 +25,7 @@ public sealed class OfficeHour : Appointment
     {
         DateAndHour = dateAndHour;
         IsAvailable = true;
-        Validate();
+        CheckDateAndHour();
     }
 
     public void ReserveTimeForTheCustomer(DateTime reserveDateAndHour, CustomerId? customerId, Catalog catalog)
@@ -56,8 +56,13 @@ public sealed class OfficeHour : Appointment
 
     private void Validate()
     {
-        BusinessException.When(DateAndHour.Hour.Equals(0), "Reserve date and hour cannot be empty");
+        CheckDateAndHour();
+        BusinessNullException.When(CustomerId is null, nameof(CustomerId));
+        BusinessNullException.When(Catalog is null, nameof(Catalog));
     }
+    
+    private void CheckDateAndHour() => 
+        BusinessNullException.When(DateAndHour == default, nameof(DateAndHour));
 
     private ReserveRegisteredEvent? ReserveRegisteredEvent => _reservedRegisteredEvent?.Create(CustomerId!.Id,
         DateAndHour, Catalog?.DescriptionName!,

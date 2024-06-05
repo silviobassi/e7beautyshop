@@ -41,7 +41,7 @@ public class ScheduleTest
         officeHour.CreateOfficeHour(new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local));
         var schedule = new Schedule(DateTime.Now, DateTime.Now.AddDays(1), new ProfessionalId(Guid.NewGuid()),
             new Weekday(_startWeekday, _endWeekday), new Weekend(_startWeekend, _endWeekend));
-        var isWeekday = schedule.IsWeekday(officeHour);
+        var isWeekday = Schedule.IsWeekday(officeHour);
 
         Assert.True(isWeekday);
     }
@@ -53,7 +53,7 @@ public class ScheduleTest
         officeHour.CreateOfficeHour(new DateTime(2024, 5, 26, 10, 0, 0, DateTimeKind.Local));
         var schedule = new Schedule(DateTime.Now, DateTime.Now.AddDays(1), new ProfessionalId(Guid.NewGuid()),
             new Weekday(_startWeekday, _endWeekday), new Weekend(_startWeekday, _endWeekday));
-        var isWeekday = schedule.IsWeekday(officeHour);
+        var isWeekday = Schedule.IsWeekday(officeHour);
 
         Assert.False(isWeekday);
     }

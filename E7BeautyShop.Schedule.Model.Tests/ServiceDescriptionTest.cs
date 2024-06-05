@@ -16,9 +16,9 @@ public class ServiceDescriptionTest
     [Fact]
     public void Should_ThrowException_When_NameIsNull()
     {
-        var exception = Assert.Throws<BusinessException>(
+        var exception = Assert.Throws<ArgumentNullException>(
             () =>  new ServiceDescription(null, 40.50M));
-        Assert.Equal("Name cannot be null", exception.Message);
+        Assert.Equal("Value cannot be null. (Parameter 'Name')", exception.Message);
     }
 
     [Fact]

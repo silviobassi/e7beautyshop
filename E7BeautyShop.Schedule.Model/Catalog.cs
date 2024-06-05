@@ -17,7 +17,7 @@ public sealed class Catalog(ServiceDescription serviceDescription) : Entity
 
     private void Validate()
     {
-        BusinessException.When(Id == Guid.Empty, "Id cannot be empty");
-        BusinessException.When(ServiceDescription == null, "Service Description cannot be null");
+        BusinessNullException.When(Id == Guid.Empty, nameof(Id));
+        BusinessNullException.When(ServiceDescription is null, nameof(ServiceDescription));
     }
 }

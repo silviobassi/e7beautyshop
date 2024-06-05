@@ -1,6 +1,12 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public readonly struct DayRest(DayOfWeek dayOnWeek)
+public readonly struct DayRest
 {
-    public DayOfWeek DayOnWeek { get; } = dayOnWeek;
+    public DayRest(DayOfWeek? dayOnWeek)
+    {
+        DayOnWeek = dayOnWeek;
+        BusinessNullException.When(dayOnWeek is null, nameof(DayOnWeek));
+    }
+
+    public DayOfWeek? DayOnWeek { get; }
 }

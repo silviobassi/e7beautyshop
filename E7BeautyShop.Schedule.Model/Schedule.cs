@@ -2,8 +2,8 @@
 
 public sealed class Schedule : IAggregateRoot
 {
-    private readonly Weekday _weekday;
-    private readonly Weekend _weekend;
+    private readonly Weekday? _weekday;
+    private readonly Weekend? _weekend;
 
     public Schedule(DateTime startAt, DateTime endAt, ProfessionalId professionalId, Weekday weekday, Weekend weekend)
     {
@@ -19,7 +19,7 @@ public sealed class Schedule : IAggregateRoot
 
     public DateTime EndAt { get; private set; }
 
-    public ProfessionalId ProfessionalId { get; private set; }
+    public ProfessionalId? ProfessionalId { get; private set; }
     public List<DayRest> DaysRest { get; } = [];
 
     public List<OfficeHour> OfficeHours { get; } = [];
@@ -38,7 +38,7 @@ public sealed class Schedule : IAggregateRoot
         return existsDayRest && DaysRest.Count > 0;
     }
 
-    public bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
+    public static bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
 
     private static bool IsWeekend(OfficeHour? officeHour)
         => officeHour?.DateAndHour.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
@@ -48,5 +48,8 @@ public sealed class Schedule : IAggregateRoot
     {
         BusinessException.When(StartAt == DateTime.MinValue, "StartAt cannot be empty");
         BusinessException.When(EndAt == DateTime.MinValue, "EndAt cannot be empty");
+        BusinessNullException.When(ProfessionalId is null, nameof(ProfessionalId));
+        BusinessNullException.When(_weekday is null, nameof(_weekday));
+        BusinessNullException.When(_weekend is null, nameof(_weekend));
     }
 }

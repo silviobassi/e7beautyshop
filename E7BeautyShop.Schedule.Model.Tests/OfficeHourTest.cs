@@ -1,6 +1,9 @@
-﻿namespace E7BeautyShop.Schedule.Tests;
+﻿using Microsoft.VisualStudio.TestPlatform.Utilities;
+using Xunit.Abstractions;
 
-public class OfficeHourTest
+namespace E7BeautyShop.Schedule.Tests;
+
+public class OfficeHourTest(ITestOutputHelper output)
 {
     [Fact]
     public void Should_CreateOfficeHour()
@@ -21,11 +24,10 @@ public class OfficeHourTest
     [Fact]
     public void Should_ThrowException_When_TimeOfDayIsInvalid()
     {
-        var dateAndHour = new DateTime(2024, 5, 30, 0, 0, 0, DateTimeKind.Local);
+        var dateAndHour = new DateTime(default, DateTimeKind.Local);
 
-        var exception = Assert.Throws<BusinessException>(() => new OfficeHour().CreateOfficeHour(dateAndHour));
-
-        Assert.Equal("Reserve date and hour cannot be empty", exception.Message);
+        var exception = Assert.Throws<ArgumentNullException>(() => new OfficeHour().CreateOfficeHour(dateAndHour));
+        Assert.Equal("Value cannot be null. (Parameter 'DateAndHour')", exception.Message);
     }
 
     [Fact]
