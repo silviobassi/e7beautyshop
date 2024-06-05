@@ -143,4 +143,19 @@ public class OfficeHourTest(ITestOutputHelper output)
         Assert.False(officeHour.IsAvailable);
         Assert.True(eventFired);
     }
+
+    [Fact]
+    public void Should_ThrowException_When_ReservedRegisteredEventFactory_IsNotInitialized()
+    {
+        var officeHour = new OfficeHour();
+        var reserveDateAndHour = DateTime.Now;
+        const string serviceName = "ServiceName";
+        var customerId = new CustomerId(Guid.NewGuid());
+        var serviceDescription = new ServiceDescription(serviceName, 10);
+        var catalog = new Catalog(serviceDescription);
+        
+        var exception = Assert.Throws<InvalidOperationException>(
+            () => officeHour.ReserveTimeForTheCustomer(reserveDateAndHour, customerId, catalog));
+        Assert.Equal("Reserved registered event factory is not initialized.", exception.Message);
+    }
 }

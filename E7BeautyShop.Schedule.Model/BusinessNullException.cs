@@ -1,6 +1,6 @@
 ﻿namespace E7BeautyShop.Schedule;
 
-public abstract class BusinessNullException(string message) : Exception(message)
+public sealed class BusinessNullException(string message) : Exception(message)
 {
     public static void When(bool condition, string message)
     {
