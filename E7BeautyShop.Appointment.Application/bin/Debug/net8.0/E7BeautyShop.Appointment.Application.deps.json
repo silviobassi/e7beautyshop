@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "E7BeautyShop.Appointment.Application/1.0.0": {
+        "dependencies": {
+          "E7BeautyShop.Appointment.Core": "1.0.0"
+        },
+        "runtime": {
+          "E7BeautyShop.Appointment.Application.dll": {}
+        }
+      },
+      "E7BeautyShop.Appointment.Core/1.0.0": {
+        "runtime": {
+          "E7BeautyShop.Appointment.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "E7BeautyShop.Appointment.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "E7BeautyShop.Appointment.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

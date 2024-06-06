@@ -1,0 +1,6 @@
+@E7BeautyShop.Appointment.Api_HostAddress = http://localhost:5077
+
+GET {{E7BeautyShop.Appointment.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,12 @@
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\bin\Debug\net8.0\E7BeautyShop.Appointment.Core.deps.json
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\bin\Debug\net8.0\E7BeautyShop.Appointment.Core.dll
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\bin\Debug\net8.0\E7BeautyShop.Appointment.Core.pdb
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\obj\Debug\net8.0\E7BeautyShop.Appointment.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\obj\Debug\net8.0\E7BeautyShop.Appointment.Core.AssemblyInfoInputs.cache
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\obj\Debug\net8.0\E7BeautyShop.Appointment.Core.AssemblyInfo.cs
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\obj\Debug\net8.0\E7BeautyShop.Appointment.Core.csproj.CoreCompileInputs.cache
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\obj\Debug\net8.0\E7BeautyShop.Appointment.Core.sourcelink.json
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\obj\Debug\net8.0\E7BeautyShop.Appointment.Core.dll
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\obj\Debug\net8.0\refint\E7BeautyShop.Appointment.Core.dll
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\obj\Debug\net8.0\E7BeautyShop.Appointment.Core.pdb
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.Appointment.Core\obj\Debug\net8.0\ref\E7BeautyShop.Appointment.Core.dll
