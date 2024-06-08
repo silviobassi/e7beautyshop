@@ -2,8 +2,8 @@
 
 public class ServiceDescription
 {
-    public string? Name { get; internal set; }
-    public decimal? Price { get; internal set; }
+    public string? Name { get; private set; }
+    public decimal Price { get; private set; }
 
     public ServiceDescription(string? name, decimal price)
     {

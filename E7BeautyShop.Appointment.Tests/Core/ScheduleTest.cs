@@ -12,7 +12,7 @@ public class ScheduleTest
     [Fact]
     public void Should_AddDayRest_WhenCalled_ShouldAddDayRestToList()
     {
-        var professionalId = new ProfessionalId(Guid.NewGuid());
+        var professionalId = new Professional(Guid.NewGuid());
         var weekday = new Weekday(_startWeekday, _endWeekday);
         var weekend = new Weekend(_startWeekend, _endWeekend);
         var schedule =
@@ -32,7 +32,7 @@ public class ScheduleTest
         Assert.Contains(dayRest, schedule.DaysRest);
         Assert.Single(schedule.DaysRest);
         Assert.Equal(DayOfWeek.Monday, schedule.DaysRest[0].DayOnWeek);
-        Assert.Equal(professionalId, schedule.ProfessionalId);
+        Assert.Equal(professionalId, schedule.Professional);
         Assert.NotEmpty(schedule.OfficeHours);
         Assert.Equal(2, schedule.OfficeHours.Count);
     }
@@ -43,7 +43,7 @@ public class ScheduleTest
         var officeHour = new OfficeHour();
         officeHour.CreateOfficeHour(new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local));
         var schedule = new Schedule(DateTime.Now, DateTime.Now.AddDays(1),
-            new ProfessionalId(Guid.NewGuid()),
+            new Professional(Guid.NewGuid()),
             new Weekday(_startWeekday, _endWeekday), new Weekend(_startWeekend, _endWeekend));
         var isWeekday = Schedule.IsWeekday(officeHour);
 
@@ -55,7 +55,7 @@ public class ScheduleTest
     {
         var officeHour = new OfficeHour();
         officeHour.CreateOfficeHour(new DateTime(2024, 5, 26, 10, 0, 0, DateTimeKind.Local));
-        var schedule = new Schedule(DateTime.Now, DateTime.Now.AddDays(1), new ProfessionalId(Guid.NewGuid()),
+        var schedule = new Schedule(DateTime.Now, DateTime.Now.AddDays(1), new Professional(Guid.NewGuid()),
             new Weekday(_startWeekday, _endWeekday), new Weekend(_startWeekday, _endWeekday));
         var isWeekday = Schedule.IsWeekday(officeHour);
 
@@ -66,7 +66,7 @@ public class ScheduleTest
     public void Should_AddOfficeHour_WhenNotDayRest()
     {
         var dateTime = new DateTime(2024, 5, 2, 0, 0, 0, DateTimeKind.Local);
-        var schedule = new Schedule(DateTime.Now, dateTime, new ProfessionalId(Guid.NewGuid()),
+        var schedule = new Schedule(DateTime.Now, dateTime, new Professional(Guid.NewGuid()),
             new Weekday(_startWeekday, _endWeekday), new Weekend(_startWeekend, _endWeekend));
         var officeHour = new OfficeHour();
         officeHour.CreateOfficeHour(new DateTime(2024, 5, 31, 10, 0, 0, DateTimeKind.Local));

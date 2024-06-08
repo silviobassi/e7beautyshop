@@ -2,23 +2,26 @@
 
 public sealed class Schedule : Entity, IAggregateRoot
 {
-    public Schedule(DateTime startAt, DateTime endAt, ProfessionalId professionalId, Weekday weekday,
+    
+    public Schedule(){}
+    public Schedule(DateTime startAt, DateTime endAt, Professional professional, Weekday weekday,
         Weekend weekend)
     {
         Id = Guid.NewGuid();
         StartAt = startAt;
         EndAt = endAt;
-        ProfessionalId = professionalId;
+        Professional = professional;
         Weekday = weekday;
         Weekend = weekend;
         Validate();
     }
+    
 
     public DateTime StartAt { get; private set; }
 
     public DateTime EndAt { get; private set; }
 
-    public ProfessionalId? ProfessionalId { get; private set; }
+    public Professional? Professional { get; private set; }
 
     public Weekday? Weekday { get; private set; }
     public Weekend? Weekend { get; private set; }
@@ -51,7 +54,7 @@ public sealed class Schedule : Entity, IAggregateRoot
     {
         BusinessException.When(StartAt == DateTime.MinValue, "StartAt cannot be empty");
         BusinessException.When(EndAt == DateTime.MinValue, "EndAt cannot be empty");
-        BusinessNullException.When(ProfessionalId is null, nameof(ProfessionalId));
+        BusinessNullException.When(Professional is null, nameof(Professional));
         BusinessNullException.When(Weekday is null, nameof(Weekday));
         BusinessNullException.When(Weekend is null, nameof(Weekend));
     }

@@ -1,8 +1,8 @@
 ﻿namespace E7BeautyShop.Appointment.Core;
 
-public sealed class ProfessionalId : Entity
+public sealed class Professional : Entity
 {
-    public ProfessionalId(Guid id)
+    public Professional(Guid id)
     {
         Id = id;
         Validate();

@@ -7,6 +7,7 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<Catalog> Catalogs { get; init; }
     public DbSet<OfficeHour> OfficeHours { get; init; }
+    public DbSet<Schedule> Schedules { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

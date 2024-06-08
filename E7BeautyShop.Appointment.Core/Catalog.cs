@@ -2,8 +2,6 @@
 
 public sealed class Catalog : Entity
 {
-
-    private ServiceDescription? _serviceDescription;
     public Catalog()
     {
     }
@@ -11,32 +9,26 @@ public sealed class Catalog : Entity
     public Catalog(ServiceDescription serviceDescription)
     {
         Id = Guid.NewGuid();
-        _serviceDescription = serviceDescription;
+        ServiceDescription = serviceDescription;
         Validate();
     }
     
-    public string? DescriptionName
-    {
-        get => _serviceDescription?.Name;
-        init => _serviceDescription!.Name = value;
-    }
+    public string? DescriptionName => ServiceDescription?.Name;
+    
+    public decimal? DescriptionPrice => ServiceDescription?.Price;
 
-    public decimal? DescriptionPrice
-    {
-        get => _serviceDescription?.Price;
-        init => _serviceDescription!.Price = value;
-    }
-
+    public ServiceDescription? ServiceDescription { get; private set; }
     public void Update(Guid id, ServiceDescription? serviceDescription)
     {
         Id = id;
-        _serviceDescription = serviceDescription!;
+        ServiceDescription = serviceDescription!;
         Validate();
     }
+    
     
     private void Validate()
     {
         BusinessNullException.When(Id == Guid.Empty, nameof(Id));
-        BusinessNullException.When(_serviceDescription is null, nameof(ServiceDescription));
+        BusinessNullException.When(ServiceDescription is null, nameof(Core.ServiceDescription));
     }
 }

@@ -1,3 +1,11 @@
 ﻿namespace E7BeautyShop.Appointment.Core;
 
-public sealed class Weekday(TimeSpan start, TimeSpan end) : WeekDayOrWeekend(start, end);
+public sealed class Weekday : WeekDayOrWeekend
+{
+    public Weekday(TimeSpan startAt, TimeSpan endAt)
+    {
+        StartAt = startAt;
+        EndAt = endAt;
+        Validate();
+    }
+}
