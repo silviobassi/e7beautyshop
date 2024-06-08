@@ -3,6 +3,7 @@ using System;
 using E7BeautyShop.Appointment.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace E7BeautyShop.Appointment.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240607235201_FixDescriptionPriceOnCatalogs")]
+    partial class FixDescriptionPriceOnCatalogs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,9 +55,6 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                     b.Property<Guid>("CatalogId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("DateAndHour")
                         .HasColumnType("timestamp with time zone");
 
@@ -76,7 +76,26 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.OwnsOne("E7BeautyShop.Appointment.Core.CustomerId", "CustomerId", b1 =>
+                        {
+                            b1.Property<Guid>("OfficeHourId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid?>("Id")
+                                .HasColumnType("uuid")
+                                .HasColumnName("CustomerId");
+
+                            b1.HasKey("OfficeHourId");
+
+                            b1.ToTable("OfficeHours");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OfficeHourId");
+                        });
+
                     b.Navigation("Catalog");
+
+                    b.Navigation("CustomerId");
                 });
 #pragma warning restore 612, 618
         }

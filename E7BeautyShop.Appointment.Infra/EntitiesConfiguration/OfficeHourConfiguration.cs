@@ -11,11 +11,7 @@ public class OfficeHourConfiguration : IEntityTypeConfiguration<OfficeHour>
         builder.HasKey(oh => oh.Id);
         builder.Property(oh => oh.DateAndHour).IsRequired();
         builder.Property(oh => oh.IsAvailable).IsRequired();
-        
-        builder.OwnsOne(oh => oh.CustomerId, cb =>
-        {
-            cb.Property(c => c.Id).HasColumnName("CustomerId").IsRequired(false);
-        });
+        builder.Property(oh => oh.CustomerId).IsRequired(false);
 
         builder.HasOne(oh => oh.Catalog)
             .WithMany()

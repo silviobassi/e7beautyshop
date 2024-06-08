@@ -16,8 +16,8 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    DescriptionName = table.Column<string>(type: "text", nullable: true),
-                    DescriptionPrice = table.Column<decimal>(type: "numeric", nullable: true)
+                    DescriptionName = table.Column<string>(type: "text", nullable: false),
+                    DescriptionPrime = table.Column<decimal>(type: "numeric", nullable: false)
                 },
                 constraints: table =>
                 {

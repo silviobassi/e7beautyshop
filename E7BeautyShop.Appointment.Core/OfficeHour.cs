@@ -2,8 +2,9 @@
 
 public delegate void DomainEventDelegate(IDomainEvent domainEvent);
 
-public sealed class OfficeHour: Entity
+public sealed class OfficeHour : Entity
 {
+    private CustomerId? _customerId;
     public event DomainEventDelegate? OnDomainEventOccured;
     private readonly IReservedRegisteredEventFactory? _reservedRegisteredEvent;
 
@@ -20,12 +21,18 @@ public sealed class OfficeHour: Entity
     public DateTime DateAndHour { get; private set; }
     public bool IsAvailable { get; private set; }
 
-    public CustomerId? CustomerId { get; private set; }
-    public Guid CatalogId { get; set; }
+    public Guid? CustomerId
+    {
+        get => _customerId?.Id;
+        init => _customerId!.Id = value;
+    }
+
+    public Guid CatalogId { get; private set; }
     public Catalog? Catalog { get; private set; }
 
     public void Cancel() => IsAvailable = false;
     public void Attend() => IsAvailable = true;
+
     public void CreateOfficeHour(DateTime dateAndHour)
     {
         DateAndHour = dateAndHour;
@@ -44,7 +51,7 @@ public sealed class OfficeHour: Entity
     private void CreateReserveOfficeHour(DateTime dateAndHour, CustomerId? customerId, Catalog catalog)
     {
         DateAndHour = dateAndHour;
-        CustomerId = customerId;
+        _customerId = customerId;
         IsAvailable = false;
         Catalog = catalog;
         Validate();
@@ -53,8 +60,8 @@ public sealed class OfficeHour: Entity
     public void ReserveCancel(Guid officeHourId)
     {
         BusinessException.When(IsAvailable, "OfficeHour is already attended");
-        BusinessException.When(CustomerId is null, "OfficeHour has no customer");
-        CustomerId = null;
+        BusinessException.When(_customerId is null, "OfficeHour has no customer");
+        _customerId = null;
         Id = officeHourId;
         Attend();
     }
@@ -62,14 +69,14 @@ public sealed class OfficeHour: Entity
     private void Validate()
     {
         CheckDateAndHour();
-        BusinessNullException.When(CustomerId is null, nameof(CustomerId));
+        BusinessNullException.When(_customerId is null, nameof(CustomerId));
         BusinessNullException.When(Catalog is null, nameof(Catalog));
     }
-    
-    private void CheckDateAndHour() => 
+
+    private void CheckDateAndHour() =>
         BusinessNullException.When(DateAndHour == default, nameof(DateAndHour));
 
-    private ReserveRegisteredEvent? ReserveRegisteredEvent => _reservedRegisteredEvent?.Create(CustomerId!.Id,
+    private ReserveRegisteredEvent? ReserveRegisteredEvent => _reservedRegisteredEvent?.Create(CustomerId,
         DateAndHour, Catalog?.DescriptionName,
         Catalog!.DescriptionPrice.GetValueOrDefault());
 }

@@ -17,7 +17,7 @@ public class OfficeHourTest(ITestOutputHelper output)
 
         Assert.NotNull(officeHour);
         Assert.Equal(dateAndHour, officeHour.DateAndHour);
-        Assert.Equal(id, officeHour.CustomerId!.Id);
+        Assert.Equal(id, officeHour.CustomerId);
         Assert.Equal(catalog, officeHour.Catalog);
     }
 
@@ -139,7 +139,7 @@ public class OfficeHourTest(ITestOutputHelper output)
         officeHour.ReserveTimeForTheCustomer(reserveDateAndHour, customerId, catalog);
 
         Assert.Equal(reserveDateAndHour, officeHour.DateAndHour);
-        Assert.Equal(customerId, officeHour.CustomerId);
+        Assert.Equal(customerId.Id, officeHour.CustomerId);
         Assert.False(officeHour.IsAvailable);
         Assert.True(eventFired);
     }

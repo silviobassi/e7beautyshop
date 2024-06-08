@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace E7BeautyShop.Appointment.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240606211209_Initial")]
-    partial class Initial
+    [Migration("20240608000145_FicCustomerIdOnOfficeHours")]
+    partial class FicCustomerIdOnOfficeHours
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,16 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("DescriptionName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("DescriptionName");
+
+                    b.Property<decimal?>("DescriptionPrice")
+                        .IsRequired()
+                        .HasColumnType("numeric")
+                        .HasColumnName("DescriptionPrice");
+
                     b.HasKey("Id");
 
                     b.ToTable("Catalogs");
@@ -43,6 +53,9 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("CatalogId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("CustomerId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("DateAndHour")
@@ -58,33 +71,6 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                     b.ToTable("OfficeHours");
                 });
 
-            modelBuilder.Entity("E7BeautyShop.Appointment.Core.Catalog", b =>
-                {
-                    b.OwnsOne("E7BeautyShop.Appointment.Core.ServiceDescription", "ServiceDescription", b1 =>
-                        {
-                            b1.Property<Guid>("CatalogId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<string>("Name")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("DescriptionName");
-
-                            b1.Property<decimal>("Price")
-                                .HasColumnType("numeric")
-                                .HasColumnName("DescriptionPrice");
-
-                            b1.HasKey("CatalogId");
-
-                            b1.ToTable("Catalogs");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CatalogId");
-                        });
-
-                    b.Navigation("ServiceDescription");
-                });
-
             modelBuilder.Entity("E7BeautyShop.Appointment.Core.OfficeHour", b =>
                 {
                     b.HasOne("E7BeautyShop.Appointment.Core.Catalog", "Catalog")
@@ -93,26 +79,7 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("E7BeautyShop.Appointment.Core.CustomerId", "CustomerId", b1 =>
-                        {
-                            b1.Property<Guid>("OfficeHourId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<Guid?>("Id")
-                                .HasColumnType("uuid")
-                                .HasColumnName("CustomerId");
-
-                            b1.HasKey("OfficeHourId");
-
-                            b1.ToTable("OfficeHours");
-
-                            b1.WithOwner()
-                                .HasForeignKey("OfficeHourId");
-                        });
-
                     b.Navigation("Catalog");
-
-                    b.Navigation("CustomerId");
                 });
 #pragma warning restore 612, 618
         }

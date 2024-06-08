@@ -10,11 +10,12 @@ public class CatalogConfiguration : IEntityTypeConfiguration<Catalog>
     public void Configure(EntityTypeBuilder<Catalog> builder)
     {
         builder.HasKey(c => c.Id);
-
-        builder.OwnsOne(sd => sd.ServiceDescription, cb =>
-        {
-            cb.Property(sd => sd.Name).HasColumnName("DescriptionName").IsRequired();
-            cb.Property(sd => sd.Price).HasColumnName("DescriptionPrice").IsRequired();
-        });
+        
+        builder.Property(c => c.DescriptionName)
+            .HasColumnName("DescriptionName")
+            .IsRequired();
+        builder.Property(c => c.DescriptionPrice)
+            .HasColumnName("DescriptionPrice")
+            .IsRequired();
     }
 }

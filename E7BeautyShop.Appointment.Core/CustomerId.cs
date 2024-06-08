@@ -2,7 +2,7 @@
 
 public sealed class CustomerId : Entity
 {
-    public new Guid? Id { get; private set; }
+    public new Guid? Id { get; internal set; }
     public CustomerId(Guid? id)
     {
         Id = id;
