@@ -68,17 +68,15 @@ public class OfficeHourTest(ITestOutputHelper output)
     [Fact]
     public void Should_ReserveCancel_SetsCustomerIdToNull_WhenOfficeHourIsAvailable()
     {
-        var officeHourId = Guid.NewGuid();
         var dateAndHour = new DateTime(2024, 5, 30, 8, 0, 0, DateTimeKind.Local);
         var officeHour = new OfficeHour(new ReserveRegisteredEvent());
         var serviceDescription = ("ServiceName", 10);
         var catalog = Catalog.Create(serviceDescription);
         CustomerId customerId = Guid.NewGuid();
         officeHour.ReserveTimeForTheCustomer(dateAndHour, customerId, catalog);
-        officeHour.ReserveCancel(officeHourId);
+        officeHour.ReserveCancel();
 
         Assert.Null(officeHour.CustomerId?.Value);
-        Assert.Equal(officeHourId, officeHour.Id);
         Assert.True(officeHour.IsAvailable);
     }
 
@@ -89,7 +87,7 @@ public class OfficeHourTest(ITestOutputHelper output)
         var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
         var officeHour = OfficeHour.Create(dateAndHour, 30);
         
-        var exception = Assert.Throws<BusinessException>(() => officeHour.ReserveCancel(Guid.NewGuid()));
+        var exception = Assert.Throws<BusinessException>(() => officeHour.ReserveCancel());
 
         Assert.Equal("OfficeHour is already attended", exception.Message);
     }
@@ -102,7 +100,7 @@ public class OfficeHourTest(ITestOutputHelper output)
         var officeHour = OfficeHour.Create(dateAndHour, 30);
         officeHour.Cancel();
 
-        var exception = Assert.Throws<BusinessException>(() => officeHour.ReserveCancel(Guid.NewGuid()));
+        var exception = Assert.Throws<BusinessException>(() => officeHour.ReserveCancel());
 
         Assert.Equal("OfficeHour has no customer", exception.Message);
     }
@@ -177,7 +175,7 @@ public class OfficeHourTest(ITestOutputHelper output)
         const int duration = 30;
         var officeHour = OfficeHour.Create(initialDateTime, duration);
 
-        var result = officeHour.AddDuration();
+        var result = officeHour.GetEndTime();
         var expectedDateTime = new DateTime(2022, 1, 1, 10, 30, 0, DateTimeKind.Local); // 10:30 AM
         Assert.Equal(expectedDateTime, result);
     }

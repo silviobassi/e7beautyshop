@@ -67,6 +67,7 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     DateAndHour = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Duration = table.Column<int>(type: "integer", nullable: false),
                     IsAvailable = table.Column<bool>(type: "boolean", nullable: false),
                     CatalogId = table.Column<Guid>(type: "uuid", nullable: false),
                     Customer_Value = table.Column<Guid>(type: "uuid", nullable: true),

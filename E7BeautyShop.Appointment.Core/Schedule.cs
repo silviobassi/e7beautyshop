@@ -3,16 +3,16 @@
 public sealed class Schedule : Entity, IAggregateRoot
 {
     public DateTime StartAt { get; private set; }
-
     public DateTime EndAt { get; private set; }
-
     public ProfessionalId? ProfessionalId { get; }
+    public Weekday? Weekday { get; private init; }
+    public Weekend? Weekend { get; private init; }
 
-    public Weekday? Weekday { get; private set; }
-    public Weekend? Weekend { get; private set; }
+    private readonly List<OfficeHour> _officeHours = [];
+    private readonly List<DayRest> _daysRest = [];
 
-    public List<OfficeHour> OfficeHours { get; private set; } = [];
-    public List<DayRest> DaysRest { get; private set; } = [];
+    public IReadOnlyCollection<OfficeHour> OfficeHours => _officeHours.AsReadOnly();
+    public IReadOnlyCollection<DayRest> DaysRest => _daysRest.AsReadOnly();
 
     public Schedule()
     {
@@ -33,17 +33,17 @@ public sealed class Schedule : Entity, IAggregateRoot
     public static Schedule Create(DateTime startAt, DateTime endAt, ProfessionalId? professionalId, Weekday weekday,
         Weekend weekend) => new(startAt, endAt, professionalId, weekday, weekend);
 
-    public void AddDayRest(DayRest dayRest) => DaysRest.Add(dayRest);
+    public void AddDayRest(DayRest dayRest) => _daysRest.Add(dayRest);
 
     public void AddOfficeHour(OfficeHour officeHour)
     {
         if (IsDayRest(officeHour)) return;
-        OfficeHours.Add(officeHour);
+        _officeHours.Add(officeHour);
     }
 
     private bool IsDayRest(OfficeHour officeHour)
     {
-        var existsDayRest = DaysRest.Exists(dr => dr.DayOnWeek == officeHour.DateAndHour.DayOfWeek);
+        var existsDayRest = _daysRest.Exists(dr => dr.DayOnWeek == officeHour.DateAndHour.DayOfWeek);
         return existsDayRest && DaysRest.Count > 0;
     }
 

@@ -64,6 +64,9 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                     b.Property<DateTime>("DateAndHour")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Duration")
+                        .HasColumnType("integer");
+
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("boolean");
 
