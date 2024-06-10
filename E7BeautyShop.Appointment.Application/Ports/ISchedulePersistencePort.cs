@@ -4,5 +4,5 @@ namespace E7BeautyShop.Appointment.Application.Ports;
 
 public interface ISchedulePersistencePort
 {
-    Task<IEnumerable<Schedule>> GetSchedulesAsync();
+    Task<Schedule?> GetByIdAsync(Guid? id);
 }

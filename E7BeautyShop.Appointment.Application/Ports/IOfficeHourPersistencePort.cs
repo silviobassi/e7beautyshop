@@ -4,5 +4,5 @@ namespace E7BeautyShop.Appointment.Application.Ports;
 
 public interface IOfficeHourPersistencePort
 {
-    Task<IEnumerable<OfficeHour>> GetOfficeHoursAsync();
+    Task<OfficeHour?> GetByIdAsync(Guid? id);
 }

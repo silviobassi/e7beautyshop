@@ -7,8 +7,8 @@ namespace E7BeautyShop.Appointment.Adapters.Outbound.Persistence;
 
 public class OfficeHourPersistence(ApplicationDbContext context): IOfficeHourPersistencePort
 {
-    public async Task<IEnumerable<OfficeHour>> GetOfficeHoursAsync()
+    public async Task<OfficeHour?> GetByIdAsync(Guid? id)
     {
-        return await context.OfficeHours.ToListAsync();
+        return await context.OfficeHours.FirstOrDefaultAsync(c => c.Id == id);
     }
 }

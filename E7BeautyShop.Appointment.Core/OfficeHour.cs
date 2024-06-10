@@ -5,6 +5,8 @@ public delegate void DomainEventDelegate(IDomainEvent domainEvent);
 public sealed class OfficeHour : Entity
 {
     public DateTime DateAndHour { get; private set; }
+    
+    public int Duration { get; private set; }
     public bool IsAvailable { get; private set; }
     public Guid CatalogId { get; init; }
     public Catalog? Catalog { get; private set; }
@@ -27,9 +29,10 @@ public sealed class OfficeHour : Entity
     public void Cancel() => IsAvailable = false;
     public void Attend() => IsAvailable = true;
 
-    public void CreateOfficeHour(DateTime dateAndHour)
+    public void CreateOfficeHour(DateTime dateAndHour, int duration)
     {
         DateAndHour = dateAndHour;
+        Duration = duration;
         IsAvailable = true;
         CheckDateAndHour();
     }
@@ -59,6 +62,8 @@ public sealed class OfficeHour : Entity
         Id = officeHourId;
         Attend();
     }
+    
+    public DateTime AddDuration() => DateAndHour.AddMinutes(Duration);
 
     private void Validate()
     {

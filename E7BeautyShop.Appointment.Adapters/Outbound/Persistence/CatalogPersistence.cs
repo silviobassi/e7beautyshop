@@ -7,8 +7,8 @@ namespace E7BeautyShop.Appointment.Adapters.Outbound.Persistence;
 
 public class CatalogPersistence(ApplicationDbContext context) : ICatalogPersistencePort
 {
-    public async Task<IEnumerable<Catalog>> GetCatalogsAsync()
+    public async Task<Catalog?> GetByIdAsync(Guid? id)
     {
-        return await context.Catalogs.ToListAsync();
+        return await context.Catalogs.FirstOrDefaultAsync(c => c.Id == id);
     }
 }

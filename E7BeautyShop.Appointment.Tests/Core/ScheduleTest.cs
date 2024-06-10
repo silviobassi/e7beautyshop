@@ -20,9 +20,9 @@ public class ScheduleTest
         var dayRest = new DayRest(DayOfWeek.Monday);
 
         var officeHour1 = new OfficeHour();
-        officeHour1.CreateOfficeHour(DateTime.Now);
+        officeHour1.CreateOfficeHour(DateTime.Now, 30);
         var officeHour2 = new OfficeHour();
-        officeHour2.CreateOfficeHour(DateTime.Now.AddDays(1));
+        officeHour2.CreateOfficeHour(DateTime.Now.AddDays(1), 20);
         schedule.AddOfficeHour(officeHour1);
         schedule.AddOfficeHour(officeHour2);
 
@@ -38,7 +38,7 @@ public class ScheduleTest
     public void Should_ReturnsTrue_IfWeekday_WhenOfficeHourIsOnWeekday()
     {
         var officeHour = new OfficeHour();
-        officeHour.CreateOfficeHour(new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local));
+        officeHour.CreateOfficeHour(new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local), 30);
         var schedule = new Schedule(DateTime.Now, DateTime.Now.AddDays(1),
             new ProfessionalId(Guid.NewGuid()),
             new Weekday(_startWeekday, _endWeekday), new Weekend(_startWeekend, _endWeekend));
@@ -51,7 +51,7 @@ public class ScheduleTest
     public void IsWeekday_ReturnsFalse_WhenOfficeHourIsOnWeekend()
     {
         var officeHour = new OfficeHour();
-        officeHour.CreateOfficeHour(new DateTime(2024, 5, 26, 10, 0, 0, DateTimeKind.Local));
+        officeHour.CreateOfficeHour(new DateTime(2024, 5, 26, 10, 0, 0, DateTimeKind.Local), 30);
         var schedule = new Schedule(DateTime.Now, DateTime.Now.AddDays(1), new ProfessionalId(Guid.NewGuid()),
             new Weekday(_startWeekday, _endWeekday), new Weekend(_startWeekday, _endWeekday));
         var isWeekday = Schedule.IsWeekday(officeHour);
@@ -66,7 +66,7 @@ public class ScheduleTest
         var schedule = new Schedule(DateTime.Now, dateTime, new ProfessionalId(Guid.NewGuid()),
             new Weekday(_startWeekday, _endWeekday), new Weekend(_startWeekend, _endWeekend));
         var officeHour = new OfficeHour();
-        officeHour.CreateOfficeHour(new DateTime(2024, 5, 31, 10, 0, 0, DateTimeKind.Local));
+        officeHour.CreateOfficeHour(new DateTime(2024, 5, 31, 10, 0, 0, DateTimeKind.Local), 30);
         schedule.AddDayRest(new DayRest(DayOfWeek.Friday));
         schedule.AddOfficeHour(officeHour);
 

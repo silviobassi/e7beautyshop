@@ -4,5 +4,5 @@ namespace E7BeautyShop.Appointment.Application.Ports;
 
 public interface ICatalogPersistencePort
 {
-    Task<IEnumerable<Catalog>> GetCatalogsAsync();
+    Task<Catalog?> GetByIdAsync(Guid? id);
 }

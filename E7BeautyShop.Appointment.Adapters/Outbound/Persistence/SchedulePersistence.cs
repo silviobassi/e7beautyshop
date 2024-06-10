@@ -7,8 +7,8 @@ namespace E7BeautyShop.Appointment.Adapters.Outbound.Persistence;
 
 public class SchedulePersistence(ApplicationDbContext context) : ISchedulePersistencePort
 {
-    public async Task<IEnumerable<Schedule>> GetSchedulesAsync()
+    public async Task<Schedule?> GetByIdAsync(Guid? id)
     {
-       return await context.Schedules.ToListAsync();
+        return await context.Schedules.FirstOrDefaultAsync(c => c.Id == id);
     }
 }
