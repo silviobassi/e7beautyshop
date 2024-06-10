@@ -5,9 +5,9 @@ namespace E7BeautyShop.Appointment.Infra.Context;
 
 public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
 {
-    public DbSet<Catalog> Catalogs { get; init; }
-    public DbSet<OfficeHour> OfficeHours { get; init; }
-    public DbSet<Schedule> Schedules { get; init; }
+    public DbSet<Catalog> Catalogs { get; set; }
+    public DbSet<OfficeHour> OfficeHours { get; set; }
+    public DbSet<Schedule> Schedules { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

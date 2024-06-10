@@ -2,11 +2,13 @@
 
 public sealed class Catalog : Entity
 {
+    public ServiceDescription? ServiceDescription { get; private set; }
+    
     public Catalog()
     {
     }
 
-    public Catalog(ServiceDescription serviceDescription)
+    public Catalog(ServiceDescription? serviceDescription)
     {
         Id = Guid.NewGuid();
         ServiceDescription = serviceDescription;
@@ -17,7 +19,6 @@ public sealed class Catalog : Entity
     
     public decimal? DescriptionPrice => ServiceDescription?.Price;
 
-    public ServiceDescription? ServiceDescription { get; private set; }
     public void Update(Guid id, ServiceDescription? serviceDescription)
     {
         Id = id;
@@ -28,7 +29,7 @@ public sealed class Catalog : Entity
     
     private void Validate()
     {
-        BusinessNullException.When(Id == Guid.Empty, nameof(Id));
-        BusinessNullException.When(ServiceDescription is null, nameof(Core.ServiceDescription));
+        BusinessException.When(Id == Guid.Empty, nameof(Id));
+        BusinessException.When(ServiceDescription is null, nameof(ServiceDescription));
     }
 }

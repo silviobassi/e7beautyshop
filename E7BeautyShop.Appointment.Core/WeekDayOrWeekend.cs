@@ -1,12 +1,21 @@
 ﻿namespace E7BeautyShop.Appointment.Core;
 
-public abstract class WeekDayOrWeekend
+public class WeekDayOrWeekend
 {
     public TimeSpan StartAt { get; protected set; }
     public TimeSpan EndAt { get; protected set; }
     
+    public WeekDayOrWeekend()
+    {
+    }
+    protected WeekDayOrWeekend(TimeSpan startAt, TimeSpan endAt)
+    {
+        StartAt = startAt;
+        EndAt = endAt;
+        Validate();
+    }
 
-    protected void Validate()
+    private void Validate()
     {
         BusinessNullException.When(StartAt == default, nameof(StartAt));
         BusinessNullException.When(EndAt == default, nameof(EndAt));

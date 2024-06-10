@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace E7BeautyShop.Appointment.Infra.EntitiesConfiguration;
 
-public class ScheduleConfiguration
+public class ScheduleConfiguration: IEntityTypeConfiguration<Schedule>
 {
     public void Configure(EntityTypeBuilder<Schedule> builder)
     {
@@ -14,27 +14,29 @@ public class ScheduleConfiguration
 
         builder.OwnsOne(s => s.Weekday, wd =>
         {
-            wd.Property(w => w.StartAt).HasColumnName("WeekdayStartAt").IsRequired();
-            wd.Property(w => w.EndAt).HasColumnName("WeekdayEndAt").IsRequired();
+            wd.Property(w => w.StartAt).HasColumnName("Weekday_StartAt").IsRequired();
+            wd.Property(w => w.EndAt).HasColumnName("Weekday_EndAt").IsRequired();
         });
 
         builder.OwnsOne(s => s.Weekend, we =>
         {
-            we.Property(w => w.StartAt).HasColumnName("WeekendStartAt").IsRequired();
-            we.Property(w => w.EndAt).HasColumnName("WeekendEndAt").IsRequired();
+            we.Property(w => w.StartAt).HasColumnName("Weekend_StartAt").IsRequired();
+            we.Property(w => w.EndAt).HasColumnName("Weekend_EndAt").IsRequired();
         });
         
-        builder.OwnsOne(s => s.Professional, pi =>
+        builder.OwnsOne(s => s.ProfessionalId, p =>
         {
-            pi.Property(p => p.Id).HasColumnName("ProfessionalId").IsRequired();
+            p.Property(pr => pr.Value).HasColumnName("Professional_Value").IsRequired();
         });
-
-        builder.HasMany(s => s.OfficeHours)
-            .WithOne()
-            .HasForeignKey(oh => oh.ScheduleId);
 
         builder.HasMany(s => s.DaysRest)
             .WithOne()
-            .HasForeignKey(dr => dr.ScheduleId);
+            .HasForeignKey(dr => dr.ScheduleId)
+            .IsRequired();
+        
+        builder.HasMany(s => s.OfficeHours)
+            .WithOne()
+            .HasForeignKey(oh => oh.ScheduleId)
+            .IsRequired();
     }
 }

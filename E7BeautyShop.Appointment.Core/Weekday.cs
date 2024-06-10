@@ -2,10 +2,14 @@
 
 public sealed class Weekday : WeekDayOrWeekend
 {
-    public Weekday(TimeSpan startAt, TimeSpan endAt)
+    public Weekday()
     {
-        StartAt = startAt;
-        EndAt = endAt;
-        Validate();
     }
+
+    public Weekday(TimeSpan startAt, TimeSpan endAt) : base(startAt, endAt)
+    {
+    }
+
+    public static implicit operator Weekday((TimeSpan startAt, TimeSpan endAt) tuple)
+        => new(tuple.startAt, tuple.endAt);
 }

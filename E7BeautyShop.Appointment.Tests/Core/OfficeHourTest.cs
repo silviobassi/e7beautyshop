@@ -13,11 +13,11 @@ public class OfficeHourTest(ITestOutputHelper output)
         var officeHour = new OfficeHour(new ReserveRegisteredEvent());
         var serviceDescription = new ServiceDescription("ServiceName", 10);
         var catalog = new Catalog(serviceDescription);
-        officeHour.ReserveTimeForTheCustomer(dateAndHour, new Customer(id), catalog);
+        officeHour.ReserveTimeForTheCustomer(dateAndHour, new CustomerId(id), catalog);
 
         Assert.NotNull(officeHour);
         Assert.Equal(dateAndHour, officeHour.DateAndHour);
-        Assert.Equal(id, officeHour.CustomerId?.Id);
+        Assert.Equal(id, officeHour.CustomerId?.Value);
         Assert.Equal(catalog, officeHour.Catalog);
     }
 
@@ -63,10 +63,10 @@ public class OfficeHourTest(ITestOutputHelper output)
         var officeHour = new OfficeHour(new ReserveRegisteredEvent());
         var serviceDescription = new ServiceDescription("ServiceName", 10);
         var catalog = new Catalog(serviceDescription);
-        officeHour.ReserveTimeForTheCustomer(dateAndHour, new Customer(Guid.NewGuid()), catalog);
+        officeHour.ReserveTimeForTheCustomer(dateAndHour, new CustomerId(Guid.NewGuid()), catalog);
         officeHour.ReserveCancel(officeHourId);
 
-        Assert.Null(officeHour.CustomerId?.Id);
+        Assert.Null(officeHour.CustomerId?.Value);
         Assert.Equal(officeHourId, officeHour.Id);
         Assert.True(officeHour.IsAvailable);
     }
@@ -119,7 +119,7 @@ public class OfficeHourTest(ITestOutputHelper output)
     public void Should_ReserveTimeForTheCustomer_Should_UpdatePropertiesAndFireEvent()
     {
         var reserveDateAndHour = new DateTime(2024, 5, 30, 14, 0, 0, DateTimeKind.Local);
-        var customerId = new Customer(Guid.NewGuid());
+        var customerId = new CustomerId(Guid.NewGuid());
         var officeHour = new OfficeHour(new ReserveRegisteredEvent());
         const string serviceName = "ServiceName";
         var serviceDescription = new ServiceDescription(serviceName, 10);
@@ -130,7 +130,7 @@ public class OfficeHourTest(ITestOutputHelper output)
         {
             if (domainEvent is not ReserveRegisteredEvent reserveEvent) return;
             eventFired = true;
-            Assert.Equal(customerId.Id, reserveEvent.CustomerId);
+            Assert.Equal(customerId.Value, reserveEvent.CustomerId);
             Assert.Equal(reserveDateAndHour, reserveEvent.ReserveDateAndHour);
             Assert.Equal(serviceName, reserveEvent.ServiceName);
             Assert.Equal(10, reserveEvent.PriceService);
@@ -139,7 +139,7 @@ public class OfficeHourTest(ITestOutputHelper output)
         officeHour.ReserveTimeForTheCustomer(reserveDateAndHour, customerId, catalog);
 
         Assert.Equal(reserveDateAndHour, officeHour.DateAndHour);
-        Assert.Equal(customerId.Id, officeHour.CustomerId?.Id);
+        Assert.Equal(customerId.Value, officeHour.CustomerId?.Value);
         Assert.False(officeHour.IsAvailable);
         Assert.True(eventFired);
     }
@@ -150,7 +150,7 @@ public class OfficeHourTest(ITestOutputHelper output)
         var officeHour = new OfficeHour();
         var reserveDateAndHour = DateTime.Now;
         const string serviceName = "ServiceName";
-        var customerId = new Customer(Guid.NewGuid());
+        var customerId = new CustomerId(Guid.NewGuid());
         var serviceDescription = new ServiceDescription(serviceName, 10);
         var catalog = new Catalog(serviceDescription);
         

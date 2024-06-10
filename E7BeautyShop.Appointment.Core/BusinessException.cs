@@ -6,4 +6,5 @@ public sealed class BusinessException(string message) : Exception(message)
     {
         if (condition) throw new BusinessException(message);
     }
+    
 }

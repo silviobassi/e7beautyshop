@@ -4,6 +4,13 @@ public delegate void DomainEventDelegate(IDomainEvent domainEvent);
 
 public sealed class OfficeHour : Entity
 {
+    public DateTime DateAndHour { get; private set; }
+    public bool IsAvailable { get; private set; }
+    public Guid CatalogId { get; init; }
+    public Catalog? Catalog { get; private set; }
+    public CustomerId? CustomerId { get; private set; }
+
+    public Guid? ScheduleId { get; private set; }
     public event DomainEventDelegate? OnDomainEventOccured;
     private readonly IReservedRegisteredEventFactory? _reservedRegisteredEvent;
 
@@ -17,14 +24,6 @@ public sealed class OfficeHour : Entity
             reservedRegisteredEvent ?? throw new ArgumentNullException(nameof(reservedRegisteredEvent));
     }
 
-    public DateTime DateAndHour { get; private set; }
-    public bool IsAvailable { get; private set; }
-    public Guid CatalogId { get; init; }
-    public Catalog? Catalog { get; private set; }
-    public Customer? CustomerId { get; private set; }
-    
-    public Guid? ScheduleId { get; private set; }
-    
     public void Cancel() => IsAvailable = false;
     public void Attend() => IsAvailable = true;
 
@@ -35,7 +34,7 @@ public sealed class OfficeHour : Entity
         CheckDateAndHour();
     }
 
-    public void ReserveTimeForTheCustomer(DateTime reserveDateAndHour, Customer? customerId, Catalog catalog)
+    public void ReserveTimeForTheCustomer(DateTime reserveDateAndHour, CustomerId? customerId, Catalog catalog)
     {
         CreateReserveOfficeHour(reserveDateAndHour, customerId, catalog);
         if (ReserveRegisteredEvent is null)
@@ -43,10 +42,10 @@ public sealed class OfficeHour : Entity
         OnDomainEventOccured?.Invoke(ReserveRegisteredEvent);
     }
 
-    private void CreateReserveOfficeHour(DateTime dateAndHour, Customer? customerId, Catalog catalog)
+    private void CreateReserveOfficeHour(DateTime dateAndHour, CustomerId? customer, Catalog catalog)
     {
         DateAndHour = dateAndHour;
-        CustomerId = customerId;
+        CustomerId = customer;
         IsAvailable = false;
         Catalog = catalog;
         Validate();
@@ -56,7 +55,7 @@ public sealed class OfficeHour : Entity
     {
         BusinessException.When(IsAvailable, "OfficeHour is already attended");
         BusinessException.When(CustomerId is null, "OfficeHour has no customer");
-        CustomerId= null;
+        CustomerId = null;
         Id = officeHourId;
         Attend();
     }
@@ -71,7 +70,7 @@ public sealed class OfficeHour : Entity
     private void CheckDateAndHour() =>
         BusinessNullException.When(DateAndHour == default, nameof(DateAndHour));
 
-    private ReserveRegisteredEvent? ReserveRegisteredEvent => _reservedRegisteredEvent?.Create(CustomerId?.Id,
+    private ReserveRegisteredEvent? ReserveRegisteredEvent => _reservedRegisteredEvent?.Create(CustomerId?.Value,
         DateAndHour, Catalog?.DescriptionName,
         Catalog!.DescriptionPrice.GetValueOrDefault());
 }

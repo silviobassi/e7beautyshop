@@ -2,8 +2,10 @@
 
 public class ServiceDescription
 {
-    public string? Name { get; private set; }
-    public decimal Price { get; private set; }
+    public string? Name { get;  }
+    public decimal Price { get; }
+    
+    public const int MaxNameLength = 150;
 
     public ServiceDescription(string? name, decimal price)
     {
