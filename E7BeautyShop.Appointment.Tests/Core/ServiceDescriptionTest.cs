@@ -21,6 +21,18 @@ public class ServiceDescriptionTest
             () =>  new ServiceDescription(null, 40.50M));
         Assert.Equal("Value cannot be null. (Parameter 'Name')", exception.Message);
     }
+    
+    
+    [Fact]
+    public void Should_ThrowException_When_NameIsGreaterThan150()
+    {
+        var exception = Assert.Throws<BusinessException>(
+            () =>  new ServiceDescription("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" +
+                                          "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" +
+                                          "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" +
+                                          "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 40.50M));
+        Assert.Equal($"Name must be less than {ServiceDescription.MaxNameLength} characters", exception.Message);
+    }
 
     [Fact]
     public void Should_ThrowException_When_PriceIsZero()
