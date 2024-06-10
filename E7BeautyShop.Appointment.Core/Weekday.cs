@@ -6,7 +6,7 @@ public sealed class Weekday : WeekDayOrWeekend
     {
     }
 
-    public Weekday(TimeSpan startAt, TimeSpan endAt) : base(startAt, endAt)
+    private Weekday(TimeSpan startAt, TimeSpan endAt) : base(startAt, endAt)
     {
     }
 

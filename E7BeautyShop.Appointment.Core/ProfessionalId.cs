@@ -8,11 +8,13 @@ public sealed class ProfessionalId
     {
     }
 
-    public ProfessionalId(Guid value)
+    private ProfessionalId(Guid value)
     {
         Value = value;
         Validate();
     }
 
     private void Validate() => BusinessNullException.When(Value == Guid.Empty, nameof(Value));
+
+    public static implicit operator ProfessionalId(Guid value) => new(value);
 }

@@ -8,9 +8,8 @@ public class DayRestTest
     private void Should_CreateDayRest()
     {
         const DayOfWeek dayOnWeek = DayOfWeek.Sunday;
-        var dayRest = new DayRest(dayOnWeek);
+        var dayRest = DayRest.Create(dayOnWeek);
         Assert.NotNull(dayRest);
         Assert.Equal(dayOnWeek, dayRest.DayOnWeek);
     }
 }
-

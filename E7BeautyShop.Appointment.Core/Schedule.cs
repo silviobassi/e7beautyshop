@@ -2,7 +2,6 @@
 
 public sealed class Schedule : Entity, IAggregateRoot
 {
-    
     public DateTime StartAt { get; private set; }
 
     public DateTime EndAt { get; private set; }
@@ -11,12 +10,15 @@ public sealed class Schedule : Entity, IAggregateRoot
 
     public Weekday? Weekday { get; private set; }
     public Weekend? Weekend { get; private set; }
-    
+
     public List<OfficeHour> OfficeHours { get; private set; } = [];
     public List<DayRest> DaysRest { get; private set; } = [];
-    
-    public Schedule(){}
-    public Schedule(DateTime startAt, DateTime endAt, ProfessionalId? professionalId, Weekday weekday,
+
+    public Schedule()
+    {
+    }
+
+    private Schedule(DateTime startAt, DateTime endAt, ProfessionalId? professionalId, Weekday weekday,
         Weekend weekend)
     {
         Id = Guid.NewGuid();
@@ -27,6 +29,9 @@ public sealed class Schedule : Entity, IAggregateRoot
         Weekend = weekend;
         Validate();
     }
+
+    public static Schedule Create(DateTime startAt, DateTime endAt, ProfessionalId? professionalId, Weekday weekday,
+        Weekend weekend) => new(startAt, endAt, professionalId, weekday, weekend);
 
     public void AddDayRest(DayRest dayRest) => DaysRest.Add(dayRest);
 
@@ -42,9 +47,9 @@ public sealed class Schedule : Entity, IAggregateRoot
         return existsDayRest && DaysRest.Count > 0;
     }
 
-    public static bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
+    public bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
 
-    private static bool IsWeekend(OfficeHour? officeHour)
+    private bool IsWeekend(OfficeHour? officeHour)
         => officeHour?.DateAndHour.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
 
 

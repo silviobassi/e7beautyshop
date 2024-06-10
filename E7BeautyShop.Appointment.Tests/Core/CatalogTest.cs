@@ -7,7 +7,8 @@ public class CatalogTest
     [Fact]
     public void Should_CreateServiceCatalog()
     {
-        Catalog catalog = new(new ServiceDescription("Haircut", 30M));
+        ServiceDescription serviceDescription = ("Haircut", 30M);
+        var catalog = Catalog.Create(serviceDescription);
         Assert.Equal(30M, catalog.DescriptionPrice);
         Assert.Equal("Haircut", catalog.DescriptionName);
         Assert.NotNull(catalog);
@@ -16,9 +17,11 @@ public class CatalogTest
     [Fact]
     public void Should_UpdateServiceCatalog()
     {
+        ServiceDescription serviceDescription1 = ("Haircut", 30M);
+        ServiceDescription serviceDescription2 = ("Haircut", 35M);
         var catalogId = Guid.NewGuid();
-        Catalog catalog = new(new ServiceDescription("Haircut", 30M));
-        catalog.Update(catalogId, new ServiceDescription("Haircut", 35M));
+        var catalog = Catalog.Create(serviceDescription1);
+        catalog.Update(catalogId, serviceDescription2);
         Assert.Equal(35M, catalog.DescriptionPrice);
         Assert.Equal(catalogId, catalog.Id);
     }

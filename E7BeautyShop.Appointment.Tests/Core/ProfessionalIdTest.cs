@@ -8,8 +8,8 @@ public class ProfessionalIdTest
     public void Should_CreateProfessionalId()
     {
         var id = Guid.NewGuid();
-        var professional = new ProfessionalId(id);
-        Assert.Equal(id, professional.Value);
-        Assert.NotNull(professional);
+        ProfessionalId professionalId = id;
+        Assert.Equal(id, professionalId.Value);
+        Assert.NotNull(professionalId);
     }
 }

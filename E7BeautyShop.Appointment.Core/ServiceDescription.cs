@@ -7,7 +7,7 @@ public class ServiceDescription
 
     public const int MaxNameLength = 150;
 
-    public ServiceDescription(string? name, decimal price)
+    private ServiceDescription(string? name, decimal price)
     {
         Name = name;
         Price = price;
@@ -20,4 +20,7 @@ public class ServiceDescription
         BusinessException.When(Name?.Length > MaxNameLength, $"Name must be less than {MaxNameLength} characters");
         BusinessException.When(Price <= 0, "Price must be greater than 0");
     }
+    
+    public static implicit operator ServiceDescription((string? name, decimal price) tuple)
+        => new(tuple.name, tuple.price);
 }

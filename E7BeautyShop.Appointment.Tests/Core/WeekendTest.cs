@@ -9,7 +9,7 @@ public class WeekendTest
     {
         var start = new TimeSpan(8,0,0);
         var end = new TimeSpan(12,0,0);
-        var weekend = new Weekend(start, end);
+        Weekend weekend = (start, end);
         Assert.NotNull(weekend);
         Assert.Equal(start, weekend.StartAt);
         Assert.Equal(end, weekend.EndAt);

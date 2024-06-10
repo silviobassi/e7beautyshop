@@ -10,9 +10,11 @@ public sealed class DayRest : Entity
     {
     }
 
-    public DayRest(DayOfWeek? dayOnWeek)
+    private DayRest(DayOfWeek? dayOnWeek)
     {
         DayOnWeek = dayOnWeek;
         BusinessNullException.When(dayOnWeek is null, nameof(DayOnWeek));
     }
+
+    public static DayRest Create(DayOfWeek? dayOnWeek) => new(dayOnWeek);
 }

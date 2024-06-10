@@ -8,7 +8,7 @@ public class CustomerIdTest
     public void Should_CreateCustomerId()
     {
         var id = Guid.NewGuid();
-        var customerId = new CustomerId(id);
+        CustomerId customerId = id;
         Assert.Equal(id, customerId.Value);
         Assert.NotNull(customerId);
     }

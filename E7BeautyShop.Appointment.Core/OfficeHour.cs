@@ -5,7 +5,7 @@ public delegate void DomainEventDelegate(IDomainEvent domainEvent);
 public sealed class OfficeHour : Entity
 {
     public DateTime DateAndHour { get; private set; }
-    
+
     public int Duration { get; private set; }
     public bool IsAvailable { get; private set; }
     public Guid CatalogId { get; init; }
@@ -20,16 +20,11 @@ public sealed class OfficeHour : Entity
     {
     }
 
-    public OfficeHour(IReservedRegisteredEventFactory reservedRegisteredEvent)
-    {
-        _reservedRegisteredEvent =
+    public OfficeHour(IReservedRegisteredEventFactory reservedRegisteredEvent) => _reservedRegisteredEvent =
             reservedRegisteredEvent ?? throw new ArgumentNullException(nameof(reservedRegisteredEvent));
-    }
+ 
 
-    public void Cancel() => IsAvailable = false;
-    public void Attend() => IsAvailable = true;
-
-    public void CreateOfficeHour(DateTime dateAndHour, int duration)
+    private OfficeHour(DateTime dateAndHour, int duration)
     {
         DateAndHour = dateAndHour;
         Duration = duration;
@@ -37,21 +32,28 @@ public sealed class OfficeHour : Entity
         CheckDateAndHour();
     }
 
-    public void ReserveTimeForTheCustomer(DateTime reserveDateAndHour, CustomerId? customerId, Catalog catalog)
+    public void Cancel() => IsAvailable = false;
+    public void Attend() => IsAvailable = true;
+
+    public static OfficeHour Create(DateTime dateAndHour, int duration) => new(dateAndHour, duration);
+
+    public OfficeHour ReserveTimeForTheCustomer(DateTime reserveDateAndHour, CustomerId? customerId, Catalog catalog)
     {
-        CreateReserveOfficeHour(reserveDateAndHour, customerId, catalog);
+        var officeHour = CreateReserveOfficeHour(reserveDateAndHour, customerId, catalog);
         if (ReserveRegisteredEvent is null)
             throw new InvalidOperationException("Reserved registered event factory is not initialized.");
         OnDomainEventOccured?.Invoke(ReserveRegisteredEvent);
+        return officeHour;
     }
 
-    private void CreateReserveOfficeHour(DateTime dateAndHour, CustomerId? customer, Catalog catalog)
+    private OfficeHour CreateReserveOfficeHour(DateTime dateAndHour, CustomerId? customer, Catalog catalog)
     {
         DateAndHour = dateAndHour;
         CustomerId = customer;
         IsAvailable = false;
         Catalog = catalog;
         Validate();
+        return this;
     }
 
     public void ReserveCancel(Guid officeHourId)
@@ -62,7 +64,7 @@ public sealed class OfficeHour : Entity
         Id = officeHourId;
         Attend();
     }
-    
+
     public DateTime AddDuration() => DateAndHour.AddMinutes(Duration);
 
     private void Validate()

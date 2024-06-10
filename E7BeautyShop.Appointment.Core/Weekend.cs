@@ -6,10 +6,10 @@ public sealed class Weekend : WeekDayOrWeekend
     {
     }
 
-    public Weekend(TimeSpan startAt, TimeSpan endAt) : base(startAt, endAt)
+    private Weekend(TimeSpan startAt, TimeSpan endAt) : base(startAt, endAt)
     {
     }
-    
+
     public static implicit operator Weekend((TimeSpan startAt, TimeSpan endAt) tuple)
         => new(tuple.startAt, tuple.endAt);
 }

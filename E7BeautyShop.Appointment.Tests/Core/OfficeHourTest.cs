@@ -11,23 +11,23 @@ public class OfficeHourTest(ITestOutputHelper output)
         var dateAndHour = new DateTime(2024, 5, 30, 8, 0, 0, DateTimeKind.Local);
         var id = Guid.NewGuid();
         var officeHour = new OfficeHour(new ReserveRegisteredEvent());
-        var serviceDescription = new ServiceDescription("ServiceName", 10);
-        var catalog = new Catalog(serviceDescription);
-        officeHour.ReserveTimeForTheCustomer(dateAndHour, new CustomerId(id), catalog);
+        var serviceDescription = ("ServiceName", 10);
+        var catalog = Catalog.Create(serviceDescription);
+        CustomerId customerId = id;
+        officeHour.ReserveTimeForTheCustomer(dateAndHour, customerId, catalog);
 
         Assert.NotNull(officeHour);
         Assert.Equal(dateAndHour, officeHour.DateAndHour);
         Assert.Equal(id, officeHour.CustomerId?.Value);
         Assert.Equal(catalog, officeHour.Catalog);
     }
-    
-    
+
+
     [Fact]
     public void Should_CreateOfficeHour()
     {
-        var officeHour = new OfficeHour();
         var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
-        officeHour.CreateOfficeHour(dateAndHour, 30);
+        var officeHour = OfficeHour.Create(dateAndHour, 30);
         Assert.NotNull(officeHour);
         Assert.Equal(dateAndHour, officeHour.DateAndHour);
         Assert.Equal(30, officeHour.Duration);
@@ -38,7 +38,7 @@ public class OfficeHourTest(ITestOutputHelper output)
     {
         var dateAndHour = new DateTime(default, DateTimeKind.Local);
 
-        var exception = Assert.Throws<ArgumentNullException>(() => new OfficeHour().CreateOfficeHour(dateAndHour, 30));
+        var exception = Assert.Throws<ArgumentNullException>(() => OfficeHour.Create(dateAndHour, 30));
         Assert.Equal("Value cannot be null. (Parameter 'DateAndHour')", exception.Message);
     }
 
@@ -46,8 +46,7 @@ public class OfficeHourTest(ITestOutputHelper output)
     public void Should_Cancel_OfficeHour()
     {
         var dateAndHour = new DateTime(2024, 5, 30, 8, 0, 0, DateTimeKind.Local);
-        var officeHour = new OfficeHour();
-        officeHour.CreateOfficeHour(dateAndHour,30);
+        var officeHour = OfficeHour.Create(dateAndHour, 30);
         officeHour.Cancel();
 
         Assert.False(officeHour.IsAvailable);
@@ -57,8 +56,7 @@ public class OfficeHourTest(ITestOutputHelper output)
     public void Should_BeAvailable_AfterCreation()
     {
         var dateAndHour = new DateTime(2024, 5, 30, 8, 0, 0, DateTimeKind.Local);
-        var officeHour = new OfficeHour();
-        officeHour.CreateOfficeHour(dateAndHour, 30);
+        var officeHour = OfficeHour.Create(dateAndHour, 30);
         officeHour.Cancel();
 
         Assert.False(officeHour.IsAvailable);
@@ -73,9 +71,10 @@ public class OfficeHourTest(ITestOutputHelper output)
         var officeHourId = Guid.NewGuid();
         var dateAndHour = new DateTime(2024, 5, 30, 8, 0, 0, DateTimeKind.Local);
         var officeHour = new OfficeHour(new ReserveRegisteredEvent());
-        var serviceDescription = new ServiceDescription("ServiceName", 10);
-        var catalog = new Catalog(serviceDescription);
-        officeHour.ReserveTimeForTheCustomer(dateAndHour, new CustomerId(Guid.NewGuid()), catalog);
+        var serviceDescription = ("ServiceName", 10);
+        var catalog = Catalog.Create(serviceDescription);
+        CustomerId customerId = Guid.NewGuid();
+        officeHour.ReserveTimeForTheCustomer(dateAndHour, customerId, catalog);
         officeHour.ReserveCancel(officeHourId);
 
         Assert.Null(officeHour.CustomerId?.Value);
@@ -86,10 +85,10 @@ public class OfficeHourTest(ITestOutputHelper output)
     [Fact]
     public void Should_ReserveCancel_ThrowsBusinessException_WhenOfficeHourIsNotAvailable()
     {
-        var officeHour = new OfficeHour();
-        var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
-        officeHour.CreateOfficeHour(dateAndHour, 30);
 
+        var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
+        var officeHour = OfficeHour.Create(dateAndHour, 30);
+        
         var exception = Assert.Throws<BusinessException>(() => officeHour.ReserveCancel(Guid.NewGuid()));
 
         Assert.Equal("OfficeHour is already attended", exception.Message);
@@ -99,8 +98,8 @@ public class OfficeHourTest(ITestOutputHelper output)
     public void Should_ReserveCancel_ThrowsBusinessException_WhenOfficeHourHasNoCustomer()
     {
         var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
-        var officeHour = new OfficeHour();
-        officeHour.CreateOfficeHour(dateAndHour, 30);
+
+        var officeHour = OfficeHour.Create(dateAndHour, 30);
         officeHour.Cancel();
 
         var exception = Assert.Throws<BusinessException>(() => officeHour.ReserveCancel(Guid.NewGuid()));
@@ -113,15 +112,15 @@ public class OfficeHourTest(ITestOutputHelper output)
     {
         var dateReserve = new DateTime(2024, 5, 30, 8, 0, 0, DateTimeKind.Local);
         const decimal priceService = 100;
-        var customerId = Guid.NewGuid();
+        CustomerId customerId = Guid.NewGuid();
         const string serviceName = "ServiceName";
         var factory = new ReserveRegisteredEvent();
-        var registeredEvent = factory.Create(customerId, dateReserve, serviceName, priceService);
+        var registeredEvent = factory.Create(customerId.Value, dateReserve, serviceName, priceService);
 
         Assert.NotNull(registeredEvent);
         Assert.NotEqual(Guid.Empty, registeredEvent.Id);
         Assert.NotEqual(DateTime.MinValue, registeredEvent.OccuredOn);
-        Assert.Equal(customerId, registeredEvent.CustomerId);
+        Assert.Equal(customerId.Value, registeredEvent.CustomerId);
         Assert.Equal(dateReserve, registeredEvent.ReserveDateAndHour);
         Assert.Equal(serviceName, registeredEvent.ServiceName);
         Assert.Equal(priceService, registeredEvent.PriceService);
@@ -131,11 +130,11 @@ public class OfficeHourTest(ITestOutputHelper output)
     public void Should_ReserveTimeForTheCustomer_Should_UpdatePropertiesAndFireEvent()
     {
         var reserveDateAndHour = new DateTime(2024, 5, 30, 14, 0, 0, DateTimeKind.Local);
-        var customerId = new CustomerId(Guid.NewGuid());
+        CustomerId customerId = Guid.NewGuid();
         var officeHour = new OfficeHour(new ReserveRegisteredEvent());
         const string serviceName = "ServiceName";
-        var serviceDescription = new ServiceDescription(serviceName, 10);
-        var catalog = new Catalog(serviceDescription);
+        ServiceDescription serviceDescription = (serviceName, 10);
+        var catalog = Catalog.Create(serviceDescription);
         var eventFired = false;
 
         officeHour.OnDomainEventOccured += domainEvent =>
@@ -162,23 +161,22 @@ public class OfficeHourTest(ITestOutputHelper output)
         var officeHour = new OfficeHour();
         var reserveDateAndHour = DateTime.Now;
         const string serviceName = "ServiceName";
-        var customerId = new CustomerId(Guid.NewGuid());
-        var serviceDescription = new ServiceDescription(serviceName, 10);
-        var catalog = new Catalog(serviceDescription);
-        
+        CustomerId customerId = Guid.NewGuid();
+        var serviceDescription = (serviceName, 10);
+        var catalog = Catalog.Create(serviceDescription);
+
         var exception = Assert.Throws<InvalidOperationException>(
             () => officeHour.ReserveTimeForTheCustomer(reserveDateAndHour, customerId, catalog));
         Assert.Equal("Reserved registered event factory is not initialized.", exception.Message);
     }
-    
+
     [Fact]
     public void AddDuration_ShouldAddDurationToDateTime()
     {
-        var officeHour = new OfficeHour();
         var initialDateTime = new DateTime(2022, 1, 1, 10, 0, 0, DateTimeKind.Local); // 10:00 AM
         const int duration = 30;
-        officeHour.CreateOfficeHour(initialDateTime, duration);
-        
+        var officeHour = OfficeHour.Create(initialDateTime, duration);
+
         var result = officeHour.AddDuration();
         var expectedDateTime = new DateTime(2022, 1, 1, 10, 30, 0, DateTimeKind.Local); // 10:30 AM
         Assert.Equal(expectedDateTime, result);

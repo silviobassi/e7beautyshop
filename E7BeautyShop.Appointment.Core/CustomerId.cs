@@ -8,10 +8,7 @@ public sealed class CustomerId
     {
     }
 
-    public CustomerId(Guid value)
-    {
-        Value = value;
-    }
-    /*public static implicit operator Guid(Customer customer) => customer.Id;
-    public static implicit operator Customer(Guid id) => new(id);*/
+    private CustomerId(Guid value) => Value = value;
+
+    public static implicit operator CustomerId(Guid value) => new(value);
 }
