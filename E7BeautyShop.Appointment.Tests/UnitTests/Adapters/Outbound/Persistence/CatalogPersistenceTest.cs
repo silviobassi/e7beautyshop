@@ -23,7 +23,7 @@ public class CatalogPersistenceTest
         ServiceDescription description = ("Corte de cabelo + Barba", 30M);
         
         var catalog = Catalog.Create(description);
-        var entity = _catalogPersistence.Create(catalog);
+        var entity = _catalogPersistence.CreateAsync(catalog);
         Assert.NotNull(entity);
         Assert.Equal(catalog.Id, entity.Id);
         Assert.Equal(catalog.ServiceDescription, entity.ServiceDescription);
@@ -37,7 +37,7 @@ public class CatalogPersistenceTest
         ServiceDescription description = ("Corte de cabelo + Barba", 30M);
         
         var catalog = Catalog.Create(description);
-        var entity = _catalogPersistence.Update(catalog);
+        var entity = _catalogPersistence.UpdateAsync(catalog);
         Assert.NotNull(entity);
         Assert.Equal(catalog.Id, entity.Id);
         Assert.Equal(catalog.ServiceDescription, entity.ServiceDescription);
@@ -51,7 +51,7 @@ public class CatalogPersistenceTest
         ServiceDescription description = ("Corte de cabelo + Barba", 30M);
         
         var catalog = Catalog.Create(description);
-        var entity = _catalogPersistence.Delete(catalog);
+        var entity = _catalogPersistence.DeleteAsync(catalog);
         Assert.NotNull(entity);
         Assert.Equal(catalog.Id, entity.Id);
         Assert.Equal(catalog.ServiceDescription, entity.ServiceDescription);
@@ -64,8 +64,8 @@ public class CatalogPersistenceTest
     {
         ServiceDescription description = ("Corte de cabelo + Barba", 30M);
         var catalog = Catalog.Create(description);
-        var entity = _catalogPersistence.Create(catalog);
-        entity = await _catalogPersistence.Get( x => x.Id == entity.Id);
+        var entity = _catalogPersistence.CreateAsync(catalog);
+        entity = await _catalogPersistence.GetByIdAsync( x => x.Id == entity.Id);
         Assert.Null(entity);
     }
 }

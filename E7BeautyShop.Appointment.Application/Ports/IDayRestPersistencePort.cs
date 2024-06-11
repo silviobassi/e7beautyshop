@@ -3,6 +3,7 @@ using E7BeautyShop.Appointment.Core.Entities;
 
 namespace E7BeautyShop.Appointment.Application.Ports;
 
-public interface IDayRestPersistencePort : IPersistence<DayRest>
+public interface IDayRestPersistencePort
 {
+    Task<DayRest?> GetByIdAsync(Guid id);
 }

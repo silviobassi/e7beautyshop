@@ -21,10 +21,6 @@ public static class DependencyInjection
         services.AddScoped<ISchedulePersistencePort, SchedulePersistence>();
         services.AddScoped<IDayRestPersistencePort, DayRestPersistence>();
         
-        services.AddScoped(typeof(IPersistence<>), typeof(Persistence<>));
-        
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        
         return services;
     }
 }

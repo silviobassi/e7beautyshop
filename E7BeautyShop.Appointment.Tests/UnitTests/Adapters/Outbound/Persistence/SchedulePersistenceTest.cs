@@ -28,7 +28,7 @@ public class SchedulePersistenceTest
         Weekend weekend = (TimeSpan.FromHours(8), TimeSpan.FromHours(12));
         
         var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
-        var entity = _schedulePersistence.Create(schedule);
+        var entity = _schedulePersistence.CreateAsync(schedule);
         
         Assert.NotNull(entity);
         Assert.Equal(schedule.Id, entity.Id);
@@ -52,7 +52,7 @@ public class SchedulePersistenceTest
         Weekend weekend = (TimeSpan.FromHours(8), TimeSpan.FromHours(12));
         
         var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
-        var entity = _schedulePersistence.Update(schedule);
+        var entity = _schedulePersistence.UpdateAsync(schedule);
         
         Assert.NotNull(entity);
         Assert.Equal(schedule.Id, entity.Id);
@@ -76,7 +76,7 @@ public class SchedulePersistenceTest
         Weekend weekend = (TimeSpan.FromHours(8), TimeSpan.FromHours(12));
         
         var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
-        var entity = _schedulePersistence.Delete(schedule);
+        var entity = _schedulePersistence.DeleteAsync(schedule);
         Assert.NotNull(entity);
         Assert.Equal(schedule.Id, entity.Id);
         Assert.Equal(schedule.StartAt, entity.StartAt);
@@ -99,8 +99,8 @@ public class SchedulePersistenceTest
         Weekend weekend = (TimeSpan.FromHours(8), TimeSpan.FromHours(12));
         
         var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
-        _schedulePersistence.Create(schedule);
-        var entity = await _schedulePersistence.Get(x => x.Id == schedule.Id);
+        _schedulePersistence.CreateAsync(schedule);
+        var entity = await _schedulePersistence.GetByIdAsync(x => x.Id == schedule.Id);
         Assert.Null(entity);
     }
 }

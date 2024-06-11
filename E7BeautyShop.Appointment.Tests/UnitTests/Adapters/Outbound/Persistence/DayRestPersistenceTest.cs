@@ -49,7 +49,7 @@ public class DayRestPersistenceTest
     {
         var dayRest = DayRest.Create(DayOfWeek.Sunday);
         var entity = _dayRestPersistence.Create(dayRest);
-        entity = await _dayRestPersistence.Get( x => x.Id == entity.Id);
+        entity = await _dayRestPersistence.GetByIdAsync( x => x.Id == entity.Id);
         Assert.Null(entity);
     }
 }

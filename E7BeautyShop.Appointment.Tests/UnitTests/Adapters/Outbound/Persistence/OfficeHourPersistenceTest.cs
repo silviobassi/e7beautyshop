@@ -21,7 +21,7 @@ public class OfficeHourPersistenceTest
         var dataAndHour = DateTime.Now.AddDays(1);
         const int duration = 20;
         var officeHour = OfficeHour.Create(dataAndHour, duration);
-        var entity = _officeHourPersistence.Create(officeHour);
+        var entity = _officeHourPersistence.CreateAsync(officeHour);
         Assert.NotNull(entity);
         Assert.Equal(officeHour.Id, entity.Id);
         Assert.Equal(officeHour.DateAndHour, entity.DateAndHour);
@@ -34,7 +34,7 @@ public class OfficeHourPersistenceTest
         var dataAndHour = DateTime.Now.AddDays(1);
         const int duration = 20;
         var officeHour = OfficeHour.Create(dataAndHour, duration);
-        var entity = _officeHourPersistence.Update(officeHour);
+        var entity = _officeHourPersistence.UpdateAsync(officeHour);
         Assert.NotNull(entity);
         Assert.Equal(officeHour.Id, entity.Id);
         Assert.Equal(officeHour.DateAndHour, entity.DateAndHour);
@@ -47,7 +47,7 @@ public class OfficeHourPersistenceTest
         var dataAndHour = DateTime.Now.AddDays(1);
         const int duration = 20;
         var officeHour = OfficeHour.Create(dataAndHour, duration);
-        var entity = _officeHourPersistence.Delete(officeHour);
+        var entity = _officeHourPersistence.DeleteAsync(officeHour);
         Assert.NotNull(entity);
         Assert.Equal(officeHour.Id, entity.Id);
         Assert.Equal(officeHour.DateAndHour, entity.DateAndHour);
@@ -61,8 +61,8 @@ public class OfficeHourPersistenceTest
         var dataAndHour = DateTime.Now.AddDays(1);
         const int duration = 20;
         var officeHour = OfficeHour.Create(dataAndHour, duration);
-        var entity = _officeHourPersistence.Create(officeHour);
-        entity = await _officeHourPersistence.Get( x => x.Id == entity.Id);
+        var entity = _officeHourPersistence.CreateAsync(officeHour);
+        entity = await _officeHourPersistence.GetBydIdAsync( x => x.Id == entity.Id);
         Assert.Null(entity);
     }
 }
