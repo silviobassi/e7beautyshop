@@ -926,7 +926,8 @@
       },
       "E7BeautyShop.Appointment.Application/1.0.0": {
         "dependencies": {
-          "E7BeautyShop.Appointment.Core": "1.0.0"
+          "E7BeautyShop.Appointment.Core": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "8.0.6"
         },
         "runtime": {
           "E7BeautyShop.Appointment.Application.dll": {}

@@ -1,4 +1,5 @@
 ﻿using E7BeautyShop.Appointment.Core;
+using E7BeautyShop.Appointment.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace E7BeautyShop.Appointment.Infra.Context;

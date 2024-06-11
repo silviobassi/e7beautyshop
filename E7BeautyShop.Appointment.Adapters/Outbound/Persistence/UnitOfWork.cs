@@ -1,5 +1,6 @@
 ﻿using E7BeautyShop.Appointment.Application.Ports;
 using E7BeautyShop.Appointment.Infra.Context;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace E7BeautyShop.Appointment.Adapters.Outbound.Persistence;
 
@@ -21,13 +22,9 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
     public IDayRestPersistencePort DayRestPersistence => _dayRestPersistence ??= new DayRestPersistence(context);
 
 
-    public async Task Commit()
-    {
-        await context.SaveChangesAsync();
-    }
+    public async Task Commit() => await context.SaveChangesAsync();
 
-    public void Dispose()
-    {
-        context.Dispose();
-    }
+    public EntityEntry Entry(object entity) => context.Entry(entity);
+
+    public void Dispose() => context.Dispose();
 }

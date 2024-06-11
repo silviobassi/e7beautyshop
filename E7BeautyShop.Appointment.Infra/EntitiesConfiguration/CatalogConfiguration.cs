@@ -1,4 +1,6 @@
 ﻿using E7BeautyShop.Appointment.Core;
+using E7BeautyShop.Appointment.Core.Entities;
+using E7BeautyShop.Appointment.Core.ObjectsValue;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

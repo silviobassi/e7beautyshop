@@ -23,7 +23,16 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\E7BeautyShop.Appointment.Adapters\E7BeautyShop.Appointment.Adapters.csproj" />
+      <ProjectReference Include="..\E7BeautyShop.Appointment.Api\E7BeautyShop.Appointment.Api.csproj" />
+      <ProjectReference Include="..\E7BeautyShop.Appointment.Application\E7BeautyShop.Appointment.Application.csproj" />
       <ProjectReference Include="..\E7BeautyShop.Appointment.Core\E7BeautyShop.Appointment.Core.csproj" />
+      <ProjectReference Include="..\E7BeautyShop.Appointment.Infra.IoC\E7BeautyShop.Appointment.Infra.IoC.csproj" />
+      <ProjectReference Include="..\E7BeautyShop.Appointment.Infra\E7BeautyShop.Appointment.Infra.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="UnitTests\" />
     </ItemGroup>
 
 </Project>

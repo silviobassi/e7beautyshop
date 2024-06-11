@@ -1,4 +1,6 @@
-﻿namespace E7BeautyShop.Appointment.Application.Ports;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+
+namespace E7BeautyShop.Appointment.Application.Ports;
 
 public interface IUnitOfWork
 {
@@ -8,4 +10,7 @@ public interface IUnitOfWork
     
     IDayRestPersistencePort DayRestPersistence { get; }
     Task Commit();
+
+    void Dispose();
+    EntityEntry Entry(object entity);
 }
