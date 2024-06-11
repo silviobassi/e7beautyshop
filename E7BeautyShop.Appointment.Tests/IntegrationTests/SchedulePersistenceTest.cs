@@ -1,19 +1,14 @@
 ﻿using E7BeautyShop.Appointment.Application.Ports;
 using E7BeautyShop.Appointment.Core.Entities;
 using E7BeautyShop.Appointment.Core.ObjectsValue;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace E7BeautyShop.Appointment.Tests.IntegrationTests
 {
-    public class SchedulePersistenceTests : IClassFixture<TestStartup>
+    public class SchedulePersistenceTests(TestStartup startup) : IClassFixture<TestStartup>
     {
-        private readonly IUnitOfWork _unitOfWork;
-
-        public SchedulePersistenceTests(TestStartup startup)
-        {
-            _unitOfWork = startup.ServiceProvider.GetRequiredService<IUnitOfWork>();
-        }
+        private readonly ISchedulePersistencePort _schedulePersistence =
+            startup.ServiceProvider.GetRequiredService<ISchedulePersistencePort>();
 
         [Fact]
         public async Task Should_Persistence_Schedule()
@@ -27,13 +22,12 @@ namespace E7BeautyShop.Appointment.Tests.IntegrationTests
             Weekend weekend = (TimeSpan.FromHours(8), TimeSpan.FromHours(12));
 
             var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
-            
+
             var dayRest = DayRest.Create(DayOfWeek.Sunday);
             schedule.AddDayRest(dayRest);
-            _unitOfWork.SchedulePersistence.Create(schedule);
-            await _unitOfWork.Commit();
+            await _schedulePersistence.CreateAsync(schedule);
 
-            var currentSchedule = await _unitOfWork.SchedulePersistence.Get(x => x.Id == schedule.Id);
+            var currentSchedule = await _schedulePersistence.GetByIdAsync(schedule.Id);
 
             Assert.NotNull(currentSchedule);
             Assert.Equal(schedule.Id, currentSchedule.Id);
