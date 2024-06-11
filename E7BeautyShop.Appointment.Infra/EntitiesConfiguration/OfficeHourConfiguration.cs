@@ -14,7 +14,7 @@ public class OfficeHourConfiguration : IEntityTypeConfiguration<OfficeHour>
         
         builder.OwnsOne(oh => oh.CustomerId, ci =>
         {
-            ci.Property(i => i.Value).HasColumnName("Customer_Value").IsRequired(false);
+            ci.Property(i => i.Value).HasColumnName("Customer_Id").IsRequired(false);
         });
 
         builder.HasOne(oh => oh.Catalog)

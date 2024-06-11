@@ -13,11 +13,21 @@ public class CatalogConfiguration : IEntityTypeConfiguration<Catalog>
         builder.OwnsOne(c => c.ServiceDescription)
             .Property(sd => sd.Name)
             .HasColumnName("Description_Name")
+            .HasMaxLength(150)
             .IsRequired();
 
-        builder.OwnsOne(c => c.ServiceDescription)
-            .Property(sd => sd.Price)
-            .HasColumnName("Description_Price")
-            .IsRequired();
+        builder.OwnsOne(c => c.ServiceDescription, sd =>
+        {
+            sd.Property(d => d.Name)
+                .HasColumnName("Description_Name")
+                .HasMaxLength(ServiceDescription.MaxNameLength)
+                .IsRequired();
+            
+            sd.Property(d => d.Price)
+                .HasColumnName("Description_Price")
+                .HasColumnType("decimal(5,2)")
+                .IsRequired();
+        });
+
     }
 }

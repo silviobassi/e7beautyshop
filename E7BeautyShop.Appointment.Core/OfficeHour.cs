@@ -12,7 +12,7 @@ public sealed class OfficeHour : Entity
     public CustomerId? CustomerId { get; private set; }
     public Guid? ScheduleId { get; private set; }
     public event DomainEventDelegate? OnDomainEventOccured;
-    
+
     private readonly IReservedRegisteredEventFactory? _reservedRegisteredEvent;
 
     public OfficeHour()
@@ -20,8 +20,8 @@ public sealed class OfficeHour : Entity
     }
 
     public OfficeHour(IReservedRegisteredEventFactory reservedRegisteredEvent) => _reservedRegisteredEvent =
-            reservedRegisteredEvent ?? throw new ArgumentNullException(nameof(reservedRegisteredEvent));
- 
+        reservedRegisteredEvent ?? throw new ArgumentNullException(nameof(reservedRegisteredEvent));
+
 
     private OfficeHour(DateTime dateAndHour, int duration)
     {
@@ -29,20 +29,19 @@ public sealed class OfficeHour : Entity
         Duration = duration;
         IsAvailable = true;
         ValidateDateAndHour();
+        BusinessException.When(Duration <= 0, "Duration cannot be less than or equal to zero");
     }
 
     public static OfficeHour Create(DateTime dateAndHour, int duration) => new(dateAndHour, duration);
-    
+
     public void Cancel() => IsAvailable = false;
-    
+
     public void Attend() => IsAvailable = true;
 
 
     public OfficeHour ReserveTimeForTheCustomer(DateTime reserveDateAndHour, CustomerId? customerId, Catalog catalog)
     {
         var officeHour = CreateReserveOfficeHour(reserveDateAndHour, customerId, catalog);
-        ValidateDateAndHour();
-        Validate();
         if (ReserveRegisteredEvent is null)
             throw new InvalidOperationException("Reserved registered event factory is not initialized.");
         OnDomainEventOccured?.Invoke(ReserveRegisteredEvent);
@@ -56,28 +55,26 @@ public sealed class OfficeHour : Entity
         IsAvailable = false;
         Catalog = catalog;
         ValidateDateAndHour();
-        Validate();
+        ValidateCustomer();
+        BusinessNullException.When(Catalog is null, nameof(Catalog));
         return this;
     }
 
     public void ReserveCancel()
     {
         BusinessException.When(IsAvailable, "OfficeHour is already attended");
-        BusinessException.When(CustomerId is null, "OfficeHour has no customer");
+        ValidateCustomer();
         CustomerId = null;
         Attend();
     }
 
     public DateTime GetEndTime() => DateAndHour.AddMinutes(Duration);
-
-    private void Validate()
-    {
-        BusinessNullException.When(CustomerId is null, nameof(CustomerId));
-        BusinessNullException.When(Catalog is null, nameof(Catalog));
-    }
-
+    
     private void ValidateDateAndHour() =>
         BusinessNullException.When(DateAndHour == default, nameof(DateAndHour));
+
+    private void ValidateCustomer() =>
+        BusinessNullException.When(CustomerId is null, nameof(CustomerId));
 
     private ReserveRegisteredEvent? ReserveRegisteredEvent => _reservedRegisteredEvent?.Create(CustomerId?.Value,
         DateAndHour, Catalog?.DescriptionName,

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace E7BeautyShop.Appointment.Infra.EntitiesConfiguration;
 
-public class ScheduleConfiguration: IEntityTypeConfiguration<Schedule>
+public class ScheduleConfiguration : IEntityTypeConfiguration<Schedule>
 {
     public void Configure(EntityTypeBuilder<Schedule> builder)
     {
@@ -23,17 +23,18 @@ public class ScheduleConfiguration: IEntityTypeConfiguration<Schedule>
             we.Property(w => w.StartAt).HasColumnName("Weekend_StartAt").IsRequired();
             we.Property(w => w.EndAt).HasColumnName("Weekend_EndAt").IsRequired();
         });
-        
+
         builder.OwnsOne(s => s.ProfessionalId, p =>
         {
-            p.Property(pr => pr.Value).HasColumnName("Professional_Value").IsRequired();
+            p.Property(pr => pr.Value).HasColumnName("Professional_Id").IsRequired();
         });
+        
 
         builder.HasMany(s => s.DaysRest)
             .WithOne()
             .HasForeignKey(dr => dr.ScheduleId)
             .IsRequired();
-        
+
         builder.HasMany(s => s.OfficeHours)
             .WithOne()
             .HasForeignKey(oh => oh.ScheduleId)

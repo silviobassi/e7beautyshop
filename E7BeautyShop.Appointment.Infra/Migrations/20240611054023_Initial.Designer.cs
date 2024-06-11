@@ -3,16 +3,16 @@ using System;
 using E7BeautyShop.Appointment.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace E7BeautyShop.Appointment.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240610233251_Initial")]
+    [Migration("20240611054023_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -20,16 +20,16 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("E7BeautyShop.Appointment.Core.Catalog", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -40,42 +40,42 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("DayOnWeek")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<Guid>("ScheduleId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ScheduleId");
 
-                    b.ToTable("DayRest");
+                    b.ToTable("DaysRest");
                 });
 
             modelBuilder.Entity("E7BeautyShop.Appointment.Core.OfficeHour", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CatalogId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateAndHour")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Duration")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsAvailable")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("ScheduleId")
                         .IsRequired()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -90,13 +90,13 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("EndAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("StartAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -108,15 +108,16 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                     b.OwnsOne("E7BeautyShop.Appointment.Core.ServiceDescription", "ServiceDescription", b1 =>
                         {
                             b1.Property<Guid>("CatalogId")
-                                .HasColumnType("uuid");
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("Name")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(150)
+                                .HasColumnType("nvarchar(150)")
                                 .HasColumnName("Description_Name");
 
                             b1.Property<decimal>("Price")
-                                .HasColumnType("numeric")
+                                .HasColumnType("decimal(5,2)")
                                 .HasColumnName("Description_Price");
 
                             b1.HasKey("CatalogId");
@@ -154,11 +155,11 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                     b.OwnsOne("E7BeautyShop.Appointment.Core.CustomerId", "CustomerId", b1 =>
                         {
                             b1.Property<Guid>("OfficeHourId")
-                                .HasColumnType("uuid");
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<Guid?>("Value")
-                                .HasColumnType("uuid")
-                                .HasColumnName("Customer_Value");
+                                .HasColumnType("uniqueidentifier")
+                                .HasColumnName("Customer_Id");
 
                             b1.HasKey("OfficeHourId");
 
@@ -178,11 +179,11 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                     b.OwnsOne("E7BeautyShop.Appointment.Core.ProfessionalId", "ProfessionalId", b1 =>
                         {
                             b1.Property<Guid>("ScheduleId")
-                                .HasColumnType("uuid");
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<Guid>("Value")
-                                .HasColumnType("uuid")
-                                .HasColumnName("Professional_Value");
+                                .HasColumnType("uniqueidentifier")
+                                .HasColumnName("Professional_Id");
 
                             b1.HasKey("ScheduleId");
 
@@ -195,14 +196,14 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                     b.OwnsOne("E7BeautyShop.Appointment.Core.Weekday", "Weekday", b1 =>
                         {
                             b1.Property<Guid>("ScheduleId")
-                                .HasColumnType("uuid");
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<TimeSpan>("EndAt")
-                                .HasColumnType("interval")
+                                .HasColumnType("time")
                                 .HasColumnName("Weekday_EndAt");
 
                             b1.Property<TimeSpan>("StartAt")
-                                .HasColumnType("interval")
+                                .HasColumnType("time")
                                 .HasColumnName("Weekday_StartAt");
 
                             b1.HasKey("ScheduleId");
@@ -216,14 +217,14 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                     b.OwnsOne("E7BeautyShop.Appointment.Core.Weekend", "Weekend", b1 =>
                         {
                             b1.Property<Guid>("ScheduleId")
-                                .HasColumnType("uuid");
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<TimeSpan>("EndAt")
-                                .HasColumnType("interval")
+                                .HasColumnType("time")
                                 .HasColumnName("Weekend_EndAt");
 
                             b1.Property<TimeSpan>("StartAt")
-                                .HasColumnType("interval")
+                                .HasColumnType("time")
                                 .HasColumnName("Weekend_StartAt");
 
                             b1.HasKey("ScheduleId");

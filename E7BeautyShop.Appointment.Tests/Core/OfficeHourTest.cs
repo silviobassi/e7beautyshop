@@ -96,13 +96,10 @@ public class OfficeHourTest(ITestOutputHelper output)
     public void Should_ReserveCancel_ThrowsBusinessException_WhenOfficeHourHasNoCustomer()
     {
         var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
-
         var officeHour = OfficeHour.Create(dateAndHour, 30);
         officeHour.Cancel();
-
-        var exception = Assert.Throws<BusinessException>(() => officeHour.ReserveCancel());
-
-        Assert.Equal("OfficeHour has no customer", exception.Message);
+        var exception = Assert.Throws<ArgumentNullException>(() => officeHour.ReserveCancel());
+        Assert.Equal("Value cannot be null. (Parameter 'CustomerId')", exception.Message);
     }
 
     [Fact]

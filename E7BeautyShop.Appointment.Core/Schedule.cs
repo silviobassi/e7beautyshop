@@ -4,7 +4,7 @@ public sealed class Schedule : Entity, IAggregateRoot
 {
     public DateTime StartAt { get; private set; }
     public DateTime EndAt { get; private set; }
-    public ProfessionalId? ProfessionalId { get; }
+    public ProfessionalId? ProfessionalId { get; private set; }
     public Weekday? Weekday { get; private init; }
     public Weekend? Weekend { get; private init; }
 

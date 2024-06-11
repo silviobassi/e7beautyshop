@@ -15,9 +15,9 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                 name: "Catalogs",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Description_Name = table.Column<string>(type: "text", nullable: true),
-                    Description_Price = table.Column<decimal>(type: "numeric", nullable: true)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description_Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    Description_Price = table.Column<decimal>(type: "decimal(5,2)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,14 +28,14 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                 name: "Schedules",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    StartAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    EndAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Professional_Value = table.Column<Guid>(type: "uuid", nullable: true),
-                    Weekday_StartAt = table.Column<TimeSpan>(type: "interval", nullable: true),
-                    Weekday_EndAt = table.Column<TimeSpan>(type: "interval", nullable: true),
-                    Weekend_StartAt = table.Column<TimeSpan>(type: "interval", nullable: true),
-                    Weekend_EndAt = table.Column<TimeSpan>(type: "interval", nullable: true)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StartAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Professional_Id = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Weekday_StartAt = table.Column<TimeSpan>(type: "time", nullable: true),
+                    Weekday_EndAt = table.Column<TimeSpan>(type: "time", nullable: true),
+                    Weekend_StartAt = table.Column<TimeSpan>(type: "time", nullable: true),
+                    Weekend_EndAt = table.Column<TimeSpan>(type: "time", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,18 +43,18 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DayRest",
+                name: "DaysRest",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    DayOnWeek = table.Column<int>(type: "integer", nullable: false),
-                    ScheduleId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DayOnWeek = table.Column<int>(type: "int", nullable: false),
+                    ScheduleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DayRest", x => x.Id);
+                    table.PrimaryKey("PK_DaysRest", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DayRest_Schedules_ScheduleId",
+                        name: "FK_DaysRest_Schedules_ScheduleId",
                         column: x => x.ScheduleId,
                         principalTable: "Schedules",
                         principalColumn: "Id",
@@ -65,13 +65,13 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                 name: "OfficeHours",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    DateAndHour = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Duration = table.Column<int>(type: "integer", nullable: false),
-                    IsAvailable = table.Column<bool>(type: "boolean", nullable: false),
-                    CatalogId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Customer_Value = table.Column<Guid>(type: "uuid", nullable: true),
-                    ScheduleId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DateAndHour = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    CatalogId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Customer_Id = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ScheduleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,8 +90,8 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DayRest_ScheduleId",
-                table: "DayRest",
+                name: "IX_DaysRest_ScheduleId",
+                table: "DaysRest",
                 column: "ScheduleId");
 
             migrationBuilder.CreateIndex(
@@ -109,7 +109,7 @@ namespace E7BeautyShop.Appointment.Infra.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DayRest");
+                name: "DaysRest");
 
             migrationBuilder.DropTable(
                 name: "OfficeHours");
