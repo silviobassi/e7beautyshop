@@ -19,20 +19,17 @@ public sealed class Catalog : Entity
     }
 
     public static Catalog Create(ServiceDescription? serviceDescription) => new(serviceDescription);
-
-
-    public string? DescriptionName => ServiceDescription?.Name;
-
-    public decimal? DescriptionPrice => ServiceDescription?.Price;
-
+    
     public void Update(Guid id, ServiceDescription? serviceDescription)
     {
         Id = id;
         ServiceDescription = serviceDescription!;
         Validate();
     }
+    public string? DescriptionName => ServiceDescription?.Name;
 
-
+    public decimal? DescriptionPrice => ServiceDescription?.Price;
+    
     private void Validate()
     {
         BusinessException.When(Id == Guid.Empty, nameof(Id));

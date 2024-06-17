@@ -9,6 +9,7 @@ public sealed record ServiceDescription
 
     public const int MaxNameLength = 150;
 
+    public ServiceDescription(){}
     private ServiceDescription(string? name, decimal price)
     {
         Name = name;

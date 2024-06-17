@@ -1,8 +1,7 @@
-﻿using E7BeautyShop.Appointment.Core;
-using E7BeautyShop.Appointment.Core.Entities;
+﻿using E7BeautyShop.Appointment.Core.Entities;
 using E7BeautyShop.Appointment.Core.ObjectsValue;
 
-namespace E7BeautyShop.Appointment.Tests.Core;
+namespace E7BeautyShop.Appointment.Tests.UnitTests.Core;
 
 public class CatalogTest
 {

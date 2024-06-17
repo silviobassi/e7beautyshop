@@ -1,5 +1,4 @@
-﻿using E7BeautyShop.Appointment.Core;
-using E7BeautyShop.Appointment.Core.DomainEvents;
+﻿using E7BeautyShop.Appointment.Core.DomainEvents;
 using E7BeautyShop.Appointment.Core.Entities;
 using E7BeautyShop.Appointment.Core.ObjectsValue;
 using E7BeautyShop.Appointment.Core.Validations;
@@ -87,10 +86,9 @@ public class OfficeHourTest(ITestOutputHelper output)
     [Fact]
     public void Should_ReserveCancel_ThrowsBusinessException_WhenOfficeHourIsNotAvailable()
     {
-
         var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
         var officeHour = OfficeHour.Create(dateAndHour, 30);
-        
+
         var exception = Assert.Throws<BusinessException>(() => officeHour.ReserveCancel());
 
         Assert.Equal("OfficeHour is already attended", exception.Message);
@@ -180,4 +178,5 @@ public class OfficeHourTest(ITestOutputHelper output)
         var expectedDateTime = new DateTime(2022, 1, 1, 10, 30, 0, DateTimeKind.Local); // 10:30 AM
         Assert.Equal(expectedDateTime, result);
     }
+    
 }

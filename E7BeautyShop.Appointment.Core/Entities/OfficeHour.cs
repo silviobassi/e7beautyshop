@@ -11,7 +11,7 @@ public sealed class OfficeHour : Entity
     public DateTime DateAndHour { get; private set; }
     public int Duration { get; private set; }
     public bool IsAvailable { get; private set; }
-    public Guid CatalogId { get; init; }
+    public Guid? CatalogId { get; init; }
     public Catalog? Catalog { get; private set; }
     public CustomerId? CustomerId { get; private set; }
     public Guid? ScheduleId { get; private set; }

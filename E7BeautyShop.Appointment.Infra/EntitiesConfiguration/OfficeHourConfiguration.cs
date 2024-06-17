@@ -20,7 +20,6 @@ public class OfficeHourConfiguration : IEntityTypeConfiguration<OfficeHour>
 
         builder.HasOne(oh => oh.Catalog)
             .WithMany()
-            .HasForeignKey(oh => oh.CatalogId)
-            .IsRequired(false);
+            .HasForeignKey(oh => oh.CatalogId);
     }
 }

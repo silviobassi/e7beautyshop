@@ -12,12 +12,6 @@ public class CatalogConfiguration : IEntityTypeConfiguration<Catalog>
     {
         builder.HasKey(c => c.Id);
 
-        builder.OwnsOne(c => c.ServiceDescription)
-            .Property(sd => sd.Name)
-            .HasColumnName("Description_Name")
-            .HasMaxLength(150)
-            .IsRequired();
-
         builder.OwnsOne(c => c.ServiceDescription, sd =>
         {
             sd.Property(d => d.Name)
