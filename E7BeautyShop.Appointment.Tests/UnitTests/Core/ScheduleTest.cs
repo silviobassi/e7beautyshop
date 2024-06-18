@@ -45,7 +45,7 @@ public class ScheduleTest(ITestOutputHelper output)
     [Fact]
     public void Should_AddOfficeHour_WhenNotDayRest()
     {
-        var startAt = new DateTime(2024, 06, 18, 8, 0,0, DateTimeKind.Utc);
+        var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = startAt.AddDays(7);
         var professionalId = Guid.NewGuid();
         var weekday = (_startWeekday, _endWeekday);
@@ -61,7 +61,7 @@ public class ScheduleTest(ITestOutputHelper output)
     [Fact]
     public void Should_NotAddOfficeHour_WhenDayRest()
     {
-        var startAt = new DateTime(2024, 06, 18, 8, 0,0, DateTimeKind.Utc);
+        var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = startAt.AddDays(7);
         var professionalId = Guid.NewGuid();
         var weekday = (_startWeekday, _endWeekday);
@@ -79,7 +79,7 @@ public class ScheduleTest(ITestOutputHelper output)
     [Fact]
     public void Should_UpdateSchedule_WithValidParameters()
     {
-        var startAt = new DateTime(2024, 06, 18, 8, 0,0, DateTimeKind.Utc);
+        var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = startAt.AddDays(7);
         var professionalId = Guid.NewGuid();
         var weekday = (_startWeekday, _endWeekday);
@@ -104,7 +104,7 @@ public class ScheduleTest(ITestOutputHelper output)
     [Fact]
     public void Should_ThrowException_WhenAddingOfficeHourBeforeLastOfficeHour()
     {
-        var startAt = new DateTime(2024, 06, 18, 8, 0,0, DateTimeKind.Utc);
+        var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = startAt.AddDays(7);
         var professionalId = Guid.NewGuid();
         var weekday = (_startWeekday, _endWeekday);
@@ -117,11 +117,11 @@ public class ScheduleTest(ITestOutputHelper output)
 
         Assert.Throws<BusinessException>(() => schedule.AddOfficeHour(officeHour2));
     }
-    
+
     [Fact]
     public void Should_NotThrowException_WhenAddingOfficeHourBeforeLastOfficeHour()
     {
-        var startAt = new DateTime(2024, 06, 18, 8, 0,0, DateTimeKind.Utc);
+        var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = startAt.AddDays(7);
         var professionalId = Guid.NewGuid();
         var weekday = (_startWeekday, _endWeekday);
@@ -134,5 +134,25 @@ public class ScheduleTest(ITestOutputHelper output)
 
         var exception = Record.Exception(() => schedule.AddOfficeHour(officeHour2));
         Assert.Null(exception);
+    }
+
+    [Fact]
+    public void Should_ReturnTrue_WhenOfficeHourIsOnWeekday()
+    {
+        var officeHour = OfficeHour.Create(
+            new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc), 30);
+        var schedule = new Schedule();
+        var result = schedule.IsWeekday(officeHour);
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void Should_ReturnFalse_WhenOfficeHourIsOnWeekend()
+    {
+        var officeHour = OfficeHour.Create(
+            new DateTime(2024, 06, 22, 8, 0, 0, DateTimeKind.Utc), 30);
+        var schedule = new Schedule();
+        var result = schedule.IsWeekday(officeHour);
+        Assert.False(result);
     }
 }
