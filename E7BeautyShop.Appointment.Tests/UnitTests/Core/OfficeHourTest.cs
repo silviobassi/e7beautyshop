@@ -4,7 +4,7 @@ using E7BeautyShop.Appointment.Core.ObjectsValue;
 using E7BeautyShop.Appointment.Core.Validations;
 using Xunit.Abstractions;
 
-namespace E7BeautyShop.Appointment.Tests.Core;
+namespace E7BeautyShop.Appointment.Tests.UnitTests.Core;
 
 public class OfficeHourTest(ITestOutputHelper output)
 {

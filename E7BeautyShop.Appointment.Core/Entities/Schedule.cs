@@ -43,10 +43,23 @@ public sealed class Schedule : Entity, IAggregateRoot
     public void AddOfficeHour(OfficeHour officeHour)
     {
         if (IsDayRest(officeHour)) return;
-        //var checkOfficeHour = CheckOfficeHour(officeHour);
 
+        if (_officeHours.Any() && IsNotGreaterThanTimeAndDurationLastTime(officeHour, _officeHours.Last()))
+        {
+            throw new BusinessException("Cannot add an OfficeHour before the last OfficeHour");
+        }
 
         _officeHours.Add(officeHour);
+    }
+
+    private static bool IsNotGreaterThanTimeAndDurationLastTime(OfficeHour officeHour, OfficeHour? lastOfficeHour)
+    {
+        return !IsGreaterThanTimeAndDurationLastTime(officeHour, lastOfficeHour);
+    }
+
+    private static bool IsGreaterThanTimeAndDurationLastTime(OfficeHour officeHour, OfficeHour? lastOfficeHour)
+    {
+        return officeHour.DateAndHour >= lastOfficeHour?.GetEndTime();
     }
 
     public void RemoveOfficeHour(OfficeHour officeHour)
@@ -60,7 +73,7 @@ public sealed class Schedule : Entity, IAggregateRoot
         return existsDayRest && DaysRest.Count > 0;
     }
 
-    public bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
+    private bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
 
     private bool IsWeekend(OfficeHour? officeHour)
         => officeHour?.DateAndHour.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
