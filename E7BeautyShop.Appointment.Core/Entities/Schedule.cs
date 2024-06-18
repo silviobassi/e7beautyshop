@@ -44,42 +44,9 @@ public sealed class Schedule : Entity, IAggregateRoot
     {
         if (IsDayRest(officeHour)) return;
         //var checkOfficeHour = CheckOfficeHour(officeHour);
-        
-        
+
+
         _officeHours.Add(officeHour);
-    }
-
-    public List<OfficeHour?> CheckOfficeHour(OfficeHour officeHour)
-    {
-        TimeSpan smallestBiggerDifference = TimeSpan.MaxValue;
-        TimeSpan smallestDifference = TimeSpan.MaxValue;
-            
-        OfficeHour? biggerNearestOfficeHour = null;
-        OfficeHour? smallestNearestOfficeHour = null;
-        foreach (var of in _officeHours)
-        {
-            var difference = (of.DateAndHour - officeHour.DateAndHour).Duration();
-
-            // Verificar se é a próxima maior hora
-           
-            
-            if (of.DateAndHour > officeHour.DateAndHour && difference < smallestBiggerDifference)
-            {
-                smallestBiggerDifference = difference;
-                biggerNearestOfficeHour = of;
-            }
-
-            // Atualizar a menor hora próxima
-            
-            if (difference < smallestDifference)
-            {
-                smallestDifference = difference;
-                smallestNearestOfficeHour = of;
-            }
-        }
-        
-        List<OfficeHour?> officeHoursProcessed = [smallestNearestOfficeHour, biggerNearestOfficeHour];
-        return officeHoursProcessed;
     }
 
     public void RemoveOfficeHour(OfficeHour officeHour)

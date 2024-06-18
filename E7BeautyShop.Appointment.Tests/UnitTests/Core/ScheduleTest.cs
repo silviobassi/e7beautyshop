@@ -1,9 +1,12 @@
 ﻿using E7BeautyShop.Appointment.Core.Entities;
 using E7BeautyShop.Appointment.Core.ObjectsValue;
+using E7BeautyShop.Appointment.Core.Services;
+using E7BeautyShop.Appointment.Core.Validations;
+using Xunit.Abstractions;
 
 namespace E7BeautyShop.Appointment.Tests.UnitTests.Core;
 
-public class ScheduleTest
+public class ScheduleTest(ITestOutputHelper output)
 {
     private readonly TimeSpan _startWeekday = new(8, 0, 0);
     private readonly TimeSpan _endWeekday = new(18, 0, 0);
@@ -31,7 +34,7 @@ public class ScheduleTest
         Assert.NotEmpty(schedule.OfficeHours);
         Assert.Equal(2, schedule.OfficeHours.Count);
     }
-    
+
     [Fact]
     public void Should_RemoveDayRest_WhenCalled_ShouldRemoveDayRestFromList()
     {
@@ -96,13 +99,13 @@ public class ScheduleTest
         var dayRest = DayRest.Create(DayOfWeek.Monday);
         schedule.AddDayRest(dayRest);
         schedule.AddOfficeHour(officeHour);
-        
+
         var newStartAt = DateTime.Now.AddDays(1);
         var newEndAt = DateTime.Now.AddDays(2);
         var newWeekday = (_startWeekday, _endWeekday);
         var newWeekend = (_startWeekend, _endWeekend);
         var newProfessionalId = Guid.Parse("01b48b42-e04e-4d19-a805-df9a4a56394b");
-        
+
         schedule.Update(schedule.Id, newStartAt, newEndAt, newProfessionalId, newWeekday, newWeekend);
 
         Assert.Equal(newStartAt, schedule.StartAt);
@@ -112,42 +115,51 @@ public class ScheduleTest
         Assert.Equal(newWeekend, schedule.Weekend);
         Assert.Single(schedule.DaysRest);
         Assert.Single(schedule.OfficeHours);
-        
     }
 
     [Fact]
     public void Should_Check_PreviousAndNext_OfficeHour_GivenOfficeHour()
     {
-        var dateAndHour = new DateTime(2024, 5, 30, 8, 52, 0, DateTimeKind.Local);
+        var dateAndHour = new DateTime(2024, 5, 30, 8, 40, 0, DateTimeKind.Local);
         var officeHour = OfficeHour.Create(dateAndHour, 30);
 
         var dateAndHour2 = new DateTime(2024, 5, 30, 8, 30, 0, DateTimeKind.Local);
-        var officeHour2 = OfficeHour.Create(dateAndHour2, 20);
+        var officeHour2 = OfficeHour.Create(dateAndHour2, 30);
 
-        var dateAndHour3 = new DateTime(2024, 5, 30, 8, 50, 0, DateTimeKind.Local);
-        var officeHour3 = OfficeHour.Create(dateAndHour3, 10);
+        var dateAndHour3 = new DateTime(2024, 5, 30, 10, 01, 0, DateTimeKind.Local);
+        var officeHour3 = OfficeHour.Create(dateAndHour3, 30);
 
-        var dateAndHour4 = new DateTime(2024, 5, 30, 9, 0, 0, DateTimeKind.Local);
-        var officeHour4 = OfficeHour.Create(dateAndHour4, 20);
+        var dateAndHour4 = new DateTime(2024, 5, 30, 10, 31, 0, DateTimeKind.Local);
+        var officeHour4 = OfficeHour.Create(dateAndHour4, 30);
 
-        var dateAndHour5 = new DateTime(2024, 5, 30, 9, 20, 0, DateTimeKind.Local);
+        var dateAndHour5 = new DateTime(2024, 5, 30, 11, 1, 0, DateTimeKind.Local);
         var officeHour5 = OfficeHour.Create(dateAndHour5, 30);
 
         Weekday weekday = (_startWeekday, _endWeekday);
         Weekend weekend = (_startWeekend, _endWeekend);
 
         ProfessionalId professionalId = Guid.NewGuid();
-        
+
         var schedule = Schedule.Create(DateTime.Now, DateTime.Now.AddDays(1), professionalId, weekday, weekend);
         schedule.AddOfficeHour(officeHour2);
         schedule.AddOfficeHour(officeHour3);
         schedule.AddOfficeHour(officeHour4);
         schedule.AddOfficeHour(officeHour5);
         
-        var checkOfficeHour = schedule.CheckOfficeHour(officeHour);
+        var checkOfficeHour = new CheckOfficeHour(schedule.OfficeHours, officeHour);
         
-        Assert.NotNull(checkOfficeHour);
-        Assert.Equal(officeHour3, checkOfficeHour[0]);
-        Assert.Equal(officeHour4, checkOfficeHour[1]);
+        OfficeHour? previous = null;
+        OfficeHour? next = null;
+        var exceptionCheckPrevious = Assert.Throws<BusinessException>(() => checkOfficeHour.WhenPrevious(ref previous));
+        var exceptionCheckNext = Assert.Throws<BusinessException>(() =>checkOfficeHour.WhenNext(ref next));
+        
+        Assert.Equal("Office hour is already attended", exceptionCheckPrevious.Message);
+        Assert.Equal(officeHour2, previous);
+        Assert.Equal("Office hour cannot be less than 60 minutes between previous and next office hour", 
+            exceptionCheckNext.Message);
+        Assert.Equal(officeHour3, next);
+
+        output.WriteLine($"Previous: {previous?.DateAndHour}");
+        output.WriteLine($"Next: {next?.DateAndHour}");
     }
 }
