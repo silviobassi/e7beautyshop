@@ -146,7 +146,7 @@ public class ScheduleTest(ITestOutputHelper output)
         schedule.AddOfficeHour(officeHour4);
         schedule.AddOfficeHour(officeHour5);
         
-        var checkOfficeHour = new CheckOfficeHour(schedule.OfficeHours, officeHour);
+        var checkOfficeHour = new CheckOfficeHour(officeHour, schedule.OfficeHours);
         
         OfficeHour? previous = null;
         OfficeHour? next = null;

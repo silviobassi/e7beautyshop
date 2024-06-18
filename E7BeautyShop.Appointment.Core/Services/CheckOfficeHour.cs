@@ -3,8 +3,13 @@ using E7BeautyShop.Appointment.Core.Validations;
 
 namespace E7BeautyShop.Appointment.Core.Services;
 
-public class CheckOfficeHour(IReadOnlyCollection<OfficeHour> officeHours, OfficeHour officeHour)
+public class CheckOfficeHour(OfficeHour officeHour, IReadOnlyCollection<OfficeHour> officeHours)
 {
+    
+    private readonly OfficeHour _officeHour = officeHour;
+    private List<OfficeHour> _officeHours = officeHours.OrderBy(of => of.DateAndHour).ToList();
+
+
     public void WhenPrevious(ref OfficeHour? previous)
     {
         PreviousNextProcess().TryGetValue($"Previous", out previous);
@@ -59,13 +64,12 @@ public class CheckOfficeHour(IReadOnlyCollection<OfficeHour> officeHours, Office
 
     private (OfficeHour? previous, OfficeHour? next) GetPreviousAndNext()
     {
-        var orderedOfficeHours = officeHours.OrderBy(oh => oh.DateAndHour).ToList();
-        return (GetPrevious(orderedOfficeHours), GetNext(orderedOfficeHours));
+        return (GetPrevious(), GetNext());
     }
 
-    private OfficeHour? GetPrevious(List<OfficeHour> orderedOfficeHours) =>
-        orderedOfficeHours.Find(ooh => ooh.GetEndTime() < officeHour.GetEndTime());
+    private OfficeHour? GetPrevious() =>
+        _officeHours.Find(ooh => ooh.GetEndTime() < officeHour.GetEndTime());
 
-    private OfficeHour? GetNext(List<OfficeHour> orderedOfficeHours) =>
-        orderedOfficeHours.Find(ooh => ooh.GetEndTime() > officeHour.GetEndTime());
+    private OfficeHour? GetNext() =>
+        _officeHours.Find(ooh => ooh.GetEndTime() > officeHour.GetEndTime());
 }
