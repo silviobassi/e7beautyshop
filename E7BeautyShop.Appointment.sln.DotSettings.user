@@ -16,6 +16,7 @@
     &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.Core.OfficeHourTest.Should_GetOfficeHour_BiggerNearestHour&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.UnitTests.Core.ScheduleTest.Should_CheckOfficeHour_InSchedule&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.UnitTests.Core.ScheduleTest.Should_Check_PreviousAndNext_OfficeHour_GivenOfficeHour&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.Core.OfficeHourTest.Should_ReserveCancel_ThrowsBusinessException_WhenOfficeHourIsNotAvailable&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cbbef56c_002Da30f_002D40b8_002D8f3e_002D1db9571f54bc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;

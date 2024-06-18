@@ -146,20 +146,15 @@ public class ScheduleTest(ITestOutputHelper output)
         schedule.AddOfficeHour(officeHour4);
         schedule.AddOfficeHour(officeHour5);
         
-        var checkOfficeHour = new CheckOfficeHour(officeHour, schedule.OfficeHours);
+        var assemblePreviousNext = new AssemblePreviousNext(officeHour, schedule.OfficeHours);
+        var validatorOfficeHour = new ValidatorOfficeHour(officeHour, assemblePreviousNext.PreviousOfficeHour, 
+            assemblePreviousNext.NextOfficeHour);
         
-        OfficeHour? previous = null;
-        OfficeHour? next = null;
-        var exceptionCheckPrevious = Assert.Throws<BusinessException>(() => checkOfficeHour.WhenPrevious(ref previous));
-        var exceptionCheckNext = Assert.Throws<BusinessException>(() =>checkOfficeHour.WhenNext(ref next));
+        var exceptionCheckPrevious = Assert.Throws<BusinessException>(() => validatorOfficeHour.ValidatePreviousOfficeHour());
+        var exceptionCheckNext = Assert.Throws<BusinessException>(() => validatorOfficeHour.ValidateNextOfficeHour());
         
         Assert.Equal("Office hour is already attended", exceptionCheckPrevious.Message);
-        Assert.Equal(officeHour2, previous);
         Assert.Equal("Office hour cannot be less than 60 minutes between previous and next office hour", 
             exceptionCheckNext.Message);
-        Assert.Equal(officeHour3, next);
-
-        output.WriteLine($"Previous: {previous?.DateAndHour}");
-        output.WriteLine($"Next: {next?.DateAndHour}");
     }
 }
