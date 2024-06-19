@@ -1,34 +1,17 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=8685ACF5_002DA01C_002D4E39_002DAF5E_002D299155B1717E_002Fd_003AMigrations_002Ff_003A20240611032231_005FSeedSchedules_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=D239C216_002D263D_002D4518_002D8323_002D0FF540CDEC2E_002Fd_003AEntities_002Ff_003ASchedule_002Ecs/@EntryIndexedValue">ExplicitlyExcluded</s:String>
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\silvio\AppData\Local\Temp\JetBrains\Rider\vAny\CoverageData\_E7BeautyShop.Appointment.-531564782\Snapshot\snapshot.utdcvr</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=532e12c8_002D6bb9_002D4267_002D9620_002Db3d613ea6434/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=36c5eb94_002D7b7a_002D4517_002D835f_002D0e0f20a003cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=922249fc_002Dee23_002D40a3_002Db900_002Dda9eb3ccaf55/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Should_Persistence_Schedule" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.IntegrationTests.SchedulePersistenceTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.IntegrationTests.CatalogPersistenceTest.Should_Create_Catalog&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.UnitTests.Core.CatalogTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.IntegrationTests.CatalogPersistenceTest.Should_Update_Catalog&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.IntegrationTests.CatalogPersistenceTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.UnitTests.Core.ScheduleTest.Should_Update_Schedule&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.Core.OfficeHourTest.Should_GetOfficeHour_BiggerNearestHour&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.UnitTests.Core.ScheduleTest.Should_CheckOfficeHour_InSchedule&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.UnitTests.Core.ScheduleTest.Should_Check_PreviousAndNext_OfficeHour_GivenOfficeHour&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.Core.OfficeHourTest.Should_ReserveCancel_ThrowsBusinessException_WhenOfficeHourIsNotAvailable&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::70DA1F4D-6A07-4354-A270-8DBD9F63438D::net8.0::E7BeautyShop.Appointment.Tests.UnitTests.Core.ScheduleTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a2f0ccf2_002D5b9a_002D4f8e_002Db485_002D801e0a57f08e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Solution /&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a5842cbd_002Dae53_002D4db2_002Da1b7_002D91952f640cd7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Solution /&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cbbef56c_002Da30f_002D40b8_002D8f3e_002D1db9571f54bc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Solution /&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
