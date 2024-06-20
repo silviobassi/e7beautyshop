@@ -42,6 +42,18 @@ public class ValidatorTimeScheduling
             }
         }
 
+        if (OfficeHoursOrdered.Count >= 2)
+        {
+            if (TimeToSchedule.DateAndHour < OfficeHoursOrdered.First().DateAndHour)
+            {
+                return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
+            }
+            /*if(TimeToSchedule.DateAndHour > OfficeHoursOrdered.Last().DateAndHour)
+            {
+                return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
+            }*/
+        }
+
         return false;
     }
 
