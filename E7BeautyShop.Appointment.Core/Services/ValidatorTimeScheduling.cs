@@ -48,10 +48,10 @@ public class ValidatorTimeScheduling
             {
                 return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
             }
-            /*if(TimeToSchedule.DateAndHour > OfficeHoursOrdered.Last().DateAndHour)
+            if(TimeToSchedule.DateAndHour > OfficeHoursOrdered.Last().DateAndHour)
             {
                 return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
-            }*/
+            }
         }
 
         return false;
