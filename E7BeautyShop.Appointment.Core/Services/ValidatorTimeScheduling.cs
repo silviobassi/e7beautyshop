@@ -65,23 +65,19 @@ public class ValidatorTimeScheduling
 
     public bool Validate()
     {
-        // validation to one scheduling
         BusinessException.When(HasNotOnlyOneOfficeHourScheduled, "There is not only one OfficeHour scheduled");
-        
-        // validation to two or more scheduling
-        var validateAtLeastTwoTime = HasAtLeastTwoTimeScheduled && IsBiggerOrEqualTo30BetweenPrevNext &&
-                                     IsTimeAndDurationToScheduleLessThan30;
-
-        BusinessException.When(!ValidateOnlyOneTime && !validateAtLeastTwoTime, "Time to schedule not allowed");
-
+        BusinessException.When(!ValidateOnlyOneTime && !ValidateAtLeastTwoTime, "Time to schedule not allowed");
         return true;
     }
+
+    private bool ValidateAtLeastTwoTime => HasAtLeastTwoTimeScheduled && IsBiggerOrEqualTo30BetweenPrevNext &&
+                                           IsTimeAndDurationToScheduleLessThan30;
 
     private bool ValidateOnlyOneTime
         => HasOnlyOneTimeScheduled &&
            (IsPreviousTimeScheduleAndTimeScheduleBiggerOrEqualTimeAndDurationPrevious ||
             IsNextTimeScheduledAndTimeDurationLessOrEqualTimeSchedule);
-    
+
     private bool IsNextTimeScheduledAndTimeDurationLessOrEqualTimeSchedule
     {
         get
