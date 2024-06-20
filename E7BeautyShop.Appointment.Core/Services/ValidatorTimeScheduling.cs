@@ -30,91 +30,44 @@ public class ValidatorTimeScheduling
     private bool HasUniqueTimeValid()
     {
         if (TimeToSchedule.DateAndHour == OfficeHoursOrdered.First().DateAndHour)
-        {
             throw new BusinessException("Time to schedule can not be equal to the current time");
-        }
-
-        if (TimeToScheduleLessThanCurrentTime())
-        {
-            return TimeToSchedulePlusDurationLessThanFirstCurrentTime();
-        }
-
-        if (TimeToScheduleGreaterThanCurrentTime())
-        {
-            return TimeToScheduleGreaterThanLastTimePlusDuration();
-        }
-
+        if (TimeToScheduleLessThanCurrentTime()) return TimeToSchedulePlusDurationLessThanFirstCurrentTime();
+        if (TimeToScheduleGreaterThanCurrentTime()) return TimeToScheduleGreaterThanLastTimePlusDuration;
         return false;
     }
 
     private bool HasAtLeastTwoValid()
     {
         if (TimeToScheduleLessThanCurrentTime())
-        {
             return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
-        }
-
         if (TimeToScheduleGreaterThanCurrentTime())
-        {
             return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
-        }
-
         if (TimeToScheduleGreaterThanPrevTime() && TimeToScheduleLessThanNextTime())
-        {
-            return TimeToSchedulePlusDurationLessThanNextTime() || PrevTimePlusDurationLessThanTimeToSchedule();
-        }
-
-
+            return TimeToSchedulePlusDurationLessThanNextTime || PrevTimePlusDurationLessThanTimeToSchedule;
         return false;
     }
 
-    private bool HasAtLeastTwo()
-    {
-        return OfficeHoursOrdered.Count >= 2;
-    }
+    private bool HasAtLeastTwo => OfficeHoursOrdered.Count >= 2;
 
-    private bool TimeToScheduleGreaterThanLastTimePlusDuration()
-    {
-        return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
-    }
-
+    private bool TimeToScheduleGreaterThanLastTimePlusDuration =>
+        TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
+    
     private bool TimeToSchedulePlusDurationLessThanFirstCurrentTime()
-    {
-        return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
-    }
+        => TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
 
-    private bool PrevTimePlusDurationLessThanTimeToSchedule()
-    {
-        return PrevTime?.PlusDuration() <= TimeToSchedule.DateAndHour;
-    }
+    private bool PrevTimePlusDurationLessThanTimeToSchedule => PrevTime?.PlusDuration() <= TimeToSchedule.DateAndHour;
 
-    private bool TimeToSchedulePlusDurationLessThanNextTime()
-    {
-        return TimeToSchedule.PlusDuration() <= NextTime?.DateAndHour;
-    }
+    private bool TimeToSchedulePlusDurationLessThanNextTime => TimeToSchedule.PlusDuration() <= NextTime?.DateAndHour;
 
-    private bool TimeToScheduleLessThanNextTime()
-    {
-        return TimeToSchedule.DateAndHour < NextTime?.DateAndHour;
-    }
+    private bool TimeToScheduleLessThanNextTime() => TimeToSchedule.DateAndHour < NextTime?.DateAndHour;
 
-    private bool TimeToScheduleGreaterThanPrevTime()
-    {
-        return TimeToSchedule.DateAndHour > PrevTime?.DateAndHour;
-    }
+    private bool TimeToScheduleGreaterThanPrevTime() => TimeToSchedule.DateAndHour > PrevTime?.DateAndHour;
 
-    private bool TimeToScheduleGreaterThanCurrentTime()
-    {
-        return TimeToSchedule.DateAndHour > OfficeHoursOrdered.Last().DateAndHour;
-    }
-
-    private bool TimeToScheduleLessThanCurrentTime()
-    {
-        return TimeToSchedule.DateAndHour < OfficeHoursOrdered.First().DateAndHour;
-    }
-
-    private bool HasUniqueTime()
-    {
-        return OfficeHoursOrdered.Count == 1;
-    }
+    private bool TimeToScheduleGreaterThanCurrentTime() =>
+        TimeToSchedule.DateAndHour > OfficeHoursOrdered.Last().DateAndHour;
+    
+    private bool TimeToScheduleLessThanCurrentTime() =>
+        TimeToSchedule.DateAndHour < OfficeHoursOrdered.First().DateAndHour;
+    
+    private bool HasUniqueTime() => OfficeHoursOrdered.Count == 1;
 }
