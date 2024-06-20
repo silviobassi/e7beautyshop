@@ -114,7 +114,7 @@ public class ValidatorTimeSchedulingTest
 
         var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
         var exception = Assert.Throws<BusinessException>(() => validatorTime.Validate());
-        Assert.Equal("Time to schedule can not be equal to the first or last time", exception.Message);
+        Assert.Equal("Time to schedule can not be equal to the current time", exception.Message);
     }
 
     [Fact]
@@ -134,9 +134,9 @@ public class ValidatorTimeSchedulingTest
         Weekend weekend = (startWeekend, endWeekend);
 
         var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
-        var currentTimeBiggerOrEqualToCurrentTime
+        var timeScheduleBiggerOrEqualCurrentTimePlusDuration
             = OfficeHour.Create(new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc), 30);
-        schedule.AddOfficeHour(currentTimeBiggerOrEqualToCurrentTime);
+        schedule.AddOfficeHour(timeScheduleBiggerOrEqualCurrentTimePlusDuration);
 
         var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 8, 30, 0, DateTimeKind.Utc), 30);
 
@@ -144,6 +144,32 @@ public class ValidatorTimeSchedulingTest
         Assert.True(validatorTime.Validate());
     }
 
+    [Fact]
+    public void Should_Check_Has_Unique_Item_InList_If_TimeSchedulePlusDuration_LessOrEqual_CurrentTime()
+    {
+        var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
+        var endAt = new DateTime(2024, 07, 18, 12, 0, 0, DateTimeKind.Utc);
+
+        ProfessionalId? professionalId = Guid.Parse("0bc3810b-f85c-4ea4-84e0-557726a65940");
+
+        var startWeekday = new TimeSpan(8, 0, 0);
+        var endWeekday = new TimeSpan(17, 0, 0);
+        var startWeekend = new TimeSpan(8, 0, 0);
+        var endWeekend = new TimeSpan(12, 0, 0);
+
+        Weekday weekday = (startWeekday, endWeekday);
+        Weekend weekend = (startWeekend, endWeekend);
+
+        var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
+        var timeSchedulePlusDurationLessOrEqualCurrentTime
+            = OfficeHour.Create(new DateTime(2024, 06, 18, 9, 0, 0, DateTimeKind.Utc), 30);
+        schedule.AddOfficeHour(timeSchedulePlusDurationLessOrEqualCurrentTime);
+
+        var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 8, 30, 0, DateTimeKind.Utc), 30);
+
+        var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
+        Assert.True(validatorTime.Validate());
+    }
     /*
      * List<OfficeHour> officeHours =
         [
