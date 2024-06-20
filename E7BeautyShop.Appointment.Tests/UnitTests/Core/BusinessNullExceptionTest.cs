@@ -1,7 +1,6 @@
-﻿using E7BeautyShop.Appointment.Core;
-using E7BeautyShop.Appointment.Core.Validations;
+﻿using E7BeautyShop.Appointment.Core.Validations;
 
-namespace E7BeautyShop.Appointment.Tests.Core;
+namespace E7BeautyShop.Appointment.Tests.UnitTests.Core;
 
 public class BusinessNullExceptionTest
 {
