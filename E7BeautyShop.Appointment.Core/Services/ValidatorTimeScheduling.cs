@@ -31,7 +31,10 @@ public class ValidatorTimeScheduling
         var uniqueTime = HasUniqueTime && IsGreaterThanPreviousTime || IsLessThanNextTime;
         
         var atLeastTwoTimes = HasAtLeastTwoTimes && IsGreaterThanPreviousTime && IsLessThanNextTime;
-        return atLeastTwoTimes;
+
+
+        var result = (IsLessThanFirstTime && IsTimePlusDurationLessThanNext) || IsGreaterThanLastTime;
+        return result;
     }
 
     private bool HasUniqueTime => OfficeHoursOrdered.Count == 1;
@@ -49,13 +52,13 @@ public class ValidatorTimeScheduling
     private OfficeHour? NextTime =>
         OfficeHoursOrdered.FirstOrDefault(of => of.DateAndHour > TimeToSchedule.DateAndHour);
 
-    private bool IsLessThanFirstTime => OfficeHoursOrdered.First().DateAndHour > TimeToSchedule.DateAndHour;
-
-    private bool IsGreaterThanLastTime => OfficeHoursOrdered.Last().DateAndHour < TimeToSchedule.DateAndHour;
+    private bool IsLessThanFirstTime => TimeToSchedule.DateAndHour <= OfficeHoursOrdered.First().DateAndHour;
+    
+    private bool IsGreaterThanLastTime => TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().DateAndHour;
 
     private bool IsTimePlusDurationLessThanNext =>
-        NextTime is not null && TimeToSchedule.GetEndTime() < NextTime.DateAndHour;
+        NextTime is not null && TimeToSchedule.GetEndTime() <= NextTime.DateAndHour;
 
     private bool IsPreviousPlusLessThanTime =>
-        PreviousTime is not null && PreviousTime.GetEndTime() < TimeToSchedule.DateAndHour;
+        PreviousTime is not null && PreviousTime.GetEndTime() <= TimeToSchedule.DateAndHour;
 }

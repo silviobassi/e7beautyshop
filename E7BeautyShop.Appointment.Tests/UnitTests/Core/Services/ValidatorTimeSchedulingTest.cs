@@ -56,7 +56,7 @@ public class ValidatorTimeSchedulingTest
         schedule.AddOfficeHour(officeHour1);
         schedule.AddOfficeHour(officeHour2);
         
-        var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 8, 10, 0, DateTimeKind.Utc), 30);
+        var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 9, 30, 0, DateTimeKind.Utc), 30);
         
         var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
         var validate = validatorTime.Validate();
