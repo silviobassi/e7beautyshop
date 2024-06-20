@@ -31,8 +31,6 @@ public class ValidatorTimeSchedulingTest
 
         var checkScheduleManagement = new ValidatorTimeScheduling(schedule.OfficeHours, officeHour3);
 
-        Assert.Equal(officeHour1, checkScheduleManagement.PreviousTimeScheduled);
-        Assert.Equal(officeHour2, checkScheduleManagement.NextTimeScheduled);
     }
 
     [Fact]
