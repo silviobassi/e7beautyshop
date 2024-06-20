@@ -39,27 +39,22 @@ public class ValidatorTimeScheduling
 
     // Check if there is a scheduling before the current scheduling
     private bool IsPreviousOfficeHourScheduled()
-    {
-        return OfficeHoursOrdered.Exists(of => of.DateAndHour < TimeToSchedule.DateAndHour);
-    }
+        => OfficeHoursOrdered.Exists(of => of.DateAndHour < TimeToSchedule.DateAndHour);
+
 
     // Check if there is a scheduling after the current scheduling
     private bool IsNextOfficeHourScheduled()
-    {
-        return OfficeHoursOrdered.Exists(of => of.DateAndHour > TimeToSchedule.DateAndHour);
-    }
+        => OfficeHoursOrdered.Exists(of => of.DateAndHour > TimeToSchedule.DateAndHour);
+
 
     // Check if the time to be scheduled is greater than the previous scheduling time by adding the date and time + duration
     private bool IsTimeScheduleGreaterOrEqualThanTimeAndDurationPrevious()
-    {
-        return OfficeHoursOrdered.Exists(of => TimeToSchedule.DateAndHour >= of.GetEndTime());
-    }
+        => OfficeHoursOrdered.Exists(of => TimeToSchedule.DateAndHour >= of.GetEndTime());
+
 
     // Check if the time to be scheduled is less than previous scheduling time
     private bool IsTimeAndDurationLessOrEqualThanTimeSchedule()
-    {
-        return OfficeHoursOrdered.Exists(of => TimeToSchedule.GetEndTime() <= of.DateAndHour);
-    }
+        => OfficeHoursOrdered.Exists(of => TimeToSchedule.GetEndTime() <= of.DateAndHour);
 
     private bool IsTimeAndDurationToScheduleLessThan30 => TimeToSchedule.GetEndTime().Minute <= 30;
 
@@ -78,15 +73,8 @@ public class ValidatorTimeScheduling
            (IsPreviousTimeScheduleAndTimeScheduleBiggerOrEqualTimeAndDurationPrevious ||
             IsNextTimeScheduledAndTimeDurationLessOrEqualTimeSchedule);
 
-    private bool IsNextTimeScheduledAndTimeDurationLessOrEqualTimeSchedule
-    {
-        get
-        {
-            var nextTimeAndDurationLessOrEqual =
-                IsNextOfficeHourScheduled() && IsTimeAndDurationLessOrEqualThanTimeSchedule();
-            return nextTimeAndDurationLessOrEqual;
-        }
-    }
+    private bool IsNextTimeScheduledAndTimeDurationLessOrEqualTimeSchedule =>
+        IsNextOfficeHourScheduled() && IsTimeAndDurationLessOrEqualThanTimeSchedule();
 
     private bool IsPreviousTimeScheduleAndTimeScheduleBiggerOrEqualTimeAndDurationPrevious
         => IsPreviousOfficeHourScheduled() && IsTimeScheduleGreaterOrEqualThanTimeAndDurationPrevious();
