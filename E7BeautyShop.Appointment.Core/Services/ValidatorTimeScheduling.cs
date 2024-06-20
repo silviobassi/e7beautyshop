@@ -67,23 +67,31 @@ public class ValidatorTimeScheduling
     {
         // validation to one scheduling
         BusinessException.When(HasNotOnlyOneOfficeHourScheduled, "There is not only one OfficeHour scheduled");
-
-        var previousAndTimeGreaterOrEqual = IsPreviousTimeScheduleAndTimeScheduleBiggerOrEqualTimeAndDurationPrevious();
-        var nextTimeAndDurationLessOrEqual =
-            IsNextOfficeHourScheduled() && IsTimeAndDurationLessOrEqualThanTimeSchedule();
-
-        var validateOnlyOneTime = HasOnlyOneTimeScheduled &&
-                                  (previousAndTimeGreaterOrEqual || nextTimeAndDurationLessOrEqual);
-
+        
         // validation to two or more scheduling
         var validateAtLeastTwoTime = HasAtLeastTwoTimeScheduled && IsBiggerOrEqualTo30BetweenPrevNext &&
                                      IsTimeAndDurationToScheduleLessThan30;
 
-        BusinessException.When(!validateOnlyOneTime && !validateAtLeastTwoTime, "Time to schedule not allowed");
+        BusinessException.When(!ValidateOnlyOneTime && !validateAtLeastTwoTime, "Time to schedule not allowed");
 
         return true;
     }
 
-    private bool IsPreviousTimeScheduleAndTimeScheduleBiggerOrEqualTimeAndDurationPrevious()
+    private bool ValidateOnlyOneTime
+        => HasOnlyOneTimeScheduled &&
+           (IsPreviousTimeScheduleAndTimeScheduleBiggerOrEqualTimeAndDurationPrevious ||
+            IsNextTimeScheduledAndTimeDurationLessOrEqualTimeSchedule);
+    
+    private bool IsNextTimeScheduledAndTimeDurationLessOrEqualTimeSchedule
+    {
+        get
+        {
+            var nextTimeAndDurationLessOrEqual =
+                IsNextOfficeHourScheduled() && IsTimeAndDurationLessOrEqualThanTimeSchedule();
+            return nextTimeAndDurationLessOrEqual;
+        }
+    }
+
+    private bool IsPreviousTimeScheduleAndTimeScheduleBiggerOrEqualTimeAndDurationPrevious
         => IsPreviousOfficeHourScheduled() && IsTimeScheduleGreaterOrEqualThanTimeAndDurationPrevious();
 }
