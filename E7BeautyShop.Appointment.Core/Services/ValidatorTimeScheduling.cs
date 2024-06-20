@@ -21,52 +21,86 @@ public class ValidatorTimeScheduling
 
     public bool Validate()
     {
-        BusinessException.When(!HasUniqueTimeValid(), "Time to schedule is invalid");
+        BusinessException.When(!ValidateTime, "Time to schedule is invalid");
         return true;
     }
 
+    private bool ValidateTime => HasUniqueTime() ? HasUniqueTimeValid() : HasAtLeastTwoValid();
+
     private bool HasUniqueTimeValid()
     {
-        if (HasUniqueTime())
+        if (TimeToSchedule.DateAndHour == OfficeHoursOrdered.First().DateAndHour)
         {
-            if (TimeToSchedule.DateAndHour == OfficeHoursOrdered.First().DateAndHour)
-            {
-                throw new BusinessException("Time to schedule can not be equal to the current time");
-            }
-
-            if (TimeToScheduleLessThanCurrentTime())
-            {
-                return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
-            }
-
-            if (TimeToScheduleGreaterThanCurrentTime())
-            {
-                return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
-            }
+            throw new BusinessException("Time to schedule can not be equal to the current time");
         }
 
-        if (OfficeHoursOrdered.Count >= 2)
+        if (TimeToScheduleLessThanCurrentTime())
         {
-            if (TimeToScheduleLessThanCurrentTime())
-            {
-                return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
-            }
+            return TimeToSchedulePlusDurationLessThanFirstCurrentTime();
+        }
 
-            if (TimeToScheduleGreaterThanCurrentTime())
-            {
-                return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
-            }
-
-
-            if (TimeToSchedule.DateAndHour > PrevTime?.DateAndHour &&
-                TimeToSchedule.DateAndHour < NextTime?.DateAndHour)
-            {
-                return TimeToSchedule.PlusDuration() <= NextTime.DateAndHour ||
-                       PrevTime.PlusDuration() <= TimeToSchedule.DateAndHour;
-            }
+        if (TimeToScheduleGreaterThanCurrentTime())
+        {
+            return TimeToScheduleGreaterThanLastTimePlusDuration();
         }
 
         return false;
+    }
+
+    private bool HasAtLeastTwoValid()
+    {
+        if (TimeToScheduleLessThanCurrentTime())
+        {
+            return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
+        }
+
+        if (TimeToScheduleGreaterThanCurrentTime())
+        {
+            return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
+        }
+
+        if (TimeToScheduleGreaterThanPrevTime() && TimeToScheduleLessThanNextTime())
+        {
+            return TimeToSchedulePlusDurationLessThanNextTime() || PrevTimePlusDurationLessThanTimeToSchedule();
+        }
+
+
+        return false;
+    }
+
+    private bool HasAtLeastTwo()
+    {
+        return OfficeHoursOrdered.Count >= 2;
+    }
+
+    private bool TimeToScheduleGreaterThanLastTimePlusDuration()
+    {
+        return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
+    }
+
+    private bool TimeToSchedulePlusDurationLessThanFirstCurrentTime()
+    {
+        return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
+    }
+
+    private bool PrevTimePlusDurationLessThanTimeToSchedule()
+    {
+        return PrevTime?.PlusDuration() <= TimeToSchedule.DateAndHour;
+    }
+
+    private bool TimeToSchedulePlusDurationLessThanNextTime()
+    {
+        return TimeToSchedule.PlusDuration() <= NextTime?.DateAndHour;
+    }
+
+    private bool TimeToScheduleLessThanNextTime()
+    {
+        return TimeToSchedule.DateAndHour < NextTime?.DateAndHour;
+    }
+
+    private bool TimeToScheduleGreaterThanPrevTime()
+    {
+        return TimeToSchedule.DateAndHour > PrevTime?.DateAndHour;
     }
 
     private bool TimeToScheduleGreaterThanCurrentTime()
