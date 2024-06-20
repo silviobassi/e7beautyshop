@@ -39,7 +39,7 @@ public class ValidatorTimeScheduling
                 return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
             }
 
-            if (TimeToSchedule.DateAndHour > OfficeHoursOrdered.First().DateAndHour)
+            if (TimeToScheduleGreaterThanCurrentTime())
             {
                 return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
             }
@@ -52,7 +52,7 @@ public class ValidatorTimeScheduling
                 return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
             }
 
-            if (TimeToSchedule.DateAndHour > OfficeHoursOrdered.Last().DateAndHour)
+            if (TimeToScheduleGreaterThanCurrentTime())
             {
                 return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
             }
@@ -67,6 +67,11 @@ public class ValidatorTimeScheduling
         }
 
         return false;
+    }
+
+    private bool TimeToScheduleGreaterThanCurrentTime()
+    {
+        return TimeToSchedule.DateAndHour > OfficeHoursOrdered.Last().DateAndHour;
     }
 
     private bool TimeToScheduleLessThanCurrentTime()
