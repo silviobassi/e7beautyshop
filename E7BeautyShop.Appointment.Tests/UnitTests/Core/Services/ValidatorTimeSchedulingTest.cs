@@ -248,14 +248,19 @@ public class ValidatorTimeSchedulingTest
         var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
         var officeHour1 = OfficeHour.Create(new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc), 30);
         var officeHour2 = OfficeHour.Create(new DateTime(2024, 06, 18, 8, 30, 0, DateTimeKind.Utc), 30);
+        var officeHour3 = OfficeHour.Create(new DateTime(2024, 06, 18, 9, 30, 0, DateTimeKind.Utc), 30);
         schedule.AddOfficeHour(officeHour1);
         schedule.AddOfficeHour(officeHour2);
+        schedule.AddOfficeHour(officeHour3);
 
         var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 9, 0, 0, DateTimeKind.Utc), 30);
 
         var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
         var validate = validatorTime.Validate();
+        Assert.Equal(3, schedule.OfficeHours.Count);
         Assert.True(validate);
+        Assert.Equal(validatorTime.PrevTime, officeHour2);
+        Assert.Equal(validatorTime.NextTime, officeHour3);
     }
     
     /*

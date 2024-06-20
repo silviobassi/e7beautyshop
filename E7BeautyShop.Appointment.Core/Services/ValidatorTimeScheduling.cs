@@ -7,6 +7,9 @@ public class ValidatorTimeScheduling
 {
     private IReadOnlyCollection<OfficeHour> OfficeHoursOrdered { get; }
     private OfficeHour TimeToSchedule { get; }
+    
+    public OfficeHour PrevTime { get; private set; }
+    public OfficeHour NextTime { get; private set; }
 
     public ValidatorTimeScheduling(IReadOnlyCollection<OfficeHour> officeHours, OfficeHour timeToSchedule)
     {
@@ -52,12 +55,20 @@ public class ValidatorTimeScheduling
             {
                 return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
             }
+
+            PrevTime = OfficeHoursOrdered.LastOrDefault(of => of.DateAndHour < TimeToSchedule.DateAndHour) ?? throw new InvalidOperationException();
+            NextTime = OfficeHoursOrdered.FirstOrDefault(of => of.DateAndHour > TimeToSchedule.DateAndHour) ?? throw new InvalidOperationException();
+            
+            if(TimeToSchedule.DateAndHour > PrevTime.DateAndHour && TimeToSchedule.DateAndHour < NextTime.DateAndHour)
+            {
+                return TimeToSchedule.PlusDuration() <= NextTime.DateAndHour || PrevTime.PlusDuration() <= TimeToSchedule.DateAndHour;
+            }
         }
 
         return false;
     }
 
-    private bool HasAtLeastTwoTimesValid => HasAtLeastTwoTimes && IsGreaterThanPreviousTime && IsLessThanNextTime;
+    /*private bool HasAtLeastTwoTimesValid => HasAtLeastTwoTimes && IsGreaterThanPreviousTime && IsLessThanNextTime;*/
 
     private bool HasTimeLessThanFirstAndLastTimeValid =>
         (IsLessThanFirstTime && IsTimePlusDurationLessThanNext) || IsGreaterThanLastTime;
@@ -69,13 +80,13 @@ public class ValidatorTimeScheduling
     private bool IsGreaterThanPreviousTime =>
         PreviousTime is not null && TimeToSchedule.DateAndHour > PreviousTime.DateAndHour;
 
-    private bool IsLessThanNextTime => NextTime is not null && TimeToSchedule.DateAndHour < NextTime.DateAndHour;
+    /*private bool IsLessThanNextTime => NextTime is not null && TimeToSchedule.DateAndHour < NextTime.DateAndHour;*/
 
     private OfficeHour? PreviousTime =>
         OfficeHoursOrdered.FirstOrDefault(of => of.DateAndHour < TimeToSchedule.DateAndHour);
 
-    private OfficeHour? NextTime =>
-        OfficeHoursOrdered.FirstOrDefault(of => of.DateAndHour > TimeToSchedule.DateAndHour);
+    /*private OfficeHour? NextTime =>
+        OfficeHoursOrdered.FirstOrDefault(of => of.DateAndHour > TimeToSchedule.DateAndHour);*/
 
     private bool IsLessThanFirstTime => TimeToSchedule.DateAndHour <= OfficeHoursOrdered.First().DateAndHour;
 
