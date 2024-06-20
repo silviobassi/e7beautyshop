@@ -1,4 +1,5 @@
 ﻿using E7BeautyShop.Appointment.Core.Entities;
+using E7BeautyShop.Appointment.Core.Validations;
 
 namespace E7BeautyShop.Appointment.Core.Services;
 
@@ -15,27 +16,24 @@ public class ValidatorTimeScheduling
         TimeToSchedule = timeToSchedule;
     }
 
-
-    /*
-     * Verificar se há apenas um item na lista 🎯
-     * Verificar se há ao menos 2 itens na lista 🎯
-     * Verificar dentro da lista pré ordenada se o horário a ser agendado é maior que o horário anterior e menor que o próximo horário 🎯
-     * Verificar se o horário a ser agendado é menor que o primeiro item da lista 🎯
-     * Verificar se i horário a ser agendado é maior que o último item da lista 🎯
-     * O intervalo entre os horários agendados e a agendar deve ser ao menos 30 minutos
-     * Verificar se o horário a agendar + duração é <= ao próximo horário 🎯
-     * verificar se o horário a agendar é >= ao horário anterior + duração 🎯
-     */
     public bool Validate()
     {
-        var uniqueTime = HasUniqueTime && IsGreaterThanPreviousTime || IsLessThanNextTime;
-        
-        var atLeastTwoTimes = HasAtLeastTwoTimes && IsGreaterThanPreviousTime && IsLessThanNextTime;
+        BusinessException.When(!HasUniqueTimeValid(), "Time to schedule is invalid");
+        return true;
+    }
 
-
-        var result = (IsLessThanFirstTime && IsTimePlusDurationLessThanNext) || IsGreaterThanLastTime;
+    private bool HasUniqueTimeValid ()
+    {
+        var result = HasUniqueTime && (OfficeHoursOrdered.First().DateAndHour > TimeToSchedule.DateAndHour ||
+                                              OfficeHoursOrdered.First().DateAndHour < TimeToSchedule.DateAndHour);
+        BusinessException.When(!result, "Time to schedule can not be equal to the first or last time");
         return result;
     }
+
+    private bool HasAtLeastTwoTimesValid => HasAtLeastTwoTimes && IsGreaterThanPreviousTime && IsLessThanNextTime;
+
+    private bool HasTimeLessThanFirstAndLastTimeValid =>
+        (IsLessThanFirstTime && IsTimePlusDurationLessThanNext) || IsGreaterThanLastTime;
 
     private bool HasUniqueTime => OfficeHoursOrdered.Count == 1;
 
@@ -53,7 +51,7 @@ public class ValidatorTimeScheduling
         OfficeHoursOrdered.FirstOrDefault(of => of.DateAndHour > TimeToSchedule.DateAndHour);
 
     private bool IsLessThanFirstTime => TimeToSchedule.DateAndHour <= OfficeHoursOrdered.First().DateAndHour;
-    
+
     private bool IsGreaterThanLastTime => TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().DateAndHour;
 
     private bool IsTimePlusDurationLessThanNext =>
