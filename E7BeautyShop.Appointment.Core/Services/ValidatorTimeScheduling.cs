@@ -22,12 +22,26 @@ public class ValidatorTimeScheduling
         return true;
     }
 
-    private bool HasUniqueTimeValid ()
+    private bool HasUniqueTimeValid()
     {
-        var result = HasUniqueTime && (OfficeHoursOrdered.First().DateAndHour > TimeToSchedule.DateAndHour ||
-                                              OfficeHoursOrdered.First().DateAndHour < TimeToSchedule.DateAndHour);
-        BusinessException.When(!result, "Time to schedule can not be equal to the first or last time");
-        return result;
+        if (OfficeHoursOrdered.Count == 1)
+        {
+            
+            if(TimeToSchedule.DateAndHour == OfficeHoursOrdered.First().DateAndHour)
+            {
+                throw new BusinessException("Time to schedule can not be equal to the current time");
+            }
+            if (TimeToSchedule.DateAndHour < OfficeHoursOrdered.First().DateAndHour)
+            {
+            }
+
+            if (TimeToSchedule.DateAndHour > OfficeHoursOrdered.First().DateAndHour)
+            {
+                return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.First().PlusDuration();
+            }
+        }
+
+        return false;
     }
 
     private bool HasAtLeastTwoTimesValid => HasAtLeastTwoTimes && IsGreaterThanPreviousTime && IsLessThanNextTime;
@@ -55,8 +69,8 @@ public class ValidatorTimeScheduling
     private bool IsGreaterThanLastTime => TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().DateAndHour;
 
     private bool IsTimePlusDurationLessThanNext =>
-        NextTime is not null && TimeToSchedule.GetEndTime() <= NextTime.DateAndHour;
+        NextTime is not null && TimeToSchedule.PlusDuration() <= NextTime.DateAndHour;
 
     private bool IsPreviousPlusLessThanTime =>
-        PreviousTime is not null && PreviousTime.GetEndTime() <= TimeToSchedule.DateAndHour;
+        PreviousTime is not null && PreviousTime.PlusDuration() <= TimeToSchedule.DateAndHour;
 }

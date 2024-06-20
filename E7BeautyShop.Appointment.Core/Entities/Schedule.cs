@@ -60,7 +60,7 @@ public sealed class Schedule : Entity, IAggregateRoot
 
     private static bool IsGreaterThanTimeAndDurationLastTime(OfficeHour officeHour, OfficeHour? lastOfficeHour)
     {
-        return officeHour.DateAndHour >= lastOfficeHour?.GetEndTime();
+        return officeHour.DateAndHour >= lastOfficeHour?.PlusDuration();
     }
 
     public void RemoveOfficeHour(OfficeHour officeHour)

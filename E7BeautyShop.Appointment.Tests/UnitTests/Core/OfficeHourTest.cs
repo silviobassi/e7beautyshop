@@ -174,7 +174,7 @@ public class OfficeHourTest(ITestOutputHelper output)
         const int duration = 30;
         var officeHour = OfficeHour.Create(initialDateTime, duration);
 
-        var result = officeHour.GetEndTime();
+        var result = officeHour.PlusDuration();
         var expectedDateTime = new DateTime(2022, 1, 1, 10, 30, 0, DateTimeKind.Local); // 10:30 AM
         Assert.Equal(expectedDateTime, result);
     }

@@ -72,7 +72,7 @@ public sealed class OfficeHour : Entity
         Attend();
     }
 
-    public DateTime GetEndTime() => DateAndHour.AddMinutes(Duration);
+    public DateTime PlusDuration() => DateAndHour.AddMinutes(Duration);
     
     private void ValidateDateAndHour() =>
         BusinessNullException.When(DateAndHour == default, nameof(DateAndHour));
