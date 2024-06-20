@@ -5,50 +5,31 @@ namespace E7BeautyShop.Appointment.Core.Services;
 
 public class ValidatorTimeScheduling
 {
-    private IReadOnlyList<OfficeHour> OfficeHoursOrdered { get; }
+    private IReadOnlyCollection<OfficeHour> OfficeHoursOrdered { get; }
     private OfficeHour TimeToSchedule { get; }
 
     public ValidatorTimeScheduling(IReadOnlyCollection<OfficeHour> officeHours, OfficeHour timeToSchedule)
     {
-        ArgumentNullException.ThrowIfNull(officeHours);
-        ArgumentNullException.ThrowIfNull(timeToSchedule);
+        ArgumentNullException.ThrowIfNull(nameof(officeHours));
+        ArgumentNullException.ThrowIfNull(nameof(timeToSchedule));
         OfficeHoursOrdered = officeHours.OrderBy(of => of.DateAndHour).ToList().AsReadOnly();
         TimeToSchedule = timeToSchedule;
     }
 
-    // Get the previous time scheduled
-    private OfficeHour? PreviousTimeScheduled =>
-        OfficeHoursOrdered.LastOrDefault(of => of.DateAndHour < TimeToSchedule.DateAndHour);
-
-    // Get the next time scheduled 
-    private OfficeHour? NextTimeScheduled =>
-        OfficeHoursOrdered.FirstOrDefault(of => of.DateAndHour > TimeToSchedule.DateAndHour);
-
+    
+    /*
+     * Verificar se há apenas um item na lista
+     * Verificar se há ao menos 2 itens na lista
+     * Verificar dentro da lista pré ordenada se o horário a ser agendado é maior que o horário anterior e menor que o próximo horário
+     * Verificar se o horário a ser agendado é menor que o primeiro item da lista
+     * Verificar se i horário a ser agendado é maior que o último item da lista
+     */
     public bool Validate()
     {
-        BusinessException.When(!HasValidTimeSchedule, "Time to schedule not allowed");
-        return true;
+        return HasOneTimeOnly;
     }
-
-    private bool HasValidTimeSchedule => HasOnlyOneTimeScheduled ? ValidateOnlyOneTime : ValidateAtLeastTwoTime();
     
-    private bool HasOnlyOneTimeScheduled => OfficeHoursOrdered.Count == 1;
+    private bool HasOneTimeOnly => OfficeHoursOrdered.Count == 1;
 
-    private bool ValidateOnlyOneTime => IsPreviousTimeScheduleValid || IsNextTimeScheduleValid;
-
-    private bool IsPreviousTimeScheduleValid => TimeToSchedule.DateAndHour >= PreviousTimeScheduled?.GetEndTime();
-
-    private bool IsNextTimeScheduleValid => TimeToSchedule.GetEndTime() <= NextTimeScheduled?.DateAndHour;
-
-    private bool ValidateAtLeastTwoTime()
-    {
-        if (PreviousTimeScheduled == null || NextTimeScheduled == null)
-            return false;
-        return IsIntervalBetweenPreviousAndNextValid && IsTimeAndDurationToScheduleValid;
-    }
-
-    private bool IsIntervalBetweenPreviousAndNextValid =>
-        NextTimeScheduled?.DateAndHour.Subtract(PreviousTimeScheduled!.GetEndTime()).TotalMinutes >= 30;
-
-    private bool IsTimeAndDurationToScheduleValid => TimeToSchedule.GetEndTime().Minute <= 30;
+    
 }
