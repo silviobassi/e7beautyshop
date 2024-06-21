@@ -5,6 +5,7 @@ namespace E7BeautyShop.Appointment.Core.Services;
 
 public class ValidatorTimeScheduling
 {
+    public readonly int MinimumDuration = 30;
     private IReadOnlyCollection<OfficeHour> OfficeHoursOrdered { get; }
     private OfficeHour TimeToSchedule { get; }
 
@@ -21,6 +22,8 @@ public class ValidatorTimeScheduling
 
     public bool Validate()
     {
+        BusinessException.When(!IsTimeScheduleDurationAllowed,
+            $"Time to schedule duration should be at least {MinimumDuration} minutes");
         BusinessException.When(!ValidateTime, "Time to schedule is invalid");
         return true;
     }
@@ -29,12 +32,10 @@ public class ValidatorTimeScheduling
 
     private bool HasUniqueTimeValid()
     {
-        if (TimeToSchedule.DateAndHour == OfficeHoursOrdered.First().DateAndHour)
-            throw new BusinessException("Time to schedule can not be equal to the current time");
         if (TimeToScheduleLessThanCurrentTime()) return TimeToSchedulePlusDurationLessThanFirstCurrentTime();
         return TimeToScheduleGreaterThanCurrentTime() && TimeToScheduleGreaterThanLastTimePlusDuration;
     }
-
+    
     private bool HasAtLeastTwoValid()
     {
         /*
@@ -50,7 +51,7 @@ public class ValidatorTimeScheduling
         return false;
     }
 
-    private bool HasAtLeastTwo => OfficeHoursOrdered.Count >= 2;
+    //private bool HasAtLeastTwo => OfficeHoursOrdered.Count >= 2;
 
     private bool TimeToScheduleGreaterThanLastTimePlusDuration =>
         TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
@@ -72,14 +73,15 @@ public class ValidatorTimeScheduling
     private bool TimeToScheduleLessThanCurrentTime() =>
         TimeToSchedule.DateAndHour < OfficeHoursOrdered.First().DateAndHour;
 
+    // Se tiver ao menos 1, verificar se a data mais atual cadastrada + duração >= TimeToSchedule
     private bool HasUniqueTime() => OfficeHoursOrdered.Count == 1;
 
     // Verificar se o intervalo tem ao menos 30 minutos para um time to schedule
     // Melhorar este método 👇!?
-    private bool IntervalBetweenTimes()
-    {
-        if(NextTime == null || PrevTime == null) return false;
-        return NextTime.DateAndHour.Subtract(PrevTime.DateAndHour).TotalMinutes >= 30;
-    } 
     
+    
+    // Se for vazio verificar se a duração é ao menor @MinimumDuration=30
+    private bool HasNotAtLeastOne => OfficeHoursOrdered.Count == 0;
+
+    private bool IsTimeScheduleDurationAllowed => TimeToSchedule.Duration >= MinimumDuration;
 }

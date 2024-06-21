@@ -100,42 +100,7 @@ public class ScheduleTest(ITestOutputHelper output)
         Assert.Equal(newWeekday, schedule.Weekday);
         Assert.Equal(newWeekend, schedule.Weekend);
     }
-
-    [Fact]
-    public void Should_ThrowException_WhenAddingOfficeHourBeforeLastOfficeHour()
-    {
-        var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
-        var endAt = startAt.AddDays(7);
-        var professionalId = Guid.NewGuid();
-        var weekday = (_startWeekday, _endWeekday);
-        var weekend = (_startWeekend, _endWeekend);
-        var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
-        var officeHour1 = OfficeHour.Create(startAt.AddHours(2), 30);
-        var officeHour2 = OfficeHour.Create(startAt.AddHours(1), 30);
-
-        schedule.AddOfficeHour(officeHour1);
-
-        Assert.Throws<BusinessException>(() => schedule.AddOfficeHour(officeHour2));
-    }
-
-    [Fact]
-    public void Should_NotThrowException_WhenAddingOfficeHourBeforeLastOfficeHour()
-    {
-        var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
-        var endAt = startAt.AddDays(7);
-        var professionalId = Guid.NewGuid();
-        var weekday = (_startWeekday, _endWeekday);
-        var weekend = (_startWeekend, _endWeekend);
-        var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
-        var officeHour1 = OfficeHour.Create(startAt, 30);
-        var officeHour2 = OfficeHour.Create(startAt.AddMinutes(30), 30);
-
-        schedule.AddOfficeHour(officeHour1);
-
-        var exception = Record.Exception(() => schedule.AddOfficeHour(officeHour2));
-        Assert.Null(exception);
-    }
-
+    
     [Fact]
     public void Should_ReturnTrue_WhenOfficeHourIsOnWeekday()
     {

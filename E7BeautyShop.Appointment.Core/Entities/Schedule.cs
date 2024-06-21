@@ -43,26 +43,9 @@ public sealed class Schedule : Entity, IAggregateRoot
     public void AddOfficeHour(OfficeHour officeHour)
     {
         if (IsDayRest(officeHour)) return;
-        CheckLastTimeScheduled(officeHour);
         _officeHours.Add(officeHour);
     }
-
-    private void CheckLastTimeScheduled(OfficeHour officeHour)
-    {
-        if (_officeHours.Any() && IsNotGreaterThanTimeAndDurationLastTime(officeHour, _officeHours.Last()))
-            throw new BusinessException("Cannot add an OfficeHour before the last OfficeHour");
-    }
-
-    private static bool IsNotGreaterThanTimeAndDurationLastTime(OfficeHour officeHour, OfficeHour? lastOfficeHour)
-    {
-        return !IsGreaterThanTimeAndDurationLastTime(officeHour, lastOfficeHour);
-    }
-
-    private static bool IsGreaterThanTimeAndDurationLastTime(OfficeHour officeHour, OfficeHour? lastOfficeHour)
-    {
-        return officeHour.DateAndHour >= lastOfficeHour?.PlusDuration();
-    }
-
+    
     public void RemoveOfficeHour(OfficeHour officeHour)
     {
         _officeHours.Remove(officeHour);
