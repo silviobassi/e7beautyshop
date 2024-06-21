@@ -36,22 +36,21 @@ public class ValidatorTimeScheduling
             return HasAtLeastTwoValid();
         return OfficeHoursIsEmpty && IsTimeScheduleDurationAllowed;
     }
-
-
+    
+    // Método movido para outra classe 🎯
     private bool HasUniqueTimeValid()
     {
         if (TimeToScheduleLessThanCurrentTime()) return TimeToSchedulePlusDurationLessThanFirstCurrentTime();
         return TimeToScheduleGreaterThanCurrentTime() && TimeToScheduleGreaterThanLastTimePlusDuration;
     }
 
+    
+    // Método movido para outra classe 🎯
     private bool HasAtLeastTwoValid()
     {
-        /*
-         * Criar classes
-         * @TimeToScheduleLessThanCurrentTime, @TimeToScheduleGreaterThanCurrentTime, @TimeToScheduleGreaterThanPrevTime
-         */
         if (TimeToScheduleLessThanCurrentTime())
-            return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
+            return TimeToSchedulePlusDurationLessThanNextTime;
+   
         if (TimeToScheduleGreaterThanCurrentTime())
             return TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
         if (TimeToScheduleGreaterThanPrevTime() && TimeToScheduleLessThanNextTime())
@@ -80,17 +79,8 @@ public class ValidatorTimeScheduling
 
     private bool TimeToScheduleLessThanCurrentTime() =>
         TimeToSchedule.DateAndHour < OfficeHoursOrdered.First().DateAndHour;
-
-    // Se tiver ao menos 1, verificar se a data mais atual cadastrada + duração >= TimeToSchedule
     private bool HasUniqueTime() => OfficeHoursOrdered.Count == 1;
-
-    // Verificar se o intervalo tem ao menos 30 minutos para um time to schedule
-    // Melhorar este método 👇!?
-
-
-    // Se for vazio verificar se a duração é ao menor @MinimumDuration=30
     private bool OfficeHoursIsEmpty => OfficeHoursOrdered.Count == 0;
-
     private bool IsTimeScheduleDurationAllowed => TimeToSchedule.Duration >= MinimumDuration;
     
 }
