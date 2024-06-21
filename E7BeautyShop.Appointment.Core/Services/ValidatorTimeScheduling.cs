@@ -22,20 +22,28 @@ public class ValidatorTimeScheduling
 
     public bool Validate()
     {
-        BusinessException.When(!IsTimeScheduleDurationAllowed,
-            $"Time to schedule duration should be at least {MinimumDuration} minutes");
-        BusinessException.When(!ValidateTime, "Time to schedule is invalid");
+        BusinessException.When(IsNotTimeValid, "Time to schedule is invalid");
         return true;
     }
 
-    private bool ValidateTime => HasUniqueTime() ? HasUniqueTimeValid() : HasAtLeastTwoValid();
+    private bool IsNotTimeValid => !IsTimeValid();
+
+    private bool IsTimeValid()
+    {
+        if (HasUniqueTime())
+            return HasUniqueTimeValid();
+        if (HasAtLeastTwo)
+            return HasAtLeastTwoValid();
+        return OfficeHoursIsEmpty && IsTimeScheduleDurationAllowed;
+    }
+
 
     private bool HasUniqueTimeValid()
     {
         if (TimeToScheduleLessThanCurrentTime()) return TimeToSchedulePlusDurationLessThanFirstCurrentTime();
         return TimeToScheduleGreaterThanCurrentTime() && TimeToScheduleGreaterThanLastTimePlusDuration;
     }
-    
+
     private bool HasAtLeastTwoValid()
     {
         /*
@@ -51,7 +59,7 @@ public class ValidatorTimeScheduling
         return false;
     }
 
-    //private bool HasAtLeastTwo => OfficeHoursOrdered.Count >= 2;
+    private bool HasAtLeastTwo => OfficeHoursOrdered.Count >= 2;
 
     private bool TimeToScheduleGreaterThanLastTimePlusDuration =>
         TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
@@ -78,10 +86,11 @@ public class ValidatorTimeScheduling
 
     // Verificar se o intervalo tem ao menos 30 minutos para um time to schedule
     // Melhorar este método 👇!?
-    
-    
+
+
     // Se for vazio verificar se a duração é ao menor @MinimumDuration=30
-    private bool HasNotAtLeastOne => OfficeHoursOrdered.Count == 0;
+    private bool OfficeHoursIsEmpty => OfficeHoursOrdered.Count == 0;
 
     private bool IsTimeScheduleDurationAllowed => TimeToSchedule.Duration >= MinimumDuration;
+    
 }
