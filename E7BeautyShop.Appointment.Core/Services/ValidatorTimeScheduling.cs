@@ -32,12 +32,15 @@ public class ValidatorTimeScheduling
         if (TimeToSchedule.DateAndHour == OfficeHoursOrdered.First().DateAndHour)
             throw new BusinessException("Time to schedule can not be equal to the current time");
         if (TimeToScheduleLessThanCurrentTime()) return TimeToSchedulePlusDurationLessThanFirstCurrentTime();
-        if (TimeToScheduleGreaterThanCurrentTime()) return TimeToScheduleGreaterThanLastTimePlusDuration;
-        return false;
+        return TimeToScheduleGreaterThanCurrentTime() && TimeToScheduleGreaterThanLastTimePlusDuration;
     }
 
     private bool HasAtLeastTwoValid()
     {
+        /*
+         * Criar classes
+         * @TimeToScheduleLessThanCurrentTime, @TimeToScheduleGreaterThanCurrentTime, @TimeToScheduleGreaterThanPrevTime
+         */
         if (TimeToScheduleLessThanCurrentTime())
             return TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
         if (TimeToScheduleGreaterThanCurrentTime())
@@ -51,7 +54,7 @@ public class ValidatorTimeScheduling
 
     private bool TimeToScheduleGreaterThanLastTimePlusDuration =>
         TimeToSchedule.DateAndHour >= OfficeHoursOrdered.Last().PlusDuration();
-    
+
     private bool TimeToSchedulePlusDurationLessThanFirstCurrentTime()
         => TimeToSchedule.PlusDuration() <= OfficeHoursOrdered.First().DateAndHour;
 
@@ -65,9 +68,18 @@ public class ValidatorTimeScheduling
 
     private bool TimeToScheduleGreaterThanCurrentTime() =>
         TimeToSchedule.DateAndHour > OfficeHoursOrdered.Last().DateAndHour;
-    
+
     private bool TimeToScheduleLessThanCurrentTime() =>
         TimeToSchedule.DateAndHour < OfficeHoursOrdered.First().DateAndHour;
-    
+
     private bool HasUniqueTime() => OfficeHoursOrdered.Count == 1;
+
+    // Verificar se o intervalo tem ao menos 30 minutos para um time to schedule
+    // Melhorar este método 👇!?
+    private bool IntervalBetweenTimes()
+    {
+        if(NextTime == null || PrevTime == null) return false;
+        return NextTime.DateAndHour.Subtract(PrevTime.DateAndHour).TotalMinutes >= 30;
+    } 
+    
 }
