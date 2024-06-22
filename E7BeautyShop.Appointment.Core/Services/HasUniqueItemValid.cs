@@ -2,7 +2,7 @@
 
 namespace E7BeautyShop.Appointment.Core.Services;
 
-public sealed class HasUniqueValid(IReadOnlyCollection<OfficeHour> officeHoursScheduled, OfficeHour timeToSchedule)
+public sealed class HasUniqueItemValid(IReadOnlyCollection<OfficeHour> officeHoursScheduled, OfficeHour timeToSchedule)
     : AbstractValidatorTimeToSchedule(officeHoursScheduled, timeToSchedule)
 {
     public override bool Validate()

@@ -2,7 +2,7 @@
 
 namespace E7BeautyShop.Appointment.Core.Services;
 
-public sealed class HasAtLeastTwoValid(IReadOnlyCollection<OfficeHour> officeHoursScheduled, OfficeHour timeToSchedule)
+public sealed class HasAtLeastTwoItemsValid(IReadOnlyCollection<OfficeHour> officeHoursScheduled, OfficeHour timeToSchedule)
     : AbstractValidatorTimeToSchedule(officeHoursScheduled, timeToSchedule)
 {
     private OfficeHour? PrevTime =>
