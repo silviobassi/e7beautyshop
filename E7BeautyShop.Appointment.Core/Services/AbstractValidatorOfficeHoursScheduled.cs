@@ -8,4 +8,5 @@ public abstract class AbstractValidatorOfficeHoursScheduled(IReadOnlyCollection<
         officeHoursScheduled ?? throw new ArgumentNullException(nameof(officeHoursScheduled));
     
     public abstract bool Validate();
+    
 }

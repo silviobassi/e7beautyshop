@@ -25,9 +25,13 @@ public sealed class HasAtLeastTwoItemsValid(
     private bool IsSecondConditionValid() =>
         IsTimeToScheduleGreaterThanCurrentTime && IsTimeToScheduleGreaterThanPrevTimePlusDuration;
 
-    private bool IsThirdConditionValid() => IsTimeToScheduleGreaterThanPrevTime && IsTimeToScheduleLessThanNextTime &&
-                                            IsTimeToSchedulePlusDurationLessThanNextTime &&
-                                            IsPrevTimePlusDurationLessThanTimeToSchedule;
+    private bool IsThirdConditionValid() => IsTimeToScheduleBetweenPrevAndNextTime && IsScheduleWithinTimeBounds;
+
+    private bool IsTimeToScheduleBetweenPrevAndNextTime
+        => IsTimeToScheduleGreaterThanPrevTime && IsTimeToScheduleLessThanNextTime;
+    
+    private bool IsScheduleWithinTimeBounds => IsTimeToSchedulePlusDurationLessThanNextTime &&
+                                               IsPrevTimePlusDurationLessThanTimeToSchedule;
 
     private bool IsTimeToSchedulePlusDurationLessThanNextTime => TimeToSchedule.PlusDuration() <= NextTime?.DateAndHour;
 

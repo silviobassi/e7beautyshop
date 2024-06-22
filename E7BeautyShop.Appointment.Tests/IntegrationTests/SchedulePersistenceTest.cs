@@ -64,7 +64,7 @@ public class SchedulePersistenceTests(TestStartup startup) : IClassFixture<TestS
         var dayRestSunday = DayRest.Create(DayOfWeek.Sunday);
         var dayRestMonday = DayRest.Create(DayOfWeek.Monday);
         var officeHour1 = OfficeHour.Create(DateTime.Now, 30);
-        var officeHour2 = OfficeHour.Create(DateTime.Now.AddMinutes(30), 20);
+        var officeHour2 = OfficeHour.Create(DateTime.Now.AddMinutes(30), 30);
         
         schedule.AddDayRest(dayRestSunday);
         schedule.AddDayRest(dayRestMonday);
@@ -80,7 +80,7 @@ public class SchedulePersistenceTests(TestStartup startup) : IClassFixture<TestS
         Weekday newWeekday = (TimeSpan.FromHours(8), TimeSpan.FromHours(16));
         Weekend newWeekend = (TimeSpan.FromHours(8), TimeSpan.FromHours(14));
         var dayRestWednesday = DayRest.Create(DayOfWeek.Wednesday);
-        var newOfficeHour = OfficeHour.Create(DateTime.Now.AddHours(1), 10);
+        var newOfficeHour = OfficeHour.Create(DateTime.Now.AddHours(1), 30);
         
         currentSchedule?.Update(schedule.Id, newStartAt, newEndAt, newId, newWeekday, newWeekend);
         currentSchedule?.RemoveDayRest(dayRestMonday);

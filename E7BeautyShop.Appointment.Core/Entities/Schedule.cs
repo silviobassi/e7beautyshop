@@ -42,10 +42,10 @@ public sealed class Schedule : Entity, IAggregateRoot
 
     public void AddOfficeHour(OfficeHour officeHour)
     {
-        if (IsDayRest(officeHour)) return;
+        if (IsDayRest(officeHour)) officeHour.IsAvailable = false;
         _officeHours.Add(officeHour);
     }
-    
+
     public void RemoveOfficeHour(OfficeHour officeHour)
     {
         _officeHours.Remove(officeHour);

@@ -59,7 +59,7 @@ public class ScheduleTest(ITestOutputHelper output)
     }
 
     [Fact]
-    public void Should_NotAddOfficeHour_WhenDayRest()
+    public void Should_IsNotAvailable_WhenDayRest()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = startAt.AddDays(7);
@@ -73,7 +73,7 @@ public class ScheduleTest(ITestOutputHelper output)
         schedule.AddDayRest(dayRest);
         schedule.AddOfficeHour(officeHour);
 
-        Assert.DoesNotContain(officeHour, schedule.OfficeHours);
+        Assert.False(officeHour.IsAvailable);
     }
 
     [Fact]

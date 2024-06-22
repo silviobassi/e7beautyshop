@@ -179,4 +179,20 @@ public class OfficeHourTest(ITestOutputHelper output)
         Assert.Equal(expectedDateTime, result);
     }
     
+    [Fact]
+    public void Should_ThrowException_WhenDuration_LessThan_MinimumDuration()
+    {
+        var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
+        var exception = Assert.Throws<BusinessException>(() => OfficeHour.Create(dateAndHour, 20));
+        Assert.Equal($"Duration cannot be less than {OfficeHour.MinimumDuration} minutes", exception.Message);
+    }
+    
+    [Fact]
+    public void Should_ThrowNotException_WhenDuration_BiggerOrEqual_MinimumDuration()
+    {
+        var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
+        var exception = Record.Exception(() => OfficeHour.Create(dateAndHour, 30));
+        Assert.Null(exception);
+    }
+    
 }

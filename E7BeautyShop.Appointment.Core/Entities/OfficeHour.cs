@@ -8,9 +8,10 @@ public delegate void DomainEventDelegate(IDomainEvent domainEvent);
 
 public sealed class OfficeHour : Entity
 {
+    public static readonly int MinimumDuration = 30;
     public DateTime DateAndHour { get; private set; }
     public int Duration { get; private set; }
-    public bool IsAvailable { get; private set; }
+    public bool IsAvailable { get; set; }
     public Guid? CatalogId { get; init; }
     public Catalog? Catalog { get; private set; }
     public CustomerId? CustomerId { get; private set; }
@@ -36,7 +37,11 @@ public sealed class OfficeHour : Entity
         BusinessException.When(Duration <= 0, "Duration cannot be less than or equal to zero");
     }
 
-    public static OfficeHour Create(DateTime dateAndHour, int duration) => new(dateAndHour, duration);
+    public static OfficeHour Create(DateTime dateAndHour, int duration)
+    {
+        BusinessException.When(duration < MinimumDuration, $"Duration cannot be less than {MinimumDuration} minutes");
+        return new OfficeHour(dateAndHour, duration);
+    }
 
     public void Cancel() => IsAvailable = false;
 
@@ -73,7 +78,7 @@ public sealed class OfficeHour : Entity
     }
 
     public DateTime PlusDuration() => DateAndHour.AddMinutes(Duration);
-    
+
     private void ValidateDateAndHour() =>
         BusinessNullException.When(DateAndHour == default, nameof(DateAndHour));
 
