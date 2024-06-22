@@ -7,27 +7,27 @@ namespace E7BeautyShop.Appointment.Adapters.Outbound.Persistence;
 
 public class SchedulePersistence(ApplicationDbContext context) : ISchedulePersistencePort
 {
-    public async Task<Schedule?> GetByIdAsync(Guid id) 
+    public async Task<Core.Entities.Agenda?> GetByIdAsync(Guid id) 
         => await context.Schedules.FirstOrDefaultAsync(s => s.Id == id);
 
-    public async Task<Schedule?> CreateAsync(Schedule schedule)
+    public async Task<Core.Entities.Agenda?> CreateAsync(Core.Entities.Agenda calendart)
     {
-        context.Add(schedule);
+        context.Add(calendart);
         await context.SaveChangesAsync();
-        return schedule;
+        return calendart;
     }
 
-    public async Task<Schedule?> UpdateAsync(Schedule schedule)
+    public async Task<Core.Entities.Agenda?> UpdateAsync(Core.Entities.Agenda calendart)
     {
-        context.Update(schedule);
+        context.Update(calendart);
         await context.SaveChangesAsync();
-        return schedule;
+        return calendart;
     }
 
-    public async Task<Schedule?> DeleteAsync(Schedule schedule)
+    public async Task<Core.Entities.Agenda?> DeleteAsync(Core.Entities.Agenda calendart)
     {
-        context.Remove(schedule);
+        context.Remove(calendart);
         await context.SaveChangesAsync();
-        return schedule;
+        return calendart;
     }
 }

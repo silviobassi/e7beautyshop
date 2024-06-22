@@ -1,9 +1,10 @@
 ﻿using E7BeautyShop.Appointment.Core.ObjectsValue;
+using E7BeautyShop.Appointment.Core.Services;
 using E7BeautyShop.Appointment.Core.Validations;
 
 namespace E7BeautyShop.Appointment.Core.Entities;
 
-public sealed class Schedule : Entity, IAggregateRoot
+public sealed class Agenda : Entity, IAggregateRoot
 {
     public DateTime StartAt { get; private set; }
     public DateTime EndAt { get; private set; }
@@ -13,15 +14,14 @@ public sealed class Schedule : Entity, IAggregateRoot
 
     private readonly List<OfficeHour> _officeHours = [];
     private readonly List<DayRest> _daysRest = [];
-
     public IReadOnlyCollection<OfficeHour> OfficeHours => _officeHours.AsReadOnly();
     public IReadOnlyCollection<DayRest> DaysRest => _daysRest.AsReadOnly();
 
-    public Schedule()
+    public Agenda()
     {
     }
 
-    private Schedule(DateTime startAt, DateTime endAt, ProfessionalId? professionalId, Weekday weekday,
+    private Agenda(DateTime startAt, DateTime endAt, ProfessionalId? professionalId, Weekday weekday,
         Weekend weekend)
     {
         Id = Guid.NewGuid();
@@ -33,7 +33,7 @@ public sealed class Schedule : Entity, IAggregateRoot
         Validate();
     }
 
-    public static Schedule Create(DateTime startAt, DateTime endAt, ProfessionalId? professionalId, Weekday weekday,
+    public static Agenda Create(DateTime startAt, DateTime endAt, ProfessionalId? professionalId, Weekday weekday,
         Weekend weekend) => new(startAt, endAt, professionalId, weekday, weekend);
 
     public void AddDayRest(DayRest dayRest) => _daysRest.Add(dayRest);

@@ -1,10 +1,11 @@
 ﻿using E7BeautyShop.Appointment.Core.Entities;
+using E7BeautyShop.Appointment.Core.Services;
 using E7BeautyShop.Appointment.Core.Validations;
 using Xunit.Abstractions;
 
 namespace E7BeautyShop.Appointment.Tests.UnitTests.Core;
 
-public class ScheduleTest(ITestOutputHelper output)
+public class AgendaTest(ITestOutputHelper output)
 {
     private readonly TimeSpan _startWeekday = new(8, 0, 0);
     private readonly TimeSpan _endWeekday = new(18, 0, 0);
@@ -12,7 +13,7 @@ public class ScheduleTest(ITestOutputHelper output)
     private readonly TimeSpan _endWeekend = new(12, 0, 0);
 
     [Fact]
-    public void Should_CreateSchedule_WithValidParameters()
+    public void Should_CreateAgenda_WithValidParameters()
     {
         var startAt = DateTime.Now;
         var endAt = DateTime.Now.AddDays(7);
@@ -20,7 +21,7 @@ public class ScheduleTest(ITestOutputHelper output)
         var weekday = (_startWeekday, _endWeekday);
         var weekend = (_startWeekend, _endWeekend);
 
-        var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
+        var schedule = Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
 
         Assert.NotNull(schedule);
         Assert.Equal(startAt, schedule.StartAt);
@@ -31,7 +32,7 @@ public class ScheduleTest(ITestOutputHelper output)
     }
 
     [Fact]
-    public void Should_ThrowException_WhenCreatingScheduleWithInvalidParameters()
+    public void Should_ThrowException_WhenCreatingAgendaWithInvalidParameters()
     {
         var startAt = DateTime.MinValue;
         var endAt = DateTime.MinValue;
@@ -39,7 +40,7 @@ public class ScheduleTest(ITestOutputHelper output)
         var weekday = (_startWeekday, _endWeekday);
         var weekend = (_startWeekend, _endWeekend);
 
-        Assert.Throws<BusinessException>(() => Schedule.Create(startAt, endAt, professionalId, weekday, weekend));
+        Assert.Throws<BusinessException>(() => Appointment.Core.Entities.Agenda.Create(startAt, endAt, professionalId, weekday, weekend));
     }
 
     [Fact]
@@ -50,9 +51,9 @@ public class ScheduleTest(ITestOutputHelper output)
         var professionalId = Guid.NewGuid();
         var weekday = (_startWeekday, _endWeekday);
         var weekend = (_startWeekend, _endWeekend);
-        var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
+        var schedule = Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
         var officeHour = OfficeHour.Create(startAt, 30);
-
+        
         schedule.AddOfficeHour(officeHour);
 
         Assert.Contains(officeHour, schedule.OfficeHours);
@@ -66,7 +67,7 @@ public class ScheduleTest(ITestOutputHelper output)
         var professionalId = Guid.NewGuid();
         var weekday = (_startWeekday, _endWeekday);
         var weekend = (_startWeekend, _endWeekend);
-        var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
+        var schedule = Appointment.Core.Entities.Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
         var officeHour = OfficeHour.Create(startAt, 30);
         var dayRest = DayRest.Create(startAt.DayOfWeek);
 
@@ -77,14 +78,14 @@ public class ScheduleTest(ITestOutputHelper output)
     }
 
     [Fact]
-    public void Should_UpdateSchedule_WithValidParameters()
+    public void Should_UpdateAgenda_WithValidParameters()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = startAt.AddDays(7);
         var professionalId = Guid.NewGuid();
         var weekday = (_startWeekday, _endWeekday);
         var weekend = (_startWeekend, _endWeekend);
-        var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
+        var schedule = Appointment.Core.Entities.Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
 
         var newStartAt = startAt.AddDays(1);
         var newEndAt = startAt.AddDays(8);
@@ -106,7 +107,7 @@ public class ScheduleTest(ITestOutputHelper output)
     {
         var officeHour = OfficeHour.Create(
             new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc), 30);
-        var schedule = new Schedule();
+        var schedule = new Appointment.Core.Entities.Agenda();
         var result = schedule.IsWeekday(officeHour);
         Assert.True(result);
     }
@@ -116,7 +117,7 @@ public class ScheduleTest(ITestOutputHelper output)
     {
         var officeHour = OfficeHour.Create(
             new DateTime(2024, 06, 22, 8, 0, 0, DateTimeKind.Utc), 30);
-        var schedule = new Schedule();
+        var schedule = new Appointment.Core.Entities.Agenda();
         var result = schedule.IsWeekday(officeHour);
         Assert.False(result);
     }

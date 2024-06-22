@@ -8,7 +8,7 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<Catalog> Catalogs { get; set; }
     public DbSet<OfficeHour> OfficeHours { get; set; }
-    public DbSet<Schedule> Schedules { get; set; }
+    public DbSet<Core.Entities.Agenda> Schedules { get; set; }
     public DbSet<DayRest> DaysRest { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

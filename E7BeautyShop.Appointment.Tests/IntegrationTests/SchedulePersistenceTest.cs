@@ -22,7 +22,7 @@ public class SchedulePersistenceTests(TestStartup startup) : IClassFixture<TestS
         Weekday weekday = (TimeSpan.FromHours(8), TimeSpan.FromHours(18));
         Weekend weekend = (TimeSpan.FromHours(8), TimeSpan.FromHours(12));
 
-        var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
+        var schedule = Appointment.Core.Entities.Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
 
         var dayRestSunday = DayRest.Create(DayOfWeek.Sunday);
         var dayRestMonday = DayRest.Create(DayOfWeek.Monday);
@@ -59,7 +59,7 @@ public class SchedulePersistenceTests(TestStartup startup) : IClassFixture<TestS
         Weekday weekday = (TimeSpan.FromHours(8), TimeSpan.FromHours(18));
         Weekend weekend = (TimeSpan.FromHours(8), TimeSpan.FromHours(12));
 
-        var schedule = Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
+        var schedule = Appointment.Core.Entities.Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
 
         var dayRestSunday = DayRest.Create(DayOfWeek.Sunday);
         var dayRestMonday = DayRest.Create(DayOfWeek.Monday);

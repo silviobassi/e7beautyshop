@@ -5,8 +5,8 @@ namespace E7BeautyShop.Appointment.Application.Ports;
 
 public interface ISchedulePersistencePort
 {
-    Task<Schedule?> GetByIdAsync(Guid id);
-    Task<Schedule?> CreateAsync(Schedule schedule);
-    Task<Schedule?> UpdateAsync(Schedule schedule);
-    Task<Schedule?> DeleteAsync(Schedule schedule);
+    Task<Core.Entities.Agenda?> GetByIdAsync(Guid id);
+    Task<Core.Entities.Agenda?> CreateAsync(Core.Entities.Agenda calendart);
+    Task<Core.Entities.Agenda?> UpdateAsync(Core.Entities.Agenda calendart);
+    Task<Core.Entities.Agenda?> DeleteAsync(Core.Entities.Agenda calendart);
 }

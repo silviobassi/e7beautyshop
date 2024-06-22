@@ -6,7 +6,7 @@ namespace E7BeautyShop.Appointment.Tests.UnitTests.Core.Services;
 
 public static class ScheduleTestHelper
 {
-    public static Schedule CreateSchedule()
+    public static Appointment.Core.Entities.Agenda CreateSchedule()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = new DateTime(2024, 07, 18, 12, 0, 0, DateTimeKind.Utc);
@@ -15,7 +15,7 @@ public static class ScheduleTestHelper
         var weekday = (new TimeSpan(8, 0, 0), new TimeSpan(17, 0, 0));
         var weekend = (new TimeSpan(8, 0, 0), new TimeSpan(12, 0, 0));
 
-        return Schedule.Create(startAt, endAt, professionalId, weekday, weekend);
+        return Appointment.Core.Entities.Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
     }
 
     public static OfficeHour CreateOfficeHour(int year, int month, int day, int hour, int minute, int second, int duration)
@@ -23,29 +23,29 @@ public static class ScheduleTestHelper
         return OfficeHour.Create(new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc), duration);
     }
 
-    public static void AddOfficeHours(Schedule schedule, params OfficeHour[] officeHours)
+    public static void AddOfficeHours(Appointment.Core.Entities.Agenda calendart, params OfficeHour[] officeHours)
     {
         foreach (var officeHour in officeHours)
         {
-            schedule.AddOfficeHour(officeHour);
+            calendart.AddOfficeHour(officeHour);
         }
     }
 
-    public static void ValidateHasNoItems(Schedule schedule, bool expected)
+    public static void ValidateHasNoItems(Appointment.Core.Entities.Agenda calendart, bool expected)
     {
-        var hasNoItemsValid = new HasNoItemsValid(schedule.OfficeHours);
+        var hasNoItemsValid = new HasNoItemsValid(calendart.OfficeHours);
         Assert.Equal(expected, hasNoItemsValid.Validate());
     }
 
-    public static void ValidateHasUniqueItem(Schedule schedule, OfficeHour timeToSchedule, bool expected)
+    public static void ValidateHasUniqueItem(Appointment.Core.Entities.Agenda calendart, OfficeHour timeToSchedule, bool expected)
     {
-        var hasUniqueValid = new HasUniqueItemValid(schedule.OfficeHours, timeToSchedule);
+        var hasUniqueValid = new HasUniqueItemValid(calendart.OfficeHours, timeToSchedule);
         Assert.Equal(expected, hasUniqueValid.Validate());
     }
 
-    public static void ValidateHasAtLeastTwoItems(Schedule schedule, OfficeHour timeToSchedule, bool expected)
+    public static void ValidateHasAtLeastTwoItems(Appointment.Core.Entities.Agenda calendart, OfficeHour timeToSchedule, bool expected)
     {
-        var hasAtLeastTwoValid = new HasAtLeastTwoItemsValid(schedule.OfficeHours, timeToSchedule);
+        var hasAtLeastTwoValid = new HasAtLeastTwoItemsValid(calendart.OfficeHours, timeToSchedule);
         Assert.Equal(expected, hasAtLeastTwoValid.Validate());
     }
 }

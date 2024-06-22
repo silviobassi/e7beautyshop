@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace E7BeautyShop.Appointment.Infra.EntitiesConfiguration;
 
-public class ScheduleConfiguration : IEntityTypeConfiguration<Schedule>
+public class ScheduleConfiguration : IEntityTypeConfiguration<Core.Entities.Agenda>
 {
-    public void Configure(EntityTypeBuilder<Schedule> builder)
+    public void Configure(EntityTypeBuilder<Core.Entities.Agenda> builder)
     {
         builder.HasKey(s => s.Id);
         builder.Property(s => s.StartAt).IsRequired();
