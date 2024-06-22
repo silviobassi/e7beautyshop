@@ -37,7 +37,7 @@ public class ValidatorTimeSchedulingTest
     }
     
     [Fact]
-    public void Should_Check_Has_Unique_Item_InList()
+    public void Should_Check_HasUniqueItem_InList()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = new DateTime(2024, 07, 18, 12, 0, 0, DateTimeKind.Utc);
@@ -58,13 +58,17 @@ public class ValidatorTimeSchedulingTest
 
         var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 8, 30, 0, DateTimeKind.Utc), 30);
 
-        var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
-        var validate = validatorTime.Validate();
-        Assert.True(validate);
+        var hasNoItemsValid = new HasNoItemsValid(schedule.OfficeHours);
+        var hasUniqueValid = new HasUniqueValid(schedule.OfficeHours, timeToSchedule);
+        var hasAtLeastTwoValid = new HasAtLeastTwoValid(schedule.OfficeHours, timeToSchedule);
+        
+        Assert.False(hasNoItemsValid.Validate());
+        Assert.True(hasUniqueValid.Validate());
+        Assert.False(hasAtLeastTwoValid.Validate());
     }
 
     [Fact]
-    public void Should_Check_Has_Unique_Item_InList_If_CurrentTime_GreaterThan_TimeSchedule()
+    public void Should_Check_HasUniqueItem_InList_If_CurrentTime_GreaterThan_TimeSchedule()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = new DateTime(2024, 07, 18, 12, 0, 0, DateTimeKind.Utc);
@@ -85,13 +89,17 @@ public class ValidatorTimeSchedulingTest
 
         var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc), 30);
 
-        var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
-        var validate = validatorTime.Validate();
-        Assert.True(validate);
+        var hasNoItemsValid = new HasNoItemsValid(schedule.OfficeHours);
+        var hasUniqueValid = new HasUniqueValid(schedule.OfficeHours, timeToSchedule);
+        var hasAtLeastTwoValid = new HasAtLeastTwoValid(schedule.OfficeHours, timeToSchedule);
+        
+        Assert.False(hasNoItemsValid.Validate());
+        Assert.True(hasUniqueValid.Validate());
+        Assert.False(hasAtLeastTwoValid.Validate());
     }
 
     [Fact]
-    public void Should_Check_Has_Unique_Item_InList_If_CurrentTime_LessThan_TimeSchedule()
+    public void Should_Check_HasUniqueItem_InList_If_CurrentTime_LessThan_TimeSchedule()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = new DateTime(2024, 07, 18, 12, 0, 0, DateTimeKind.Utc);
@@ -113,13 +121,17 @@ public class ValidatorTimeSchedulingTest
 
         var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 8, 10, 0, DateTimeKind.Utc), 30);
 
-        var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
-        var validate = validatorTime.Validate();
-        Assert.True(validate);
+        var hasNoItemsValid = new HasNoItemsValid(schedule.OfficeHours);
+        var hasUniqueValid = new HasUniqueValid(schedule.OfficeHours, timeToSchedule);
+        var hasAtLeastTwoValid = new HasAtLeastTwoValid(schedule.OfficeHours, timeToSchedule);
+        
+        Assert.False(hasNoItemsValid.Validate());
+        Assert.True(hasUniqueValid.Validate());
+        Assert.False(hasAtLeastTwoValid.Validate());
     }
 
     [Fact]
-    public void Should_Check_Has_Unique_Item_InList_If_TimeSchedule_BiggerOrEqual_CurrentTimePlusDuration()
+    public void Should_Check_Has_UniqueItem_InList_If_TimeSchedule_BiggerOrEqual_CurrentTimePlusDuration()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = new DateTime(2024, 07, 18, 12, 0, 0, DateTimeKind.Utc);
@@ -141,12 +153,17 @@ public class ValidatorTimeSchedulingTest
 
         var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 8, 30, 0, DateTimeKind.Utc), 30);
 
-        var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
-        Assert.True(validatorTime.Validate());
+        var hasNoItemsValid = new HasNoItemsValid(schedule.OfficeHours);
+        var hasUniqueValid = new HasUniqueValid(schedule.OfficeHours, timeToSchedule);
+        var hasAtLeastTwoValid = new HasAtLeastTwoValid(schedule.OfficeHours, timeToSchedule);
+        
+        Assert.False(hasNoItemsValid.Validate());
+        Assert.True(hasUniqueValid.Validate());
+        Assert.False(hasAtLeastTwoValid.Validate());
     }
 
     [Fact]
-    public void Should_Check_Has_Unique_Item_InList_If_TimeSchedulePlusDuration_LessOrEqual_CurrentTime()
+    public void Should_Check_HasUnique_Item_InList_If_TimeSchedulePlusDuration_LessOrEqual_CurrentTime()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = new DateTime(2024, 07, 18, 12, 0, 0, DateTimeKind.Utc);
@@ -168,12 +185,17 @@ public class ValidatorTimeSchedulingTest
 
         var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 7, 30, 0, DateTimeKind.Utc), 30);
 
-        var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
-        Assert.True(validatorTime.Validate());
+        var hasNoItemsValid = new HasNoItemsValid(schedule.OfficeHours);
+        var hasUniqueValid = new HasUniqueValid(schedule.OfficeHours, timeToSchedule);
+        var hasAtLeastTwoValid = new HasAtLeastTwoValid(schedule.OfficeHours, timeToSchedule);
+        
+        Assert.False(hasNoItemsValid.Validate());
+        Assert.True(hasUniqueValid.Validate());
+        Assert.False(hasAtLeastTwoValid.Validate());
     }
 
     [Fact]
-    public void Should_Check_Has_AtLeastTwo_Item_InList()
+    public void Should_Check_HasAtLeastTwoItems_InList()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = new DateTime(2024, 07, 18, 12, 0, 0, DateTimeKind.Utc);
@@ -196,13 +218,17 @@ public class ValidatorTimeSchedulingTest
 
         var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 7, 20, 0, DateTimeKind.Utc), 30);
 
-        var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
-        var validate = validatorTime.Validate();
-        Assert.True(validate);
+        var hasNoItemsValid = new HasNoItemsValid(schedule.OfficeHours);
+        var hasUniqueValid = new HasUniqueValid(schedule.OfficeHours, timeToSchedule);
+        var hasAtLeastTwoValid = new HasAtLeastTwoValid(schedule.OfficeHours, timeToSchedule);
+        
+        Assert.False(hasNoItemsValid.Validate());
+        Assert.False(hasUniqueValid.Validate());
+        Assert.True(hasAtLeastTwoValid.Validate());
     }
 
     [Fact]
-    public void Should_Check_Has_AtLeastTwo_Item_InList_When_TimeToSchedule_LessThan_FirstItemList()
+    public void Should_Check_HasAtLeastTwoItems_InList_When_TimeToSchedule_LessThan_FirstItemList()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = new DateTime(2024, 07, 18, 12, 0, 0, DateTimeKind.Utc);
@@ -225,13 +251,17 @@ public class ValidatorTimeSchedulingTest
 
         var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 7, 30, 0, DateTimeKind.Utc), 30);
 
-        var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
-        var validate = validatorTime.Validate();
-        Assert.True(validate);
+        var hasNoItemsValid = new HasNoItemsValid(schedule.OfficeHours);
+        var hasUniqueValid = new HasUniqueValid(schedule.OfficeHours, timeToSchedule);
+        var hasAtLeastTwoValid = new HasAtLeastTwoValid(schedule.OfficeHours, timeToSchedule);
+        
+        Assert.False(hasNoItemsValid.Validate());
+        Assert.False(hasUniqueValid.Validate());
+        Assert.True(hasAtLeastTwoValid.Validate());
     }
 
     [Fact]
-    public void Should_Check_Has_AtLeastTwo_Item_InList_When_TimeToSchedule_GreaterThan_LastItemList()
+    public void Should_Check_HasAtLeastTwo_Items_InList_When_TimeToSchedule_GreaterThan_LastItemList()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = new DateTime(2024, 07, 18, 12, 0, 0, DateTimeKind.Utc);
@@ -256,12 +286,13 @@ public class ValidatorTimeSchedulingTest
 
         var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 9, 0, 0, DateTimeKind.Utc), 30);
 
-        var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
-        var validate = validatorTime.Validate();
-        Assert.Equal(3, schedule.OfficeHours.Count);
-        Assert.True(validate);
-        Assert.Equal(validatorTime.PrevTime, officeHour2);
-        Assert.Equal(validatorTime.NextTime, officeHour3);
+        var hasNoItemsValid = new HasNoItemsValid(schedule.OfficeHours);
+        var hasUniqueValid = new HasUniqueValid(schedule.OfficeHours, timeToSchedule);
+        var hasAtLeastTwoValid = new HasAtLeastTwoValid(schedule.OfficeHours, timeToSchedule);
+        
+        Assert.False(hasNoItemsValid.Validate());
+        Assert.False(hasUniqueValid.Validate());
+        Assert.True(hasAtLeastTwoValid.Validate());
     }
     /*
      * List<OfficeHour> officeHours =
