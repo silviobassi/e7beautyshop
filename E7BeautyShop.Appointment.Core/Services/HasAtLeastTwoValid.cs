@@ -2,27 +2,24 @@
 
 namespace E7BeautyShop.Appointment.Core.Services;
 
-public sealed class HasAtLeastTwoValid(IReadOnlyCollection<OfficeHour> officeHours, OfficeHour timeToSchedule)
-    : ValidatorAbstract(officeHours, timeToSchedule)
+public sealed class HasAtLeastTwoValid(IReadOnlyCollection<OfficeHour> officeHoursScheduled, OfficeHour timeToSchedule)
+    : AbstractValidatorTimeToSchedule(officeHoursScheduled, timeToSchedule)
 {
-    private readonly IReadOnlyCollection<OfficeHour> _officeHoursOrdered;
-    private readonly OfficeHour _timeToSchedule;
-
     private OfficeHour? PrevTime =>
-        _officeHoursOrdered.LastOrDefault(of => of.DateAndHour < _timeToSchedule.DateAndHour);
+        OfficeHourScheduled.LastOrDefault(of => of.DateAndHour < TimeToSchedule.DateAndHour);
 
     private OfficeHour? NextTime =>
-        _officeHoursOrdered.FirstOrDefault(of => of.DateAndHour > _timeToSchedule.DateAndHour);
+        OfficeHourScheduled.FirstOrDefault(of => of.DateAndHour > TimeToSchedule.DateAndHour);
 
     public override bool Validate()
     {
-        if (_officeHoursOrdered.Count < 2) return false;
+        if (OfficeHourScheduled.Count < 2) return false;
 
         if (TimeToScheduleLessThanCurrentTime)
             return TimeToSchedulePlusDurationLessThanNextTime;
 
         if (TimeToScheduleGreaterThanCurrentTime)
-            return _timeToSchedule.DateAndHour >= _officeHoursOrdered.Last().PlusDuration();
+            return TimeToSchedule.DateAndHour >= OfficeHourScheduled.Last().PlusDuration();
 
         if (TimeToScheduleGreaterThanPrevTime && TimeToScheduleLessThanNextTime)
             return TimeToSchedulePlusDurationLessThanNextTime || PrevTimePlusDurationLessThanTimeToSchedule;
@@ -31,15 +28,15 @@ public sealed class HasAtLeastTwoValid(IReadOnlyCollection<OfficeHour> officeHou
     }
 
     private bool TimeToScheduleLessThanCurrentTime =>
-        _timeToSchedule.DateAndHour < _officeHoursOrdered.First().DateAndHour;
+        TimeToSchedule.DateAndHour < OfficeHourScheduled.First().DateAndHour;
 
-    private bool TimeToSchedulePlusDurationLessThanNextTime => _timeToSchedule.PlusDuration() <= NextTime?.DateAndHour;
+    private bool TimeToSchedulePlusDurationLessThanNextTime => TimeToSchedule.PlusDuration() <= NextTime?.DateAndHour;
 
     private bool TimeToScheduleGreaterThanCurrentTime =>
-        _timeToSchedule.DateAndHour > _officeHoursOrdered.Last().DateAndHour;
+        TimeToSchedule.DateAndHour > OfficeHourScheduled.Last().DateAndHour;
 
-    private bool TimeToScheduleGreaterThanPrevTime => _timeToSchedule.DateAndHour > PrevTime?.DateAndHour;
+    private bool TimeToScheduleGreaterThanPrevTime => TimeToSchedule.DateAndHour > PrevTime?.DateAndHour;
 
-    private bool TimeToScheduleLessThanNextTime => _timeToSchedule.DateAndHour < NextTime?.DateAndHour;
-    private bool PrevTimePlusDurationLessThanTimeToSchedule => PrevTime?.PlusDuration() <= _timeToSchedule.DateAndHour;
+    private bool TimeToScheduleLessThanNextTime => TimeToSchedule.DateAndHour < NextTime?.DateAndHour;
+    private bool PrevTimePlusDurationLessThanTimeToSchedule => PrevTime?.PlusDuration() <= TimeToSchedule.DateAndHour;
 }

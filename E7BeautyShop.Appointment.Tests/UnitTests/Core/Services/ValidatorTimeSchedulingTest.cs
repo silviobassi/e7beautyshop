@@ -8,7 +8,7 @@ namespace E7BeautyShop.Appointment.Tests.UnitTests.Core.Services;
 public class ValidatorTimeSchedulingTest
 {
     [Fact]
-    public void Should_Check_HasNot_AtLeastOne_Item_InList()
+    public void Should_Check_HasNoItems_InList()
     {
         var startAt = new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc);
         var endAt = new DateTime(2024, 07, 18, 12, 0, 0, DateTimeKind.Utc);
@@ -27,9 +27,13 @@ public class ValidatorTimeSchedulingTest
 
         var timeToSchedule = OfficeHour.Create(new DateTime(2024, 06, 18, 8, 30, 0, DateTimeKind.Utc), 30);
 
-        var validatorTime = new ValidatorTimeScheduling(schedule.OfficeHours, timeToSchedule);
-        var validate = validatorTime.Validate();
-        Assert.True(validate);
+        var hasNoItemsValid = new HasNoItemsValid(schedule.OfficeHours);
+        var hasUniqueValid = new HasUniqueValid(schedule.OfficeHours, timeToSchedule);
+        var hasAtLeastTwoValid = new HasAtLeastTwoValid(schedule.OfficeHours, timeToSchedule);
+        
+        Assert.True(hasNoItemsValid.Validate());
+        Assert.False(hasUniqueValid.Validate());
+        Assert.False(hasAtLeastTwoValid.Validate());
     }
     
     [Fact]

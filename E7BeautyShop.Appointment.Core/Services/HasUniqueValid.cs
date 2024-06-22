@@ -2,25 +2,25 @@
 
 namespace E7BeautyShop.Appointment.Core.Services;
 
-public sealed class HasUniqueValid(IReadOnlyCollection<OfficeHour> officeHours, OfficeHour timeToSchedule)
-    : ValidatorAbstract(officeHours, timeToSchedule)
+public sealed class HasUniqueValid(IReadOnlyCollection<OfficeHour> officeHoursScheduled, OfficeHour timeToSchedule)
+    : AbstractValidatorTimeToSchedule(officeHoursScheduled, timeToSchedule)
 {
     public override bool Validate()
     {
-        if (_officeHoursOrdered.Count != 1) return false;
+        if (OfficeHourScheduled.Count != 1) return false;
         if (TimeToScheduleLessThanCurrentTime()) return TimeToSchedulePlusDurationLessThanFirstCurrentTime();
         return TimeToScheduleGreaterThanCurrentTime() && TimeToScheduleGreaterThanLastTimePlusDuration;
     }
 
     private bool TimeToSchedulePlusDurationLessThanFirstCurrentTime()
-        => _timeToSchedule.PlusDuration() <= _officeHoursOrdered.First().DateAndHour;
+        => TimeToSchedule.PlusDuration() <= OfficeHourScheduled.First().DateAndHour;
 
     private bool TimeToScheduleLessThanCurrentTime() =>
-        _timeToSchedule.DateAndHour < _officeHoursOrdered.First().DateAndHour;
+        TimeToSchedule.DateAndHour < OfficeHourScheduled.First().DateAndHour;
 
     private bool TimeToScheduleGreaterThanCurrentTime() =>
-        _timeToSchedule.DateAndHour > _officeHoursOrdered.Last().DateAndHour;
+        TimeToSchedule.DateAndHour > OfficeHourScheduled.Last().DateAndHour;
 
     private bool TimeToScheduleGreaterThanLastTimePlusDuration =>
-        _timeToSchedule.DateAndHour >= _officeHoursOrdered.Last().PlusDuration();
+        TimeToSchedule.DateAndHour >= OfficeHourScheduled.Last().PlusDuration();
 }
