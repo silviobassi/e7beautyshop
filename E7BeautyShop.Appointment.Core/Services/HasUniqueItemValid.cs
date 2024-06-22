@@ -8,19 +8,13 @@ public sealed class HasUniqueItemValid(IReadOnlyCollection<OfficeHour> officeHou
     public override bool Validate()
     {
         if (OfficeHourScheduled.Count != 1) return false;
-        if (TimeToScheduleLessThanCurrentTime()) return TimeToSchedulePlusDurationLessThanFirstCurrentTime();
-        return TimeToScheduleGreaterThanCurrentTime() && TimeToScheduleGreaterThanLastTimePlusDuration;
+        if (IsTimeToScheduleLessThanCurrentTime) return IsTimeToSchedulePlusDurationLessThanFirstCurrentTime;
+        return IsTimeToScheduleGreaterThanCurrentTime && IsTimeToScheduleGreaterThanLastTimePlusDuration;
     }
 
-    private bool TimeToSchedulePlusDurationLessThanFirstCurrentTime()
+    private bool IsTimeToSchedulePlusDurationLessThanFirstCurrentTime
         => TimeToSchedule.PlusDuration() <= OfficeHourScheduled.First().DateAndHour;
-
-    private bool TimeToScheduleLessThanCurrentTime() =>
-        TimeToSchedule.DateAndHour < OfficeHourScheduled.First().DateAndHour;
-
-    private bool TimeToScheduleGreaterThanCurrentTime() =>
-        TimeToSchedule.DateAndHour > OfficeHourScheduled.Last().DateAndHour;
-
-    private bool TimeToScheduleGreaterThanLastTimePlusDuration =>
+    
+    private bool IsTimeToScheduleGreaterThanLastTimePlusDuration =>
         TimeToSchedule.DateAndHour >= OfficeHourScheduled.Last().PlusDuration();
 }
