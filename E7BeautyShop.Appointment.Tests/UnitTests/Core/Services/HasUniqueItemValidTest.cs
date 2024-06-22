@@ -10,9 +10,9 @@ public class HasUniqueItemValidTest
         schedule.AddOfficeHour(officeHour);
         var timeToSchedule = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 30, 0, 30);
 
-        ScheduleTestHelper.ValidateSchedule(schedule, timeToSchedule, hasNoItemsValidExpected: false,
-            hasUniqueValidExpected: true,
-            hasAtLeastTwoValidExpected: false);
+        ScheduleTestHelper.ValidateHasNoItems(schedule, expected: false);
+        ScheduleTestHelper.ValidateHasUniqueItem(schedule, timeToSchedule, expected: true);
+        ScheduleTestHelper.ValidateHasAtLeastTwoItems(schedule, timeToSchedule, expected: false);
     }
 
     [Fact]
@@ -23,9 +23,9 @@ public class HasUniqueItemValidTest
         schedule.AddOfficeHour(currentGreaterTimeToSchedule);
         var timeToSchedule = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 0, 0, 30);
 
-        ScheduleTestHelper.ValidateSchedule(schedule, timeToSchedule, hasNoItemsValidExpected: false,
-            hasUniqueValidExpected: true,
-            hasAtLeastTwoValidExpected: false);
+        ScheduleTestHelper.ValidateHasNoItems(schedule, expected: false);
+        ScheduleTestHelper.ValidateHasUniqueItem(schedule, timeToSchedule, expected: true);
+        ScheduleTestHelper.ValidateHasAtLeastTwoItems(schedule, timeToSchedule, expected: false);
     }
 
     [Fact]
@@ -36,9 +36,9 @@ public class HasUniqueItemValidTest
         schedule.AddOfficeHour(currentTimeLessThanTimeSchedule);
         var timeToSchedule = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 10, 0, 30);
 
-        ScheduleTestHelper.ValidateSchedule(schedule, timeToSchedule, hasNoItemsValidExpected: false,
-            hasUniqueValidExpected: true,
-            hasAtLeastTwoValidExpected: false);
+        ScheduleTestHelper.ValidateHasNoItems(schedule, expected: false);
+        ScheduleTestHelper.ValidateHasUniqueItem(schedule, timeToSchedule, expected: true);
+        ScheduleTestHelper.ValidateHasAtLeastTwoItems(schedule, timeToSchedule, expected: false);
     }
 
     [Fact]
@@ -50,9 +50,9 @@ public class HasUniqueItemValidTest
         schedule.AddOfficeHour(timeScheduleBiggerOrEqualCurrentTimePlusDuration);
         var timeToSchedule = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 30, 0, 30);
 
-        ScheduleTestHelper.ValidateSchedule(schedule, timeToSchedule, hasNoItemsValidExpected: false,
-            hasUniqueValidExpected: true,
-            hasAtLeastTwoValidExpected: false);
+        ScheduleTestHelper.ValidateHasNoItems(schedule, expected: false);
+        ScheduleTestHelper.ValidateHasUniqueItem(schedule, timeToSchedule, expected: true);
+        ScheduleTestHelper.ValidateHasAtLeastTwoItems(schedule, timeToSchedule, expected: false);
     }
 
     [Fact]
@@ -64,8 +64,8 @@ public class HasUniqueItemValidTest
         schedule.AddOfficeHour(timeSchedulePlusDurationLessOrEqualCurrentTime);
         var timeToSchedule = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 7, 30, 0, 30);
 
-        ScheduleTestHelper.ValidateSchedule(schedule, timeToSchedule, hasNoItemsValidExpected: false,
-            hasUniqueValidExpected: true,
-            hasAtLeastTwoValidExpected: false);
+        ScheduleTestHelper.ValidateHasNoItems(schedule, expected: false);
+        ScheduleTestHelper.ValidateHasUniqueItem(schedule, timeToSchedule, expected: true);
+        ScheduleTestHelper.ValidateHasAtLeastTwoItems(schedule, timeToSchedule, expected: false);
     }
 }

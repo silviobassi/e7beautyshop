@@ -31,14 +31,21 @@ public static class ScheduleTestHelper
         }
     }
 
-    public static void ValidateSchedule(Schedule schedule, OfficeHour timeToSchedule, bool hasNoItemsValidExpected, bool hasUniqueValidExpected, bool hasAtLeastTwoValidExpected)
+    public static void ValidateHasNoItems(Schedule schedule, bool expected)
     {
         var hasNoItemsValid = new HasNoItemsValid(schedule.OfficeHours);
-        var hasUniqueValid = new HasUniqueItemValid(schedule.OfficeHours, timeToSchedule);
-        var hasAtLeastTwoValid = new HasAtLeastTwoItemsValid(schedule.OfficeHours, timeToSchedule);
+        Assert.Equal(expected, hasNoItemsValid.Validate());
+    }
 
-        Assert.Equal(hasNoItemsValidExpected, hasNoItemsValid.Validate());
-        Assert.Equal(hasUniqueValidExpected, hasUniqueValid.Validate());
-        Assert.Equal(hasAtLeastTwoValidExpected, hasAtLeastTwoValid.Validate());
+    public static void ValidateHasUniqueItem(Schedule schedule, OfficeHour timeToSchedule, bool expected)
+    {
+        var hasUniqueValid = new HasUniqueItemValid(schedule.OfficeHours, timeToSchedule);
+        Assert.Equal(expected, hasUniqueValid.Validate());
+    }
+
+    public static void ValidateHasAtLeastTwoItems(Schedule schedule, OfficeHour timeToSchedule, bool expected)
+    {
+        var hasAtLeastTwoValid = new HasAtLeastTwoItemsValid(schedule.OfficeHours, timeToSchedule);
+        Assert.Equal(expected, hasAtLeastTwoValid.Validate());
     }
 }
