@@ -2,7 +2,8 @@
 
 namespace E7BeautyShop.Appointment.Core.Services;
 
-public class HasAtLeastTwoValid : IValidator
+public sealed class HasAtLeastTwoValid(IReadOnlyCollection<OfficeHour> officeHours, OfficeHour timeToSchedule)
+    : ValidatorAbstract(officeHours, timeToSchedule)
 {
     private readonly IReadOnlyCollection<OfficeHour> _officeHoursOrdered;
     private readonly OfficeHour _timeToSchedule;
@@ -13,15 +14,7 @@ public class HasAtLeastTwoValid : IValidator
     private OfficeHour? NextTime =>
         _officeHoursOrdered.FirstOrDefault(of => of.DateAndHour > _timeToSchedule.DateAndHour);
 
-    public HasAtLeastTwoValid(IReadOnlyCollection<OfficeHour> officeHours, OfficeHour timeToSchedule)
-    {
-        ArgumentNullException.ThrowIfNull(nameof(officeHours));
-        ArgumentNullException.ThrowIfNull(nameof(timeToSchedule));
-        _officeHoursOrdered = officeHours.OrderBy(of => of.DateAndHour).ToList().AsReadOnly();
-        _timeToSchedule = timeToSchedule;
-    }
-
-    public bool Validate()
+    public override bool Validate()
     {
         if (_officeHoursOrdered.Count < 2) return false;
 
@@ -30,10 +23,10 @@ public class HasAtLeastTwoValid : IValidator
 
         if (TimeToScheduleGreaterThanCurrentTime)
             return _timeToSchedule.DateAndHour >= _officeHoursOrdered.Last().PlusDuration();
-        
+
         if (TimeToScheduleGreaterThanPrevTime && TimeToScheduleLessThanNextTime)
             return TimeToSchedulePlusDurationLessThanNextTime || PrevTimePlusDurationLessThanTimeToSchedule;
-        
+
         return false;
     }
 

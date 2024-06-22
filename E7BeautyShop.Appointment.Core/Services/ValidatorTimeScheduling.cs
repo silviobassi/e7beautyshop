@@ -80,6 +80,8 @@ public class ValidatorTimeScheduling
     private bool TimeToScheduleLessThanCurrentTime() =>
         TimeToSchedule.DateAndHour < OfficeHoursOrdered.First().DateAndHour;
     private bool HasUniqueTime() => OfficeHoursOrdered.Count == 1;
+    
+    // Criar uma nova classe para esse método 🎯
     private bool OfficeHoursIsEmpty => OfficeHoursOrdered.Count == 0;
     private bool IsTimeScheduleDurationAllowed => TimeToSchedule.Duration >= MinimumDuration;
     

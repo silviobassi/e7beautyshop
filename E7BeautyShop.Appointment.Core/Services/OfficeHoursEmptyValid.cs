@@ -2,7 +2,7 @@
 
 namespace E7BeautyShop.Appointment.Core.Services;
 
-public class OfficeHoursEmptyValid : IValidator
+public class OfficeHoursEmptyValid : ValidatorAbstract
 {
     private readonly IReadOnlyCollection<OfficeHour> _officeHoursOrdered;
 

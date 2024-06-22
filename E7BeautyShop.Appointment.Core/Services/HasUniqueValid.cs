@@ -2,20 +2,10 @@
 
 namespace E7BeautyShop.Appointment.Core.Services;
 
-public class HasUniqueValid : IValidator
+public sealed class HasUniqueValid(IReadOnlyCollection<OfficeHour> officeHours, OfficeHour timeToSchedule)
+    : ValidatorAbstract(officeHours, timeToSchedule)
 {
-    private readonly IReadOnlyCollection<OfficeHour> _officeHoursOrdered;
-    private readonly OfficeHour _timeToSchedule;
-
-    public HasUniqueValid(IReadOnlyCollection<OfficeHour> officeHours, OfficeHour timeToSchedule)
-    {
-        ArgumentNullException.ThrowIfNull(nameof(officeHours));
-        ArgumentNullException.ThrowIfNull(nameof(timeToSchedule));
-        _officeHoursOrdered = officeHours.OrderBy(of => of.DateAndHour).ToList().AsReadOnly();
-        _timeToSchedule = timeToSchedule;
-    }
-
-    public bool Validate()
+    public override bool Validate()
     {
         if (_officeHoursOrdered.Count != 1) return false;
         if (TimeToScheduleLessThanCurrentTime()) return TimeToSchedulePlusDurationLessThanFirstCurrentTime();
