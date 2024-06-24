@@ -1,7 +1,7 @@
 ﻿using E7BeautyShop.AgendaService.Core.DomainEvents;
-using E7BeautyShop.Appointment.Core.ObjectsValue;
-using E7BeautyShop.Appointment.Core.Validations;
-using static E7BeautyShop.Appointment.Core.Validations.ErrorMessages;
+using E7BeautyShop.AgendaService.Core.ObjectsValue;
+using E7BeautyShop.AgendaService.Core.Validations;
+using static E7BeautyShop.AgendaService.Core.Validations.Messages;
 
 namespace E7BeautyShop.AgendaService.Core.Entities;
 

@@ -1,7 +1,7 @@
 ﻿using E7BeautyShop.AgendaService.Core.Entities;
-using E7BeautyShop.Appointment.Core.Validations;
+using E7BeautyShop.AgendaService.Core.Validations;
 using Xunit.Abstractions;
-using static E7BeautyShop.Appointment.Core.Validations.ErrorMessages;
+using static E7BeautyShop.AgendaService.Core.Validations.Messages;
 
 namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core;
 

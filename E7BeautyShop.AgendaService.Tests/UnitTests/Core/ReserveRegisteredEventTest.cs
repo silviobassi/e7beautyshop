@@ -1,5 +1,5 @@
 ﻿using E7BeautyShop.AgendaService.Core.DomainEvents;
-using E7BeautyShop.Appointment.Core.Validations;
+using E7BeautyShop.AgendaService.Core.Validations;
 
 namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core;
 

@@ -1,5 +1,5 @@
 ﻿using E7BeautyShop.AgendaService.Core.Entities;
-using E7BeautyShop.Appointment.Core.ObjectsValue;
+using E7BeautyShop.AgendaService.Core.ObjectsValue;
 
 namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core;
 

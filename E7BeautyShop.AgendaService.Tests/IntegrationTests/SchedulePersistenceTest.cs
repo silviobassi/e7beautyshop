@@ -1,6 +1,6 @@
 ﻿using E7BeautyShop.AgendaService.Application.Ports;
 using E7BeautyShop.AgendaService.Core.Entities;
-using E7BeautyShop.Appointment.Core.ObjectsValue;
+using E7BeautyShop.AgendaService.Core.ObjectsValue;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace E7BeautyShop.AgendaService.Tests.IntegrationTests;

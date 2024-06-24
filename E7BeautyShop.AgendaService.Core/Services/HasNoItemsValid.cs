@@ -1,6 +1,6 @@
 ﻿using E7BeautyShop.AgendaService.Core.Entities;
 
-namespace E7BeautyShop.Appointment.Core.Services;
+namespace E7BeautyShop.AgendaService.Core.Services;
 
 public class HasNoItemsValid(IReadOnlyCollection<OfficeHour> officeHoursScheduled)
     : AbstractValidatorOfficeHoursScheduled(officeHoursScheduled)

@@ -1,6 +1,4 @@
-﻿using E7BeautyShop.Appointment.Core.Validations;
-
-namespace E7BeautyShop.Appointment.Core.ObjectsValue;
+﻿namespace E7BeautyShop.AgendaService.Core.ObjectsValue;
 
 public sealed record ProfessionalId
 {

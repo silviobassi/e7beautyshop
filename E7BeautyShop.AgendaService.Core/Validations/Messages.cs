@@ -1,9 +1,9 @@
 ﻿using static E7BeautyShop.AgendaService.Core.Entities.OfficeHour;
-using static E7BeautyShop.Appointment.Core.ObjectsValue.ServiceDescription;
+using static E7BeautyShop.AgendaService.Core.ObjectsValue.ServiceDescription;
 
-namespace E7BeautyShop.Appointment.Core.Validations;
+namespace E7BeautyShop.AgendaService.Core.Validations;
 
-public static class ErrorMessages
+public static class Messages
 {
     // ServiceDescription Error Messages
     public static readonly string NameShouldLessThanInformed = $"Name must be less than {MaxNameLength} characters";

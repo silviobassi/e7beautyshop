@@ -1,4 +1,4 @@
-﻿namespace E7BeautyShop.Appointment.Core.Validations;
+﻿namespace E7BeautyShop.AgendaService.Core.Validations;
 
 public sealed class BusinessException(string message) : Exception(message)
 {
