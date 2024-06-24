@@ -39,9 +39,7 @@ public class OfficeHourTest(ITestOutputHelper output)
     [Fact]
     public void Should_ThrowException_When_TimeOfDayIsInvalid()
     {
-        var dateAndHour = new DateTime(default, DateTimeKind.Local);
-
-        var exception = Assert.Throws<ArgumentNullException>(() => OfficeHour.Create(dateAndHour, 30));
+        var exception = Assert.Throws<ArgumentNullException>(() => OfficeHour.Create(null, 30));
         Assert.Equal("Value cannot be null. (Parameter 'DateAndHour')", exception.Message);
     }
 
@@ -95,7 +93,7 @@ public class OfficeHourTest(ITestOutputHelper output)
     }
 
     [Fact]
-    public void Should_ReserveCancel_ThrowsBusinessException_WhenOfficeHourHasNoCustomer()
+    public void Should_ReserveCancel_ThrowsException_WhenOfficeHourHasNoCustomer()
     {
         var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
         var officeHour = OfficeHour.Create(dateAndHour, 30);

@@ -40,7 +40,10 @@ public class AgendaTest(ITestOutputHelper output)
         var weekday = (_startWeekday, _endWeekday);
         var weekend = (_startWeekend, _endWeekend);
 
-        Assert.Throws<BusinessException>(() => Appointment.Core.Entities.Agenda.Create(startAt, endAt, professionalId, weekday, weekend));
+        var exception = Assert.Throws<BusinessException>(() => 
+            Agenda.Create(startAt, endAt, professionalId, weekday, weekend));
+        
+        Assert.Equal(ErrorMessages.StartAtLessThanEndAt, exception.Message);
     }
 
     [Fact]
@@ -53,7 +56,7 @@ public class AgendaTest(ITestOutputHelper output)
         var weekend = (_startWeekend, _endWeekend);
         var schedule = Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
         var officeHour = OfficeHour.Create(startAt, 30);
-        
+
         schedule.AddOfficeHour(officeHour);
 
         Assert.Contains(officeHour, schedule.OfficeHours);
@@ -101,7 +104,7 @@ public class AgendaTest(ITestOutputHelper output)
         Assert.Equal(newWeekday, schedule.Weekday);
         Assert.Equal(newWeekend, schedule.Weekend);
     }
-    
+
     [Fact]
     public void Should_ReturnTrue_WhenOfficeHourIsOnWeekday()
     {

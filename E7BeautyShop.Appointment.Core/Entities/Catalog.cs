@@ -32,7 +32,7 @@ public sealed class Catalog : Entity
     
     private void Validate()
     {
-        BusinessException.When(Id == Guid.Empty, nameof(Id));
-        BusinessException.When(ServiceDescription is null, nameof(ServiceDescription));
+        ArgumentException.ThrowIfNullOrEmpty(nameof(Id));
+        ArgumentException.ThrowIfNullOrEmpty(nameof(ServiceDescription));
     }
 }

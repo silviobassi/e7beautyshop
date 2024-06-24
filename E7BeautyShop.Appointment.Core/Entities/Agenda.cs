@@ -1,5 +1,4 @@
 ﻿using E7BeautyShop.Appointment.Core.ObjectsValue;
-using E7BeautyShop.Appointment.Core.Services;
 using E7BeautyShop.Appointment.Core.Validations;
 
 namespace E7BeautyShop.Appointment.Core.Entities;
@@ -53,23 +52,24 @@ public sealed class Agenda : Entity, IAggregateRoot
 
     private bool IsDayRest(OfficeHour officeHour)
     {
-        var existsDayRest = _daysRest.Exists(dr => dr.DayOnWeek == officeHour.DateAndHour.DayOfWeek);
+        var existsDayRest = _daysRest.Exists(dr => dr.DayOnWeek == officeHour.DateAndHour!.Value.DayOfWeek);
         return existsDayRest && DaysRest.Count > 0;
     }
 
     public bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
 
     private bool IsWeekend(OfficeHour? officeHour)
-        => officeHour?.DateAndHour.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
+        => officeHour?.DateAndHour!.Value.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
 
 
     private void Validate()
     {
-        BusinessException.When(StartAt == DateTime.MinValue, "StartAt cannot be empty");
-        BusinessException.When(EndAt == DateTime.MinValue, "EndAt cannot be empty");
-        BusinessNullException.When(ProfessionalId is null, nameof(ProfessionalId));
-        BusinessNullException.When(Weekday is null, nameof(Weekday));
-        BusinessNullException.When(Weekend is null, nameof(Weekend));
+        // Value cannot be null. (Parameter 'ProfessionalId')"
+        BusinessException.When(StartAt == DateTime.MinValue, ErrorMessages.StartAtLessThanEndAt);
+        BusinessException.When(EndAt == DateTime.MinValue, nameof(EndAt));
+        ArgumentException.ThrowIfNullOrEmpty(nameof(ProfessionalId));
+        ArgumentNullException.ThrowIfNull(Weekday);
+        ArgumentNullException.ThrowIfNull(Weekend);
     }
 
     public void Update(Guid id, DateTime startAt, DateTime endAt, ProfessionalId? professionalId, Weekday weekday,

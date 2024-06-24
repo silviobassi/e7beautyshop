@@ -4,13 +4,13 @@ namespace E7BeautyShop.Appointment.Core.ObjectsValue;
 
 public record WeekDayOrWeekend
 {
-    public TimeSpan StartAt { get; protected set; }
-    public TimeSpan EndAt { get; protected set; }
+    public TimeSpan? StartAt { get; private set; }
+    public TimeSpan? EndAt { get; private set; }
     
     protected WeekDayOrWeekend()
     {
     }
-    protected WeekDayOrWeekend(TimeSpan startAt, TimeSpan endAt)
+    protected WeekDayOrWeekend(TimeSpan? startAt, TimeSpan? endAt)
     {
         StartAt = startAt;
         EndAt = endAt;
@@ -19,8 +19,8 @@ public record WeekDayOrWeekend
 
     private void Validate()
     {
-        BusinessNullException.When(StartAt == default, nameof(StartAt));
-        BusinessNullException.When(EndAt == default, nameof(EndAt));
+        ArgumentNullException.ThrowIfNull(StartAt);
+        ArgumentNullException.ThrowIfNull(EndAt);
         BusinessException.When(StartAt >= EndAt, "StartAt cannot be greater than EndAt");
     }
 }

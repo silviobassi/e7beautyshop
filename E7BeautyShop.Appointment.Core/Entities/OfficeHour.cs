@@ -9,7 +9,7 @@ public delegate void DomainEventDelegate(IDomainEvent domainEvent);
 public sealed class OfficeHour : Entity
 {
     public static readonly int MinimumDuration = 30;
-    public DateTime DateAndHour { get; private set; }
+    public DateTime? DateAndHour { get; private set; }
     public int Duration { get; private set; }
     public bool IsAvailable { get; set; }
     public Guid? CatalogId { get; init; }
@@ -28,7 +28,7 @@ public sealed class OfficeHour : Entity
         reservedRegisteredEvent ?? throw new ArgumentNullException(nameof(reservedRegisteredEvent));
 
 
-    private OfficeHour(DateTime dateAndHour, int duration)
+    private OfficeHour(DateTime? dateAndHour, int duration)
     {
         DateAndHour = dateAndHour;
         Duration = duration;
@@ -37,7 +37,7 @@ public sealed class OfficeHour : Entity
         BusinessException.When(Duration <= 0, "Duration cannot be less than or equal to zero");
     }
 
-    public static OfficeHour Create(DateTime dateAndHour, int duration)
+    public static OfficeHour Create(DateTime? dateAndHour, int duration)
     {
         BusinessException.When(duration < MinimumDuration, $"Duration cannot be less than {MinimumDuration} minutes");
         return new OfficeHour(dateAndHour, duration);
@@ -65,7 +65,7 @@ public sealed class OfficeHour : Entity
         Catalog = catalog;
         ValidateDateAndHour();
         ValidateCustomer();
-        BusinessNullException.When(Catalog is null, nameof(Catalog));
+        ArgumentNullException.ThrowIfNull(nameof(Catalog));
         return this;
     }
 
@@ -77,15 +77,17 @@ public sealed class OfficeHour : Entity
         Attend();
     }
 
-    public DateTime PlusDuration() => DateAndHour.AddMinutes(Duration);
+    public DateTime PlusDuration()
+    {
+        ValidateDateAndHour();
+        return DateAndHour!.Value.AddMinutes(Duration);
+    }
 
-    private void ValidateDateAndHour() =>
-        BusinessNullException.When(DateAndHour == default, nameof(DateAndHour));
+    private void ValidateDateAndHour() => ArgumentNullException.ThrowIfNull(DateAndHour);
 
-    private void ValidateCustomer() =>
-        BusinessNullException.When(CustomerId is null, nameof(CustomerId));
+    private void ValidateCustomer() => ArgumentNullException.ThrowIfNull(CustomerId);
 
     private ReserveRegisteredEvent? ReserveRegisteredEvent => _reservedRegisteredEvent?.Create(CustomerId?.Value,
-        DateAndHour, Catalog?.DescriptionName,
+        DateAndHour!.Value, Catalog?.DescriptionName,
         Catalog!.DescriptionPrice.GetValueOrDefault());
 }

@@ -1,6 +1,4 @@
-﻿using E7BeautyShop.Appointment.Core.Validations;
-
-namespace E7BeautyShop.Appointment.Core.Entities;
+﻿namespace E7BeautyShop.Appointment.Core.Entities;
 
 public sealed class DayRest : Entity
 {
@@ -15,7 +13,7 @@ public sealed class DayRest : Entity
     private DayRest(DayOfWeek? dayOnWeek)
     {
         DayOnWeek = dayOnWeek;
-        BusinessNullException.When(dayOnWeek is null, nameof(DayOnWeek));
+        ArgumentNullException.ThrowIfNull(nameof(DayOnWeek));
     }
 
     public static DayRest Create(DayOfWeek? dayOnWeek) => new(dayOnWeek);

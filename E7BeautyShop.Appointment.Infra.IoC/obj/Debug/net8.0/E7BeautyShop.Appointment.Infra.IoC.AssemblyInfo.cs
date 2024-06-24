@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("E7BeautyShop.Appointment.Infra.IoC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39b2ae13ee2707a76abbfe306bef4fa57490f24f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23e161d82ba23641dbba699991d22757e179f28b")]
 [assembly: System.Reflection.AssemblyProductAttribute("E7BeautyShop.Appointment.Infra.IoC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("E7BeautyShop.Appointment.Infra.IoC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

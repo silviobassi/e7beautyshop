@@ -16,7 +16,7 @@ public sealed record ProfessionalId
         Validate();
     }
 
-    private void Validate() => BusinessNullException.When(Value == Guid.Empty, nameof(Value));
+    private void Validate() => ArgumentException.ThrowIfNullOrEmpty(nameof(Value));
 
     public static implicit operator ProfessionalId(Guid value) => new(value);
 }

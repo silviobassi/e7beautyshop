@@ -8,7 +8,11 @@ public sealed record CustomerId
     {
     }
 
-    private CustomerId(Guid value) => Value = value;
+    private CustomerId(Guid value)
+    { 
+        Value = value;
+        ArgumentException.ThrowIfNullOrEmpty(nameof(Value));
+    }
 
     public static implicit operator CustomerId(Guid value) => new(value);
 }
