@@ -7,12 +7,11 @@ namespace E7BeautyShop.AgendaService.Core.Services;
 public sealed class HasUniqueItemValid(IReadOnlyCollection<OfficeHour> timesScheduled, OfficeHour newTime)
     : AbstractValidatorTimeToSchedule(timesScheduled, newTime)
 {
-    public override bool Validate()
+    public override void Validate()
     {
-        if (TimesScheduled.Count != 1) return false;
+        if (TimesScheduled.Count != 1) return;
         BusinessException.ThrowIf(IsLessThan && !IsLessOrEqual, NewTimeBefore);
         BusinessException.ThrowIf(IsGreaterThan && !IsBiggerOrEqual, NewTimeAfter);
-        return false;
     }
 
     private bool IsLessOrEqual => NewTime.PlusDuration() <= TimesScheduled.First().DateAndHour;

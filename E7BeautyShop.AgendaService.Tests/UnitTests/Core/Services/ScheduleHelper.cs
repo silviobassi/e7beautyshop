@@ -4,7 +4,7 @@ using E7BeautyShop.AgendaService.Core.Services;
 
 namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core.Services;
 
-public static class ScheduleTestHelper
+public static class AgendaTestHelper
 {
     public static Agenda CreateSchedule()
     {
@@ -23,29 +23,11 @@ public static class ScheduleTestHelper
         return OfficeHour.Create(new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc), duration);
     }
 
-    public static void AddOfficeHours(Agenda calendart, params OfficeHour[] officeHours)
+    public static void AddOfficeHours(Agenda agenda, params OfficeHour[] officeHours)
     {
         foreach (var officeHour in officeHours)
         {
-            calendart.AddOfficeHour(officeHour);
+            agenda.AddOfficeHour(officeHour);
         }
-    }
-
-    public static void ValidateHasNoItems(Agenda calendart, bool expected)
-    {
-        var hasNoItemsValid = new HasNoItemsValid(calendart.OfficeHours);
-        Assert.Equal(expected, hasNoItemsValid.Validate());
-    }
-
-    public static void ValidateHasUniqueItem(Agenda calendart, OfficeHour timeToSchedule, bool expected)
-    {
-        var hasUniqueValid = new HasUniqueItemValid(calendart.OfficeHours, timeToSchedule);
-        Assert.Equal(expected, hasUniqueValid.Validate());
-    }
-
-    public static void ValidateHasAtLeastTwoItems(Agenda calendart, OfficeHour timeToSchedule, bool expected)
-    {
-        var hasAtLeastTwoValid = new HasAtLeastTwoItemsValid(calendart.OfficeHours, timeToSchedule);
-        Assert.Equal(expected, hasAtLeastTwoValid.Validate());
     }
 }

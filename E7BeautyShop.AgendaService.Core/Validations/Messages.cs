@@ -27,13 +27,15 @@ public static class Messages
     // WeekDayOrWeekend Error Messages
     public const string StartAtCannotGreaterThanEndAt = "StartAt cannot be greater than EndAt";
 
-    public const string NewTimeBefore =
-        "Time to schedule plus duration cannot be greater than the first current time";
+    public const string NewTimeBefore = "Time to schedule plus duration cannot be greater than the first current time";
 
-    public const string NewTimeAfter =
-        "Time to schedule cannot be less than the first current time plus duration";
+    public const string NewTimeAfter = "Time to schedule cannot be less than the first current time plus duration";
 
     public const string NewTimeBeforeNextTime = "New time should be less or equal a next time";
 
     public const string NewTimeAfterPrevTime = "New time should be greater or equal a previous time";
+
+    public const string NewTimeBetweenPrevNext =
+        "The new time plus duration should be less or equal to the next time " +
+        "and bigger or equal to the previous time plus duration.";
 }

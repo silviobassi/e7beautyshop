@@ -12,5 +12,5 @@ public abstract class AbstractValidatorTimeToSchedule(
 
     protected bool IsLessThan => NewTime.DateAndHour < TimesScheduled.First().DateAndHour;
 
-    protected bool IsGreaterThan => NewTime.DateAndHour > TimesScheduled.First().DateAndHour;
+    protected bool IsGreaterThan => NewTime.DateAndHour > TimesScheduled.Last().DateAndHour;
 }

@@ -11,12 +11,12 @@ public sealed class HasAtLeastTwoItemsValid(IReadOnlyCollection<OfficeHour> time
 
     private OfficeHour? NextTime => TimesScheduled.FirstOrDefault(of => of.DateAndHour > NewTime.DateAndHour);
 
-    public override bool Validate()
+    public override void Validate()
     {
-        if (TimesScheduled.Count < 2) return false;
+        if (TimesScheduled.Count < 2) return;
         CheckFirstConditionValid();
         CheckSecondConditionValid();
-        return IsThirdConditionValid();
+        CheckThirdConditionValid();
     }
 
     private void CheckFirstConditionValid()
@@ -28,12 +28,16 @@ public sealed class HasAtLeastTwoItemsValid(IReadOnlyCollection<OfficeHour> time
     {
         BusinessException.ThrowIf(IsGreaterThan && !IsBiggerOrEqualPrev, NewTimeAfterPrevTime);
     }
-        
-    private bool IsThirdConditionValid() => IsTimeToScheduleBetweenPrevAndNextTime && IsScheduleWithinTimeBounds;
-    private bool IsTimeToScheduleBetweenPrevAndNextTime => IsGreaterThanPrev && IsLessThanNext;
-    private bool IsScheduleWithinTimeBounds => IsLessOrEqualThanNext && IsPrevLessOrEqualNext;
+
+    private void CheckThirdConditionValid()
+    {
+        BusinessException.ThrowIf(IsNewTimeBetweenPrevNext && !IsAgendaWithinTimeBounds, NewTimeBetweenPrevNext);
+    }
+
+    private bool IsNewTimeBetweenPrevNext => IsGreaterThanPrev && IsLessThanNext;
+    private bool IsAgendaWithinTimeBounds => IsLessOrEqualThanNext && IsPrevLessOrEqualNewTime;
     private bool IsLessOrEqualThanNext => NewTime.PlusDuration() <= NextTime?.DateAndHour;
-    private bool IsPrevLessOrEqualNext => PrevTime?.PlusDuration() <= NewTime.DateAndHour;
+    private bool IsPrevLessOrEqualNewTime => NewTime.DateAndHour >= PrevTime?.PlusDuration();
     private bool IsBiggerOrEqualPrev => NewTime.DateAndHour >= TimesScheduled.Last().PlusDuration();
     private bool IsGreaterThanPrev => NewTime.DateAndHour > PrevTime?.DateAndHour;
     private bool IsLessThanNext => NewTime.DateAndHour < NextTime?.DateAndHour;
