@@ -22,6 +22,6 @@ public record WeekDayOrWeekend
     {
         ArgumentNullException.ThrowIfNull(StartAt);
         ArgumentNullException.ThrowIfNull(EndAt);
-        BusinessException.When(StartAt >= EndAt, StartAtCannotGreaterThanEndAt);
+        BusinessException.ThrowIf(StartAt >= EndAt, StartAtCannotGreaterThanEndAt);
     }
 }

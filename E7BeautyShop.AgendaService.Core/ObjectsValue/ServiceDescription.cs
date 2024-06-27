@@ -21,8 +21,8 @@ public sealed record ServiceDescription
     private void Validate()
     {
         ArgumentNullException.ThrowIfNull(Name);
-        BusinessException.When(Name.Length > MaxNameLength, NameShouldLessThanInformed);
-        BusinessException.When(Price <= 0, PriceShouldGreaterThanZero);
+        BusinessException.ThrowIf(Name.Length > MaxNameLength, NameShouldLessThanInformed);
+        BusinessException.ThrowIf(Price <= 0, PriceShouldGreaterThanZero);
     }
     
     public static implicit operator ServiceDescription((string? name, decimal price) tuple)

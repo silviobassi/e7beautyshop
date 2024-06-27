@@ -28,7 +28,7 @@ public class HasUniqueItemValidTest
 
         var hasUniqueItemValid = new HasUniqueItemValid(schedule.OfficeHours, timeToSchedule);
         var exception = Assert.Throws<BusinessException>(() => hasUniqueItemValid.Validate());
-        Assert.Equal(Messages.TimeToScheduleCannotGreaterThanFirstCurrentTime, exception.Message);
+        Assert.Equal(Messages.NewTimeBefore, exception.Message);
     }
     
     [Fact]
@@ -68,7 +68,7 @@ public class HasUniqueItemValidTest
 
         var hasUniqueItemValid = new HasUniqueItemValid(schedule.OfficeHours, timeToSchedule);
         var exception = Assert.Throws<BusinessException>(() => hasUniqueItemValid.Validate());
-        Assert.Equal(Messages.TimeToScheduleCannotLessThanFirstCurrentTime, exception.Message);
+        Assert.Equal(Messages.NewTimeAfter, exception.Message);
     }
     
     [Fact]

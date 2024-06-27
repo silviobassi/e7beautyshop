@@ -4,27 +4,18 @@ using static E7BeautyShop.AgendaService.Core.Validations.Messages;
 
 namespace E7BeautyShop.AgendaService.Core.Services;
 
-public sealed class HasUniqueItemValid(IReadOnlyCollection<OfficeHour> officeHoursScheduled, OfficeHour timeToSchedule)
-    : AbstractValidatorTimeToSchedule(officeHoursScheduled, timeToSchedule)
+public sealed class HasUniqueItemValid(IReadOnlyCollection<OfficeHour> timesScheduled, OfficeHour newTime)
+    : AbstractValidatorTimeToSchedule(timesScheduled, newTime)
 {
     public override bool Validate()
     {
-        if (OfficeHourScheduled.Count != 1) return false;
-        
-        BusinessException.When(
-            IsTimeToScheduleLessThanCurrentTime && !IsTimeToSchedulePlusDurationLessThanFirstCurrentTime,
-            TimeToScheduleCannotGreaterThanFirstCurrentTime);
-        
-        BusinessException.When(IsTimeToScheduleGreaterThanCurrentTime &&
-                               !IsTimeToScheduleGreaterThanLastTimePlusDuration,
-            TimeToScheduleCannotLessThanFirstCurrentTime);
-
+        if (TimesScheduled.Count != 1) return false;
+        BusinessException.ThrowIf(IsTimeScheduledBefore && !IsNewTimeDurationBefore, NewTimeBefore);
+        BusinessException.ThrowIf(IsTimeScheduledAfter && !IsNewTimeAfter, NewTimeAfter);
         return false;
     }
 
-    private bool IsTimeToSchedulePlusDurationLessThanFirstCurrentTime
-        => TimeToSchedule.PlusDuration() <= OfficeHourScheduled.First().DateAndHour;
+    private bool IsNewTimeDurationBefore => TimeToSchedule.PlusDuration() <= TimesScheduled.First().DateAndHour;
 
-    private bool IsTimeToScheduleGreaterThanLastTimePlusDuration =>
-        TimeToSchedule.DateAndHour >= OfficeHourScheduled.First().PlusDuration();
+    private bool IsNewTimeAfter => TimeToSchedule.DateAndHour >= TimesScheduled.First().PlusDuration();
 }

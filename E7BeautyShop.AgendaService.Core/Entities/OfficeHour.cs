@@ -35,12 +35,12 @@ public sealed class OfficeHour : Entity
         Duration = duration;
         IsAvailable = true;
         ValidateDateAndHour();
-        BusinessException.When(Duration <= 0, DurationCannotLessOrEqualZero);
+        BusinessException.ThrowIf(Duration <= 0, DurationCannotLessOrEqualZero);
     }
 
     public static OfficeHour Create(DateTime? dateAndHour, int durationMinutes)
     {
-        BusinessException.When(durationMinutes < MinimumDuration, DurationCannotLessThanInformed);
+        BusinessException.ThrowIf(durationMinutes < MinimumDuration, DurationCannotLessThanInformed);
         return new OfficeHour(dateAndHour, durationMinutes);
     }
 
@@ -72,7 +72,7 @@ public sealed class OfficeHour : Entity
 
     public void ReserveCancel()
     {
-        BusinessException.When(IsAvailable, TimeAlreadyAttend);
+        BusinessException.ThrowIf(IsAvailable, TimeAlreadyAttend);
         ValidateCustomer();
         CustomerId = null;
         Attend();

@@ -38,8 +38,8 @@ public class ReserveRegisteredEvent : IDomainEvent, IReservedRegisteredEventFact
     private void Validate()
     {
         
-        BusinessException.When(ReserveDateAndHour == DateTime.MinValue, "Invalid reserve date and hour");
-        BusinessException.When(string.IsNullOrEmpty(ServiceName), "Invalid service name");
-        BusinessException.When(PriceService <= 0, "Invalid price service");
+        BusinessException.ThrowIf(ReserveDateAndHour == DateTime.MinValue, "Invalid reserve date and hour");
+        BusinessException.ThrowIf(string.IsNullOrEmpty(ServiceName), "Invalid service name");
+        BusinessException.ThrowIf(PriceService <= 0, "Invalid price service");
     }
 }

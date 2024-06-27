@@ -3,16 +3,16 @@
 namespace E7BeautyShop.AgendaService.Core.Services;
 
 public abstract class AbstractValidatorTimeToSchedule(
-    IReadOnlyCollection<OfficeHour> officeHoursScheduled,
-    OfficeHour timeToSchedule)
-    : AbstractValidatorOfficeHoursScheduled(officeHoursScheduled.OrderBy(of => of.DateAndHour).ToList())
+    IReadOnlyCollection<OfficeHour> timesScheduled,
+    OfficeHour newTime)
+    : AbstractValidatorOfficeHoursScheduled(timesScheduled.OrderBy(of => of.DateAndHour).ToList())
 {
     protected readonly OfficeHour TimeToSchedule =
-        timeToSchedule ?? throw new ArgumentNullException(nameof(timeToSchedule));
+        newTime ?? throw new ArgumentNullException(nameof(newTime));
 
-    protected bool IsTimeToScheduleLessThanCurrentTime =>
-        TimeToSchedule.DateAndHour < OfficeHourScheduled.First().DateAndHour;
+    protected bool IsTimeScheduledBefore =>
+        TimeToSchedule.DateAndHour < TimesScheduled.First().DateAndHour;
     
-    protected bool IsTimeToScheduleGreaterThanCurrentTime =>
-        TimeToSchedule.DateAndHour > OfficeHourScheduled.First().DateAndHour;
+    protected bool IsTimeScheduledAfter =>
+        TimeToSchedule.DateAndHour > TimesScheduled.First().DateAndHour;
 }
