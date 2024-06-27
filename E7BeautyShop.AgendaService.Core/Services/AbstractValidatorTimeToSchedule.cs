@@ -7,12 +7,10 @@ public abstract class AbstractValidatorTimeToSchedule(
     OfficeHour newTime)
     : AbstractValidatorOfficeHoursScheduled(timesScheduled.OrderBy(of => of.DateAndHour).ToList())
 {
-    protected readonly OfficeHour TimeToSchedule =
+    protected readonly OfficeHour NewTime =
         newTime ?? throw new ArgumentNullException(nameof(newTime));
 
-    protected bool IsTimeScheduledBefore =>
-        TimeToSchedule.DateAndHour < TimesScheduled.First().DateAndHour;
+    protected bool IsLessThan => NewTime.DateAndHour < TimesScheduled.First().DateAndHour;
     
-    protected bool IsTimeScheduledAfter =>
-        TimeToSchedule.DateAndHour > TimesScheduled.First().DateAndHour;
+    protected bool IsGreaterThan => NewTime.DateAndHour > TimesScheduled.First().DateAndHour;
 }

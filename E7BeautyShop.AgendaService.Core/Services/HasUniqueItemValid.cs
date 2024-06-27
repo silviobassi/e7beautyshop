@@ -10,12 +10,12 @@ public sealed class HasUniqueItemValid(IReadOnlyCollection<OfficeHour> timesSche
     public override bool Validate()
     {
         if (TimesScheduled.Count != 1) return false;
-        BusinessException.ThrowIf(IsTimeScheduledBefore && !IsNewTimeDurationBefore, NewTimeBefore);
-        BusinessException.ThrowIf(IsTimeScheduledAfter && !IsNewTimeAfter, NewTimeAfter);
+        BusinessException.ThrowIf(IsLessThan && !IsLessOrEqual, NewTimeBefore);
+        BusinessException.ThrowIf(IsGreaterThan && !IsBiggerOrEqual, NewTimeAfter);
         return false;
     }
 
-    private bool IsNewTimeDurationBefore => TimeToSchedule.PlusDuration() <= TimesScheduled.First().DateAndHour;
+    private bool IsLessOrEqual => NewTime.PlusDuration() <= TimesScheduled.First().DateAndHour;
 
-    private bool IsNewTimeAfter => TimeToSchedule.DateAndHour >= TimesScheduled.First().PlusDuration();
+    private bool IsBiggerOrEqual => NewTime.DateAndHour >= TimesScheduled.First().PlusDuration();
 }

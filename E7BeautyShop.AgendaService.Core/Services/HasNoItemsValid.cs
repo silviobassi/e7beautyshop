@@ -2,10 +2,10 @@
 
 namespace E7BeautyShop.AgendaService.Core.Services;
 
-public class HasNoItemsValid(IReadOnlyCollection<OfficeHour> officeHoursScheduled)
-    : AbstractValidatorOfficeHoursScheduled(officeHoursScheduled)
+public class HasNoItemsValid(IReadOnlyCollection<OfficeHour> timesScheduled)
+    : AbstractValidatorOfficeHoursScheduled(timesScheduled)
 {
-    private readonly IReadOnlyCollection<OfficeHour> _officeHoursScheduledOrdered = officeHoursScheduled;
+    private readonly IReadOnlyCollection<OfficeHour> _timesScheduledOrdered = timesScheduled;
 
-    public override bool Validate() => _officeHoursScheduledOrdered.Count == 0;
+    public override bool Validate() => _timesScheduledOrdered.Count == 0;
 }

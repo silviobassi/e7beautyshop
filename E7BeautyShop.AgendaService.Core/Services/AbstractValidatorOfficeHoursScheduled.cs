@@ -2,10 +2,10 @@
 
 namespace E7BeautyShop.AgendaService.Core.Services;
 
-public abstract class AbstractValidatorOfficeHoursScheduled(IReadOnlyCollection<OfficeHour> officeHoursScheduled)
+public abstract class AbstractValidatorOfficeHoursScheduled(IReadOnlyCollection<OfficeHour> timesScheduled)
 {
     protected readonly IReadOnlyCollection<OfficeHour> TimesScheduled =
-        officeHoursScheduled ?? throw new ArgumentNullException(nameof(officeHoursScheduled));
+        timesScheduled ?? throw new ArgumentNullException(nameof(timesScheduled));
     
     public abstract bool Validate();
     

@@ -8,10 +8,10 @@ public sealed class HasAtLeastTwoItemsValid(
     : AbstractValidatorTimeToSchedule(timesScheduled, newTime)
 {
     private OfficeHour? PrevTime =>
-        TimesScheduled.LastOrDefault(of => of.DateAndHour < TimeToSchedule.DateAndHour);
+        TimesScheduled.LastOrDefault(of => of.DateAndHour < NewTime.DateAndHour);
 
     private OfficeHour? NextTime =>
-        TimesScheduled.FirstOrDefault(of => of.DateAndHour > TimeToSchedule.DateAndHour);
+        TimesScheduled.FirstOrDefault(of => of.DateAndHour > NewTime.DateAndHour);
 
     public override bool Validate()
     {
@@ -19,26 +19,14 @@ public sealed class HasAtLeastTwoItemsValid(
         return IsFirstConditionValid() || IsSecondConditionValid() || IsThirdConditionValid();
     }
 
-    private bool IsFirstConditionValid() =>
-        IsTimeScheduledBefore && IsTimeToSchedulePlusDurationLessThanNextTime;
-
-    private bool IsSecondConditionValid() =>
-        IsTimeScheduledAfter && IsTimeToScheduleGreaterThanPrevTimePlusDuration;
-
+    private bool IsFirstConditionValid() => IsLessThan && IsLessOrEqualThanNext;
+    private bool IsSecondConditionValid() => IsGreaterThan && IsBiggerOrEqualPrev;
     private bool IsThirdConditionValid() => IsTimeToScheduleBetweenPrevAndNextTime && IsScheduleWithinTimeBounds;
-
-    private bool IsTimeToScheduleBetweenPrevAndNextTime
-        => IsTimeToScheduleGreaterThanPrevTime && IsTimeToScheduleLessThanNextTime;
-    
-    private bool IsScheduleWithinTimeBounds => IsTimeToSchedulePlusDurationLessThanNextTime &&
-                                               IsPrevTimePlusDurationLessThanTimeToSchedule;
-
-    private bool IsTimeToSchedulePlusDurationLessThanNextTime => TimeToSchedule.PlusDuration() <= NextTime?.DateAndHour;
-
-    private bool IsTimeToScheduleGreaterThanPrevTimePlusDuration =>
-        TimeToSchedule.DateAndHour >= TimesScheduled.Last().PlusDuration();
-
-    private bool IsTimeToScheduleGreaterThanPrevTime => TimeToSchedule.DateAndHour > PrevTime?.DateAndHour;
-    private bool IsTimeToScheduleLessThanNextTime => TimeToSchedule.DateAndHour < NextTime?.DateAndHour;
-    private bool IsPrevTimePlusDurationLessThanTimeToSchedule => PrevTime?.PlusDuration() <= TimeToSchedule.DateAndHour;
+    private bool IsTimeToScheduleBetweenPrevAndNextTime => IsGreaterThanPrev && IsLessThanNext;
+    private bool IsScheduleWithinTimeBounds => IsLessOrEqualThanNext && IsPrevLessOrEqualNext;
+    private bool IsLessOrEqualThanNext => NewTime.PlusDuration() <= NextTime?.DateAndHour;
+    private bool IsPrevLessOrEqualNext => PrevTime?.PlusDuration() <= NewTime.DateAndHour;
+    private bool IsBiggerOrEqualPrev => NewTime.DateAndHour >= TimesScheduled.Last().PlusDuration();
+    private bool IsGreaterThanPrev => NewTime.DateAndHour > PrevTime?.DateAndHour;
+    private bool IsLessThanNext => NewTime.DateAndHour < NextTime?.DateAndHour;
 }
