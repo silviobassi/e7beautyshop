@@ -32,4 +32,6 @@ public static class Messages
 
     public const string NewTimeAfter =
         "Time to schedule cannot be less than the first current time plus duration";
+
+    public const string NewTimeBeforeNextTime = "New time should be less or equal a next time";
 }

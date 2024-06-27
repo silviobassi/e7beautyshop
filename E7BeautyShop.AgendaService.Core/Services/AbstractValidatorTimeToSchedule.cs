@@ -11,6 +11,6 @@ public abstract class AbstractValidatorTimeToSchedule(
         newTime ?? throw new ArgumentNullException(nameof(newTime));
 
     protected bool IsLessThan => NewTime.DateAndHour < TimesScheduled.First().DateAndHour;
-    
+
     protected bool IsGreaterThan => NewTime.DateAndHour > TimesScheduled.First().DateAndHour;
 }
