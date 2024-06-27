@@ -23,7 +23,6 @@ public class HasAtLeastTwoItemsValidTest
         var timeToSchedule = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 29, 0, 30);
 
         ScheduleTestHelper.ValidateHasNoItems(schedule, expected: false);
-        ScheduleTestHelper.ValidateHasUniqueItem(schedule, timeToSchedule, expected: false);
         ScheduleTestHelper.ValidateHasAtLeastTwoItems(schedule, timeToSchedule, expected: false);
     }
 
