@@ -14,5 +14,5 @@ public abstract class AbstractValidatorTimeToSchedule(
         TimeToSchedule.DateAndHour < OfficeHourScheduled.First().DateAndHour;
     
     protected bool IsTimeToScheduleGreaterThanCurrentTime =>
-        TimeToSchedule.DateAndHour > OfficeHourScheduled.Last().DateAndHour;
+        TimeToSchedule.DateAndHour > OfficeHourScheduled.First().DateAndHour;
 }

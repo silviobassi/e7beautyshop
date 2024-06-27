@@ -51,7 +51,7 @@ public class ServiceDescriptionTest
             ServiceDescription serviceDescription = ("Corte Cabelo + Barba", 0);
             return serviceDescription;
         });
-        Assert.Equal("Price must be greater than 0", exception.Message);
+        Assert.Equal(Messages.PriceShouldGreaterThanZero, exception.Message);
     }
 
     [Fact]

@@ -7,7 +7,7 @@ public static class Messages
 {
     // ServiceDescription Error Messages
     public static readonly string NameShouldLessThanInformed = $"Name must be less than {MaxNameLength} characters";
-    
+
     public const string PriceShouldGreaterThanZero = "Price should be greater than zero";
 
     // OfficeHour Error Messages
@@ -23,7 +23,13 @@ public static class Messages
 
     // Agenda Error Messages
     public const string StartAtLessThanEndAt = "Start at cannot be less than end at";
-    
+
     // WeekDayOrWeekend Error Messages
     public const string StartAtCannotGreaterThanEndAt = "StartAt cannot be greater than EndAt";
+
+    public const string TimeToScheduleCannotGreaterThanFirstCurrentTime =
+        "Time to schedule plus duration cannot be greater than the first current time";
+
+    public const string TimeToScheduleCannotLessThanFirstCurrentTime =
+        "Time to schedule cannot be less than the first current time plus duration";
 }

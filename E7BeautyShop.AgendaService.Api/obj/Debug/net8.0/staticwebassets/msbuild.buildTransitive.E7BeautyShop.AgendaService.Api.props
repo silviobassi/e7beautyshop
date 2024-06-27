@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\E7BeautyShop.AgendaService.Api.props" />
+</Project>

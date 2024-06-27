@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "yFXWHKQxzeHfCh8zMWZsa+Qal05FtNNfTH+RbaFGUnw=",
-  "Source": "E7BeautyShop.Appointment.Api",
-  "BasePath": "_content/E7BeautyShop.Appointment.Api",
+  "Hash": "S3MVD9qdIvtV9HW4CKHluyO4qNjf5drBBhTrC5Mq1nk=",
+  "Source": "E7BeautyShop.AgendaService.Api",
+  "BasePath": "_content/E7BeautyShop.AgendaService.Api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
