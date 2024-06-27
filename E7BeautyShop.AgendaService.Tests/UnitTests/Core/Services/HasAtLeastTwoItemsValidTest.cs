@@ -1,6 +1,5 @@
 ﻿using E7BeautyShop.AgendaService.Core.Services;
 using E7BeautyShop.AgendaService.Core.Validations;
-
 using static E7BeautyShop.AgendaService.Core.Validations.Messages;
 
 namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core.Services;
@@ -31,7 +30,7 @@ public class HasAtLeastTwoItemsValidTest
         ScheduleTestHelper.ValidateHasAtLeastTwoItems(schedule, newTime, expected: false);
     }
 
-    
+
     [Fact]
     public void Should_ThrowException_When_NewTimePlusDuration_GreaterThan_NexTime()
     {
@@ -41,7 +40,9 @@ public class HasAtLeastTwoItemsValidTest
             ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 30, 0, 30));
 
         var newTime = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 7, 31, 0, 30);
-        var exception = Assert.Throws<BusinessException>(() => new HasAtLeastTwoItemsValid(schedule.OfficeHours, newTime).Validate());
+        var exception =
+            Assert.Throws<BusinessException>(
+                () => new HasAtLeastTwoItemsValid(schedule.OfficeHours, newTime).Validate());
         Assert.Equal(NewTimeBeforeNextTime, exception.Message);
     }
 
@@ -66,6 +67,7 @@ public class HasAtLeastTwoItemsValidTest
             ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 0, 0, 30),
             ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 30, 0, 30));
 
+
         var timeToSchedule = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 7, 30, 0, 30);
 
         ScheduleTestHelper.ValidateHasNoItems(schedule, expected: false);
@@ -89,19 +91,35 @@ public class HasAtLeastTwoItemsValidTest
     }
 
     [Fact]
-    public void Should_Check_HasAtLeastTwoItems_InList_When_TimeToSchedule_GreaterThan_CurrentTime()
+    public void Should_ThrowException_When_NewTime_LessThan_LastTimePlusDuration()
     {
-        var schedule = ScheduleTestHelper.CreateSchedule();
-        ScheduleTestHelper.AddOfficeHours(schedule,
+        var agenda = ScheduleTestHelper.CreateSchedule();
+        ScheduleTestHelper.AddOfficeHours(agenda,
+            ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 0, 0, 30),
+            ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 30, 0, 30),
+            ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 9, 40, 0, 30));
+
+        var newTime = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 10, 0, 0, 30);
+
+        var hasAtLeastTwoItemsValid = new HasAtLeastTwoItemsValid(agenda.OfficeHours, newTime);
+        var exception = Assert.Throws<BusinessException>(() => hasAtLeastTwoItemsValid.Validate());
+        Assert.Equal(NewTimeAfterPrevTime, exception.Message);
+    }
+    
+    [Fact]
+    public void Should_NotThrowException_When_NewTime_BiggerOrEqual_LastTimePlusDuration()
+    {
+        var agenda = ScheduleTestHelper.CreateSchedule();
+        ScheduleTestHelper.AddOfficeHours(agenda,
             ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 0, 0, 30),
             ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 30, 0, 30),
             ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 9, 30, 0, 30));
 
-        var timeToSchedule = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 10, 0, 0, 30);
+        var newTime = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 10, 0, 0, 30);
 
-        ScheduleTestHelper.ValidateHasNoItems(schedule, expected: false);
-        ScheduleTestHelper.ValidateHasUniqueItem(schedule, timeToSchedule, expected: false);
-        ScheduleTestHelper.ValidateHasAtLeastTwoItems(schedule, timeToSchedule, expected: true);
+        var hasAtLeastTwoItemsValid = new HasAtLeastTwoItemsValid(agenda.OfficeHours, newTime);
+        var exception = Record.Exception(() => hasAtLeastTwoItemsValid.Validate());
+        Assert.Null(exception);
     }
 
     [Fact]
@@ -110,22 +128,23 @@ public class HasAtLeastTwoItemsValidTest
         var schedule = ScheduleTestHelper.CreateSchedule();
         ScheduleTestHelper.AddOfficeHours(schedule,
             ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 0, 0, 30));
-        
+
         var timeToSchedule = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 10, 0, 0, 30);
-        
+
         ScheduleTestHelper.ValidateHasAtLeastTwoItems(schedule, timeToSchedule, expected: false);
     }
-    
+
     [Fact]
-    public void Should_ReturnsTrue_WhenTimeToScheduleIsGreaterThanPrevTimeAndLessThanNextTimeAndPrevTimePlusDurationIsLessThanTimeToSchedule()
+    public void
+        Should_ReturnsTrue_WhenTimeToScheduleIsGreaterThanPrevTimeAndLessThanNextTimeAndPrevTimePlusDurationIsLessThanTimeToSchedule()
     {
         var schedule = ScheduleTestHelper.CreateSchedule();
-        
+
         ScheduleTestHelper.AddOfficeHours(schedule,
             ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 0, 0, 30),
             ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 8, 30, 0, 30),
             ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 9, 30, 0, 30));
-        
+
         var timeToSchedule = ScheduleTestHelper.CreateOfficeHour(2024, 06, 18, 9, 0, 0, 30);
         ScheduleTestHelper.ValidateHasAtLeastTwoItems(schedule, timeToSchedule, expected: true);
     }

@@ -15,14 +15,20 @@ public sealed class HasAtLeastTwoItemsValid(IReadOnlyCollection<OfficeHour> time
     {
         if (TimesScheduled.Count < 2) return false;
         CheckFirstConditionValid();
-        return IsSecondConditionValid() || IsThirdConditionValid();
+        CheckSecondConditionValid();
+        return IsThirdConditionValid();
     }
 
     private void CheckFirstConditionValid()
     {
         BusinessException.ThrowIf(IsLessThan && !IsLessOrEqualThanNext, NewTimeBeforeNextTime);
     }
-    private bool IsSecondConditionValid() => IsGreaterThan && IsBiggerOrEqualPrev;
+
+    private void CheckSecondConditionValid()
+    {
+        BusinessException.ThrowIf(IsGreaterThan && !IsBiggerOrEqualPrev, NewTimeAfterPrevTime);
+    }
+        
     private bool IsThirdConditionValid() => IsTimeToScheduleBetweenPrevAndNextTime && IsScheduleWithinTimeBounds;
     private bool IsTimeToScheduleBetweenPrevAndNextTime => IsGreaterThanPrev && IsLessThanNext;
     private bool IsScheduleWithinTimeBounds => IsLessOrEqualThanNext && IsPrevLessOrEqualNext;
