@@ -66,7 +66,7 @@ public sealed class Agenda : Entity, IAggregateRoot
     private void Validate()
     {
         // Value cannot be null. (Parameter 'ProfessionalId')"
-        BusinessException.ThrowIf(StartAt == DateTime.MinValue, StartAtLessThanEndAt);
+        BusinessException.ThrowIf(StartAt == DateTime.MinValue, StartAtTooLow);
         BusinessException.ThrowIf(EndAt == DateTime.MinValue, nameof(EndAt));
         ArgumentException.ThrowIfNullOrEmpty(nameof(ProfessionalId));
         ArgumentNullException.ThrowIfNull(Weekday);

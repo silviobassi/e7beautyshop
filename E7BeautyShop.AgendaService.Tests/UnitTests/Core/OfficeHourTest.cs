@@ -163,7 +163,7 @@ public class OfficeHourTest(ITestOutputHelper output)
 
         var exception = Assert.Throws<InvalidOperationException>(
             () => officeHour.ReserveTimeForTheCustomer(reserveDateAndHour, customerId, catalog));
-        Assert.Equal(ReservedRegisteredEventFactoryIsNotInitialized, exception.Message);
+        Assert.Equal(FactoryNotInitialized, exception.Message);
         
         output.WriteLine(exception.Message);
     }
@@ -185,7 +185,7 @@ public class OfficeHourTest(ITestOutputHelper output)
     {
         var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
         var exception = Assert.Throws<BusinessException>(() => OfficeHour.Create(dateAndHour, 20));
-        Assert.Equal(DurationCannotLessThanInformed, exception.Message);
+        Assert.Equal(DurationTooShort, exception.Message);
     }
     
     [Fact]

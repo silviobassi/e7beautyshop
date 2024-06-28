@@ -43,7 +43,7 @@ public class AgendaTest(ITestOutputHelper output)
         var exception = Assert.Throws<BusinessException>(() =>
             Agenda.Create(startAt, endAt, professionalId, weekday, weekend));
 
-        Assert.Equal(StartAtLessThanEndAt, exception.Message);
+        Assert.Equal(StartAtTooLow, exception.Message);
     }
 
     [Fact]

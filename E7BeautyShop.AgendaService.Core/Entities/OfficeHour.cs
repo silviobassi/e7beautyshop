@@ -35,12 +35,12 @@ public sealed class OfficeHour : Entity
         Duration = duration;
         IsAvailable = true;
         ValidateDateAndHour();
-        BusinessException.ThrowIf(Duration <= 0, DurationCannotLessOrEqualZero);
+        BusinessException.ThrowIf(Duration <= 0, DurationTooLow);
     }
 
     public static OfficeHour Create(DateTime? dateAndHour, int durationMinutes)
     {
-        BusinessException.ThrowIf(durationMinutes < MinimumDuration, DurationCannotLessThanInformed);
+        BusinessException.ThrowIf(durationMinutes < MinimumDuration, DurationTooShort);
         return new OfficeHour(dateAndHour, durationMinutes);
     }
 
@@ -53,7 +53,7 @@ public sealed class OfficeHour : Entity
     {
         var officeHour = CreateReserveOfficeHour(reserveDateAndHour, customerId, catalog);
         if (ReserveRegisteredEvent is null)
-            throw new InvalidOperationException(ReservedRegisteredEventFactoryIsNotInitialized);
+            throw new InvalidOperationException(FactoryNotInitialized);
         OnDomainEventOccured?.Invoke(ReserveRegisteredEvent);
         return officeHour;
     }

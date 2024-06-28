@@ -45,7 +45,7 @@ public class HasAtLeastTwoItemsValidTest(ITestOutputHelper output)
         var exception =
             Assert.Throws<BusinessException>(
                 () => new HasAtLeastTwoItemsValid(agenda.OfficeHours, newTime).Validate());
-        Assert.Equal(NewTimeBeforeNextTime, exception.Message);
+        Assert.Equal(NewTimeBeforeNext, exception.Message);
     }
 
     [Fact]
@@ -107,7 +107,7 @@ public class HasAtLeastTwoItemsValidTest(ITestOutputHelper output)
 
         var hasAtLeastTwoItemsValid = new HasAtLeastTwoItemsValid(agenda.OfficeHours, newTime);
         var exception = Assert.Throws<BusinessException>(() => hasAtLeastTwoItemsValid.Validate());
-        Assert.Equal(NewTimeAfterPrevTime, exception.Message);
+        Assert.Equal(NewTimeAfterPrev, exception.Message);
     }
 
     [Fact]
