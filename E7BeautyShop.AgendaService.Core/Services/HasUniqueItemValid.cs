@@ -10,8 +10,18 @@ public sealed class HasUniqueItemValid(IReadOnlyCollection<OfficeHour> timesSche
     public override void Validate()
     {
         if (TimesScheduled.Count != 1) return;
-        BusinessException.ThrowIf(IsLessThan && !IsLessOrEqual, NewTimeBefore);
+        CheckLessOrEqual();
+        CheckBiggerOrEqual();
+    }
+
+    private void CheckBiggerOrEqual()
+    {
         BusinessException.ThrowIf(IsGreaterThan && !IsBiggerOrEqual, NewTimeAfter);
+    }
+
+    private void CheckLessOrEqual()
+    {
+        BusinessException.ThrowIf(IsLessThan && !IsLessOrEqual, NewTimeBefore);
     }
 
     private bool IsLessOrEqual => NewTime.PlusDuration() <= TimesScheduled.First().DateAndHour;
