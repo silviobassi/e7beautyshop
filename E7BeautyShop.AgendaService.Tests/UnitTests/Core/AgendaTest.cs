@@ -1,11 +1,12 @@
 ﻿using E7BeautyShop.AgendaService.Core.Entities;
+using E7BeautyShop.AgendaService.Core.Services;
 using E7BeautyShop.AgendaService.Core.Validations;
 using Xunit.Abstractions;
 using static E7BeautyShop.AgendaService.Core.Validations.Messages;
 
 namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core;
 
-public class AgendaTest
+public class AgendaTest(ITestOutputHelper output)
 {
     private readonly TimeSpan _startWeekday = new(8, 0, 0);
     private readonly TimeSpan _endWeekday = new(18, 0, 0);
@@ -29,6 +30,53 @@ public class AgendaTest
         Assert.Equal(professionalId, schedule.ProfessionalId);
         Assert.Equal(weekday, schedule.Weekday);
         Assert.Equal(weekend, schedule.Weekend);
+    }
+
+    [Fact]
+    public void Should_CreateAgenda_Between_Period()
+    {
+        var startAt = new DateTime(2024, 07, 04, 8, 0, 0, DateTimeKind.Utc);
+        var endAt = startAt.AddDays(7);
+        var professionalId = Guid.NewGuid();
+        var weekday = (_startWeekday, _endWeekday);
+        var weekend = (_startWeekend, _endWeekend);
+
+        var agenda = Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
+        agenda.AddDayRest(DayRest.Create(DayOfWeek.Monday));
+
+        var dateAndHourGenerate = new AgendaWorkingHoursGenerator();
+        dateAndHourGenerate.Generate(agenda);
+
+        var startDate = dateAndHourGenerate.CurrentDate.Date;
+        var startTime = dateAndHourGenerate.StartTime!.Value;
+        var endTime = dateAndHourGenerate.EndTime!.Value;
+
+        var currentTime = startDate.AddHours(startTime.Hours).AddMinutes(startTime.Minutes);
+        var endDateTime = startDate.AddHours(endTime.Hours).AddMinutes(endTime.Minutes);
+
+        while (currentTime < endDateTime)
+        {
+            var newOfficeHour = OfficeHour.Create(currentTime, 30);
+            agenda.AddOfficeHour(newOfficeHour);
+            currentTime = newOfficeHour.PlusDuration();
+        }
+        
+
+        Assert.NotNull(agenda);
+        Assert.Equal(startAt, agenda.StartAt);
+        Assert.Equal(endAt, agenda.EndAt);
+        Assert.Equal(professionalId, agenda.ProfessionalId);
+        Assert.Equal(weekday, agenda.Weekday);
+        Assert.Equal(weekend, agenda.Weekend);
+
+        Assert.NotEmpty(agenda.OfficeHours);
+        Assert.NotEmpty(agenda.DaysRest);
+
+        foreach (var time in agenda.OfficeHours)
+        {
+            if (!time.IsAvailable) continue;
+            output.WriteLine(time.DateAndHour.ToString());
+        }
     }
 
     [Fact]
@@ -103,25 +151,5 @@ public class AgendaTest
         Assert.Equal(newProfessionalId, schedule.ProfessionalId);
         Assert.Equal(newWeekday, schedule.Weekday);
         Assert.Equal(newWeekend, schedule.Weekend);
-    }
-
-    [Fact]
-    public void Should_ReturnTrue_WhenOfficeHourIsOnWeekday()
-    {
-        var officeHour = OfficeHour.Create(
-            new DateTime(2024, 06, 18, 8, 0, 0, DateTimeKind.Utc), 30);
-        var schedule = new Agenda();
-        var result = schedule.IsWeekday(officeHour);
-        Assert.True(result);
-    }
-
-    [Fact]
-    public void Should_ReturnFalse_WhenOfficeHourIsOnWeekend()
-    {
-        var officeHour = OfficeHour.Create(
-            new DateTime(2024, 06, 22, 8, 0, 0, DateTimeKind.Utc), 30);
-        var schedule = new Agenda();
-        var result = schedule.IsWeekday(officeHour);
-        Assert.False(result);
     }
 }

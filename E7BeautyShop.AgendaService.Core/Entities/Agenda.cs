@@ -35,7 +35,7 @@ public sealed class Agenda : Entity, IAggregateRoot
 
     public static Agenda Create(DateTime startAt, DateTime endAt, ProfessionalId? professionalId, Weekday weekday,
         Weekend weekend) => new(startAt, endAt, professionalId, weekday, weekend);
-
+    
     public void AddDayRest(DayRest dayRest) => _daysRest.Add(dayRest);
 
     public void RemoveDayRest(DayRest dayRest) => _daysRest.Remove(dayRest);
@@ -50,7 +50,7 @@ public sealed class Agenda : Entity, IAggregateRoot
     {
         _officeHours.Remove(officeHour);
     }
-
+    
     private bool IsDayRest(OfficeHour officeHour)
     {
         return IsAnyDaysRestEqualTo(officeHour) && HasDayRestInList;
@@ -62,11 +62,6 @@ public sealed class Agenda : Entity, IAggregateRoot
     }
     
     private bool HasDayRestInList => _daysRest.Count > 0;
-
-    public bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
-
-    private bool IsWeekend(OfficeHour? officeHour)
-        => officeHour?.DateAndHour!.Value.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
     
     private void Validate()
     {

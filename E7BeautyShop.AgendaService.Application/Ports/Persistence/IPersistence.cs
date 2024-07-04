@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace E7BeautyShop.AgendaService.Application.Ports;
+namespace E7BeautyShop.AgendaService.Application.Ports.Persistence;
 
 public interface IPersistence<T> where T : class
 {

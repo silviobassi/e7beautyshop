@@ -3255,7 +3255,6 @@
           "E7BeautyShop.AgendaService.Core": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "8.0.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6",
-          "Newtonsoft.Json": "13.0.1",
           "RabbitMQ.Client": "6.8.1"
         },
         "compile": {

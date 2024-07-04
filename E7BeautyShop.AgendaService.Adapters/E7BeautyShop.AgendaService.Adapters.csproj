@@ -13,7 +13,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="DTOs\" />
       <Folder Include="Inbound\Consumers\" />
       <Folder Include="Inbound\Controllers\" />
     </ItemGroup>

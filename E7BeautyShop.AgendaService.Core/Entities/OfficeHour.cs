@@ -91,4 +91,9 @@ public sealed class OfficeHour : Entity
     private ReserveRegisteredEvent? ReserveRegisteredEvent => _reservedRegisteredEvent?.Create(CustomerId?.Value,
         DateAndHour!.Value, Catalog?.DescriptionName,
         Catalog!.DescriptionPrice.GetValueOrDefault());
+    
+    public bool IsWeekday=> !IsWeekend;
+
+    private bool IsWeekend
+        => DateAndHour!.Value.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
 }

@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  sqlserver:
+  SqlServer:
     image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: sqlserver
+    container_name: SqlServer
     environment:
       SA_PASSWORD: "12345678dev_#"
       ACCEPT_EULA: "Y"
