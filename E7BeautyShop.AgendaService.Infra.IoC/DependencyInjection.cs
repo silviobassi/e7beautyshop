@@ -18,7 +18,7 @@ public static class DependencyInjection
 
         services.AddScoped<ICatalogPersistencePort, CatalogPersistence>();
         services.AddScoped<IOfficeHourPersistencePort, OfficeHourPersistence>();
-        services.AddScoped<ISchedulePersistencePort, SchedulePersistence>();
+        services.AddScoped<IAgendaPersistencePort, AgendaPersistence>();
         services.AddScoped<IDayRestPersistencePort, DayRestPersistence>();
         
         return services;

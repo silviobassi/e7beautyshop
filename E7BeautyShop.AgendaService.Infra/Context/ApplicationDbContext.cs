@@ -5,10 +5,10 @@ namespace E7BeautyShop.AgendaService.Infra.Context;
 
 public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
 {
-    public DbSet<Catalog> Catalogs { get; set; }
-    public DbSet<OfficeHour> OfficeHours { get; set; }
-    public DbSet<Agenda> Schedules { get; set; }
-    public DbSet<DayRest> DaysRest { get; set; }
+    public DbSet<Catalog> Catalogs { get; init; }
+    public DbSet<OfficeHour> OfficeHours { get; init; }
+    public DbSet<Agenda> Agendas { get; init;}
+    public DbSet<DayRest> DaysRest { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

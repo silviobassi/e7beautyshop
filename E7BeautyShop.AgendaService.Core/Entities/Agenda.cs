@@ -67,8 +67,7 @@ public sealed class Agenda : Entity, IAggregateRoot
 
     private bool IsWeekend(OfficeHour? officeHour)
         => officeHour?.DateAndHour!.Value.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
-
-
+    
     private void Validate()
     {
         // Value cannot be null. (Parameter 'ProfessionalId')"

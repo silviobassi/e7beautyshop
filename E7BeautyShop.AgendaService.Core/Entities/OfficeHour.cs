@@ -16,7 +16,7 @@ public sealed class OfficeHour : Entity
     public Guid? CatalogId { get; init; }
     public Catalog? Catalog { get; private set; }
     public CustomerId? CustomerId { get; private set; }
-    public Guid? ScheduleId { get; private set; }
+    public Guid? AgendaId { get; private set; }
     public event DomainEventDelegate? OnDomainEventOccured;
 
     private readonly IReservedRegisteredEventFactory? _reservedRegisteredEvent;

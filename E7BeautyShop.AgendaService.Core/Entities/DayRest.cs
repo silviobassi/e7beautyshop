@@ -4,7 +4,7 @@ public sealed class DayRest : Entity
 {
     public DayOfWeek? DayOnWeek { get; private set; }
 
-    public Guid ScheduleId { get; init; }
+    public Guid AgendaId { get; init; }
 
     public DayRest()
     {

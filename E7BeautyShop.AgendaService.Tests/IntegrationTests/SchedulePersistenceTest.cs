@@ -5,10 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace E7BeautyShop.AgendaService.Tests.IntegrationTests;
 
-public class SchedulePersistenceTests(TestStartup startup) : IClassFixture<TestStartup>
+public class AgendaPersistenceTests(TestStartup startup) : IClassFixture<TestStartup>
 {
-    private readonly ISchedulePersistencePort _schedulePersistence =
-        startup.ServiceProvider.GetRequiredService<ISchedulePersistencePort>();
+    private readonly IAgendaPersistencePort _agendaPersistence =
+        startup.ServiceProvider.GetRequiredService<IAgendaPersistencePort>();
 
     [Fact]
     public async Task Should_Persistence_Schedule()
@@ -30,9 +30,9 @@ public class SchedulePersistenceTests(TestStartup startup) : IClassFixture<TestS
         schedule.AddDayRest(dayRestSunday);
         schedule.AddDayRest(dayRestMonday);
         
-        await _schedulePersistence.CreateAsync(schedule);
+        await _agendaPersistence.CreateAsync(schedule);
 
-        var currentSchedule = await _schedulePersistence.GetByIdAsync(schedule.Id);
+        var currentSchedule = await _agendaPersistence.GetByIdAsync(schedule.Id);
 
         Assert.NotNull(currentSchedule);
         Assert.Equal(schedule.Id, currentSchedule.Id);
@@ -43,8 +43,8 @@ public class SchedulePersistenceTests(TestStartup startup) : IClassFixture<TestS
         Assert.Equal(schedule.Weekend, currentSchedule.Weekend);
         Assert.Equal(schedule.DaysRest.Count, currentSchedule.DaysRest.Count);
         
-        var deleteAsync = await _schedulePersistence.DeleteAsync(schedule);
-        var deletedSchedule = await _schedulePersistence.GetByIdAsync(deleteAsync!.Id);
+        var deleteAsync = await _agendaPersistence.DeleteAsync(schedule);
+        var deletedSchedule = await _agendaPersistence.GetByIdAsync(deleteAsync!.Id);
         Assert.Null(deletedSchedule);
     }
 
@@ -71,8 +71,8 @@ public class SchedulePersistenceTests(TestStartup startup) : IClassFixture<TestS
         schedule.AddOfficeHour(officeHour1);
         schedule.AddOfficeHour(officeHour2);
         
-        await _schedulePersistence.CreateAsync(schedule);
-        var currentSchedule = await _schedulePersistence.GetByIdAsync(schedule.Id);
+        await _agendaPersistence.CreateAsync(schedule);
+        var currentSchedule = await _agendaPersistence.GetByIdAsync(schedule.Id);
         
         var newId = Guid.Parse("6905d076-d8ea-4017-adcf-8cb42c485d9c");
         var newStartAt = DateTime.Now.AddDays(5);
@@ -90,8 +90,8 @@ public class SchedulePersistenceTests(TestStartup startup) : IClassFixture<TestS
         currentSchedule?.AddOfficeHour(newOfficeHour);
         currentSchedule?.AddDayRest(dayRestWednesday);
         
-        await _schedulePersistence.UpdateAsync(currentSchedule!);
-        var updatedSchedule = await _schedulePersistence.GetByIdAsync(currentSchedule!.Id);
+        await _agendaPersistence.UpdateAsync(currentSchedule!);
+        var updatedSchedule = await _agendaPersistence.GetByIdAsync(currentSchedule!.Id);
         
         Assert.Equal(currentSchedule.Id, updatedSchedule!.Id);
         Assert.Equal(currentSchedule.StartAt, updatedSchedule.StartAt);
@@ -104,8 +104,8 @@ public class SchedulePersistenceTests(TestStartup startup) : IClassFixture<TestS
         Assert.Single(updatedSchedule.OfficeHours);
         Assert.Contains(DayOfWeek.Wednesday, updatedSchedule.DaysRest.Select(dr => dr.DayOnWeek));
         Assert.Contains(newOfficeHour, updatedSchedule.OfficeHours);
-        var deleteAsync = await _schedulePersistence.DeleteAsync(updatedSchedule);
-        var deletedSchedule = await _schedulePersistence.GetByIdAsync(deleteAsync!.Id);
+        var deleteAsync = await _agendaPersistence.DeleteAsync(updatedSchedule);
+        var deletedSchedule = await _agendaPersistence.GetByIdAsync(deleteAsync!.Id);
         Assert.Null(deletedSchedule);
     }
 }

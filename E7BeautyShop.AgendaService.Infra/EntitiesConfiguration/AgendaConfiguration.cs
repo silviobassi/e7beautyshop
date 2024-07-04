@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace E7BeautyShop.AgendaService.Infra.EntitiesConfiguration;
 
-public class ScheduleConfiguration : IEntityTypeConfiguration<Agenda>
+public class AgendaConfiguration : IEntityTypeConfiguration<Agenda>
 {
     public void Configure(EntityTypeBuilder<Agenda> builder)
     {
@@ -32,12 +32,12 @@ public class ScheduleConfiguration : IEntityTypeConfiguration<Agenda>
 
         builder.HasMany(s => s.DaysRest)
             .WithOne()
-            .HasForeignKey(dr => dr.ScheduleId)
+            .HasForeignKey(dr => dr.AgendaId)
             .IsRequired();
 
         builder.HasMany(s => s.OfficeHours)
             .WithOne()
-            .HasForeignKey(oh => oh.ScheduleId)
+            .HasForeignKey(oh => oh.AgendaId)
             .IsRequired();
     }
 }
