@@ -53,9 +53,15 @@ public sealed class Agenda : Entity, IAggregateRoot
 
     private bool IsDayRest(OfficeHour officeHour)
     {
-        var existsDayRest = _daysRest.Exists(dr => dr.DayOnWeek == officeHour.DateAndHour!.Value.DayOfWeek);
-        return existsDayRest && DaysRest.Count > 0;
+        return IsAnyDaysRestEqualTo(officeHour) && HasDayRestInList;
     }
+
+    private bool IsAnyDaysRestEqualTo(OfficeHour officeHour)
+    {
+        return _daysRest.Exists(dr => dr.DayOnWeek == officeHour.DateAndHour!.Value.DayOfWeek);
+    }
+    
+    private bool HasDayRestInList => _daysRest.Count > 0;
 
     public bool IsWeekday(OfficeHour officeHour) => !IsWeekend(officeHour);
 
