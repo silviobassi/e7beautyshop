@@ -5,7 +5,7 @@ using static E7BeautyShop.AgendaService.Core.Validations.Messages;
 
 namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core;
 
-public class AgendaTest(ITestOutputHelper output)
+public class AgendaTest
 {
     private readonly TimeSpan _startWeekday = new(8, 0, 0);
     private readonly TimeSpan _endWeekday = new(18, 0, 0);

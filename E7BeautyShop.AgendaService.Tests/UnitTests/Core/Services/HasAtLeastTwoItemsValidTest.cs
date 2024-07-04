@@ -1,11 +1,10 @@
 ﻿using E7BeautyShop.AgendaService.Core.Services;
 using E7BeautyShop.AgendaService.Core.Validations;
-using Xunit.Abstractions;
 using static E7BeautyShop.AgendaService.Core.Validations.Messages;
 
 namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core.Services;
 
-public class HasAtLeastTwoItemsValidTest(ITestOutputHelper output)
+public class HasAtLeastTwoItemsValidTest
 {
     [Fact]
     public void Should_NotThrowException_When_AgendaEqualToOne()

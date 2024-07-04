@@ -1,18 +1,29 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:latest
-    container_name: my_postgres
-    restart: always
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver
     environment:
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: postgres
+      SA_PASSWORD: "12345678dev_#"
+      ACCEPT_EULA: "Y"
     ports:
-      - "5432:5432"
+      - "1433:1433"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - sqlserver_data:/var/opt/mssql
+  
+  RabbitMQ:
+    image: rabbitmq:3-management
+    container_name: RabbitMQ
+    environment:
+      RABBITMQ_DEFAULT_USER: "user"
+      RABBITMQ_DEFAULT_PASS: "password"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
 
 volumes:
-  postgres_data:
+  sqlserver_data:
+  rabbitmq_data:
