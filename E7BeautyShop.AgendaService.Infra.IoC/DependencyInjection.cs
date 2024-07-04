@@ -1,10 +1,7 @@
 ﻿using E7BeautyShop.AgendaService.Adapters.Outbound.Persistence;
 using E7BeautyShop.AgendaService.Adapters.Outbound.Publishers;
-using E7BeautyShop.AgendaService.Application.Ports;
 using E7BeautyShop.AgendaService.Application.Ports.Persistence;
 using E7BeautyShop.AgendaService.Application.Ports.Publishers;
-using E7BeautyShop.AgendaService.Application.Ports.UseCases;
-using E7BeautyShop.AgendaService.Application.UseCases;
 using E7BeautyShop.AgendaService.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,7 +43,7 @@ public static class DependencyInjection
         services.AddScoped<IAgendaPersistencePort, AgendaPersistence>();
         services.AddScoped<IDayRestPersistencePort, DayRestPersistence>();
         
-        services.AddScoped<ICreateAgendaPort, CreateAgenda>();
+        //services.AddScoped<ICreateAgendaUseCasePort, CreateAgendaUseCaseUseCase>();
         
         return services;
     }

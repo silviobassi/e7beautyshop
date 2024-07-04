@@ -92,8 +92,5 @@ public sealed class OfficeHour : Entity
         DateAndHour!.Value, Catalog?.DescriptionName,
         Catalog!.DescriptionPrice.GetValueOrDefault());
     
-    public bool IsWeekday=> !IsWeekend;
-
-    private bool IsWeekend
-        => DateAndHour!.Value.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
+   
 }

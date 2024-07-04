@@ -44,23 +44,9 @@ public class AgendaTest(ITestOutputHelper output)
         var agenda = Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
         agenda.AddDayRest(DayRest.Create(DayOfWeek.Monday));
 
-        var dateAndHourGenerate = new AgendaWorkingHoursGenerator();
-        dateAndHourGenerate.Generate(agenda);
 
-        var startDate = dateAndHourGenerate.CurrentDate.Date;
-        var startTime = dateAndHourGenerate.StartTime!.Value;
-        var endTime = dateAndHourGenerate.EndTime!.Value;
-
-        var currentTime = startDate.AddHours(startTime.Hours).AddMinutes(startTime.Minutes);
-        var endDateTime = startDate.AddHours(endTime.Hours).AddMinutes(endTime.Minutes);
-
-        while (currentTime < endDateTime)
-        {
-            var newOfficeHour = OfficeHour.Create(currentTime, 30);
-            agenda.AddOfficeHour(newOfficeHour);
-            currentTime = newOfficeHour.PlusDuration();
-        }
-        
+        var agendaHoursGenerator = new AgendaWorkingHoursGenerator(agenda);
+        agendaHoursGenerator.Generate();
 
         Assert.NotNull(agenda);
         Assert.Equal(startAt, agenda.StartAt);

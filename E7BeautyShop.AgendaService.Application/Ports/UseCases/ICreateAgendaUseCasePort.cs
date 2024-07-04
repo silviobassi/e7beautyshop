@@ -2,7 +2,7 @@
 
 namespace E7BeautyShop.AgendaService.Application.Ports.UseCases;
 
-public interface ICreateAgendaPort
+public interface ICreateAgendaUseCasePort
 {
     Task<Agenda?> CreateAsync(Agenda agenda);
 }

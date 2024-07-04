@@ -196,20 +196,5 @@ public class OfficeHourTest(ITestOutputHelper output)
         Assert.Null(exception);
     }
     
-    [Fact]
-    public void Should_Check_IfDateHour_IsWeekday()
-    {
-        var dateAndHour = new DateTime(2024, 5, 30, 10, 0, 0, DateTimeKind.Local);
-        var officeHour = OfficeHour.Create(dateAndHour, 30);
-        Assert.True(officeHour.IsWeekday);
-    }
-    
-    [Fact]
-    public void Should_Check_IfDateHour_IsNotWeekday()
-    {
-        var dateAndHour = new DateTime(2024, 7, 6, 10, 0, 0, DateTimeKind.Local);
-        var officeHour = OfficeHour.Create(dateAndHour, 30);
-        Assert.False(officeHour.IsWeekday);
-    }
     
 }

@@ -40,6 +40,16 @@ public sealed class Agenda : Entity, IAggregateRoot
 
     public void RemoveDayRest(DayRest dayRest) => _daysRest.Remove(dayRest);
 
+    public bool IsWeekday(OfficeHour officeHour)
+    {
+        return !IsWeekend(officeHour);
+    }
+
+    private bool IsWeekend(OfficeHour officeHour)
+    { 
+        return officeHour.DateAndHour!.Value.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday;
+    
+    } 
     public void AddOfficeHour(OfficeHour officeHour)
     {
         if (IsDayRest(officeHour)) officeHour.IsAvailable = false;
