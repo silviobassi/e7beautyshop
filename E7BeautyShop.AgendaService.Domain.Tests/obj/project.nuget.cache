@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TdkIpWRp9LqogzjoiJGc3g4DZMQZGCatcc6vCPlltP7DqT9FvJecc0r7/hOdEqdQLj1pn6s1SQPbqnE7IS59NQ==",
+  "dgSpecHash": "pnWTzoY8EjdOygZQt3X5a+39W77WRQBnZoB0tr5gLHue2fRxdd8mxF28f7ncboue1POdERhGEPEE6oy+Sde4Nw==",
   "success": true,
   "projectFilePath": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Domain.Tests\\E7BeautyShop.AgendaService.Domain.Tests.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,8 @@
     "C:\\Users\\silvio\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\fluentassertions\\6.12.0\\fluentassertions.6.12.0.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\silvio\\.nuget\\packages\\mediatr\\12.3.0\\mediatr.12.3.0.nupkg.sha512",
+    "C:\\Users\\silvio\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\microsoft.aspnetcore.mvc.testing\\8.0.6\\microsoft.aspnetcore.mvc.testing.8.0.6.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\microsoft.aspnetcore.testhost\\8.0.6\\microsoft.aspnetcore.testhost.8.0.6.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

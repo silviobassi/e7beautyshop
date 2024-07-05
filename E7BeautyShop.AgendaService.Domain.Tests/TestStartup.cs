@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace E7BeautyShop.AgendaService.Tests;
+namespace E7BeautyShop.AgendaService.Domain.Tests;
 
 public class TestStartup
 {

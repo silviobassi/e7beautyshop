@@ -529,3 +529,5 @@ C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaSer
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Domain.Tests\obj\Debug\net8.0\E7BeautyShop.AgendaService.Domain.Tests.pdb
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Domain.Tests\obj\Debug\net8.0\E7BeautyShop.AgendaService.Domain.Tests.genruntimeconfig.cache
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Domain.Tests\obj\Debug\net8.0\ref\E7BeautyShop.AgendaService.Domain.Tests.dll
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Domain.Tests\bin\Debug\net8.0\MediatR.dll
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Domain.Tests\bin\Debug\net8.0\MediatR.Contracts.dll

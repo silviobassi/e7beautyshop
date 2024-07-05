@@ -1,4 +1,4 @@
-﻿using E7BeautyShop.AgendaService.Core.Entities;
+﻿using E7BeautyShop.AgendaService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

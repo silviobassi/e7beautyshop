@@ -1,6 +1,6 @@
-﻿using E7BeautyShop.AgendaService.Core.Validations;
+﻿using E7BeautyShop.AgendaService.Domain.Validations;
 
-namespace E7BeautyShop.AgendaService.Core.DomainEvents;
+namespace E7BeautyShop.AgendaService.Domain.DomainEvents;
 
 public interface IReservedRegisteredEventFactory
 {

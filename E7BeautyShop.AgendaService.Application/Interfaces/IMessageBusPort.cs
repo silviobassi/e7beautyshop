@@ -1,4 +1,4 @@
-﻿namespace E7BeautyShop.AgendaService.Application.Ports.Publishers;
+﻿namespace E7BeautyShop.AgendaService.Application.Interfaces;
 
 public interface IMessageBusPort
 {

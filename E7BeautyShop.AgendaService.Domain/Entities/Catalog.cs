@@ -1,6 +1,6 @@
-﻿using E7BeautyShop.AgendaService.Core.ObjectsValue;
+﻿using E7BeautyShop.AgendaService.Domain.ObjectsValue;
 
-namespace E7BeautyShop.AgendaService.Core.Entities;
+namespace E7BeautyShop.AgendaService.Domain.Entities;
 
 public sealed class Catalog : Entity
 {

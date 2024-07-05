@@ -1,5 +1,5 @@
-﻿using E7BeautyShop.AgendaService.Core.Entities;
-using E7BeautyShop.AgendaService.Core.ObjectsValue;
+﻿using E7BeautyShop.AgendaService.Domain.Entities;
+using E7BeautyShop.AgendaService.Domain.ObjectsValue;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

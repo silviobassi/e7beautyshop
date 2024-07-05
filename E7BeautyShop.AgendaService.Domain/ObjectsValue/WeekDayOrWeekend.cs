@@ -1,7 +1,7 @@
-﻿using E7BeautyShop.AgendaService.Core.Validations;
-using static E7BeautyShop.AgendaService.Core.Validations.Messages;
+﻿using E7BeautyShop.AgendaService.Domain.Validations;
+using static E7BeautyShop.AgendaService.Domain.Validations.Messages;
 
-namespace E7BeautyShop.AgendaService.Core.ObjectsValue;
+namespace E7BeautyShop.AgendaService.Domain.ObjectsValue;
 
 public record WeekDayOrWeekend
 {

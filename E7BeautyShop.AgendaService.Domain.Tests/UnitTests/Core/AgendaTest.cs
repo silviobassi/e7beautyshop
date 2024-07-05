@@ -1,10 +1,10 @@
-﻿using E7BeautyShop.AgendaService.Core.Entities;
-using E7BeautyShop.AgendaService.Core.Services;
-using E7BeautyShop.AgendaService.Core.Validations;
+﻿using E7BeautyShop.AgendaService.Domain.Entities;
+using E7BeautyShop.AgendaService.Domain.Services;
+using E7BeautyShop.AgendaService.Domain.Validations;
 using Xunit.Abstractions;
-using static E7BeautyShop.AgendaService.Core.Validations.Messages;
+using static E7BeautyShop.AgendaService.Domain.Validations.Messages;
 
-namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core;
+namespace E7BeautyShop.AgendaService.Domain.Tests.UnitTests.Core;
 
 public class AgendaTest(ITestOutputHelper output)
 {

@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace E7BeautyShop.AgendaService.Application.Ports.Persistence;
+namespace E7BeautyShop.AgendaService.Domain.Interfaces;
 
 public interface IRepository<T> where T : class
 {

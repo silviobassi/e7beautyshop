@@ -1,4 +1,4 @@
-﻿namespace E7BeautyShop.AgendaService.Core.Entities;
+﻿namespace E7BeautyShop.AgendaService.Domain.Entities;
 
 public interface IAggregateRoot
 {

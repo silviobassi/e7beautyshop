@@ -1,8 +1,8 @@
-﻿using E7BeautyShop.AgendaService.Core.Services;
-using E7BeautyShop.AgendaService.Core.Validations;
-using static E7BeautyShop.AgendaService.Core.Validations.Messages;
+﻿using E7BeautyShop.AgendaService.Domain.Services;
+using E7BeautyShop.AgendaService.Domain.Validations;
+using static E7BeautyShop.AgendaService.Domain.Validations.Messages;
 
-namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core.Services;
+namespace E7BeautyShop.AgendaService.Domain.Tests.UnitTests.Core.Services;
 
 public class HasAtLeastTwoItemsValidTest
 {

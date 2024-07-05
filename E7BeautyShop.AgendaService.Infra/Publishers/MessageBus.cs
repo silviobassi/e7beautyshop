@@ -1,4 +1,4 @@
-﻿using E7BeautyShop.AgendaService.Application.Ports.Publishers;
+﻿using E7BeautyShop.AgendaService.Application.Interfaces;
 
 namespace E7BeautyShop.AgendaService.Infra.Publishers;
 

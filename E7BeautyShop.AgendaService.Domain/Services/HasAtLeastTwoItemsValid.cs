@@ -1,8 +1,8 @@
-﻿using E7BeautyShop.AgendaService.Core.Entities;
-using E7BeautyShop.AgendaService.Core.Validations;
-using static E7BeautyShop.AgendaService.Core.Validations.Messages;
+﻿using E7BeautyShop.AgendaService.Domain.Entities;
+using E7BeautyShop.AgendaService.Domain.Validations;
+using static E7BeautyShop.AgendaService.Domain.Validations.Messages;
 
-namespace E7BeautyShop.AgendaService.Core.Services;
+namespace E7BeautyShop.AgendaService.Domain.Services;
 
 /// <summary>
 /// This class validates if there are at least two items in the schedule.

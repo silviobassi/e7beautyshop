@@ -1,6 +1,6 @@
-﻿using E7BeautyShop.AgendaService.Core.Validations;
+﻿using E7BeautyShop.AgendaService.Domain.Validations;
 
-namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core;
+namespace E7BeautyShop.AgendaService.Domain.Tests.UnitTests.Core;
 
 public class BusinessExceptionTest
 {

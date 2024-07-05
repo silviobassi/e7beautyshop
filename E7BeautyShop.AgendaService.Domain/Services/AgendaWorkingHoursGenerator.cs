@@ -1,7 +1,7 @@
-﻿using E7BeautyShop.AgendaService.Core.Entities;
-using E7BeautyShop.AgendaService.Core.ObjectsValue;
+﻿using E7BeautyShop.AgendaService.Domain.Entities;
+using E7BeautyShop.AgendaService.Domain.ObjectsValue;
 
-namespace E7BeautyShop.AgendaService.Core.Services;
+namespace E7BeautyShop.AgendaService.Domain.Services;
 
 public class AgendaWorkingHoursGenerator(Agenda agenda)
 {

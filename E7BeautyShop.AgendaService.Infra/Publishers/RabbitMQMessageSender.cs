@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using System.Text.Json;
-using E7BeautyShop.AgendaService.Application.Ports.Publishers;
+using E7BeautyShop.AgendaService.Application.Interfaces;
 using RabbitMQ.Client;
 
-namespace E7BeautyShop.AgendaService.Adapters.Outbound.Publishers;
+namespace E7BeautyShop.AgendaService.Infra.Publishers;
 
 public class RabbitMqMessageSender(IConnection connection) : IBrokerMessageSender
 {

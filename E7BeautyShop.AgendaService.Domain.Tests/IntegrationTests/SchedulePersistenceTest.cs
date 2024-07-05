@@ -1,11 +1,9 @@
-﻿using E7BeautyShop.AgendaService.Application.Ports;
-using E7BeautyShop.AgendaService.Application.Ports.Persistence;
-using E7BeautyShop.AgendaService.Core.Entities;
-using E7BeautyShop.AgendaService.Core.Interfaces;
-using E7BeautyShop.AgendaService.Core.ObjectsValue;
+﻿using E7BeautyShop.AgendaService.Domain.Entities;
+using E7BeautyShop.AgendaService.Domain.Interfaces;
+using E7BeautyShop.AgendaService.Domain.ObjectsValue;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace E7BeautyShop.AgendaService.Tests.IntegrationTests;
+namespace E7BeautyShop.AgendaService.Domain.Tests.IntegrationTests;
 
 public class AgendaRepositoryTests(TestStartup startup) : IClassFixture<TestStartup>
 {
@@ -19,7 +17,7 @@ public class AgendaRepositoryTests(TestStartup startup) : IClassFixture<TestStar
         var endAt = DateTime.Now.AddDays(4);
 
         var id = Guid.Parse("e2977a5c-f1d6-46fc-8f7e-f78d0dda568c");
-        
+
         ProfessionalId professionalId = id;
         Weekday weekday = (TimeSpan.FromHours(8), TimeSpan.FromHours(18));
         Weekend weekend = (TimeSpan.FromHours(8), TimeSpan.FromHours(12));
@@ -28,10 +26,10 @@ public class AgendaRepositoryTests(TestStartup startup) : IClassFixture<TestStar
 
         var dayRestSunday = DayRest.Create(DayOfWeek.Sunday);
         var dayRestMonday = DayRest.Create(DayOfWeek.Monday);
-        
+
         schedule.AddDayRest(dayRestSunday);
         schedule.AddDayRest(dayRestMonday);
-        
+
         await _agendaPersistence.CreateAsync(schedule);
 
         var currentSchedule = await _agendaPersistence.GetByIdAsync(schedule.Id);
@@ -44,7 +42,7 @@ public class AgendaRepositoryTests(TestStartup startup) : IClassFixture<TestStar
         Assert.Equal(schedule.Weekday, currentSchedule.Weekday);
         Assert.Equal(schedule.Weekend, currentSchedule.Weekend);
         Assert.Equal(schedule.DaysRest.Count, currentSchedule.DaysRest.Count);
-        
+
         var deleteAsync = await _agendaPersistence.DeleteAsync(schedule);
         var deletedSchedule = await _agendaPersistence.GetByIdAsync(deleteAsync!.Id);
         Assert.Null(deletedSchedule);
@@ -67,15 +65,15 @@ public class AgendaRepositoryTests(TestStartup startup) : IClassFixture<TestStar
         var dayRestMonday = DayRest.Create(DayOfWeek.Monday);
         var officeHour1 = OfficeHour.Create(DateTime.Now, 30);
         var officeHour2 = OfficeHour.Create(DateTime.Now.AddMinutes(30), 30);
-        
+
         schedule.AddDayRest(dayRestSunday);
         schedule.AddDayRest(dayRestMonday);
         schedule.AddOfficeHour(officeHour1);
         schedule.AddOfficeHour(officeHour2);
-        
+
         await _agendaPersistence.CreateAsync(schedule);
         var currentSchedule = await _agendaPersistence.GetByIdAsync(schedule.Id);
-        
+
         var newId = Guid.Parse("6905d076-d8ea-4017-adcf-8cb42c485d9c");
         var newStartAt = DateTime.Now.AddDays(5);
         var newEndAt = DateTime.Now.AddDays(9);
@@ -83,7 +81,7 @@ public class AgendaRepositoryTests(TestStartup startup) : IClassFixture<TestStar
         Weekend newWeekend = (TimeSpan.FromHours(8), TimeSpan.FromHours(14));
         var dayRestWednesday = DayRest.Create(DayOfWeek.Wednesday);
         var newOfficeHour = OfficeHour.Create(DateTime.Now.AddHours(1), 30);
-        
+
         currentSchedule?.Update(schedule.Id, newStartAt, newEndAt, newId, newWeekday, newWeekend);
         currentSchedule?.RemoveDayRest(dayRestMonday);
         currentSchedule?.RemoveDayRest(dayRestSunday);
@@ -91,10 +89,10 @@ public class AgendaRepositoryTests(TestStartup startup) : IClassFixture<TestStar
         currentSchedule?.RemoveOfficeHour(officeHour2);
         currentSchedule?.AddOfficeHour(newOfficeHour);
         currentSchedule?.AddDayRest(dayRestWednesday);
-        
+
         await _agendaPersistence.UpdateAsync(currentSchedule!);
         var updatedSchedule = await _agendaPersistence.GetByIdAsync(currentSchedule!.Id);
-        
+
         Assert.Equal(currentSchedule.Id, updatedSchedule!.Id);
         Assert.Equal(currentSchedule.StartAt, updatedSchedule.StartAt);
         Assert.Equal(currentSchedule.EndAt, updatedSchedule.EndAt);

@@ -1,7 +1,7 @@
-﻿using static E7BeautyShop.AgendaService.Core.Entities.OfficeHour;
-using static E7BeautyShop.AgendaService.Core.ObjectsValue.ServiceDescription;
+﻿using static E7BeautyShop.AgendaService.Domain.Entities.OfficeHour;
+using static E7BeautyShop.AgendaService.Domain.ObjectsValue.ServiceDescription;
 
-namespace E7BeautyShop.AgendaService.Core.Validations;
+namespace E7BeautyShop.AgendaService.Domain.Validations;
 
 public static class Messages
 {

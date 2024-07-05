@@ -1,7 +1,7 @@
-﻿using E7BeautyShop.AgendaService.Core.Services;
-using E7BeautyShop.AgendaService.Core.Validations;
+﻿using E7BeautyShop.AgendaService.Domain.Services;
+using E7BeautyShop.AgendaService.Domain.Validations;
 
-namespace E7BeautyShop.AgendaService.Tests.UnitTests.Core.Services;
+namespace E7BeautyShop.AgendaService.Domain.Tests.UnitTests.Core.Services;
 
 public class HasUniqueItemValidTest
 {

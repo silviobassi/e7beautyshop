@@ -1,6 +1,6 @@
-﻿using E7BeautyShop.AgendaService.Core.Entities;
+﻿using E7BeautyShop.AgendaService.Domain.Entities;
 
-namespace E7BeautyShop.AgendaService.Core.Services;
+namespace E7BeautyShop.AgendaService.Domain.Services;
 
 public abstract class AbstractValidatorTimeToSchedule(
     IReadOnlyCollection<OfficeHour> timesScheduled,

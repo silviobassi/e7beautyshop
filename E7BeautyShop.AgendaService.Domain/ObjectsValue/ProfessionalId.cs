@@ -1,4 +1,4 @@
-﻿namespace E7BeautyShop.AgendaService.Core.ObjectsValue;
+﻿namespace E7BeautyShop.AgendaService.Domain.ObjectsValue;
 
 public sealed record ProfessionalId
 {

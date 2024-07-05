@@ -1,7 +1,7 @@
-﻿using E7BeautyShop.AgendaService.Core.Entities;
+﻿using E7BeautyShop.AgendaService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace E7BeautyShop.AgendaService.Infra.Context;
+namespace E7BeautyShop.AgendaService.Infra.Data.Context;
 
 public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
 {

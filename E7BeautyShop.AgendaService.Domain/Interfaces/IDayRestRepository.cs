@@ -1,6 +1,6 @@
-﻿using E7BeautyShop.AgendaService.Core.Entities;
+﻿using E7BeautyShop.AgendaService.Domain.Entities;
 
-namespace E7BeautyShop.AgendaService.Application.Ports.Persistence;
+namespace E7BeautyShop.AgendaService.Domain.Interfaces;
 
 public interface IDayRestRepository
 {

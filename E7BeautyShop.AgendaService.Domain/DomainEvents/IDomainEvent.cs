@@ -1,4 +1,4 @@
-﻿namespace E7BeautyShop.AgendaService.Core.DomainEvents;
+﻿namespace E7BeautyShop.AgendaService.Domain.DomainEvents;
 
 public interface IDomainEvent
 {
