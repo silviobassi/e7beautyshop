@@ -43,8 +43,7 @@ public class AgendaTest(ITestOutputHelper output)
 
         var agenda = Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
         agenda.AddDayRest(DayRest.Create(DayOfWeek.Monday));
-
-
+        
         var agendaHoursGenerator = new AgendaWorkingHoursGenerator(agenda);
         agendaHoursGenerator.Generate();
 

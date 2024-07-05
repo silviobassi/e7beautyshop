@@ -19,17 +19,25 @@ public class AgendaWorkingHoursGenerator(Agenda agenda)
 
     private void GetTimes()
     {
-        for (var time = WeekDayOrEnd?.StartAt;
-             time < WeekDayOrEnd?.EndAt;
-             time = time.Value.Add(TimeSpan.FromMinutes(30)))
-        {
-            var newTime = OfficeHour.Create(new DateTime(
-                CurrentDate.Year, CurrentDate.Month, CurrentDate.Day, time.Value.Hours, time.Value.Minutes, 0,
-                DateTimeKind.Utc), 30);
+        ArgumentNullException.ThrowIfNull(WeekDayOrEnd);
+        SetNewTime();
+    }
 
+    private void SetNewTime()
+    {
+        var startTime = WeekDayOrEnd!.StartAt;
+        var endTime = WeekDayOrEnd!.EndAt;
+        while (startTime < endTime)
+        {
+            var newTime = OfficeHour.Create(GetDateAndHour(startTime), 30);
             agenda.AddOfficeHour(newTime);
+            startTime = startTime.Value.Add(TimeSpan.FromMinutes(30));
         }
     }
+
+    private DateTime GetDateAndHour(TimeSpan? time) =>
+        new DateTime(CurrentDate.Year, CurrentDate.Month, CurrentDate.Day, time!.Value.Hours, time!.Value.Minutes, 0,
+            DateTimeKind.Utc);
 
     private bool IsWeekday => CurrentDate.DayOfWeek != DayOfWeek.Saturday && CurrentDate.DayOfWeek != DayOfWeek.Sunday;
 }
