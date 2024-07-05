@@ -1,4 +1,4 @@
-﻿/*using E7BeautyShop.AgendaService.Application.Ports.Persistence;
+﻿using E7BeautyShop.AgendaService.Application.Ports.Persistence;
 using E7BeautyShop.AgendaService.Application.Ports.UseCases;
 using E7BeautyShop.AgendaService.Core.Entities;
 using E7BeautyShop.AgendaService.Core.Services;
@@ -14,23 +14,8 @@ public class CreateAgendaUseCaseUseCase(
     {
         try
         {
-            var dateAndHourGenerate = new AgendaWorkingHoursGenerator();
-            dateAndHourGenerate.Generate(agenda);
-
-            var startDate = dateAndHourGenerate.CurrentDate.Date;
-            var startTime = dateAndHourGenerate.StartTime!.Value;
-            var endTime = dateAndHourGenerate.EndTime!.Value;
-
-            var currentTime = startDate.AddHours(startTime.Hours).AddMinutes(startTime.Minutes);
-            var endDateTime = startDate.AddHours(endTime.Hours).AddMinutes(endTime.Minutes);
-
-            while (currentTime < endDateTime)
-            {
-                var newOfficeHour = OfficeHour.Create(currentTime, 30);
-                agenda.AddOfficeHour(newOfficeHour);
-                currentTime = newOfficeHour.PlusDuration();
-            }
-            
+            var dateAndHourGenerate = new AgendaWorkingHoursGenerator(agenda);
+            dateAndHourGenerate.Generate();
             return await agendaPersistencePort.CreateAsync(agenda);
         }
         catch (Exception ex)
@@ -40,21 +25,4 @@ public class CreateAgendaUseCaseUseCase(
 
         return null;
     }
-
-    private static void AddOfficeHoursToAgenda(Agenda agenda, AgendaWorkingHoursGenerator dateAndHourGenerate)
-    {
-        var startDate = dateAndHourGenerate.CurrentDate.Date;
-        var startTime = dateAndHourGenerate.StartTime!.Value;
-        var endTime = dateAndHourGenerate.EndTime!.Value;
-
-        var currentTime = startDate.AddHours(startTime.Hours).AddMinutes(startTime.Minutes);
-        var endDateTime = startDate.AddHours(endTime.Hours).AddMinutes(endTime.Minutes);
-
-        while (currentTime < endDateTime)
-        {
-            var newOfficeHour = OfficeHour.Create(currentTime, 30);
-            agenda.AddOfficeHour(newOfficeHour);
-            currentTime = newOfficeHour.PlusDuration();
-        }
-    }
-}*/
+}

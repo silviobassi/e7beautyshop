@@ -25,9 +25,19 @@ public class CreateAgendaUseCaseTest(TestStartup startup) : IClassFixture<TestSt
         var agenda = Agenda.Create(startAt, endAt, professionalId, weekday, weekend);
         agenda.AddDayRest(DayRest.Create(DayOfWeek.Monday));
         
-        var result = await _createAgendaUseCase.CreateAsync(agenda);
-        var currentSchedule = result is null ? null : await _agendaPersistence.GetByIdAsync(result.Id);
+        var agendaCreated = await _createAgendaUseCase.CreateAsync(agenda);
+        var currentSchedule = agendaCreated is null ? null : await _agendaPersistence.GetByIdAsync(agendaCreated.Id);
         Assert.NotNull(currentSchedule);
+        Assert.Equal(agendaCreated?.StartAt, currentSchedule!.StartAt);
+        Assert.Equal(agendaCreated?.EndAt, currentSchedule!.EndAt);
+        Assert.Equal(agendaCreated?.ProfessionalId, currentSchedule!.ProfessionalId);
+        Assert.Equal(agendaCreated?.Weekday, currentSchedule!.Weekday);
+        Assert.Equal(agendaCreated?.Weekend, currentSchedule!.Weekend);
+        Assert.Equal(agendaCreated?.OfficeHours.Count, currentSchedule!.OfficeHours.Count);
+        Assert.Equal(agendaCreated?.DaysRest.Count, currentSchedule!.DaysRest.Count);
         
+        var agendaDeleted = await _agendaPersistence.DeleteAsync(currentSchedule);
+        var agendaDeletedCurrent = await _agendaPersistence.GetByIdAsync(agendaDeleted!.Id);
+        Assert.Null(agendaDeletedCurrent);
     }
 }
