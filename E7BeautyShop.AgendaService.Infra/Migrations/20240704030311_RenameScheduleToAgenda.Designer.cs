@@ -25,7 +25,7 @@ namespace E7BeautyShop.AgendaService.Infra.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("E7BeautyShop.AgendaService.Core.Entities.Agenda", b =>
+            modelBuilder.Entity("E7BeautyShop.AgendaService.Domain.Entities.Agenda", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace E7BeautyShop.AgendaService.Infra.Migrations
                     b.ToTable("Agendas");
                 });
 
-            modelBuilder.Entity("E7BeautyShop.AgendaService.Core.Entities.Catalog", b =>
+            modelBuilder.Entity("E7BeautyShop.AgendaService.Domain.Entities.Catalog", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace E7BeautyShop.AgendaService.Infra.Migrations
                     b.ToTable("Catalogs");
                 });
 
-            modelBuilder.Entity("E7BeautyShop.AgendaService.Core.Entities.DayRest", b =>
+            modelBuilder.Entity("E7BeautyShop.AgendaService.Domain.Entities.DayRest", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,7 +72,7 @@ namespace E7BeautyShop.AgendaService.Infra.Migrations
                     b.ToTable("DaysRest");
                 });
 
-            modelBuilder.Entity("E7BeautyShop.AgendaService.Core.Entities.OfficeHour", b =>
+            modelBuilder.Entity("E7BeautyShop.AgendaService.Domain.Entities.OfficeHour", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -104,9 +104,9 @@ namespace E7BeautyShop.AgendaService.Infra.Migrations
                     b.ToTable("OfficeHours");
                 });
 
-            modelBuilder.Entity("E7BeautyShop.AgendaService.Core.Entities.Agenda", b =>
+            modelBuilder.Entity("E7BeautyShop.AgendaService.Domain.Entities.Agenda", b =>
                 {
-                    b.OwnsOne("E7BeautyShop.AgendaService.Core.ObjectsValue.ProfessionalId", "ProfessionalId", b1 =>
+                    b.OwnsOne("E7BeautyShop.AgendaService.Domain.ObjectsValue.ProfessionalId", "ProfessionalId", b1 =>
                         {
                             b1.Property<Guid>("AgendaId")
                                 .HasColumnType("uniqueidentifier");
@@ -123,7 +123,7 @@ namespace E7BeautyShop.AgendaService.Infra.Migrations
                                 .HasForeignKey("AgendaId");
                         });
 
-                    b.OwnsOne("E7BeautyShop.AgendaService.Core.ObjectsValue.Weekday", "Weekday", b1 =>
+                    b.OwnsOne("E7BeautyShop.AgendaService.Domain.ObjectsValue.Weekday", "Weekday", b1 =>
                         {
                             b1.Property<Guid>("AgendaId")
                                 .HasColumnType("uniqueidentifier");
@@ -146,7 +146,7 @@ namespace E7BeautyShop.AgendaService.Infra.Migrations
                                 .HasForeignKey("AgendaId");
                         });
 
-                    b.OwnsOne("E7BeautyShop.AgendaService.Core.ObjectsValue.Weekend", "Weekend", b1 =>
+                    b.OwnsOne("E7BeautyShop.AgendaService.Domain.ObjectsValue.Weekend", "Weekend", b1 =>
                         {
                             b1.Property<Guid>("AgendaId")
                                 .HasColumnType("uniqueidentifier");
@@ -176,9 +176,9 @@ namespace E7BeautyShop.AgendaService.Infra.Migrations
                     b.Navigation("Weekend");
                 });
 
-            modelBuilder.Entity("E7BeautyShop.AgendaService.Core.Entities.Catalog", b =>
+            modelBuilder.Entity("E7BeautyShop.AgendaService.Domain.Entities.Catalog", b =>
                 {
-                    b.OwnsOne("E7BeautyShop.AgendaService.Core.ObjectsValue.ServiceDescription", "ServiceDescription", b1 =>
+                    b.OwnsOne("E7BeautyShop.AgendaService.Domain.ObjectsValue.ServiceDescription", "ServiceDescription", b1 =>
                         {
                             b1.Property<Guid>("CatalogId")
                                 .HasColumnType("uniqueidentifier");
@@ -204,28 +204,28 @@ namespace E7BeautyShop.AgendaService.Infra.Migrations
                     b.Navigation("ServiceDescription");
                 });
 
-            modelBuilder.Entity("E7BeautyShop.AgendaService.Core.Entities.DayRest", b =>
+            modelBuilder.Entity("E7BeautyShop.AgendaService.Domain.Entities.DayRest", b =>
                 {
-                    b.HasOne("E7BeautyShop.AgendaService.Core.Entities.Agenda", null)
+                    b.HasOne("E7BeautyShop.AgendaService.Domain.Entities.Agenda", null)
                         .WithMany("DaysRest")
                         .HasForeignKey("AgendaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("E7BeautyShop.AgendaService.Core.Entities.OfficeHour", b =>
+            modelBuilder.Entity("E7BeautyShop.AgendaService.Domain.Entities.OfficeHour", b =>
                 {
-                    b.HasOne("E7BeautyShop.AgendaService.Core.Entities.Agenda", null)
+                    b.HasOne("E7BeautyShop.AgendaService.Domain.Entities.Agenda", null)
                         .WithMany("OfficeHours")
                         .HasForeignKey("AgendaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("E7BeautyShop.AgendaService.Core.Entities.Catalog", "Catalog")
+                    b.HasOne("E7BeautyShop.AgendaService.Domain.Entities.Catalog", "Catalog")
                         .WithMany()
                         .HasForeignKey("CatalogId");
 
-                    b.OwnsOne("E7BeautyShop.AgendaService.Core.ObjectsValue.CustomerId", "CustomerId", b1 =>
+                    b.OwnsOne("E7BeautyShop.AgendaService.Domain.ObjectsValue.CustomerId", "CustomerId", b1 =>
                         {
                             b1.Property<Guid>("OfficeHourId")
                                 .HasColumnType("uniqueidentifier");
@@ -247,7 +247,7 @@ namespace E7BeautyShop.AgendaService.Infra.Migrations
                     b.Navigation("CustomerId");
                 });
 
-            modelBuilder.Entity("E7BeautyShop.AgendaService.Core.Entities.Agenda", b =>
+            modelBuilder.Entity("E7BeautyShop.AgendaService.Domain.Entities.Agenda", b =>
                 {
                     b.Navigation("DaysRest");
 

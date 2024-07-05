@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Core\\E7BeautyShop.AgendaService.Core.csproj": {
-                "projectPath": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Core\\E7BeautyShop.AgendaService.Core.csproj"
+              "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Domain\\E7BeautyShop.AgendaService.Domain.csproj": {
+                "projectPath": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Domain\\E7BeautyShop.AgendaService.Domain.csproj"
               }
             }
           }
@@ -70,14 +70,14 @@
         }
       }
     },
-    "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Core\\E7BeautyShop.AgendaService.Core.csproj": {
+    "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Domain\\E7BeautyShop.AgendaService.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Core\\E7BeautyShop.AgendaService.Core.csproj",
-        "projectName": "E7BeautyShop.AgendaService.Core",
-        "projectPath": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Core\\E7BeautyShop.AgendaService.Core.csproj",
+        "projectUniqueName": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Domain\\E7BeautyShop.AgendaService.Domain.csproj",
+        "projectName": "E7BeautyShop.AgendaService.Domain",
+        "projectPath": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Domain\\E7BeautyShop.AgendaService.Domain.csproj",
         "packagesPath": "C:\\Users\\silvio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Core\\obj\\",
+        "outputPath": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\silvio\\AppData\\Roaming\\NuGet\\NuGet.Config",

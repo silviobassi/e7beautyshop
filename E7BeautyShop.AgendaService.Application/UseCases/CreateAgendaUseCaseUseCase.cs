@@ -1,5 +1,5 @@
-﻿using E7BeautyShop.AgendaService.Application.Ports.Persistence;
-using E7BeautyShop.AgendaService.Application.Ports.UseCases;
+﻿using E7BeautyShop.AgendaService.Application.Interfaces;
+using E7BeautyShop.AgendaService.Application.Ports.Persistence;
 using E7BeautyShop.AgendaService.Core.Entities;
 using E7BeautyShop.AgendaService.Core.Services;
 using Microsoft.Extensions.Logging;
@@ -7,8 +7,8 @@ using Microsoft.Extensions.Logging;
 namespace E7BeautyShop.AgendaService.Application.UseCases;
 
 public class CreateAgendaUseCaseUseCase(
-    IAgendaPersistencePort agendaPersistencePort,
-    ILogger<CreateAgendaUseCaseUseCase> logger) : ICreateAgendaUseCasePort
+    IAgendaRepository agendaRepository,
+    ILogger<CreateAgendaUseCaseUseCase> logger) : ICreateAgendaUseCase
 {
     public async Task<Agenda?> Execute(Agenda agenda)
     {
@@ -16,7 +16,7 @@ public class CreateAgendaUseCaseUseCase(
         {
             var dateAndHourGenerate = new AgendaWorkingHoursGenerator(agenda);
             dateAndHourGenerate.Generate();
-            return await agendaPersistencePort.CreateAsync(agenda);
+            return await agendaRepository.CreateAsync(agenda);
         }
         catch (Exception ex)
         {

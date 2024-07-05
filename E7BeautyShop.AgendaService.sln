@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E7BeautyShop.AgendaService.Core", "E7BeautyShop.AgendaService.Core\E7BeautyShop.AgendaService.Core.csproj", "{D239C216-263D-4518-8323-0FF540CDEC2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E7BeautyShop.AgendaService.Domain", "E7BeautyShop.AgendaService.Domain\E7BeautyShop.AgendaService.Domain.csproj", "{D239C216-263D-4518-8323-0FF540CDEC2E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E7BeautyShop.AgendaService.Tests", "E7BeautyShop.AgendaService.Tests\E7BeautyShop.AgendaService.Tests.csproj", "{70DA1F4D-6A07-4354-A270-8DBD9F63438D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E7BeautyShop.AgendaService.Domain.Tests", "E7BeautyShop.AgendaService.Domain.Tests\E7BeautyShop.AgendaService.Domain.Tests.csproj", "{70DA1F4D-6A07-4354-A270-8DBD9F63438D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E7BeautyShop.AgendaService.Application", "E7BeautyShop.AgendaService.Application\E7BeautyShop.AgendaService.Application.csproj", "{7FE2A0BB-A28A-449C-90AB-1CA9EF4DF029}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E7BeautyShop.AgendaService.Adapters", "E7BeautyShop.AgendaService.Adapters\E7BeautyShop.AgendaService.Adapters.csproj", "{50BA8871-0089-4152-99C5-F174C8C38437}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E7BeautyShop.AgendaService.Infra", "E7BeautyShop.AgendaService.Infra\E7BeautyShop.AgendaService.Infra.csproj", "{8685ACF5-A01C-4E39-AF5E-299155B1717E}"
 EndProject
@@ -35,10 +33,6 @@ Global
 		{7FE2A0BB-A28A-449C-90AB-1CA9EF4DF029}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FE2A0BB-A28A-449C-90AB-1CA9EF4DF029}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FE2A0BB-A28A-449C-90AB-1CA9EF4DF029}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50BA8871-0089-4152-99C5-F174C8C38437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50BA8871-0089-4152-99C5-F174C8C38437}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50BA8871-0089-4152-99C5-F174C8C38437}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50BA8871-0089-4152-99C5-F174C8C38437}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8685ACF5-A01C-4E39-AF5E-299155B1717E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8685ACF5-A01C-4E39-AF5E-299155B1717E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8685ACF5-A01C-4E39-AF5E-299155B1717E}.Release|Any CPU.ActiveCfg = Release|Any CPU

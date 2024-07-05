@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\E7BeautyShop.AgendaService.Adapters\E7BeautyShop.AgendaService.Adapters.csproj" />
       <ProjectReference Include="..\E7BeautyShop.AgendaService.Application\E7BeautyShop.AgendaService.Application.csproj" />
+      <ProjectReference Include="..\E7BeautyShop.AgendaService.Domain\E7BeautyShop.AgendaService.Domain.csproj" />
       <ProjectReference Include="..\E7BeautyShop.AgendaService.Infra\E7BeautyShop.AgendaService.Infra.csproj" />
     </ItemGroup>
 

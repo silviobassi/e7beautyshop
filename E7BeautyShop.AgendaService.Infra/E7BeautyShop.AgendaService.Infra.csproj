@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Data\" />
       <Folder Include="Migrations\" />
     </ItemGroup>
 
@@ -25,7 +26,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\E7BeautyShop.AgendaService.Core\E7BeautyShop.AgendaService.Core.csproj" />
+      <ProjectReference Include="..\E7BeautyShop.AgendaService.Application\E7BeautyShop.AgendaService.Application.csproj" />
+      <ProjectReference Include="..\E7BeautyShop.AgendaService.Domain\E7BeautyShop.AgendaService.Domain.csproj" />
     </ItemGroup>
 
 </Project>

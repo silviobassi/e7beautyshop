@@ -114,15 +114,13 @@ C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaSer
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Adapters.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Application.dll
-C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Core.dll
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Domain.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Infra.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Infra.IoC.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Infra.IoC.pdb
-C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Adapters.pdb
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Application.pdb
-C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Core.pdb
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Domain.pdb
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\E7BeautyShop.AgendaService.Infra.pdb
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\obj\Debug\net8.0\E7BeautyShop.AgendaService.Api.csproj.AssemblyReference.cache
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\obj\Debug\net8.0\E7BeautyShop.AgendaService.Api.GeneratedMSBuildEditorConfig.editorconfig

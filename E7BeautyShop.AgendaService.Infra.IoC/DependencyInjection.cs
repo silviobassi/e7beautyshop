@@ -1,11 +1,12 @@
 ﻿using E7BeautyShop.AgendaService.Adapters.Outbound.Persistence;
 using E7BeautyShop.AgendaService.Adapters.Outbound.Publishers;
+using E7BeautyShop.AgendaService.Application.Interfaces;
 using E7BeautyShop.AgendaService.Application.Ports.Persistence;
 using E7BeautyShop.AgendaService.Application.Ports.Publishers;
-using E7BeautyShop.AgendaService.Application.Ports.UseCases;
 using E7BeautyShop.AgendaService.Application.UseCases;
-using E7BeautyShop.AgendaService.Infra.Connection;
 using E7BeautyShop.AgendaService.Infra.Context;
+using E7BeautyShop.AgendaService.Infra.Data.Connection;
+using E7BeautyShop.AgendaService.Infra.Publishers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,14 +44,14 @@ public static class DependencyInjection
         services.AddSingleton<IBrokerMessageSender, RabbitMqMessageSender>();
         services.AddSingleton<IMessageBusPort, MessageBus>();
         
-        services.AddScoped<ICatalogPersistencePort, CatalogPersistence>();
-        services.AddScoped<IOfficeHourPersistencePort, OfficeHourPersistence>();
-        services.AddScoped<IAgendaPersistencePort, AgendaPersistence>();
-        services.AddScoped<IDayRestPersistencePort, DayRestPersistence>();
+        services.AddScoped<ICatalogRepository, CatalogRepository>();
+        services.AddScoped<IOfficeHourRepository, OfficeHourRepository>();
+        services.AddScoped<IAgendaRepository, AgendaRepository>();
+        services.AddScoped<IDayRestRepository, DayRestRepository>();
         
-        services.AddScoped<ICreateAgendaUseCasePort, CreateAgendaUseCaseUseCase>();
+        services.AddScoped<ICreateAgendaUseCase, CreateAgendaUseCaseUseCase>();
 
-        services.AddScoped<IPersistenceQueryPort, PersistenceQueryAdapter>();
+        services.AddScoped<IPersistenceQuery, PersistenceQuery>();
         
         return services;
     }
