@@ -31,4 +31,9 @@ public class AgendaPersistence(ApplicationDbContext context) : IAgendaPersistenc
         await context.SaveChangesAsync();
         return agenda;
     }
+
+    public async Task<IEnumerable<Agenda>> GetAllAsync()
+    {
+        return await context.Agendas.AsNoTracking().ToListAsync();
+    }
 }

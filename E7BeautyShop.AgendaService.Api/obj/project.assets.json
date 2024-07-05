@@ -1600,7 +1600,8 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "E7BeautyShop.AgendaService.Application": "1.0.0",
-          "E7BeautyShop.AgendaService.Infra": "1.0.0"
+          "E7BeautyShop.AgendaService.Infra": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.4.0"
         },
         "compile": {
           "bin/placeholder/E7BeautyShop.AgendaService.Adapters.dll": {}

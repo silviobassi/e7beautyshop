@@ -10,7 +10,7 @@ public class CreateAgendaUseCaseUseCase(
     IAgendaPersistencePort agendaPersistencePort,
     ILogger<CreateAgendaUseCaseUseCase> logger) : ICreateAgendaUseCasePort
 {
-    public async Task<Agenda?> CreateAsync(Agenda agenda)
+    public async Task<Agenda?> Execute(Agenda agenda)
     {
         try
         {

@@ -4,6 +4,7 @@ using E7BeautyShop.AgendaService.Application.Ports.Persistence;
 using E7BeautyShop.AgendaService.Application.Ports.Publishers;
 using E7BeautyShop.AgendaService.Application.Ports.UseCases;
 using E7BeautyShop.AgendaService.Application.UseCases;
+using E7BeautyShop.AgendaService.Infra.Connection;
 using E7BeautyShop.AgendaService.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,8 @@ public static class DependencyInjection
                 b => 
                     b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
+        services.AddSingleton<IConnectionDb>(new SqlServer(configuration));
+        
         // Connection RabbitMQ
         var rabbitMqConfig = configuration.GetSection("RabbitMQ");
         services.AddSingleton<IConnection>(sp =>
@@ -46,6 +49,8 @@ public static class DependencyInjection
         services.AddScoped<IDayRestPersistencePort, DayRestPersistence>();
         
         services.AddScoped<ICreateAgendaUseCasePort, CreateAgendaUseCaseUseCase>();
+
+        services.AddScoped<IPersistenceQueryPort, PersistenceQueryAdapter>();
         
         return services;
     }

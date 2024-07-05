@@ -32,6 +32,7 @@ C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaSer
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\RabbitMQ.Client.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -145,4 +146,3 @@ C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaSer
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\obj\Debug\net8.0\E7BeautyShop.AgendaService.Api.pdb
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\obj\Debug\net8.0\E7BeautyShop.AgendaService.Api.genruntimeconfig.cache
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\obj\Debug\net8.0\ref\E7BeautyShop.AgendaService.Api.dll
-C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\RabbitMQ.Client.dll

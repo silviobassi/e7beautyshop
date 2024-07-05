@@ -913,7 +913,8 @@
       "E7BeautyShop.AgendaService.Adapters/1.0.0": {
         "dependencies": {
           "E7BeautyShop.AgendaService.Application": "1.0.0",
-          "E7BeautyShop.AgendaService.Infra": "1.0.0"
+          "E7BeautyShop.AgendaService.Infra": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {
           "E7BeautyShop.AgendaService.Adapters.dll": {}

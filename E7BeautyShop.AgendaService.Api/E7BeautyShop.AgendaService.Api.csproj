@@ -15,4 +15,8 @@
       <ProjectReference Include="..\E7BeautyShop.AgendaService.Infra.IoC\E7BeautyShop.AgendaService.Infra.IoC.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+    </ItemGroup>
+
 </Project>
