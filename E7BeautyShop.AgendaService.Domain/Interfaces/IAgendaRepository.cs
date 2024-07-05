@@ -1,6 +1,6 @@
 ﻿using E7BeautyShop.AgendaService.Core.Entities;
 
-namespace E7BeautyShop.AgendaService.Application.Ports.Persistence;
+namespace E7BeautyShop.AgendaService.Core.Interfaces;
 
 public interface IAgendaRepository
 {

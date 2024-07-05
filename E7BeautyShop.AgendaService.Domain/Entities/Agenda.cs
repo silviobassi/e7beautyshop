@@ -37,6 +37,8 @@ public sealed class Agenda : Entity, IAggregateRoot
         Weekend weekend) => new(startAt, endAt, professionalId, weekday, weekend);
     
     public void AddDayRest(DayRest dayRest) => _daysRest.Add(dayRest);
+    
+    public void AddDayRests(List<DayRest> dayRests) => _daysRest.AddRange(dayRests);
 
     public void RemoveDayRest(DayRest dayRest) => _daysRest.Remove(dayRest);
     

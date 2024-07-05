@@ -7,7 +7,7 @@
         
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
-        <RootNamespace>E7BeautyShop.AgendaService.Core</RootNamespace>
+        <RootNamespace>E7BeautyShop.AgendaService.Domain</RootNamespace>
     </PropertyGroup>
     
 </Project>

@@ -1,8 +1,9 @@
 ﻿using E7BeautyShop.AgendaService.Core.ObjectsValue;
 
-namespace E7BeautyShop.AgendaService.Application;
+namespace E7BeautyShop.AgendaService.Application.DTOs;
 
-public record GetAllAgendaResponse(
+public record AgendaResponse(
+    Guid Id,
     DateTime? StartAt,
     DateTime? EndAt,
     Guid? ProfessionalId,

@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
-        <RootNamespace>E7BeautyShop.AgendaService.Tests</RootNamespace>
+        <RootNamespace>E7BeautyShop.AgendaService.Domain.Tests</RootNamespace>
         <PreserveCompilationContext>true</PreserveCompilationContext>
     </PropertyGroup>
 

@@ -1,6 +1,7 @@
 ﻿using E7BeautyShop.AgendaService.Application.Ports;
 using E7BeautyShop.AgendaService.Application.Ports.Persistence;
 using E7BeautyShop.AgendaService.Core.Entities;
+using E7BeautyShop.AgendaService.Core.Interfaces;
 using E7BeautyShop.AgendaService.Core.ObjectsValue;
 using Microsoft.Extensions.DependencyInjection;
 

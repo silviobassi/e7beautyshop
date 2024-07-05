@@ -1,8 +1,8 @@
-﻿using E7BeautyShop.AgendaService.Core.Entities;
+﻿using E7BeautyShop.AgendaService.Application.DTOs;
 
 namespace E7BeautyShop.AgendaService.Application.Interfaces;
 
 public interface ICreateAgendaUseCase
 {
-    Task<Agenda?> Execute(Agenda agenda);
+    Task<AgendaResponse?> Execute(CreateAgendaRequest agendaRequest);
 }
