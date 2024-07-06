@@ -9,7 +9,7 @@ namespace E7BeautyShop.AgendaService.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AgendaController(IMediator mediator, IAgendaRepository agendaRepository) : ControllerBase
+public class AgendasController(IMediator mediator, IAgendaRepository agendaRepository) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AgendaResponse>>> Get()

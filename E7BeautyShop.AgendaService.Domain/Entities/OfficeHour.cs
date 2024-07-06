@@ -31,6 +31,7 @@ public sealed class OfficeHour : Entity
 
     private OfficeHour(DateTime? dateAndHour, int duration)
     {
+        Id = Guid.NewGuid();
         DateAndHour = dateAndHour;
         Duration = duration;
         IsAvailable = true;

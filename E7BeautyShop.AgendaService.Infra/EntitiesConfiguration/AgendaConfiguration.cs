@@ -1,4 +1,5 @@
 ﻿using E7BeautyShop.AgendaService.Domain.Entities;
+using E7BeautyShop.AgendaService.Domain.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,6 +10,7 @@ public class AgendaConfiguration : IEntityTypeConfiguration<Agenda>
     public void Configure(EntityTypeBuilder<Agenda> builder)
     {
         builder.HasKey(s => s.Id);
+
         builder.Property(s => s.StartAt).IsRequired();
         builder.Property(s => s.EndAt).IsRequired();
 
@@ -24,11 +26,9 @@ public class AgendaConfiguration : IEntityTypeConfiguration<Agenda>
             we.Property(w => w.EndAt).HasColumnName("Weekend_EndAt").IsRequired();
         });
 
-        builder.OwnsOne(s => s.ProfessionalId, p =>
-        {
-            p.Property(pr => pr.Value).HasColumnName("Professional_Id").IsRequired();
-        });
-        
+        builder.OwnsOne(s => s.ProfessionalId,
+            p => { p.Property(pr => pr.Value).HasColumnName("Professional_Id").IsRequired(); });
+
 
         builder.HasMany(s => s.DaysRest)
             .WithOne()

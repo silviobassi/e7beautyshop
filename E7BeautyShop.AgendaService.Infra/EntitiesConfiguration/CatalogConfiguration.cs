@@ -10,7 +10,7 @@ public class CatalogConfiguration : IEntityTypeConfiguration<Catalog>
     public void Configure(EntityTypeBuilder<Catalog> builder)
     {
         builder.HasKey(c => c.Id);
-
+        
         builder.OwnsOne(c => c.ServiceDescription, sd =>
         {
             sd.Property(d => d.Name)

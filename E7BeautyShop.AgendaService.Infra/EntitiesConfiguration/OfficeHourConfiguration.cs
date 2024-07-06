@@ -9,6 +9,7 @@ public class OfficeHourConfiguration : IEntityTypeConfiguration<OfficeHour>
     public void Configure(EntityTypeBuilder<OfficeHour> builder)
     {
         builder.HasKey(oh => oh.Id);
+        
         builder.Property(oh => oh.DateAndHour).IsRequired();
         builder.Property(oh => oh.IsAvailable).IsRequired();
         

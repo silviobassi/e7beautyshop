@@ -12,6 +12,7 @@ public sealed class DayRest : Entity
 
     private DayRest(DayOfWeek? dayOnWeek)
     {
+        Id = Guid.NewGuid();
         DayOnWeek = dayOnWeek;
         ArgumentNullException.ThrowIfNull(nameof(DayOnWeek));
     }

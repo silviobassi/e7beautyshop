@@ -8,7 +8,6 @@ public interface IAgendaRepository
     Task<Agenda> CreateAsync(Agenda agenda);
     Task<Agenda?> UpdateAsync(Agenda agenda);
     Task<Agenda?> DeleteAsync(Agenda agenda);
-    
     Task<IEnumerable<Agenda>> GetAgendasAsync();
     
 }

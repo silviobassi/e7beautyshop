@@ -33,6 +33,6 @@ public class AgendaRepository(ApplicationDbContext context) : IAgendaRepository
 
     public async Task<IEnumerable<Agenda>> GetAgendasAsync()
     {
-        return await context.Agendas.AsNoTracking().ToListAsync();
+        return await context.Agendas.AsNoTracking().Include(a => a.DaysRest).ToListAsync();
     }
 }
