@@ -1,4 +1,7 @@
-﻿using E7BeautyShop.AgendaService.Application.Interfaces;
+﻿using System.ComponentModel;
+using System.Text.Json;
+using E7BeautyShop.AgendaService.Application.Commands;
+using E7BeautyShop.AgendaService.Application.Interfaces;
 using E7BeautyShop.AgendaService.Domain.Interfaces;
 using E7BeautyShop.AgendaService.Infra.Data.Connection;
 using E7BeautyShop.AgendaService.Infra.Data.Context;
@@ -16,10 +19,14 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         // Connection DB
-        services.AddDbContext<ApplicationDbContext>(options =>
+        /*services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                 b =>
-                    b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+                    b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));*/
+        
+        // InMemory DB
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseInMemoryDatabase("E7BeautyShopAgendaService"));
 
         services.AddSingleton<IConnectionDb>(new SqlServer(configuration));
 
@@ -48,7 +55,7 @@ public static class DependencyInjection
         services.AddScoped<IOfficeHourRepository, OfficeHourRepository>();
         services.AddScoped<IAgendaRepository, AgendaRepository>();
         services.AddScoped<IDayRestRepository, DayRestRepository>();
-
+        
         return services;
     }
 }

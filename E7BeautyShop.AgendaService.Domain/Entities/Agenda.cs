@@ -1,5 +1,6 @@
 ﻿using E7BeautyShop.AgendaService.Domain.ObjectsValue;
 using E7BeautyShop.AgendaService.Domain.Validations;
+using E7BeautyShop.AgendaService.Domain.ValueObjects;
 using static E7BeautyShop.AgendaService.Domain.Validations.Messages;
 
 namespace E7BeautyShop.AgendaService.Domain.Entities;

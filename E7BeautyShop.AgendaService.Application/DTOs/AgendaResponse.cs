@@ -1,5 +1,6 @@
 ﻿using E7BeautyShop.AgendaService.Domain.Entities;
 using E7BeautyShop.AgendaService.Domain.ObjectsValue;
+using E7BeautyShop.AgendaService.Domain.ValueObjects;
 
 namespace E7BeautyShop.AgendaService.Application.DTOs;
 

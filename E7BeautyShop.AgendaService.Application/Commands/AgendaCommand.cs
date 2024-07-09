@@ -10,8 +10,11 @@ public abstract class AgendaCommand : IRequest<Agenda>
     public DateTime EndAt { get; set; }
     public Guid? ProfessionalId { get; set; }
     public TimeSpan WeekdayStartAt { get; set; }
+
     public TimeSpan WeekdayEndAt { get; set; }
+
     public TimeSpan WeekendStartAt { get; set; }
+
     public TimeSpan WeekendEndAt { get; set; }
     public List<DayRestCommand>? DaysRest { get; set; }
 }

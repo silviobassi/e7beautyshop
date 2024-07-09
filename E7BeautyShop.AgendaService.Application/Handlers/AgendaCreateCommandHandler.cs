@@ -3,6 +3,7 @@ using E7BeautyShop.AgendaService.Domain.Entities;
 using E7BeautyShop.AgendaService.Domain.Interfaces;
 using E7BeautyShop.AgendaService.Domain.ObjectsValue;
 using E7BeautyShop.AgendaService.Domain.Services;
+using E7BeautyShop.AgendaService.Domain.ValueObjects;
 using MediatR;
 
 namespace E7BeautyShop.AgendaService.Application.Handlers;

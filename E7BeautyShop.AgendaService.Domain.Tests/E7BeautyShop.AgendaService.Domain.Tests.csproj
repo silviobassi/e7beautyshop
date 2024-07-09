@@ -25,14 +25,7 @@
 
 
     <ItemGroup>
-      <Folder Include="UnitTests\" />
-    </ItemGroup>
-
-
-    <ItemGroup>
-      <ProjectReference Include="..\E7BeautyShop.AgendaService.Api\E7BeautyShop.AgendaService.Api.csproj" />
       <ProjectReference Include="..\E7BeautyShop.AgendaService.Domain\E7BeautyShop.AgendaService.Domain.csproj" />
-      <ProjectReference Include="..\E7BeautyShop.AgendaService.Infra.IoC\E7BeautyShop.AgendaService.Infra.IoC.csproj" />
     </ItemGroup>
 
 </Project>
