@@ -1,7 +1,6 @@
 ﻿using E7BeautyShop.AgendaService.Application.Commands;
 using E7BeautyShop.AgendaService.Domain.Entities;
 using E7BeautyShop.AgendaService.Domain.Interfaces;
-using E7BeautyShop.AgendaService.Domain.ObjectsValue;
 using E7BeautyShop.AgendaService.Domain.Services;
 using E7BeautyShop.AgendaService.Domain.ValueObjects;
 using MediatR;
@@ -28,8 +27,8 @@ public class AgendaCreateCommandHandler(IAgendaRepository agendaRepository)
             agenda.AddDayRest(DayRest.Create(dayRest.DayOnWeek));
         }
         
-        var workingHoursGenerator = new AgendaWorkingHoursGenerator(agenda);
-        workingHoursGenerator.Generate();
+        var timesGenerator = new AgendaWorkingHoursGenerator(agenda);
+        timesGenerator.Generate();
         
         ArgumentNullException.ThrowIfNull(nameof(agenda));
 

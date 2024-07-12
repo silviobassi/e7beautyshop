@@ -15,7 +15,7 @@ public class AgendasController(IMediator mediator, IAgendaRepository agendaRepos
     public async Task<ActionResult<IEnumerable<AgendaResponse>>> Get()
     {
         var agendas = await agendaRepository.GetAgendasAsync();
-        return Ok(agendas.ToGetAllAgendas());
+        return Ok(agendas.ToAgendas());
     }
 
     [HttpPost]

@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Text.Json;
-using E7BeautyShop.AgendaService.Application.Commands;
-using E7BeautyShop.AgendaService.Application.Interfaces;
+﻿using E7BeautyShop.AgendaService.Application.Interfaces;
 using E7BeautyShop.AgendaService.Domain.Interfaces;
 using E7BeautyShop.AgendaService.Infra.Data.Connection;
 using E7BeautyShop.AgendaService.Infra.Data.Context;

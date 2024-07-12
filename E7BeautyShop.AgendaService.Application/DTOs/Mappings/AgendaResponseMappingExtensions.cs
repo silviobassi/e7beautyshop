@@ -2,9 +2,9 @@
 
 namespace E7BeautyShop.AgendaService.Application.DTOs.Mappings;
 
-public static class GetAllResponseMappingExtensions
+public static class AgendaResponseMappingExtensions
 {
-    public static IEnumerable<AgendaResponse>? ToGetAllAgendas(this IEnumerable<Agenda>? agendas)
+    public static IEnumerable<AgendaResponse>? ToAgendas(this IEnumerable<Agenda>? agendas)
     {
         return agendas?.Select(a =>
             new AgendaResponse(a.Id, a.StartAt, a.EndAt, a.ProfessionalId?.Value, a.Weekday, a.Weekend, a.DaysRest));
