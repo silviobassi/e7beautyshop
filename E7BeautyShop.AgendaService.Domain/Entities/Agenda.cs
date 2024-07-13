@@ -16,7 +16,7 @@ public sealed class Agenda : Entity, IAggregateRoot
     private readonly List<OfficeHour> _officeHours = [];
     private readonly List<DayRest> _daysRest = [];
     public IReadOnlyCollection<OfficeHour> OfficeHours => _officeHours.AsReadOnly();
-    public IReadOnlyCollection<DayRest> DaysRest => _daysRest.AsReadOnly();
+    public IReadOnlyCollection<DayRest>? DaysRest => _daysRest.AsReadOnly();
 
     public Agenda()
     {

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("E7BeautyShop.AgendaService.Infra.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15236fd3ef3cedf6b5cebbbc32c16883ba0841b8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bbaec904d62c0d657cfe9782ab2da086a1eebe67")]
 [assembly: System.Reflection.AssemblyProductAttribute("E7BeautyShop.AgendaService.Infra.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("E7BeautyShop.AgendaService.Infra.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

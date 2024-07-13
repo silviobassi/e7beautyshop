@@ -1,14 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "N1oU5foGJ1Pf1K6KqAW/BQExpv20V0aDhTKuciVhinq5oXIycwR4kTBywjy8MMGtziAIGhSsOw0O1SMHHAMpZA==",
+  "dgSpecHash": "CUVntsFM9lYArVp/MbdRcXkTsG8yZTLxYX/M90zs0lJLYBHTm5h5DrRYML8Sbwbh5ol19VqcnBGnhW0fJm9WKw==",
   "success": true,
   "projectFilePath": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Infra.IoC\\E7BeautyShop.AgendaService.Infra.IoC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\silvio\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
-    "C:\\Users\\silvio\\.nuget\\packages\\mediatr\\12.3.0\\mediatr.12.3.0.nupkg.sha512",
-    "C:\\Users\\silvio\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\microsoft.codeanalysis.common\\4.5.0\\microsoft.codeanalysis.common.4.5.0.nupkg.sha512",

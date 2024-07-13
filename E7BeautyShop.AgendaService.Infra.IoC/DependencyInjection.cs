@@ -1,4 +1,5 @@
 ﻿using E7BeautyShop.AgendaService.Application.Interfaces;
+using E7BeautyShop.AgendaService.Application.UseCases;
 using E7BeautyShop.AgendaService.Domain.Interfaces;
 using E7BeautyShop.AgendaService.Infra.Data.Connection;
 using E7BeautyShop.AgendaService.Infra.Data.Context;
@@ -40,11 +41,7 @@ public static class DependencyInjection
             };
             return factory.CreateConnection();
         });
-
-        var myHandlers = AppDomain.CurrentDomain.Load("E7BeautyShop.AgendaService.Application");
-        services.AddMediatR(s => s.RegisterServicesFromAssembly(myHandlers));
-
-
+        
         services.AddSingleton<IBrokerMessageSender, RabbitMqMessageSender>();
         services.AddSingleton<IMessageBusPort, MessageBus>();
 
@@ -52,6 +49,8 @@ public static class DependencyInjection
         services.AddScoped<IOfficeHourRepository, OfficeHourRepository>();
         services.AddScoped<IAgendaRepository, AgendaRepository>();
         services.AddScoped<IDayRestRepository, DayRestRepository>();
+
+        services.AddScoped<IAgendaCreateUseCase, AgendaCreateUseCase>();
         
         return services;
     }

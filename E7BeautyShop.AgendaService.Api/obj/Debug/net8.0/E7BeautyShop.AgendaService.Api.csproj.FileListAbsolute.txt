@@ -8,8 +8,6 @@ C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaSer
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Azure.Identity.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Humanizer.dll
-C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\MediatR.dll
-C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\MediatR.Contracts.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 C:\Users\silvio\Projects\Dotnet\E7BeautyShop\e7beautyshop\E7BeautyShop.AgendaService.Api\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll

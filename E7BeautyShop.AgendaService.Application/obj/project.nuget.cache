@@ -1,11 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "x7peEQ2irwW4Wqg5BjrOJ9fgXjRalV7Poys4CJiLIdGtfQHXC5vx9CmTZifwBbe2Oa2Zm2xiKSF8lk7CC3k2Yw==",
+  "dgSpecHash": "EZUI4UJYS4jO7KvETijX2DX32bI4b+4S3YbHgKwHVBTsA+MAir6Uf9lAfLtx2bFvpecWB3Ryfs7e0VChKMr65A==",
   "success": true,
   "projectFilePath": "C:\\Users\\silvio\\Projects\\Dotnet\\E7BeautyShop\\e7beautyshop\\E7BeautyShop.AgendaService.Application\\E7BeautyShop.AgendaService.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\silvio\\.nuget\\packages\\mediatr\\12.3.0\\mediatr.12.3.0.nupkg.sha512",
-    "C:\\Users\\silvio\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.6\\microsoft.entityframeworkcore.8.0.6.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.6\\microsoft.entityframeworkcore.abstractions.8.0.6.nupkg.sha512",
     "C:\\Users\\silvio\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.6\\microsoft.entityframeworkcore.analyzers.8.0.6.nupkg.sha512",
